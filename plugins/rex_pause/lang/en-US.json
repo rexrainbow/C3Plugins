@@ -1,0 +1,61 @@
+﻿{
+	"languageTag": "en-US",
+	"fileDescription": "Strings for Rex_Pause.",
+	"text": {
+		"plugins": {
+			"rex_pause": {
+				"name": "Pause",
+				"description": "Pause timescale.",
+				"help-url": "https://rexrainbow.github.io/C2RexDoc/c2rexpluginsACE/plugin_rex_pause.html",
+				"properties": {
+				},
+				"aceCategories": {
+					"Pause/Resume": "Pause/Resume",
+					"Timescale": "Timescale"
+				},
+				"conditions": {
+					"on-paused": {
+						"list-name": "On pause",
+						"display-text": "On pause",
+						"description": "Trigger when app is paused."
+					},
+					"on-resumed": {
+						"list-name": "On resume",
+						"display-text": "On resume",
+						"description": "Trigger when app is resumed."
+					},
+					"is-paused": {
+						"list-name": "Is paused",
+						"display-text": "Is paused",
+						"description": "Return true if in paused state."
+					}
+				},
+				"actions": {
+					"toggle-state": {
+						"list-name": "Toggle state",
+						"display-text": "Toggle state",
+						"description": "Toggle state."
+					},
+					"set-state": {
+						"list-name": "Set state",
+						"display-text": "Set state to [i]{0}[/i]",
+						"description": "Toggle state.",
+                        "params": {
+		                    "state": {
+			                    "name": "State",
+			                    "desc": "Run or pause state.",
+								"items":{"pause":"Pause","run":"Run"}
+		                    }
+	                    }						
+					}					
+				},
+				"expressions": {
+					"previous-timescale": {
+						"description": "Get previous timescale.",
+						"translated-name": "PreTimescale"						
+					}
+				}
+			}
+		}
+	}
+}

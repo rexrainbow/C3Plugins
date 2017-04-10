@@ -1,0 +1,47 @@
+﻿{
+	"Pause/Resume": {
+		"conditions": [
+			{
+				"id": "on-paused",
+				"scriptName": "OnPaused",
+				"isTrigger": true,
+				"c2id": 0
+			},
+			{
+				"id": "on-resumed",
+				"scriptName": "OnResumed",
+				"isTrigger": true,				
+				"c2id": 1
+			},	
+			{
+				"id": "is-paused",
+				"scriptName": "IsPaused",
+				"c2id": 2
+			}			
+		],
+		"actions": [
+			{
+				"id": "toggle-state",
+				"scriptName": "ToggleState",
+				"c2id": 0
+			},
+			{
+				"id": "set-state",
+				"scriptName": "SetState",
+				"params": [
+				    {"id":"state","type":"combo","items":["pause","run"]}
+				],				
+				"c2id": 1
+			}			
+		]
+	},
+	"Timescale": {
+		"expressions": [
+			{
+				"id": "previous-timescale",
+				"expressionName": "PreTimescale",
+				"returnType": "number"				
+			}
+		]		
+	}
+}
