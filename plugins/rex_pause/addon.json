@@ -6,7 +6,7 @@
 	"version": "1.0.0.0",
 	"author": "Rex.Rainbow",
 	"website": "https://www.construct.net",
-	"documentation": "https://rexrainbow.github.io/C2RexDoc/c2rexpluginsACE/plugin_rex_pause.html",
+	"documentation": "https://rexrainbow.github.io/C3RexDoc/plugins.md/rex_pause.html",
 	"description": "Pause timescale.",
 	"editor-scripts": [
 						"plugin.js",
