@@ -61,13 +61,13 @@ cr.plugins_.Rex_Pause = function(runtime)
         {
             this.previousTimescale = this.runtime.timescale;
             this.runtime.timescale = 0;
-            trigFn = cr.plugins_.Rex_Pause.prototype.cnds.OnPause;
+            trigFn = cr.plugins_.Rex_Pause.prototype.cnds.OnPaused;
         }
         else
         {
             this.runtime.timescale = this.previousTimescale;
             this.previousTimescale = 0;
-            trigFn = cr.plugins_.Rex_Pause.prototype.cnds.OnResume;
+            trigFn = cr.plugins_.Rex_Pause.prototype.cnds.OnResumed;
         }
         this.runtime.trigger(trigFn, this);   
     };       
@@ -81,8 +81,20 @@ cr.plugins_.Rex_Pause = function(runtime)
     instanceProto.loadFromJSON = function (o)
     {
         this.isPaused = o["p"];
-        this.previousTimescale = o["ts"];
+        this.previousTimescale = o["ts"];        
     };
+
+	/**BEGIN-PREVIEWONLY**/
+	instanceProto.getDebuggerValues = function (propsections)
+	{	  
+		propsections.push({
+			"title": this.type.name,
+			"properties": [{"name": "State", "value": (this.isPaused)? "Paused":"Run"},
+			               {"name": "Previous timescale", "value": this.previousTimescale}]
+		});
+	};
+	/**END-PREVIEWONLY**/ 
+
     //////////////////////////////////////
     // Conditions
     function Cnds() {};
@@ -126,7 +138,7 @@ cr.plugins_.Rex_Pause = function(runtime)
 
     Exps.prototype.PreTimescale = function (ret)
     {
-        ret.set_float( this.previousTimescale );
+        ret.set_float(this.previousTimescale);
     };
     
 }());
