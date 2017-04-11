@@ -1,16 +1,16 @@
 ﻿{
-	"is-c3-addon": true,
-	"type": "plugin",
-	"name": "Pause",
-	"id": "Rex_Pause",
-	"version": "1.0.0.0",
-	"author": "Rex.Rainbow",
-	"website": "https://rexrainbow.github.io/C3RexDoc/plugins.md/index.html",
-	"documentation": "https://rexrainbow.github.io/C3RexDoc/plugins.md/rex_pause.html",
-	"description": "Pause timescale.",
-	"editor-scripts": [
-						"plugin.js",
-						"type.js",
-						"instance.js"
-					]
+    "is-c3-addon": true,
+    "type": "plugin",
+    "name": "Pause",
+    "id": "Rex_Pause",
+    "version": "1.0.0.0",
+    "author": "Rex.Rainbow",
+    "website": "https://rexrainbow.github.io/C3RexDoc/plugins.md/index.html",
+    "documentation": "https://rexrainbow.github.io/C3RexDoc/plugins.md/rex_pause.html",
+    "description": "Pause timescale.",
+    "editor-scripts": [
+                        "plugin.js",
+                        "type.js",
+                        "instance.js"
+                    ]
 }
