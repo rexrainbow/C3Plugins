@@ -12,5 +12,15 @@
                         "plugin.js",
                         "type.js",
                         "instance.js"
-                    ]
+                    ],
+	"file-list": [
+		"c2runtime/runtime.js",
+		"lang/en-US.json",
+		"aces.json",
+		"addon.json",
+		"icon.png",
+		"instance.js",
+		"plugin.js",
+		"type.js"
+	]				                    
 }
