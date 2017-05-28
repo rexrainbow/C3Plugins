@@ -1,0 +1,584 @@
+{
+	"load": {
+		"conditions": [
+		],
+		"actions": [
+			{
+				"id": "load-csv",
+				"scriptName": "LoadCSV",
+				"highlight": false,
+				"params": [
+					{"id":"csv_string0", "type":"string", "initialValue":"\"\""}
+				],
+				"c2id": 1				
+			},
+			{
+				"id": "string-to-page",
+				"scriptName": "StringToPage",
+				"highlight": false,
+				"params": [
+					{"id":"json_string0", "type":"string", "initialValue":"\"\""}
+				],
+				"c2id": 6
+			},
+			{
+				"id": "string-to-all-tables",
+				"scriptName": "StringToAllTables",
+				"highlight": false,
+				"params": [
+					{"id":"json_string0", "type":"string", "initialValue":"\"\""}
+				],
+				"c2id": 12				
+			}
+		],
+		"expressions": [
+		]
+	},
+	"set": {
+		"conditions": [
+		],
+		"actions": [
+			{
+				"id": "set-cell",
+				"scriptName": "SetCell",
+				"highlight": false,
+				"params": [
+					{"id":"col0", "type":"string", "initialValue":"\"\""},
+					{"id":"row1", "type":"string", "initialValue":"\"\""},
+					{"id":"value2", "type":"any", "initialValue":"0"}
+				],
+				"c2id": 2				
+			},
+			{
+				"id": "clear",
+				"scriptName": "Clear",
+				"highlight": false,
+				"c2id": 3				
+			},
+			{
+
+				"id": "set-cell-at-page",
+				"scriptName": "SetCellAtPage",
+				"highlight": false,
+				"params": [
+					{"id":"col0", "type":"string", "initialValue":"\"\""},
+					{"id":"row1", "type":"string", "initialValue":"\"\""},
+					{"id":"page2", "type":"string", "initialValue":"\"\""},
+					{"id":"value3", "type":"any", "initialValue":"0"}
+				],
+				"c2id": 15				
+			},
+			{
+				"id": "add-to-cell",
+				"scriptName": "AddToCell",
+				"highlight": false,
+				"params": [
+					{"id":"col0", "type":"string", "initialValue":"\"\""},
+					{"id":"row1", "type":"string", "initialValue":"\"\""},
+					{"id":"value2", "type":"any", "initialValue":"0"}
+				],
+				"c2id": 16								
+			},
+			{
+
+				"id": "add-to-cell-at-page",
+				"scriptName": "AddToCellAtPage",
+				"highlight": false,
+				"params": [
+					{"id":"col0", "type":"string", "initialValue":"\"\""},
+					{"id":"row1", "type":"string", "initialValue":"\"\""},
+					{"id":"page2", "type":"string", "initialValue":"\"\""},
+					{"id":"value3", "type":"any", "initialValue":"0"}
+				],
+				"c2id": 17				
+			}
+		],
+		"expressions": [
+		]
+	},
+	"convert": {
+		"conditions": [
+		],
+		"actions": [
+			{
+				"id": "convert-row",
+				"scriptName": "ConvertRow",
+				"highlight": false,
+				"params": [
+					{"id":"row0", "type":"string", "initialValue":"\"\""},
+					{"id":"type3", "type":"combo", "items":["integer","float"]}
+				],
+				"c2id": 4				
+			},
+			{
+				"id": "convert-col",
+				"scriptName": "ConvertCol",
+				"highlight": false,
+				"params": [
+					{"id":"col0", "type":"string", "initialValue":"\"\""},
+					{"id":"type3", "type":"combo", "items":["integer","float"]}
+				],
+				"c2id": 18				
+			}
+		],
+		"expressions": [
+		]
+	},
+	"page": {
+		"conditions": [
+		],
+		"actions": [
+			{
+				"id": "turn-page",
+				"scriptName": "TurnPage",
+				"highlight": false,
+				"params": [
+					{"id":"page0", "type":"string", "initialValue":"\"\""}
+				],
+				"c2id": 5				
+			}
+		],
+		"expressions": [
+		]
+	},
+	"resize": {
+		"conditions": [
+		],
+		"actions": [
+			{
+				"id": "append-col",
+				"scriptName": "AppendCol",
+				"highlight": false,
+				"params": [
+					{"id":"col0", "type":"string", "initialValue":"\"\""},
+					{"id":"value1", "type":"any", "initialValue":"\"\""}
+				],
+				"c2id": 7				
+			},
+			{
+				"id": "append-row",
+				"scriptName": "AppendRow",
+				"highlight": false,
+				"params": [
+					{"id":"row0", "type":"string", "initialValue":"\"\""},
+					{"id":"value1", "type":"any", "initialValue":"\"\""}
+				],
+				"c2id": 8				
+			},
+			{
+				"id": "remove-col",
+				"scriptName": "RemoveCol",
+				"highlight": false,
+				"params": [
+					{"id":"col_index0", "type":"any", "initialValue":"\"\""}
+				],
+				"c2id": 9				
+			},
+			{
+				"id": "remove-row",
+				"scriptName": "RemoveRow",
+				"highlight": false,
+				"params": [
+					{"id":"row_index0", "type":"any", "initialValue":"\"\""}
+				],
+				"c2id": 10				
+			}
+		],
+		"expressions": [
+		]
+	},
+	"delimiter": {
+		"conditions": [
+		],
+		"actions": [
+			{
+				"id": "set-delimiter",
+				"scriptName": "SetDelimiter",
+				"highlight": false,
+				"params": [
+					{"id":"delimiter0", "type":"string", "initialValue":"\",\""}
+				],
+				"c2id": 11				
+			}
+		],
+		"expressions": [
+			{
+				"id": "delimiter",
+				"expressionName": "Delimiter",
+				"scriptName": "Delimiter",
+				"highlight": false,
+				"returnType": "string",
+				"c2id": 11				
+			}
+		]
+	},
+	"sort": {
+		"conditions": [
+		],
+		"actions": [
+			{
+				"id": "sort-col",
+				"scriptName": "SortCol",
+				"highlight": false,
+				"params": [
+					{"id":"col_index0", "type":"string", "initialValue":"\"\""},
+					{"id":"order5", "type":"combo", "items":["ascending","descending","logical ascending","logical descending"]}
+				],
+				"c2id": 13				
+			},
+			{
+				"id": "sort-row",
+				"scriptName": "SortRow",
+				"highlight": false,
+				"params": [
+					{"id":"row_index0", "type":"string", "initialValue":"\"\""},
+					{"id":"order5", "type":"combo", "items":["ascending","descending","logical ascending","logical descending"]}
+				],
+				"c2id": 14				
+			}
+		],
+		"expressions": [
+		]
+	},
+	"for-each-col": {
+		"conditions": [
+			{
+				"id": "for-each-col",
+				"scriptName": "ForEachCol",
+				"isLooping": "true",
+				"isInvertible": "false",
+				"highlight": false,
+				"c2id": 0				
+			},
+			{
+				"id": "for-each-row-in-col",
+				"scriptName": "ForEachRowInCol",
+				"isLooping": "true",
+				"isInvertible": "false",
+				"highlight": false,
+				"params": [
+					{"id":"col0", "type":"string", "initialValue":"\"\""}
+				],
+				"c2id": 1				
+			}
+		],
+		"actions": [
+		],
+		"expressions": [
+		]
+	},
+	"for-each-page": {
+		"conditions": [
+			{
+				"id": "for-each-page",
+				"scriptName": "ForEachPage",
+				"isLooping": "true",
+				"isInvertible": "false",
+				"highlight": false,
+				"c2id": 2				
+			}
+		],
+		"actions": [
+		],
+		"expressions": [
+		]
+	},
+	"for-each-row": {
+		"conditions": [
+			{
+				"id": "for-each-row",
+				"scriptName": "ForEachRow",
+				"isLooping": "true",
+				"isInvertible": "false",
+				"highlight": false,
+				"c2id": 3				
+			},
+			{
+				"id": "for-each-col-in-row",
+				"scriptName": "ForEachColInRow",
+				"isLooping": "true",
+				"isInvertible": "false",
+				"highlight": false,
+				"params": [
+					{"id":"row0", "type":"string", "initialValue":"\"\""}
+				],
+				"c2id": 4				
+			}
+		],
+		"actions": [
+		],
+		"expressions": [
+		]
+	},
+	"in": {
+		"conditions": [
+			{
+				"id": "is-data-in-col",
+				"scriptName": "IsDataInCol",
+				"highlight": false,
+				"params": [
+					{"id":"data0", "type":"any", "initialValue":"0"},
+					{"id":"col1", "type":"string", "initialValue":"\"\""}
+				],
+				"c2id": 5				
+			},
+			{
+				"id": "is-data-in-row",
+				"scriptName": "IsDataInRow",
+				"highlight": false,
+				"params": [
+					{"id":"data0", "type":"any", "initialValue":"0"},
+					{"id":"row1", "type":"string", "initialValue":"\"\""}
+				],
+				"c2id": 6				
+			},
+			{
+				"id": "is-key-in-col",
+				"scriptName": "IsKeyInCol",
+				"isDeprecated": "true",
+				"highlight": false,
+				"params": [
+					{"id":"key0", "type":"string", "initialValue":"\"\""}
+				],
+				"c2id": 7				
+			},
+			{
+				"id": "is-key-in-row",
+				"scriptName": "IsKeyInRow",
+				"isDeprecated": "true",
+				"highlight": false,
+				"params": [
+					{"id":"key0", "type":"string", "initialValue":"\"\""}
+				],
+				"c2id": 8				
+			},
+			{
+				"id": "is-cell-valid",
+				"scriptName": "IsCellValid",
+				"highlight": false,
+				"params": [
+					{"id":"col0", "type":"string", "initialValue":"\"\""},
+					{"id":"row1", "type":"string", "initialValue":"\"\""}
+				],
+				"c2id": 9				
+			},
+			{
+				"id": "has-col",
+				"scriptName": "HasCol",
+				"highlight": false,
+				"params": [
+					{"id":"col0", "type":"string", "initialValue":"\"\""}
+				],
+				"c2id": 10				
+			},
+			{
+				"id": "has-row",
+				"scriptName": "HasRow",
+				"highlight": false,
+				"params": [
+					{"id":"row0", "type":"string", "initialValue":"\"\""}
+				],
+				"c2id": 11				
+			}
+		],
+		"actions": [
+		],
+		"expressions": [
+		]
+	},
+	"at": {
+		"conditions": [
+		],
+		"actions": [
+		],
+		"expressions": [
+			{
+				"id": "at",
+				"expressionName": "At",
+				"scriptName": "At",
+				"highlight": false,
+				"returnType": "any",
+				"isVariadicParameters": true,
+				"params": [
+					{"id":"col0", "type":"any", "initialValue":"\"\""},
+					{"id":"row1", "type":"any", "initialValue":"\"\""}
+				],
+				"c2id": 0				
+			},
+			{
+				"id": "at-col",
+				"expressionName": "AtCol",
+				"scriptName": "AtCol",
+				"highlight": false,
+				"returnType": "string",
+				"c2id": 4				
+			},
+			{
+				"id": "at-row",
+				"expressionName": "AtRow",
+				"scriptName": "AtRow",
+				"highlight": false,
+				"returnType": "string",
+				"c2id": 5				
+			},
+			{
+				"id": "at-page",
+				"expressionName": "AtPage",
+				"scriptName": "AtPage",
+				"highlight": false,
+				"returnType": "string",
+				"c2id": 6				
+			}
+		]
+	},
+	"for-each": {
+		"conditions": [
+		],
+		"actions": [
+		],
+		"expressions": [
+			{
+				"id": "current-col",
+				"expressionName": "CurCol",
+				"scriptName": "CurCol",
+				"highlight": false,
+				"returnType": "string",
+				"c2id": 1				
+			},
+			{
+				"id": "current-row",
+				"expressionName": "CurRow",
+				"scriptName": "CurRow",
+				"highlight": false,
+				"returnType": "string",
+				"c2id": 2				
+			},
+			{
+				"id": "current-value",
+				"expressionName": "CurValue",
+				"scriptName": "CurValue",
+				"highlight": false,
+				"returnType": "any",
+				"c2id": 3				
+			},
+			{
+				"id": "current-page",
+				"expressionName": "CurPage",
+				"scriptName": "CurPage",
+				"highlight": false,
+				"returnType": "string",
+				"c2id": 7				
+			}
+		]
+	},
+	"json": {
+		"conditions": [
+		],
+		"actions": [
+		],
+		"expressions": [
+			{
+				"id": "table-to-string",
+				"expressionName": "TableToString",
+				"scriptName": "TableToString",
+				"highlight": false,
+				"returnType": "string",
+				"c2id": 8				
+			},
+			{
+				"id": "all-talbes-to-string",
+				"expressionName": "AllTalbesToString",
+				"scriptName": "AllTalbesToString",
+				"highlight": false,
+				"returnType": "string",
+				"c2id": 12				
+			}
+		]
+	},
+	"count": {
+		"conditions": [
+		],
+		"actions": [
+		],
+		"expressions": [
+			{
+				"id": "col-count",
+				"expressionName": "ColCnt",
+				"scriptName": "ColCnt",
+				"highlight": false,
+				"returnType": "any",
+				"isVariadicParameters": true,
+				"c2id": 9				
+			},
+			{
+				"id": "row-count",
+				"expressionName": "RowCnt",
+				"scriptName": "RowCnt",
+				"highlight": false,
+				"returnType": "any",
+				"isVariadicParameters": true,
+				"c2id": 10				
+			}
+		]
+	},
+	"csv": {
+		"conditions": [
+		],
+		"actions": [
+		],
+		"expressions": [
+			{
+				"id": "table-to-csv",
+				"expressionName": "TableToCSV",
+				"scriptName": "TableToCSV",
+				"highlight": false,
+				"returnType": "string",
+				"c2id": 13				
+			}
+		]
+	},
+	"next": {
+		"conditions": [
+		],
+		"actions": [
+		],
+		"expressions": [
+			{
+				"id": "next-col",
+				"expressionName": "NextCol",
+				"scriptName": "NextCol",
+				"highlight": false,
+				"returnType": "any",
+				"isVariadicParameters": true,
+				"c2id": 14				
+			},
+			{
+				"id": "previous-col",
+				"expressionName": "PreviousCol",
+				"scriptName": "PreviousCol",
+				"highlight": false,
+				"returnType": "any",
+				"isVariadicParameters": true,
+				"c2id": 15				
+			},
+			{
+				"id": "next-row",
+				"expressionName": "NextRow",
+				"scriptName": "NextRow",
+				"highlight": false,
+				"returnType": "any",
+				"isVariadicParameters": true,
+				"c2id": 16
+			},
+			{
+				"id": "previous-row",
+				"expressionName": "PreviousRow",
+				"scriptName": "PreviousRow",
+				"highlight": false,
+				"returnType": "any",
+				"isVariadicParameters": true,
+				"c2id": 17			
+			}			
+		]
+	}
+}
