@@ -1,0 +1,27 @@
+{
+	"nickname": {
+		"conditions": [
+			{
+				"id": "is-nickname-matched",
+				"scriptName": "IsNicknameMatched",
+				"highlight": false,
+				"params": [
+					{"id":"nickname0", "type":"string", "initialValue":"\"\""}
+				],
+				"c2id": 1				
+			}
+		],
+		"actions": [
+		],
+		"expressions": [
+			{
+				"id": "nickname",
+				"expressionName": "Nickname",
+				"scriptName": "Nickname",
+				"highlight": false,
+				"returnType": "any",
+				"c2id": 3				
+			}
+		]
+	}
+}

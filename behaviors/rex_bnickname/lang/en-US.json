@@ -1,0 +1,48 @@
+{
+	"languageTag": "en-US",
+	"fileDescription": "Strings for Nickname.",
+	"text": {
+		"behaviors": {
+			"rex_bnickname": {
+				"name": "Nickname",
+				"description": "Assign a nickname to this object.",
+				"help-url": "https://rexrainbow.github.io/C2RexDoc/c2rexpluginsACE/rex_bnickname.html",
+				"properties": {
+					"nickname": {
+						"name": "Nickname",
+						"desc": "Nickname of this object."
+						},
+					"mode": {
+						"name": "Mode",
+						"desc": "Define nickname manually or using SID. SID is an unique number for each object type.",
+						"items": {
+							"manual":"Manual",
+							"sid":"SID"
+							}
+						}
+				},
+				"aceCategories": {
+					"nickname": "Nickname"
+				},
+				"conditions": {
+					"is-nickname-matched": {
+						"list-name": "Compare nickanme",
+						"display-text": "{my} nickname is equal to [i]{0}[/i]",
+						"description": "Return true if nickname is matched to specific string.",
+						"params": {
+							"nickname0": { "name":"Nickname", "desc":"Nickname of object."}
+						}
+						}
+				},
+				"actions": {
+				},
+				"expressions": {
+					"nickname": {
+						"description": "Get nickname.",
+						"translated-name": "Nickname"
+						}
+				}
+			}
+		}
+	}
+}

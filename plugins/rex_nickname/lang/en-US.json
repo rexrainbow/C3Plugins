@@ -1,0 +1,107 @@
+{
+	"languageTag": "en-US",
+	"fileDescription": "Strings for Nickname.",
+	"text": {
+		"plugins": {
+			"rex_nickname": {
+				"name": "Nickname",
+				"description": "Create object by nickname.",
+				"help-url": "https://rexrainbow.github.io/C2RexDoc/c2rexpluginsACE/plugin_rex_nickname.html",
+				"properties": {
+				},
+				"aceCategories": {
+					"assign": "Assign",
+					"create": "Create",
+					"sol": "SOL",
+					"nickname": "Nickname"
+				},
+				"conditions": {
+					"is-nickname-valid": {
+						"list-name": "Is nickname valid",
+						"display-text": "Nickname [b]{0}[/b] is valid",
+						"description": "Return true if this nickname is valid.",
+						"params": {
+							"nickname0": { "name":"Nickname", "desc":"Nickname of object."}
+						}
+						},
+					"pick": {
+						"list-name": "Pick instances",
+						"display-text": "Pick [b]{0}[/b] instances into family [b]{1}[/b]",
+						"description": "Pick all instances.",
+						"params": {
+							"nickname0": { "name":"Nickname", "desc":"Nickname of object."},
+							"family1": { "name":"Family", "desc":"Family type."}
+						}
+						},
+					"pick-matched": {
+						"list-name": "Pick matched instances",
+						"display-text": "Pick instances with matched substring to [b]{0}[/b] into family [b]{1}[/b]",
+						"description": "Pick matched instances.",
+						"params": {
+							"substring0": { "name":"Substring", "desc":"Substring to get matched nicknames."},
+							"family1": { "name":"Family", "desc":"Family type."}
+						}
+						}
+				},
+				"actions": {
+					"assig-nickname": {
+						"list-name": "Assign nickname",
+						"display-text": "Assign nickname [b]{0}[/b] to [b]{1}[/b]",
+						"description": "Assign nickname.",
+						"params": {
+							"nickname0": { "name":"Nickname", "desc":"Nickname of object."},
+							"object1": { "name":"Object", "desc":"Object type."}
+						}
+					},
+					"create-instance": {
+						"list-name": "Create instance",
+						"display-text": "Create [b]{0}[/b] at ([b]{1}[/b],[b]{2}[/b]) on layer [b]{3}[/b]",
+						"description": "Create instance by nickname.",
+						"params": {
+							"nickname0": { "name":"Nickname", "desc":"Nickname of object."},
+							"x1": { "name":"X", "desc":"X co-ordinate."},
+							"y2": { "name":"Y", "desc":"Y co-ordinate."},
+							"layer3": { "name":"Layer", "desc":"Layer name of number."}
+						}
+					},
+					"create-instance-and-pick": {
+						"list-name": "Create instance into family",
+						"display-text": "Create [b]{0}[/b] at ([b]{1}[/b],[b]{2}[/b]) on layer [b]{3}[/b], then put into family [b]{4}[/b]",
+						"description": "Create instance by nicknamem then put into family.",
+						"params": {
+							"nickname0": { "name":"Nickname", "desc":"Nickname of object."},
+							"x1": { "name":"X", "desc":"X co-ordinate."},
+							"y2": { "name":"Y", "desc":"Y co-ordinate."},
+							"layer3": { "name":"Layer", "desc":"Layer name of number."},
+							"family4": { "name":"Family", "desc":"Family object for SOL."}
+						}
+					},
+					"pick": {
+						"list-name": "Pick all instances",
+						"display-text": "Pick all [b]{0}[/b] instances into family [b]{1}[/b]",
+						"description": "Pick all.",
+						"params": {
+							"nickname0": { "name":"Nickname", "desc":"Nickname of object."},
+							"family1": { "name":"Family", "desc":"Family object for SOL."}
+						}
+					},
+					"pick-matched": {
+						"list-name": "Pick matched instances",
+						"display-text": "Pick instances with matched substring to [b]{0}[/b] into family [b]{1}[/b]",
+						"description": "Pick matched instances.",
+						"params": {
+							"substring0": { "name":"Substring", "desc":"Substring to get matched nicknames."},
+							"family1": { "name":"Family", "desc":"Family type."}
+						}
+					}
+				},
+				"expressions": {
+					"last-created-instance-uid": {
+						"description": "Get last created instance UID.",
+						"translated-name": "LastCreatedInstUID"
+						}
+				}
+			}
+		}
+	}
+}

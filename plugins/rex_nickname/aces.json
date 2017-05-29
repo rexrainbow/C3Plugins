@@ -1,0 +1,126 @@
+{
+	"assign": {
+		"conditions": [
+		],
+		"actions": [
+			{
+				"c2id": 1,
+				"id": "assig-nickname",
+				"scriptName": "AssignNickname",
+				"highlight": false,
+				"params": [
+					{"id":"nickname0", "type":"string", "initialValue":"\"\""},
+					{"id":"object1", "type":"object"}
+				]
+			}
+		],
+		"expressions": [
+		]
+	},
+	"create": {
+		"conditions": [
+		],
+		"actions": [
+			{
+				"c2id": 2,
+				"id": "create-instance",
+				"scriptName": "CreateInst",
+				"highlight": false,
+				"params": [
+					{"id":"nickname0", "type":"string", "initialValue":"\"\""},
+					{"id":"x1", "type":"number", "initialValue":"0"},
+					{"id":"y2", "type":"number", "initialValue":"0"},
+					{"id":"layer3", "type":"layer"}
+				]
+			},
+			{
+				"c2id": 3,
+				"id": "create-instance-and-pick",
+				"scriptName": "CreateInst",
+				"highlight": false,
+				"params": [
+					{"id":"nickname0", "type":"string", "initialValue":"\"\""},
+					{"id":"x1", "type":"number", "initialValue":"0"},
+					{"id":"y2", "type":"number", "initialValue":"0"},
+					{"id":"layer3", "type":"layer"},
+					{"id":"family4", "type":"object"}
+				]
+			}
+		],
+		"expressions": [
+			{
+				"c2id": 1,
+				"id": "last-created-instance-uid",
+				"expressionName": "LastCreatedInstUID",
+				"scriptName": "LastCreatedInstUID",
+				"highlight": false,
+				"returnType": "number"
+			}			
+		]
+	},
+	"sol": {
+		"conditions": [
+			{
+				"c2id": 10,
+				"id": "pick",
+				"scriptName": "Pick",
+				"highlight": false,
+				"params": [
+					{"id":"nickname0", "type":"string", "initialValue":"\"\""},
+					{"id":"family1", "type":"object"}
+				]
+			},
+			{
+				"c2id": 11,
+				"id": "pick-matched",
+				"scriptName": "PickMatched",
+				"highlight": false,
+				"params": [
+					{"id":"substring0", "type":"string", "initialValue":"\"\""},
+					{"id":"family1", "type":"object"}
+				]
+			}
+		],
+		"actions": [
+			{
+				"c2id": 10,
+				"id": "pick",
+				"scriptName": "Pick",
+				"highlight": false,
+				"params": [
+					{"id":"nickname0", "type":"string", "initialValue":"\"\""},
+					{"id":"family1", "type":"object"}
+				]
+			},
+			{
+				"c2id": 11,
+				"id": "pick-matched",
+				"scriptName": "PickMatched",
+				"highlight": false,
+				"params": [
+					{"id":"substring0", "type":"string", "initialValue":"\"\""},
+					{"id":"family1", "type":"object"}
+				]
+			}
+		],
+		"expressions": [
+		]
+	},
+	"nickname": {
+		"conditions": [
+			{
+				"c2id": 1,
+				"id": "is-nickname-valid",
+				"scriptName": "IsNicknameValid",
+				"highlight": false,
+				"params": [
+					{"id":"nickname0", "type":"string", "initialValue":"\"\""}
+				]
+			}
+		],
+		"actions": [
+		],
+		"expressions": [
+		]
+	}
+}
