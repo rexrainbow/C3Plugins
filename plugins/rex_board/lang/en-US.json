@@ -34,34 +34,30 @@
 						}
 				},
 				"aceCategories": {
+					"layout": "Layout",					
 					"board": "Board",
-					"add": "Logic: Add",
+					"create": "Create",					
+					"add": "Add",
 					"destroy": "Destroy",
-					"remove": "Logic: Remove",
-					"move": "Logic: Move",
-					"setup": "Setup",
-					"create": "Physical: Create",
-					"sol_-_logical_position": "SOL - logical position",
-					"swap": "Logic: Swap",
-					"sol": "SOL",
-					"pick-chess-above-tiles": "SOL - above tile",
-					"sol_-_neighbor": "SOL - neighbor",
-					"for-each-cell": "For each cell",
-					"empty": "Empty",
-					"overlap": "Overlap",
-					"neighbors": "Neighborhood",
-					"kick": "Kick",
-					"for-each-lz": "For each LZ",
+					"remove": "Remove",
+					"move": "Move",
+					"max-min": "Max-min",
+					"kick": "Kick",			
 					"chess-uid": "Chess uid",
 					"physical": "Physical",
-					"logic": "Logic",
-					"layout": "Layout",
-					"max-min": "Max-min"
+					"logic": "Logic",	
+					"neighbors": "Neighbors",
+					"for-each-cell": "For each cell",
+					"for-each-lz": "For each LZ",
+					"empty": "Empty",
+					"pick-chess": "Pick chess",										
+					"pick-chess-by-lxyz": "Pick chess by lxyz",
+					"pick-chess-above-tiles": "Pick chess above tiles"
 				},
 				"conditions": {
 					"for-each-cell": {
 						"list-name": "For each cell",
-						"display-text": "For each cell, [i]{0}[/i]",
+						"display-text": "For each cell, [b]{0}[/b]",
 						"description": "Repeat the event for each cell in the board.",
 						"params": {
 							"direction4": { "name":"Direction", "desc":"Scan direction.", "items":{"top to bottom":"Top to bottom","bottom to top":"Bottom to top","left to right":"Left to right","right to left":"Right to left"}}
@@ -69,7 +65,7 @@
 						},
 					"is-occupied": {
 						"list-name": "Is occupied",
-						"display-text": "Cell [[i]{0}[/i],[i]{1}[/i],[i]{2}[/i]] is occupied",
+						"display-text": "Cell [[b]{0}[/b],[b]{1}[/b],[b]{2}[/b]] is occupied",
 						"description": "Testing if cell is occupied.",
 						"params": {
 							"logic_x0": { "name":"Logic X", "desc":"The X index (0-based)."},
@@ -79,7 +75,7 @@
 						},
 					"is-empty": {
 						"list-name": "Is empty",
-						"display-text": "Cell [[i]{0}[/i],[i]{1}[/i],[i]{2}[/i]] is empty",
+						"display-text": "Cell [[b]{0}[/b],[b]{1}[/b],[b]{2}[/b]] is empty",
 						"description": "Testing if cell is empty.",
 						"params": {
 							"logic_x0": { "name":"Logic X", "desc":"The X index (0-based)."},
@@ -89,7 +85,7 @@
 						},
 					"on-collided": {
 						"list-name": "On collision",
-						"display-text": "On [i]{0}[/i] collided with [i]{1}[/i]",
+						"display-text": "On [b]{0}[/b] collided with [b]{1}[/b]",
 						"description": "Triggered when the object collides with another object.",
 						"params": {
 							"chess0": { "name":"Chess", "desc":"Chess object A."},
@@ -98,7 +94,7 @@
 						},
 					"is-overlapping": {
 						"list-name": "Is overlapping",
-						"display-text": "Is [i]{0}[/i] overlapping with [i]{1}[/i]",
+						"display-text": "Is [b]{0}[/b] overlapping with [b]{1}[/b]",
 						"description": "Test if the object is overlapping another object.",
 						"params": {
 							"chess0": { "name":"Chess", "desc":"Chess object A."},
@@ -107,7 +103,7 @@
 						},
 					"is-point-in-board": {
 						"list-name": "Point is in board",
-						"display-text": "Point ([i]{0}[/i],[i]{1}[/i]) is in board",
+						"display-text": "Point ([b]{0}[/b],[b]{1}[/b]) is in board",
 						"description": "Testing if point is in board.",
 						"params": {
 							"x0": { "name":"X", "desc":"The Physical X."},
@@ -116,7 +112,7 @@
 						},
 					"are-neighbors": {
 						"list-name": "Are neighbors (UID)",
-						"display-text": "Are [i]{0}[/i] and [i]{1}[/i] neighbors",
+						"display-text": "Are [b]{0}[/b] and [b]{1}[/b] neighbors",
 						"description": "Testing if two chess are neighbors.",
 						"params": {
 							"uid_of_chess0": { "name":"UID of chess", "desc":"UID of chess A."},
@@ -130,7 +126,7 @@
 						},
 					"on-chess-kicked": {
 						"list-name": "On chess kicked",
-						"display-text": "On [i]{0}[/i] kicked",
+						"display-text": "On [b]{0}[/b] kicked",
 						"description": "Triggered when chess kicked by 'action:Add chess' or 'action:Move chess'.",
 						"params": {
 							"chess0": { "name":"Chess", "desc":"Kicked chess object."}
@@ -138,7 +134,7 @@
 						},
 					"pick-chess-at-lxy": {
 						"list-name": "Pick chess at LX,LY",
-						"display-text": "Pick [i]{0}[/i] at [[i]{1}[/i],[i]{2}[/i]]",
+						"display-text": "Pick [b]{0}[/b] at [[b]{1}[/b],[b]{2}[/b]]",
 						"description": "Pick chess at Logic X,Y.",
 						"params": {
 							"chess0": { "name":"Chess", "desc":"Chess object."},
@@ -148,7 +144,7 @@
 						},
 					"pick-chess-above-tile": {
 						"list-name": "Pick chess above tile",
-						"display-text": "Pick [i]{0}[/i] above [i]{1}[/i]",
+						"display-text": "Pick [b]{0}[/b] above [b]{1}[/b]",
 						"description": "Pick chess above tile.",
 						"params": {
 							"chess0": { "name":"Chess", "desc":"Chess object."},
@@ -157,7 +153,7 @@
 						},
 					"pick-chess-above-tile-uid": {
 						"list-name": "Pick chess above tile UID",
-						"display-text": "Pick [i]{0}[/i] above tile UID: [i]{1}[/i]",
+						"display-text": "Pick [b]{0}[/b] above tile UID: [b]{1}[/b]",
 						"description": "Pick chess above tile UID.",
 						"params": {
 							"chess0": { "name":"Chess", "desc":"Chess object."},
@@ -166,7 +162,7 @@
 						},
 					"is-chess-on-board": {
 						"list-name": "On the board",
-						"display-text": "Is [i]{0}[/i] on the board",
+						"display-text": "Is [b]{0}[/b] on the board",
 						"description": "Return true if the chess is on the board.",
 						"params": {
 							"chess0": { "name":"Chess", "desc":"Chess object."}
@@ -174,7 +170,7 @@
 						},
 					"pick-chess-at-lxyz": {
 						"list-name": "Pick chess at LX,LY,LZ",
-						"display-text": "Pick [i]{0}[/i] at [[i]{1}[/i],[i]{2}[/i],[i]{3}[/i]]",
+						"display-text": "Pick [b]{0}[/b] at [[b]{1}[/b],[b]{2}[/b],[b]{3}[/b]]",
 						"description": "Pick chess at Logic X,Y,Z.",
 						"params": {
 							"chess0": { "name":"Chess", "desc":"Chess object."},
@@ -185,7 +181,7 @@
 						},
 					"pick-neighbor-chess": {
 						"list-name": "Pick neighbor chess",
-						"display-text": "Pick neighbor chess {2} by origin to {0} , direction to [i]{1}[/i]",
+						"display-text": "Pick neighbor chess {2} by origin to {0} , direction to [b]{1}[/b]",
 						"description": "Pick neighbor chess.",
 						"params": {
 							"origin0": { "name":"Origin", "desc":"Origin chess."},
@@ -195,7 +191,7 @@
 						},
 					"pick-empty-cell": {
 						"list-name": "Pick an empty cell",
-						"display-text": "Pick an empty cell with logic Z to [i]{0}[/i]",
+						"display-text": "Pick an empty cell with logic Z to [b]{0}[/b]",
 						"description": "Pick an empty cell randomly, return false if all cells are occupied.",
 						"params": {
 							"logic_z0": { "name":"Logic Z", "desc":"The Z index (0-based) of the chess to set. 0 is tile."}
@@ -203,7 +199,7 @@
 						},
 					"has-empty-cell": {
 						"list-name": "Has any empty cell",
-						"display-text": "Has any empty cell with logic Z to [i]{0}[/i]",
+						"display-text": "Has any empty cell with logic Z to [b]{0}[/b]",
 						"description": "Return true if there has any empty cell.",
 						"params": {
 							"logic_z0": { "name":"Logic Z", "desc":"The Z index (0-based) of the chess to set. 0 is tile."}
@@ -211,7 +207,7 @@
 						},
 					"are-wrapped-neighbors": {
 						"list-name": "Are wrapped neighbors (UID)",
-						"display-text": "Are [i]{0}[/i] and [i]{1}[/i] wrapped neighbors",
+						"display-text": "Are [b]{0}[/b] and [b]{1}[/b] wrapped neighbors",
 						"description": "Testing if two chess are wrapped neighbors.",
 						"params": {
 							"uid_of_chess0": { "name":"UID of chess", "desc":"UID of chess A."},
@@ -220,7 +216,7 @@
 						},
 					"pick-chess": {
 						"list-name": "Pick chess",
-						"display-text": "Pick chess [i]{0}[/i]",
+						"display-text": "Pick chess [b]{0}[/b]",
 						"description": "Pick chess on board.",
 						"params": {
 							"chess0": { "name":"Chess", "desc":"Chess object."}
@@ -228,7 +224,7 @@
 						},
 					"pick-chess-at-lx": {
 						"list-name": "Pick chess at LX",
-						"display-text": "Pick [i]{0}[/i] at LX to [i]{1}[/i]",
+						"display-text": "Pick [b]{0}[/b] at LX to [b]{1}[/b]",
 						"description": "Pick chess at Logic X.",
 						"params": {
 							"chess0": { "name":"Chess", "desc":"Chess object."},
@@ -237,7 +233,7 @@
 						},
 					"pick-chess-at-ly": {
 						"list-name": "Pick chess at LY",
-						"display-text": "Pick [i]{0}[/i] at LY to [i]{1}[/i]",
+						"display-text": "Pick [b]{0}[/b] at LY to [b]{1}[/b]",
 						"description": "Pick chess at Logic Y.",
 						"params": {
 							"chess0": { "name":"Chess", "desc":"Chess object."},
@@ -246,7 +242,7 @@
 						},
 					"pick-chess-at-lz": {
 						"list-name": "Pick chess at LZ",
-						"display-text": "Pick [i]{0}[/i] at LZ to [i]{1}[/i]",
+						"display-text": "Pick [b]{0}[/b] at LZ to [b]{1}[/b]",
 						"description": "Pick chess at Logic Z.",
 						"params": {
 							"chess0": { "name":"Chess", "desc":"Chess object."},
@@ -255,7 +251,7 @@
 						},
 					"pick-empty-cell-on-tiles": {
 						"list-name": "Pick an empty cell on tiles",
-						"display-text": "Pick an empty cell on [i]{0}[/i] with logic Z to [i]{1}[/i]",
+						"display-text": "Pick an empty cell on [b]{0}[/b] with logic Z to [b]{1}[/b]",
 						"description": "Pick an empty cell randomly on tiles, return false if all cells are occupied.",
 						"params": {
 							"tile0": { "name":"Tile", "desc":"Tile object."},
@@ -264,7 +260,7 @@
 						},
 					"has-empty-cell-on-tiles": {
 						"list-name": "Has any empty cell on tiles",
-						"display-text": "Has any empty cell on [i]{0}[/i] with logic Z to [i]{1}[/i]",
+						"display-text": "Has any empty cell on [b]{0}[/b] with logic Z to [b]{1}[/b]",
 						"description": "Return true if there has any empty cell on tiles.",
 						"params": {
 							"tile0": { "name":"Tile", "desc":"Tile object."},
@@ -273,7 +269,7 @@
 						},
 					"pick-chess-inside-square": {
 						"list-name": "Pick chess inside a square",
-						"display-text": "Pick [i]{0}[/i] inside a square - LX from [i]{1}[/i] to [i]{2}[/i], LY from [i]{3}[/i] to [i]{4}[/i]",
+						"display-text": "Pick [b]{0}[/b] inside a square - LX from [b]{1}[/b] to [b]{2}[/b], LY from [b]{3}[/b] to [b]{4}[/b]",
 						"description": "Pick chess inside a square.",
 						"params": {
 							"chess0": { "name":"Chess", "desc":"Chess object."},
@@ -285,7 +281,7 @@
 						},
 					"for-each-lz": {
 						"list-name": "For each LZ at LXY",
-						"display-text": "For each LZ at [[i]{0}[/i],[i]{1}[/i]]",
+						"display-text": "For each LZ at [[b]{0}[/b],[b]{1}[/b]]",
 						"description": "Repeat the event for each LZ at LXY.",
 						"params": {
 							"logic_x0": { "name":"Logic X", "desc":"The X index (0-based) of the tile."},
@@ -296,7 +292,7 @@
 				"actions": {
 					"reset-board": {
 						"list-name": "Reset board",
-						"display-text": "Reset board with width to [i]{0}[/i], height to [i]{1}[/i]",
+						"display-text": "Reset board with width to [b]{0}[/b], height to [b]{1}[/b]",
 						"description": "Reset board to empty.",
 						"params": {
 							"x0": { "name":"X", "desc":"Initial number of elements on the X axis. 0 is unchanged."},
@@ -305,7 +301,7 @@
 					},
 					"add-tile": {
 						"list-name": "Add tile",
-						"display-text": "Add tile [i]{0}[/i] to [[i]{1}[/i], [i]{2}[/i], 0]",
+						"display-text": "Add tile [b]{0}[/b] to [[b]{1}[/b], [b]{2}[/b], 0]",
 						"description": "Add tile on the board.",
 						"params": {
 							"tile0": { "name":"Tile", "desc":"Tile object."},
@@ -315,7 +311,7 @@
 					},
 					"destroy-chess": {
 						"list-name": "Destroy chess",
-						"display-text": "Destroy [i]{0}[/i]",
+						"display-text": "Destroy [b]{0}[/b]",
 						"description": "Destroy chess and remove them from the board.",
 						"params": {
 							"chess0": { "name":"Chess", "desc":"Chess object."}
@@ -323,7 +319,7 @@
 					},
 					"add-chess": {
 						"list-name": "Add chess",
-						"display-text": "Add chess [i]{0}[/i] to [[i]{1}[/i], [i]{2}[/i], [i]{3}[/i]]",
+						"display-text": "Add chess [b]{0}[/b] to [[b]{1}[/b], [b]{2}[/b], [b]{3}[/b]]",
 						"description": "Add chess on the board.",
 						"params": {
 							"chess0": { "name":"Chess", "desc":"Chess object."},
@@ -334,7 +330,7 @@
 					},
 					"add-chess-uid": {
 						"list-name": "Add chess by UID",
-						"display-text": "Add chess UID:[i]{0}[/i] to [[i]{1}[/i], [i]{2}[/i], [i]{3}[/i]]",
+						"display-text": "Add chess UID:[b]{0}[/b] to [[b]{1}[/b], [b]{2}[/b], [b]{3}[/b]]",
 						"description": "Add chess on the board.",
 						"params": {
 							"uid0": { "name":"UID", "desc":"The UID of chess, or a symbol of chess."},
@@ -345,7 +341,7 @@
 					},
 					"remove-chess": {
 						"list-name": "Remove chess",
-						"display-text": "Remove chess [i]{0}[/i]",
+						"display-text": "Remove chess [b]{0}[/b]",
 						"description": "Remove chess from the board.",
 						"params": {
 							"chess0": { "name":"Chess", "desc":"Chess object."}
@@ -353,7 +349,7 @@
 					},
 					"remove-chess-uid": {
 						"list-name": "Remove chess by UID",
-						"display-text": "Remove chess UID:[i]{0}[/i]",
+						"display-text": "Remove chess UID:[b]{0}[/b]",
 						"description": "Remove chess by UID from the board.",
 						"params": {
 							"uid0": { "name":"UID", "desc":"The UID of chess"}
@@ -361,7 +357,7 @@
 					},
 					"move-chess": {
 						"list-name": "Move chess",
-						"display-text": "Move chess [i]{0}[/i] to tile [i]{1}[/i]",
+						"display-text": "Move chess [b]{0}[/b] to tile [b]{1}[/b]",
 						"description": "Move chess on the board.",
 						"params": {
 							"chess0": { "name":"Chess", "desc":"Chess object."},
@@ -370,7 +366,7 @@
 					},
 					"move-chess-uid": {
 						"list-name": "Move chess by UID",
-						"display-text": "Move chess UID:[i]{0}[/i] to tile UID:[i]{1}[/i]",
+						"display-text": "Move chess UID:[b]{0}[/b] to tile UID:[b]{1}[/b]",
 						"description": "Move chess by UID on the board.",
 						"params": {
 							"chess_uid0": { "name":"Chess UID", "desc":"The UID of chess"},
@@ -379,7 +375,7 @@
 					},
 					"move-chess-to-lxyz": {
 						"list-name": "Move chess to xyz",
-						"display-text": "Move chess [i]{0}[/i] to [[i]{1}[/i], [i]{2}[/i], [i]{3}[/i]]",
+						"display-text": "Move chess [b]{0}[/b] to [[b]{1}[/b], [b]{2}[/b], [b]{3}[/b]]",
 						"description": "Move chess on the board.",
 						"params": {
 							"chess0": { "name":"Chess", "desc":"Chess object."},
@@ -390,7 +386,7 @@
 					},
 					"move-chess-uid-to-lxyz": {
 						"list-name": "Move chess to xyz by UID",
-						"display-text": "Move chess UID:[i]{0}[/i] to [[i]{1}[/i], [i]{2}[/i], [i]{3}[/i]]",
+						"display-text": "Move chess UID:[b]{0}[/b] to [[b]{1}[/b], [b]{2}[/b], [b]{3}[/b]]",
 						"description": "Move chess to xyz index by UID on the board.",
 						"params": {
 							"chess_uid0": { "name":"Chess UID", "desc":"The UID of chess"},
@@ -401,7 +397,7 @@
 					},
 					"setup-layout": {
 						"list-name": "Setup layout",
-						"display-text": "Set layout to [i]{0}[/i]",
+						"display-text": "Set layout to [b]{0}[/b]",
 						"description": "Setup layout to transfer logic index to physical position.",
 						"params": {
 							"layout0": { "name":"Layout", "desc":"Layout to transfer logic index to physical position"}
@@ -409,7 +405,7 @@
 					},
 					"create-tile": {
 						"list-name": "Create tile",
-						"display-text": "Create tile [i]{0}[/i] to [[i]{1}[/i], [i]{2}[/i], 0] on layer [i]{3}[/i]",
+						"display-text": "Create tile [b]{0}[/b] to [[b]{1}[/b], [b]{2}[/b], 0] on layer [b]{3}[/b]",
 						"description": "Create tile on the board.",
 						"params": {
 							"tile0": { "name":"Tile", "desc":"Tile object."},
@@ -420,7 +416,7 @@
 					},
 					"pick-chess-at-lxyz": {
 						"list-name": "Pick chess at Logic X,Y,Z",
-						"display-text": "Pick [i]{0}[/i] at [[i]{1}[/i],[i]{2}[/i],[i]{3}[/i]]",
+						"display-text": "Pick [b]{0}[/b] at [[b]{1}[/b],[b]{2}[/b],[b]{3}[/b]]",
 						"description": "Pick chess at Logic X,Y,Z.",
 						"params": {
 							"chess0": { "name":"Chess", "desc":"Chess object."},
@@ -431,7 +427,7 @@
 					},
 					"create-chess": {
 						"list-name": "Create chess",
-						"display-text": "Create chess [i]{0}[/i] to [[i]{1}[/i], [i]{2}[/i], [i]{3}[/i]] on layer [i]{4}[/i]",
+						"display-text": "Create chess [b]{0}[/b] to [[b]{1}[/b], [b]{2}[/b], [b]{3}[/b]] on layer [b]{4}[/b]",
 						"description": "Create chess on the board.",
 						"params": {
 							"chess0": { "name":"Chess", "desc":"Chess object."},
@@ -443,7 +439,7 @@
 					},
 					"swap-chess": {
 						"list-name": "Swap chess by UID",
-						"display-text": "Swap chess UID [i]{0}[/i] with chess UID [i]{1}[/i]",
+						"display-text": "Swap chess UID [b]{0}[/b] with chess UID [b]{1}[/b]",
 						"description": "Swap two chess by UID.",
 						"params": {
 							"uid_of_chess0": { "name":"UID of chess", "desc":"UID of chess A."},
@@ -457,7 +453,7 @@
 					},
 					"pick-chess-at-lxy": {
 						"list-name": "Pick chess at Logic X,Y",
-						"display-text": "Pick [i]{0}[/i] at [[i]{1}[/i],[i]{2}[/i]]",
+						"display-text": "Pick [b]{0}[/b] at [[b]{1}[/b],[b]{2}[/b]]",
 						"description": "Pick chess at Logic X,Y.",
 						"params": {
 							"chess0": { "name":"Chess", "desc":"Chess object."},
@@ -467,7 +463,7 @@
 					},
 					"pick-chess-above-tile": {
 						"list-name": "Pick chess above tile",
-						"display-text": "Pick [i]{0}[/i] above [i]{1}[/i]",
+						"display-text": "Pick [b]{0}[/b] above [b]{1}[/b]",
 						"description": "Pick chess above tile.",
 						"params": {
 							"chess0": { "name":"Chess", "desc":"Chess object."},
@@ -476,7 +472,7 @@
 					},
 					"pick-chess-above-tile-uid": {
 						"list-name": "Pick chess above tile UID",
-						"display-text": "Pick [i]{0}[/i] above tile UID: [i]{1}[/i]",
+						"display-text": "Pick [b]{0}[/b] above tile UID: [b]{1}[/b]",
 						"description": "Pick chess above tile UID.",
 						"params": {
 							"chess0": { "name":"Chess", "desc":"Chess object."},
@@ -485,7 +481,7 @@
 					},
 					"set-board-width": {
 						"list-name": "Set board width",
-						"display-text": "Set board width to [i]{0}[/i]",
+						"display-text": "Set board width to [b]{0}[/b]",
 						"description": "Set board width.",
 						"params": {
 							"x0": { "name":"X", "desc":"Initial number of elements on the X axis. 0 is unchanged."}
@@ -493,7 +489,7 @@
 					},
 					"set-board-height": {
 						"list-name": "Set board height",
-						"display-text": "Set board height to [i]{0}[/i]",
+						"display-text": "Set board height to [b]{0}[/b]",
 						"description": "Set board height.",
 						"params": {
 							"y0": { "name":"Y", "desc":"Initial number of elements on the Y axis. 0 is unchanged."}
@@ -501,7 +497,7 @@
 					},
 					"pick-neighbor-chess": {
 						"list-name": "Pick neighbor chess",
-						"display-text": "Pick neighbor chess {2} by origin to {0} , direction to [i]{1}[/i]",
+						"display-text": "Pick neighbor chess {2} by origin to {0} , direction to [b]{1}[/b]",
 						"description": "Pick neighbor chess.",
 						"params": {
 							"origin0": { "name":"Origin", "desc":"Origin chess."},
@@ -511,7 +507,7 @@
 					},
 					"create-chess-above-tile": {
 						"list-name": "Create chess above tile",
-						"display-text": "Create chess [i]{0}[/i] above tile [i]{1}[/i] at LZ to [i]{2}[/i], on layer [i]{3}[/i]",
+						"display-text": "Create chess [b]{0}[/b] above tile [b]{1}[/b] at LZ to [b]{2}[/b], on layer [b]{3}[/b]",
 						"description": "Create chess above tile.",
 						"params": {
 							"chess0": { "name":"Chess", "desc":"Chess object."},
@@ -522,7 +518,7 @@
 					},
 					"fill-chess": {
 						"list-name": "Fill tiles",
-						"display-text": "Fill tiles with [i]{0}[/i], on layer [i]{1}[/i]",
+						"display-text": "Fill tiles with [b]{0}[/b], on layer [b]{1}[/b]",
 						"description": "Fill tiles (LZ=0).",
 						"params": {
 							"tile0": { "name":"Tile", "desc":"Tile object."},
@@ -531,7 +527,7 @@
 					},
 					"set-wrap-mode": {
 						"list-name": "Set wrap mode",
-						"display-text": "Set wrap mode to [i]{0}[/i]",
+						"display-text": "Set wrap mode to [b]{0}[/b]",
 						"description": "Set wrap mode.",
 						"params": {
 							"wrap2": { "name":"Wrap", "desc":"Wrap mode.", "items":{"no":"No","yes":"Yes"}}
@@ -539,7 +535,7 @@
 					},
 					"fill-chess-at-lz": {
 						"list-name": "Fill chess",
-						"display-text": "Fill LZ [i]{2}[/i] with [i]{0}[/i], on layer [i]{1}[/i]",
+						"display-text": "Fill LZ [b]{2}[/b] with [b]{0}[/b], on layer [b]{1}[/b]",
 						"description": "Fill chess.",
 						"params": {
 							"chess0": { "name":"Chess", "desc":"Chess object."},
@@ -549,7 +545,7 @@
 					},
 					"pick-chess": {
 						"list-name": "Pick chess",
-						"display-text": "Pick chess [i]{0}[/i]",
+						"display-text": "Pick chess [b]{0}[/b]",
 						"description": "Pick chess on board.",
 						"params": {
 							"chess0": { "name":"Chess", "desc":"Chess object."}
@@ -557,7 +553,7 @@
 					},
 					"pick-chess-at-lx": {
 						"list-name": "Pick chess at LX",
-						"display-text": "Pick [i]{0}[/i] at LX to [i]{1}[/i]",
+						"display-text": "Pick [b]{0}[/b] at LX to [b]{1}[/b]",
 						"description": "Pick chess at Logic X.",
 						"params": {
 							"chess0": { "name":"Chess", "desc":"Chess object."},
@@ -566,7 +562,7 @@
 					},
 					"pick-chess-at-ly": {
 						"list-name": "Pick chess at LY",
-						"display-text": "Pick [i]{0}[/i] at LY to [i]{1}[/i]",
+						"display-text": "Pick [b]{0}[/b] at LY to [b]{1}[/b]",
 						"description": "Pick chess at Logic Y.",
 						"params": {
 							"chess0": { "name":"Chess", "desc":"Chess object."},
@@ -575,7 +571,7 @@
 					},
 					"pick-chess-at-lz": {
 						"list-name": "Pick chess at LZ",
-						"display-text": "Pick [i]{0}[/i] at LZ to [i]{1}[/i]",
+						"display-text": "Pick [b]{0}[/b] at LZ to [b]{1}[/b]",
 						"description": "Pick chess at Logic Z.",
 						"params": {
 							"chess0": { "name":"Chess", "desc":"Chess object."},
@@ -584,7 +580,7 @@
 					},
 					"create-chess-above-tile-uid": {
 						"list-name": "Create chess above tile by UID",
-						"display-text": "Create chess [i]{0}[/i] above tile UID:[i]{1}[/i] at LZ to [i]{2}[/i], on layer [i]{3}[/i]",
+						"display-text": "Create chess [b]{0}[/b] above tile UID:[b]{1}[/b] at LZ to [b]{2}[/b], on layer [b]{3}[/b]",
 						"description": "Create chess above tile.",
 						"params": {
 							"chess0": { "name":"Chess", "desc":"Chess object."},
@@ -595,7 +591,7 @@
 					},
 					"move-chess-to-lz": {
 						"list-name": "Move chess to z",
-						"display-text": "Move chess [i]{0}[/i] 's LZ to [i]{1}[/i]",
+						"display-text": "Move chess [b]{0}[/b] 's LZ to [b]{1}[/b]",
 						"description": "Move chess's LZ on the board.",
 						"params": {
 							"chess0": { "name":"Chess", "desc":"Chess object."},
@@ -604,7 +600,7 @@
 					},
 					"move-chess-to-lxy": {
 						"list-name": "Move chess to xy",
-						"display-text": "Move chess [i]{0}[/i] 's LXY to [[i]{1}[/i],[i]{2}[/i]]",
+						"display-text": "Move chess [b]{0}[/b] 's LXY to [[b]{1}[/b],[b]{2}[/b]]",
 						"description": "Move chess to logic X,Y on the board.",
 						"params": {
 							"chess0": { "name":"Chess", "desc":"Chess object."},
@@ -614,7 +610,7 @@
 					},
 					"pick-chess-inside-square": {
 						"list-name": "Pick chess inside a square",
-						"display-text": "Pick [i]{0}[/i] inside a square - LX from [i]{1}[/i] to [i]{2}[/i], LY from [i]{3}[/i] to [i]{4}[/i]",
+						"display-text": "Pick [b]{0}[/b] inside a square - LX from [b]{1}[/b] to [b]{2}[/b], LY from [b]{3}[/b] to [b]{4}[/b]",
 						"description": "Pick chess inside a square.",
 						"params": {
 							"chess0": { "name":"Chess", "desc":"Chess object."},

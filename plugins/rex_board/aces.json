@@ -1,4 +1,29 @@
 {
+	"layout": {
+		"conditions": [
+		],
+		"actions": [
+			{
+				"id": "setup-layout",
+				"scriptName": "SetupLayout",
+				"highlight": false,
+				"params": [
+					{"id":"layout0", "type":"object"}
+				],
+				"c2id": 11				
+			}			
+		],
+		"expressions": [
+			{
+				"id": "direction-count",
+				"expressionName": "DirCount",
+				"scriptName": "DirCount",
+				"highlight": false,
+				"returnType": "number",
+				"c2id": 25				
+			}
+		]
+	},	
 	"board": {
 		"conditions": [
 			{
@@ -78,6 +103,84 @@
 				"returnType": "number",
 				"c2id": 19				
 			}
+		]
+	},
+	"create": {
+		"conditions": [
+		],
+		"actions": [
+			{
+				"id": "create-tile",
+				"scriptName": "CreateTile",
+				"highlight": false,
+				"params": [
+					{"id":"tile0", "type":"object"},
+					{"id":"logic_x1", "type":"number", "initialValue":"0"},
+					{"id":"logic_y2", "type":"number", "initialValue":"0"},
+					{"id":"layer3", "type":"layer"}
+				],
+				"c2id": 12				
+			},
+			{
+				"id": "create-chess",
+				"scriptName": "CreateChess",
+				"highlight": false,
+				"params": [
+					{"id":"chess0", "type":"object"},
+					{"id":"logic_x1", "type":"number", "initialValue":"0"},
+					{"id":"logic_y2", "type":"number", "initialValue":"0"},
+					{"id":"logic_z3", "type":"any", "initialValue":"0"},
+					{"id":"layer4", "type":"layer"}
+				],
+				"c2id": 14				
+			},
+			{
+				"id": "create-chess-above-tile",
+				"scriptName": "CreateChessAboveTile",
+				"highlight": false,
+				"params": [
+					{"id":"chess0", "type":"object"},
+					{"id":"tile1", "type":"object"},
+					{"id":"logic_z2", "type":"any", "initialValue":"1"},
+					{"id":"layer3", "type":"layer"}
+				],
+				"c2id": 23				
+			},
+			{
+				"id": "fill-chess",
+				"scriptName": "FillChess",
+				"highlight": false,
+				"params": [
+					{"id":"tile0", "type":"object"},
+					{"id":"layer1", "type":"layer"}
+				],
+				"c2id": 24				
+			},
+			{
+				"id": "fill-chess-at-lz",
+				"scriptName": "FillChess",
+				"highlight": false,
+				"params": [
+					{"id":"chess0", "type":"object"},
+					{"id":"layer1", "type":"layer"},
+					{"id":"logic_z2", "type":"any", "initialValue":"1"}
+				],
+				"c2id": 26				
+			},
+			{
+				"id": "create-chess-above-tile-uid",
+				"scriptName": "CreateChessAboveTile",
+				"highlight": false,
+				"params": [
+					{"id":"chess0", "type":"object"},
+					{"id":"tile_uid1", "type":"any", "initialValue":"0"},
+					{"id":"logic_z2", "type":"any", "initialValue":"1"},
+					{"id":"layer3", "type":"layer"}
+				],
+				"c2id": 31				
+			}
+		],
+		"expressions": [
 		]
 	},
 	"add": {
@@ -249,526 +352,46 @@
 		"expressions": [
 		]
 	},
-	"create": {
+	"max-min": {
 		"conditions": [
-		],
-		"actions": [
-			{
-				"id": "create-tile",
-				"scriptName": "CreateTile",
-				"highlight": false,
-				"params": [
-					{"id":"tile0", "type":"object"},
-					{"id":"logic_x1", "type":"number", "initialValue":"0"},
-					{"id":"logic_y2", "type":"number", "initialValue":"0"},
-					{"id":"layer3", "type":"layer"}
-				],
-				"c2id": 12				
-			},
-			{
-				"id": "create-chess",
-				"scriptName": "CreateChess",
-				"highlight": false,
-				"params": [
-					{"id":"chess0", "type":"object"},
-					{"id":"logic_x1", "type":"number", "initialValue":"0"},
-					{"id":"logic_y2", "type":"number", "initialValue":"0"},
-					{"id":"logic_z3", "type":"any", "initialValue":"0"},
-					{"id":"layer4", "type":"layer"}
-				],
-				"c2id": 14				
-			},
-			{
-				"id": "create-chess-above-tile",
-				"scriptName": "CreateChessAboveTile",
-				"highlight": false,
-				"params": [
-					{"id":"chess0", "type":"object"},
-					{"id":"tile1", "type":"object"},
-					{"id":"logic_z2", "type":"any", "initialValue":"1"},
-					{"id":"layer3", "type":"layer"}
-				],
-				"c2id": 23				
-			},
-			{
-				"id": "fill-chess",
-				"scriptName": "FillChess",
-				"highlight": false,
-				"params": [
-					{"id":"tile0", "type":"object"},
-					{"id":"layer1", "type":"layer"}
-				],
-				"c2id": 24				
-			},
-			{
-				"id": "fill-chess-at-lz",
-				"scriptName": "FillChess",
-				"highlight": false,
-				"params": [
-					{"id":"chess0", "type":"object"},
-					{"id":"layer1", "type":"layer"},
-					{"id":"logic_z2", "type":"any", "initialValue":"1"}
-				],
-				"c2id": 26				
-			},
-			{
-				"id": "create-chess-above-tile-uid",
-				"scriptName": "CreateChessAboveTile",
-				"highlight": false,
-				"params": [
-					{"id":"chess0", "type":"object"},
-					{"id":"tile_uid1", "type":"any", "initialValue":"0"},
-					{"id":"logic_z2", "type":"any", "initialValue":"1"},
-					{"id":"layer3", "type":"layer"}
-				],
-				"c2id": 31				
-			}
-		],
-		"expressions": [
-		]
-	},
-	"sol_-_logical_position": {
-		"conditions": [
-			{
-				"id": "pick-chess-at-lxy",
-				"scriptName": "PickChessAtLXY",
-				"isInvertible": "false",
-				"highlight": false,
-				"params": [
-					{"id":"chess0", "type":"object"},
-					{"id":"logic_x1", "type":"number", "initialValue":"0"},
-					{"id":"logic_y2", "type":"number", "initialValue":"0"}
-				],
-				"c2id": 12				
-			},
-			{
-				"id": "pick-chess-at-lxyz",
-				"scriptName": "PickChessAtLXYZ",
-				"isInvertible": "false",
-				"highlight": false,
-				"params": [
-					{"id":"chess0", "type":"object"},
-					{"id":"logic_x1", "type":"number", "initialValue":"0"},
-					{"id":"logic_y2", "type":"number", "initialValue":"0"},
-					{"id":"logic_z3", "type":"any", "initialValue":"0"}
-				],
-				"c2id": 16				
-			},
-			{
-				"id": "pick-chess-at-lx",
-				"scriptName": "PickChessAtLX",
-				"isInvertible": "false",
-				"highlight": false,
-				"params": [
-					{"id":"chess0", "type":"object"},
-					{"id":"logic_x1", "type":"number", "initialValue":"0"}
-				],
-				"c2id": 22				
-			},
-			{
-				"id": "pick-chess-at-ly",
-				"scriptName": "PickChessAtLY",
-				"isInvertible": "false",
-				"highlight": false,
-				"params": [
-					{"id":"chess0", "type":"object"},
-					{"id":"logic_y1", "type":"number", "initialValue":"0"}
-				],
-				"c2id": 23				
-			},
-			{
-				"id": "pick-chess-at-lz",
-				"scriptName": "PickChessAtLZ",
-				"isInvertible": "false",
-				"highlight": false,
-				"params": [
-					{"id":"chess0", "type":"object"},
-					{"id":"logic_z1", "type":"any", "initialValue":"0"}
-				],
-				"c2id": 24				
-			},
-			{
-				"id": "pick-chess-inside-square",
-				"scriptName": "PickChessInsideSquare",
-				"isInvertible": "false",
-				"highlight": false,
-				"params": [
-					{"id":"chess0", "type":"object"},
-					{"id":"logic_x_of_left1", "type":"number", "initialValue":"0"},
-					{"id":"logic_x_of_right2", "type":"number", "initialValue":"0"},
-					{"id":"logic_y_of_top3", "type":"number", "initialValue":"0"},
-					{"id":"logic_y_of_bottom4", "type":"number", "initialValue":"0"}
-				],
-				"c2id": 27				
-			}
-		],
-		"actions": [
-			{
-				"id": "pick-chess-at-lxyz",
-				"scriptName": "PickChessAtLXYZ",
-				"highlight": false,
-				"params": [
-					{"id":"chess0", "type":"object"},
-					{"id":"logic_x1", "type":"number", "initialValue":"0"},
-					{"id":"logic_y2", "type":"number", "initialValue":"0"},
-					{"id":"logic_z3", "type":"number", "initialValue":"0"}
-				],
-				"c2id": 13			
-			},
-			{
-				"id": "pick-chess-at-lxy",
-				"scriptName": "PickChessAtLXY",
-				"highlight": false,
-				"params": [
-					{"id":"chess0", "type":"object"},
-					{"id":"logic_x1", "type":"number", "initialValue":"0"},
-					{"id":"logic_y2", "type":"number", "initialValue":"0"}
-				],
-				"c2id": 17				
-			},
-			{
-				"id": "pick-chess-at-lx",
-				"scriptName": "PickChessAtLX",
-				"highlight": false,
-				"params": [
-					{"id":"chess0", "type":"object"},
-					{"id":"logic_x1", "type":"number", "initialValue":"0"}
-				],
-				"c2id": 28				
-			},
-			{
-				"id": "pick-chess-at-ly",
-				"scriptName": "PickChessAtLY",
-				"highlight": false,
-				"params": [
-					{"id":"chess0", "type":"object"},
-					{"id":"logic_y1", "type":"number", "initialValue":"0"}
-				],
-				"c2id": 29				
-			},
-			{
-				"id": "pick-chess-at-lz",
-				"scriptName": "PickChessAtLZ",
-				"highlight": false,
-				"params": [
-					{"id":"chess0", "type":"object"},
-					{"id":"logic_z1", "type":"any", "initialValue":"0"}
-				],
-				"c2id": 30				
-			},
-			{
-				"id": "pick-chess-inside-square",
-				"scriptName": "PickChessInsideSquare",
-				"highlight": false,
-				"params": [
-					{"id":"chess0", "type":"object"},
-					{"id":"logic_x_of_left1", "type":"number", "initialValue":"0"},
-					{"id":"logic_x_of_right2", "type":"number", "initialValue":"0"},
-					{"id":"logic_y_of_top3", "type":"number", "initialValue":"0"},
-					{"id":"logic_y_of_bottom4", "type":"number", "initialValue":"0"}
-				],
-				"c2id": 34								
-			}
-		],
-		"expressions": [
-		]
-	},
-	"sol": {
-		"conditions": [
-			{
-				"id": "pick-all-chess",
-				"scriptName": "PickAllChess",
-				"isInvertible": "false",
-				"highlight": false,
-				"c2id": 10				
-			},
-			{
-				"id": "pick-chess",
-				"scriptName": "PickChess",
-				"isInvertible": "false",
-				"highlight": false,
-				"params": [
-					{"id":"chess0", "type":"object"}
-				],
-				"c2id": 21				
-			}
-		],
-		"actions": [
-			{
-				"id": "pick-all-chess",
-				"scriptName": "PickAllChess",
-				"highlight": false,
-				"c2id": 16				
-			},
-			{
-				"id": "pick-chess",
-				"scriptName": "PickChess",
-				"highlight": false,
-				"params": [
-					{"id":"chess0", "type":"object"}
-				],
-				"c2id": 27								
-			}
-		],
-		"expressions": [
-		]
-	},
-	"pick-chess-above-tiles": {
-		"conditions": [
-			{
-				"id": "pick-chess-above-tile",
-				"scriptName": "PickChessAboveTile",
-				"isInvertible": "false",
-				"highlight": false,
-				"params": [
-					{"id":"chess0", "type":"object"},
-					{"id":"tile1", "type":"object"}
-				],
-				"c2id": 13				
-			},
-			{
-				"id": "pick-chess-above-tile-uid",
-				"scriptName": "PickChessAboveTileUID",
-				"isInvertible": "false",
-				"highlight": false,
-				"params": [
-					{"id":"chess0", "type":"object"},
-					{"id":"tile_uid1", "type":"any", "initialValue":"0"}
-				],
-				"c2id": 14				
-			}
-		],
-		"actions": [
-			{
-				"id": "pick-chess-above-tile",
-				"scriptName": "PickChessAboveTile",
-				"highlight": false,
-				"params": [
-					{"id":"chess0", "type":"object"},
-					{"id":"tile1", "type":"object"}
-				],
-				"c2id": 18				
-			},
-			{
-				"id": "pick-chess-above-tile-uid",
-				"scriptName": "PickChessAboveTileUID",
-				"highlight": false,
-				"params": [
-					{"id":"chess0", "type":"object"},
-					{"id":"tile_uid1", "type":"any", "initialValue":"0"}
-				],
-				"c2id": 19				
-			}
-		],
-		"expressions": [
-		]
-	},
-	"for-each-cell": {
-		"conditions": [
-			{
-				"id": "for-each-cell",
-				"scriptName": "ForEachCell",
-				"isLooping": "true",
-				"isInvertible": "false",
-				"highlight": false,
-				"params": [
-					{"id":"direction4", "type":"combo", "items":["top to bottom","bottom to top","left to right","right to left"]}
-				],
-				"c2id": 3				
-			}
 		],
 		"actions": [
 		],
 		"expressions": [
 			{
-				"id": "current-lx",
-				"expressionName": "CurLX",
-				"scriptName": "CurLX",
+				"id": "max-lx",
+				"expressionName": "MaxLX",
+				"scriptName": "MaxLX",
 				"highlight": false,
 				"returnType": "number",
-				"c2id": 31				
+				"c2id": 61				
 			},
 			{
-				"id": "current-ly",
-				"expressionName": "CurLY",
-				"scriptName": "CurLY",
+				"id": "max-ly",
+				"expressionName": "MaxLY",
+				"scriptName": "MaxLY",
 				"highlight": false,
 				"returnType": "number",
-				"c2id": 32				
-			}
-		]
-	},
-	"for-each-lz": {
-		"conditions": [
+				"c2id": 62				
+			},
 			{
-				"c2id": 28,
-				"id": "for-each-lz",
-				"scriptName": "ForEachLZ",
-				"isLooping": "true",
-				"isInvertible": "false",
+				"id": "min-lx",
+				"expressionName": "MinLX",
+				"scriptName": "MinLX",
 				"highlight": false,
-				"params": [
-					{"id":"logic_x0", "type":"number", "initialValue":"0"},
-					{"id":"logic_y1", "type":"number", "initialValue":"0"}
-				]
-			}
-		],
-		"actions": [
-		],
-		"expressions": [
+				"returnType": "number",
+				"c2id": 63				
+			},
 			{
-				"id": "current-lz",
-				"expressionName": "CurLZ",
-				"scriptName": "CurLZ",
+				"id": "min-ly",
+				"expressionName": "MinLY",
+				"scriptName": "MinLY",
 				"highlight": false,
-				"returnType": "any",
-				"c2id": 33				
+				"returnType": "number",
+				"c2id": 64				
 			}
 		]
 	},	
-	"empty": {
-		"conditions": [
-			{
-				"id": "is-occupied",
-				"scriptName": "IsOccupied",
-				"highlight": false,
-				"params": [
-					{"id":"logic_x0", "type":"number", "initialValue":"0"},
-					{"id":"logic_y1", "type":"number", "initialValue":"0"},
-					{"id":"logic_z2", "type":"any", "initialValue":"0"}
-				],
-				"c2id": 4				
-			},
-			{
-				"id": "is-empty",
-				"scriptName": "IsEmpty",
-				"highlight": false,
-				"params": [
-					{"id":"logic_x0", "type":"number", "initialValue":"0"},
-					{"id":"logic_y1", "type":"number", "initialValue":"0"},
-					{"id":"logic_z2", "type":"any", "initialValue":"0"}
-				],
-				"c2id": 5				
-			},
-			{
-				"c2id": 18,
-				"id": "pick-empty-cell",
-				"scriptName": "PickEmptyCell",
-				"highlight": false,
-				"params": [
-					{"id":"logic_z0", "type":"any", "initialValue":"0"}
-				]
-			},
-			{
-				"id": "has-empty-cell",
-				"scriptName": "HasEmptyCell",
-				"highlight": false,
-				"params": [
-					{"id":"logic_z0", "type":"any", "initialValue":"0"}
-				],
-				"c2id": 19				
-			},
-			{
-				"id": "pick-empty-cell-on-tiles",
-				"scriptName": "PickEmptyCellOnTiles",
-				"highlight": false,
-				"params": [
-					{"id":"tile0", "type":"object"},
-					{"id":"logic_z1", "type":"any", "initialValue":"0"}
-				],
-				"c2id": 25								
-			},
-			{
-				"id": "has-empty-cell-on-tiles",
-				"scriptName": "HasEmptyCellOnTiles",
-				"highlight": false,
-				"params": [
-					{"id":"tile0", "type":"object"},
-					{"id":"logic_z1", "type":"any", "initialValue":"0"}
-				],
-				"c2id": 26				
-			}
-		],
-		"actions": [
-		],
-		"expressions": [
-			{
-				"id": "empty-lx",
-				"expressionName": "EmptyLX",
-				"scriptName": "EmptyLX",
-				"highlight": false,
-				"returnType": "number",
-				"c2id": 23				
-			},
-			{
-				"id": "empty-ly",
-				"expressionName": "EmptyLY",
-				"scriptName": "EmptyLY",
-				"highlight": false,
-				"returnType": "number",
-				"c2id": 24				
-			}
-		]
-	},
-	"neighbors": {
-		"conditions": [
-			{
-				"id": "are-neighbors",
-				"scriptName": "AreNeighbors",
-				"highlight": false,
-				"params": [
-					{"id":"uid_of_chess0", "type":"any", "initialValue":"0"},
-					{"id":"uid_of_chess1", "type":"any", "initialValue":"0"}
-				],
-				"c2id": 9				
-			},
-			{
-				"id": "are-wrapped-neighbors",
-				"scriptName": "AreWrappedNeighbors",
-				"highlight": false,
-				"params": [
-					{"id":"uid_of_chess0", "type":"any", "initialValue":"0"},
-					{"id":"uid_of_chess1", "type":"any", "initialValue":"0"}
-				],
-				"c2id": 20				
-			},
-			{
-				"id": "pick-neighbor-chess",
-				"scriptName": "PickNeighborChess",
-				"isInvertible": "false",
-				"highlight": false,
-				"params": [
-					{"id":"origin0", "type":"object"},
-					{"id":"direction1", "type":"any", "initialValue":"-1"},
-					{"id":"neighbor2", "type":"object"}
-				],
-				"c2id": 17				
-			}			
-		],
-		"actions": [
-			{
-				"id": "pick-neighbor-chess",
-				"scriptName": "PickNeighborChess",
-				"highlight": false,
-				"params": [
-					{"id":"origin0", "type":"object"},
-					{"id":"direction1", "type":"any", "initialValue":"-1"},
-					{"id":"neighbor2", "type":"object"}
-				],
-				"c2id": 22				
-			}			
-		],
-		"expressions": [
-			{
-				"id": "all-directions",
-				"expressionName": "ALLDIRECTIONS",
-				"scriptName": "ALLDIRECTIONS",
-				"highlight": false,
-				"returnType": "number",
-				"c2id": 27				
-			}
-		]
-	},
 	"kick": {
 		"conditions": [
 			{
@@ -1094,70 +717,447 @@
 				"c2id": 13				
 			}				
 		]
-	},
-	"layout": {
+	},	
+	"neighbors": {
 		"conditions": [
+			{
+				"id": "are-neighbors",
+				"scriptName": "AreNeighbors",
+				"highlight": false,
+				"params": [
+					{"id":"uid_of_chess0", "type":"any", "initialValue":"0"},
+					{"id":"uid_of_chess1", "type":"any", "initialValue":"0"}
+				],
+				"c2id": 9				
+			},
+			{
+				"id": "are-wrapped-neighbors",
+				"scriptName": "AreWrappedNeighbors",
+				"highlight": false,
+				"params": [
+					{"id":"uid_of_chess0", "type":"any", "initialValue":"0"},
+					{"id":"uid_of_chess1", "type":"any", "initialValue":"0"}
+				],
+				"c2id": 20				
+			},
+			{
+				"id": "pick-neighbor-chess",
+				"scriptName": "PickNeighborChess",
+				"isInvertible": "false",
+				"highlight": false,
+				"params": [
+					{"id":"origin0", "type":"object"},
+					{"id":"direction1", "type":"any", "initialValue":"-1"},
+					{"id":"neighbor2", "type":"object"}
+				],
+				"c2id": 17				
+			}			
 		],
 		"actions": [
 			{
-				"id": "setup-layout",
-				"scriptName": "SetupLayout",
+				"id": "pick-neighbor-chess",
+				"scriptName": "PickNeighborChess",
 				"highlight": false,
 				"params": [
-					{"id":"layout0", "type":"object"}
+					{"id":"origin0", "type":"object"},
+					{"id":"direction1", "type":"any", "initialValue":"-1"},
+					{"id":"neighbor2", "type":"object"}
 				],
-				"c2id": 11				
+				"c2id": 22				
 			}			
 		],
 		"expressions": [
 			{
-				"id": "direction-count",
-				"expressionName": "DirCount",
-				"scriptName": "DirCount",
+				"id": "all-directions",
+				"expressionName": "ALLDIRECTIONS",
+				"scriptName": "ALLDIRECTIONS",
 				"highlight": false,
 				"returnType": "number",
-				"c2id": 25				
+				"c2id": 27				
 			}
 		]
-	},
-	"max-min": {
+	},	
+	"for-each-cell": {
 		"conditions": [
+			{
+				"id": "for-each-cell",
+				"scriptName": "ForEachCell",
+				"isLooping": "true",
+				"isInvertible": "false",
+				"highlight": false,
+				"params": [
+					{"id":"direction4", "type":"combo", "items":["top to bottom","bottom to top","left to right","right to left"]}
+				],
+				"c2id": 3				
+			}
 		],
 		"actions": [
 		],
 		"expressions": [
 			{
-				"id": "max-lx",
-				"expressionName": "MaxLX",
-				"scriptName": "MaxLX",
+				"id": "current-lx",
+				"expressionName": "CurLX",
+				"scriptName": "CurLX",
 				"highlight": false,
 				"returnType": "number",
-				"c2id": 61				
+				"c2id": 31				
 			},
 			{
-				"id": "max-ly",
-				"expressionName": "MaxLY",
-				"scriptName": "MaxLY",
+				"id": "current-ly",
+				"expressionName": "CurLY",
+				"scriptName": "CurLY",
 				"highlight": false,
 				"returnType": "number",
-				"c2id": 62				
-			},
-			{
-				"id": "min-lx",
-				"expressionName": "MinLX",
-				"scriptName": "MinLX",
-				"highlight": false,
-				"returnType": "number",
-				"c2id": 63				
-			},
-			{
-				"id": "min-ly",
-				"expressionName": "MinLY",
-				"scriptName": "MinLY",
-				"highlight": false,
-				"returnType": "number",
-				"c2id": 64				
+				"c2id": 32				
 			}
+		]
+	},
+	"for-each-lz": {
+		"conditions": [
+			{
+				"c2id": 28,
+				"id": "for-each-lz",
+				"scriptName": "ForEachLZ",
+				"isLooping": "true",
+				"isInvertible": "false",
+				"highlight": false,
+				"params": [
+					{"id":"logic_x0", "type":"number", "initialValue":"0"},
+					{"id":"logic_y1", "type":"number", "initialValue":"0"}
+				]
+			}
+		],
+		"actions": [
+		],
+		"expressions": [
+			{
+				"id": "current-lz",
+				"expressionName": "CurLZ",
+				"scriptName": "CurLZ",
+				"highlight": false,
+				"returnType": "any",
+				"c2id": 33				
+			}
+		]
+	},	
+	"empty": {
+		"conditions": [
+			{
+				"id": "is-occupied",
+				"scriptName": "IsOccupied",
+				"highlight": false,
+				"params": [
+					{"id":"logic_x0", "type":"number", "initialValue":"0"},
+					{"id":"logic_y1", "type":"number", "initialValue":"0"},
+					{"id":"logic_z2", "type":"any", "initialValue":"0"}
+				],
+				"c2id": 4				
+			},
+			{
+				"id": "is-empty",
+				"scriptName": "IsEmpty",
+				"highlight": false,
+				"params": [
+					{"id":"logic_x0", "type":"number", "initialValue":"0"},
+					{"id":"logic_y1", "type":"number", "initialValue":"0"},
+					{"id":"logic_z2", "type":"any", "initialValue":"0"}
+				],
+				"c2id": 5				
+			},
+			{
+				"c2id": 18,
+				"id": "pick-empty-cell",
+				"scriptName": "PickEmptyCell",
+				"highlight": false,
+				"params": [
+					{"id":"logic_z0", "type":"any", "initialValue":"0"}
+				]
+			},
+			{
+				"id": "has-empty-cell",
+				"scriptName": "HasEmptyCell",
+				"highlight": false,
+				"params": [
+					{"id":"logic_z0", "type":"any", "initialValue":"0"}
+				],
+				"c2id": 19				
+			},
+			{
+				"id": "pick-empty-cell-on-tiles",
+				"scriptName": "PickEmptyCellOnTiles",
+				"highlight": false,
+				"params": [
+					{"id":"tile0", "type":"object"},
+					{"id":"logic_z1", "type":"any", "initialValue":"0"}
+				],
+				"c2id": 25								
+			},
+			{
+				"id": "has-empty-cell-on-tiles",
+				"scriptName": "HasEmptyCellOnTiles",
+				"highlight": false,
+				"params": [
+					{"id":"tile0", "type":"object"},
+					{"id":"logic_z1", "type":"any", "initialValue":"0"}
+				],
+				"c2id": 26				
+			}
+		],
+		"actions": [
+		],
+		"expressions": [
+			{
+				"id": "empty-lx",
+				"expressionName": "EmptyLX",
+				"scriptName": "EmptyLX",
+				"highlight": false,
+				"returnType": "number",
+				"c2id": 23				
+			},
+			{
+				"id": "empty-ly",
+				"expressionName": "EmptyLY",
+				"scriptName": "EmptyLY",
+				"highlight": false,
+				"returnType": "number",
+				"c2id": 24				
+			}
+		]
+	},	
+	"pick-chess": {
+		"conditions": [
+			{
+				"id": "pick-all-chess",
+				"scriptName": "PickAllChess",
+				"isInvertible": "false",
+				"highlight": false,
+				"c2id": 10				
+			},
+			{
+				"id": "pick-chess",
+				"scriptName": "PickChess",
+				"isInvertible": "false",
+				"highlight": false,
+				"params": [
+					{"id":"chess0", "type":"object"}
+				],
+				"c2id": 21				
+			}
+		],
+		"actions": [
+			{
+				"id": "pick-all-chess",
+				"scriptName": "PickAllChess",
+				"highlight": false,
+				"c2id": 16				
+			},
+			{
+				"id": "pick-chess",
+				"scriptName": "PickChess",
+				"highlight": false,
+				"params": [
+					{"id":"chess0", "type":"object"}
+				],
+				"c2id": 27								
+			}
+		],
+		"expressions": [
+		]
+	},	
+	"pick-chess-by-lxyz": {
+		"conditions": [
+			{
+				"id": "pick-chess-at-lxy",
+				"scriptName": "PickChessAtLXY",
+				"isInvertible": "false",
+				"highlight": false,
+				"params": [
+					{"id":"chess0", "type":"object"},
+					{"id":"logic_x1", "type":"number", "initialValue":"0"},
+					{"id":"logic_y2", "type":"number", "initialValue":"0"}
+				],
+				"c2id": 12				
+			},
+			{
+				"id": "pick-chess-at-lxyz",
+				"scriptName": "PickChessAtLXYZ",
+				"isInvertible": "false",
+				"highlight": false,
+				"params": [
+					{"id":"chess0", "type":"object"},
+					{"id":"logic_x1", "type":"number", "initialValue":"0"},
+					{"id":"logic_y2", "type":"number", "initialValue":"0"},
+					{"id":"logic_z3", "type":"any", "initialValue":"0"}
+				],
+				"c2id": 16				
+			},
+			{
+				"id": "pick-chess-at-lx",
+				"scriptName": "PickChessAtLX",
+				"isInvertible": "false",
+				"highlight": false,
+				"params": [
+					{"id":"chess0", "type":"object"},
+					{"id":"logic_x1", "type":"number", "initialValue":"0"}
+				],
+				"c2id": 22				
+			},
+			{
+				"id": "pick-chess-at-ly",
+				"scriptName": "PickChessAtLY",
+				"isInvertible": "false",
+				"highlight": false,
+				"params": [
+					{"id":"chess0", "type":"object"},
+					{"id":"logic_y1", "type":"number", "initialValue":"0"}
+				],
+				"c2id": 23				
+			},
+			{
+				"id": "pick-chess-at-lz",
+				"scriptName": "PickChessAtLZ",
+				"isInvertible": "false",
+				"highlight": false,
+				"params": [
+					{"id":"chess0", "type":"object"},
+					{"id":"logic_z1", "type":"any", "initialValue":"0"}
+				],
+				"c2id": 24				
+			},
+			{
+				"id": "pick-chess-inside-square",
+				"scriptName": "PickChessInsideSquare",
+				"isInvertible": "false",
+				"highlight": false,
+				"params": [
+					{"id":"chess0", "type":"object"},
+					{"id":"logic_x_of_left1", "type":"number", "initialValue":"0"},
+					{"id":"logic_x_of_right2", "type":"number", "initialValue":"0"},
+					{"id":"logic_y_of_top3", "type":"number", "initialValue":"0"},
+					{"id":"logic_y_of_bottom4", "type":"number", "initialValue":"0"}
+				],
+				"c2id": 27				
+			}
+		],
+		"actions": [
+			{
+				"id": "pick-chess-at-lxyz",
+				"scriptName": "PickChessAtLXYZ",
+				"highlight": false,
+				"params": [
+					{"id":"chess0", "type":"object"},
+					{"id":"logic_x1", "type":"number", "initialValue":"0"},
+					{"id":"logic_y2", "type":"number", "initialValue":"0"},
+					{"id":"logic_z3", "type":"number", "initialValue":"0"}
+				],
+				"c2id": 13			
+			},
+			{
+				"id": "pick-chess-at-lxy",
+				"scriptName": "PickChessAtLXY",
+				"highlight": false,
+				"params": [
+					{"id":"chess0", "type":"object"},
+					{"id":"logic_x1", "type":"number", "initialValue":"0"},
+					{"id":"logic_y2", "type":"number", "initialValue":"0"}
+				],
+				"c2id": 17				
+			},
+			{
+				"id": "pick-chess-at-lx",
+				"scriptName": "PickChessAtLX",
+				"highlight": false,
+				"params": [
+					{"id":"chess0", "type":"object"},
+					{"id":"logic_x1", "type":"number", "initialValue":"0"}
+				],
+				"c2id": 28				
+			},
+			{
+				"id": "pick-chess-at-ly",
+				"scriptName": "PickChessAtLY",
+				"highlight": false,
+				"params": [
+					{"id":"chess0", "type":"object"},
+					{"id":"logic_y1", "type":"number", "initialValue":"0"}
+				],
+				"c2id": 29				
+			},
+			{
+				"id": "pick-chess-at-lz",
+				"scriptName": "PickChessAtLZ",
+				"highlight": false,
+				"params": [
+					{"id":"chess0", "type":"object"},
+					{"id":"logic_z1", "type":"any", "initialValue":"0"}
+				],
+				"c2id": 30				
+			},
+			{
+				"id": "pick-chess-inside-square",
+				"scriptName": "PickChessInsideSquare",
+				"highlight": false,
+				"params": [
+					{"id":"chess0", "type":"object"},
+					{"id":"logic_x_of_left1", "type":"number", "initialValue":"0"},
+					{"id":"logic_x_of_right2", "type":"number", "initialValue":"0"},
+					{"id":"logic_y_of_top3", "type":"number", "initialValue":"0"},
+					{"id":"logic_y_of_bottom4", "type":"number", "initialValue":"0"}
+				],
+				"c2id": 34								
+			}
+		],
+		"expressions": [
+		]
+	},
+	"pick-chess-above-tiles": {
+		"conditions": [
+			{
+				"id": "pick-chess-above-tile",
+				"scriptName": "PickChessAboveTile",
+				"isInvertible": "false",
+				"highlight": false,
+				"params": [
+					{"id":"chess0", "type":"object"},
+					{"id":"tile1", "type":"object"}
+				],
+				"c2id": 13				
+			},
+			{
+				"id": "pick-chess-above-tile-uid",
+				"scriptName": "PickChessAboveTileUID",
+				"isInvertible": "false",
+				"highlight": false,
+				"params": [
+					{"id":"chess0", "type":"object"},
+					{"id":"tile_uid1", "type":"any", "initialValue":"0"}
+				],
+				"c2id": 14				
+			}
+		],
+		"actions": [
+			{
+				"id": "pick-chess-above-tile",
+				"scriptName": "PickChessAboveTile",
+				"highlight": false,
+				"params": [
+					{"id":"chess0", "type":"object"},
+					{"id":"tile1", "type":"object"}
+				],
+				"c2id": 18				
+			},
+			{
+				"id": "pick-chess-above-tile-uid",
+				"scriptName": "PickChessAboveTileUID",
+				"highlight": false,
+				"params": [
+					{"id":"chess0", "type":"object"},
+					{"id":"tile_uid1", "type":"any", "initialValue":"0"}
+				],
+				"c2id": 19				
+			}
+		],
+		"expressions": [
 		]
 	}
 }
