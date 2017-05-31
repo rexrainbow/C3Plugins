@@ -41,6 +41,22 @@
 			}
 		],
 		"expressions": [
+			{
+				"id": "width",
+				"expressionName": "Width",
+				"scriptName": "Width",
+				"highlight": false,
+				"returnType": "number",
+				"c2id": 1				
+			},
+			{
+				"id": "height",
+				"expressionName": "Height",
+				"scriptName": "Height",
+				"highlight": false,
+				"returnType": "number",
+				"c2id": 2				
+			}			
 		]
 	},
 	"offset": {
@@ -92,30 +108,6 @@
 			}
 		],
 		"expressions": [
-		]
-	},
-	"cell": {
-		"conditions": [
-		],
-		"actions": [
-		],
-		"expressions": [
-			{
-				"id": "width",
-				"expressionName": "Width",
-				"scriptName": "Width",
-				"highlight": false,
-				"returnType": "number",
-				"c2id": 1				
-			},
-			{
-				"id": "height",
-				"expressionName": "Height",
-				"scriptName": "Height",
-				"highlight": false,
-				"returnType": "number",
-				"c2id": 2				
-			}
 		]
 	},
 	"direction-code": {

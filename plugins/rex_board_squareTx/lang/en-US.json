@@ -47,7 +47,6 @@
 					"size": "Size",
 					"offset": "Offset",
 					"directions": "Directions",
-					"cell": "Cell",
 					"direction-code": "Direction code",
 					"physical": "Physical",
 					"logic": "Logic"

@@ -42,10 +42,8 @@
 						}
 				},
 				"aceCategories": {
-					"arrangement": "Arrangement",
+					"orientation": "Orientation",
 					"size": "Size",
-					"position": "Position",
-					"cell": "Cell",
 					"offset": "Offset",
 					"direction-code-left-right": "Direction code (Left-Right)",
 					"direction-code-up-down": "Direction code (Up-Down)",
@@ -55,19 +53,19 @@
 				"conditions": {
 				},
 				"actions": {
-					"set-layout-mode": {
-						"list-name": "Set layout",
-						"display-text": "Set axis to [i]{0}[/i], indent to [i]{1}[/i]",
-						"description": "Set layout.",
+					"set-orientation": {
+						"list-name": "Set orientation",
+						"display-text": "Set axis to [b]{0}[/b], indent to [b]{1}[/b]",
+						"description": "Set orientation.",
 						"params": {
-							"axis2": { "name":"Axis", "desc":"The axis of layout.", "items":{"left-right":"Left-Right","up-down":"Up-Down"}},
+							"axis2": { "name":"Axis", "desc":"The axis of orientation.", "items":{"left-right":"Left-Right","up-down":"Up-Down"}},
 							"indent5": { "name":"Indent", "desc":"Indent first row or column.", "items":{"left-right":"Left-Right","up-down":"Up-Down","no":"No","yes":"Yes"}}
 						}
 					},
-					"set-layout-mode-by-number": {
-						"list-name": "Set layout by number",
-						"display-text": "Set axis to [i]{0}[/i], indent to [i]{1}[/i]",
-						"description": "Set layout by number.",
+					"set-orientation-by-number": {
+						"list-name": "Set orientation by number",
+						"display-text": "Set axis to [b]{0}[/b], indent to [b]{1}[/b]",
+						"description": "Set orientation by number.",
 						"params": {
 							"axis0": { "name":"Axis", "desc":"0=Left-Right, 1=Up-Down."},
 							"indent1": { "name":"Indent", "desc":"0=No, 1=Yes."}
@@ -75,7 +73,7 @@
 					},
 					"set-cell-size": {
 						"list-name": "Set cell size",
-						"display-text": "Set cell width to [i]{0}[/i], height to [i]{1}[/i]",
+						"display-text": "Set cell width to [b]{0}[/b], height to [b]{1}[/b]",
 						"description": "Set cell size.",
 						"params": {
 							"width0": { "name":"Width", "desc":"Cell width in pixels."},
@@ -84,7 +82,7 @@
 					},
 					"set-offset": {
 						"list-name": "Set position offset",
-						"display-text": "Set offset to ([i]{0}[/i], [i]{1}[/i])",
+						"display-text": "Set offset to ([b]{0}[/b], [b]{1}[/b])",
 						"description": "Set Physical position offset (position of logic (0,0)).",
 						"params": {
 							"x0": { "name":"X", "desc":"Physical X co-ordinate at logic (0,0)."},
@@ -137,27 +135,27 @@
 						"description": "Direction code of down-right.",
 						"translated-name": "DIRUDDOWNRIGHT"
 						},
-					"diruddown": {
+					"ud-down": {
 						"description": "Direction code of down.",
 						"translated-name": "DIRUDDOWN"
 						},
-					"diruddownleft": {
+					"ud-down-left": {
 						"description": "Direction code of down-left.",
 						"translated-name": "DIRUDDOWNLEFT"
 						},
-					"dirudupleft": {
+					"ud-up-left": {
 						"description": "Direction code of up-left.",
 						"translated-name": "DIRUDUPLEFT"
 						},
-					"dirudup": {
+					"ud-up": {
 						"description": "Direction code of up.",
 						"translated-name": "DIRUDUP"
 						},
-					"dirudupright": {
+					"ud-up-right": {
 						"description": "Direction code of up-right.",
 						"translated-name": "DIRUDUPRIGHT"
 						},
-					"lxy2px": {
+					"lxy-to-px": {
 						"description": "Get physical X co-ordinate by logic X,Y index. Return (-1) if this position does not exist.",
 						"translated-name": "LXY2PX",
 						"params": {
@@ -165,7 +163,7 @@
 							"y1": { "name":"Y", "desc":"The logic Y."}
 						}
 						},
-					"lxy2py": {
+					"lxy-to-py": {
 						"description": "Get physical Y co-ordinate by logic X,Y index. Return (-1) if this position does not exist.",
 						"translated-name": "LXY2PY",
 						"params": {
@@ -173,7 +171,7 @@
 							"y1": { "name":"Y", "desc":"The logic Y."}
 						}
 						},
-					"pxy2lx": {
+					"pxy-to-lx": {
 						"description": "Get logic X by physical X,Y co-ordinate.",
 						"translated-name": "PXY2LX",
 						"params": {
@@ -181,7 +179,7 @@
 							"y1": { "name":"Y", "desc":"The physical Y."}
 						}
 						},
-					"pxy2ly": {
+					"pxy-to-ly": {
 						"description": "Get logic Y by physical X,Y co-ordinate.",
 						"translated-name": "PXY2LY",
 						"params": {

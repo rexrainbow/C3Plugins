@@ -1,27 +1,27 @@
 {
-	"arrangement": {
+	"orientation": {
 		"conditions": [
 		],
 		"actions": [
 			{
-				"c2id": 1,
-				"id": "set-layout-mode",
-				"scriptName": "SetLayoutMode",
+				"id": "set-orientation",
+				"scriptName": "SetOrientation",
 				"highlight": false,
 				"params": [
 					{"id":"axis2", "type":"combo", "items":["left-right","up-down"]},
 					{"id":"indent5", "type":"combo", "items":["left-right","up-down","no","yes"]}
-				]
+				],
+				"c2id": 1				
 			},
 			{
-				"c2id": 2,
-				"id": "set-layout-mode-by-number",
-				"scriptName": "SetLayoutMode",
+				"id": "set-orientation-by-number",
+				"scriptName": "SetOrientation",
 				"highlight": false,
 				"params": [
 					{"id":"axis0", "type":"number", "initialValue":"0"},
 					{"id":"indent1", "type":"number", "initialValue":"0"}
-				]
+				],
+				"c2id": 2				
 			}
 		],
 		"expressions": [
@@ -32,83 +32,67 @@
 		],
 		"actions": [
 			{
-				"c2id": 3,
 				"id": "set-cell-size",
 				"scriptName": "SetCellSize",
 				"highlight": false,
 				"params": [
 					{"id":"width0", "type":"number", "initialValue":"0"},
 					{"id":"height1", "type":"number", "initialValue":"0"}
-				]
+				],
+				"c2id": 3				
 			}
 		],
 		"expressions": [
-		]
-	},
-	"position": {
-		"conditions": [
-		],
-		"actions": [
 			{
-				"c2id": 4,
-				"id": "set-offset",
-				"scriptName": "SetOffset",
-				"highlight": false,
-				"params": [
-					{"id":"x0", "type":"number", "initialValue":"0"},
-					{"id":"y1", "type":"number", "initialValue":"0"}
-				]
-			}
-		],
-		"expressions": [
-		]
-	},
-	"cell": {
-		"conditions": [
-		],
-		"actions": [
-		],
-		"expressions": [
-			{
-				"c2id": 1,
 				"id": "width",
 				"expressionName": "Width",
 				"scriptName": "Width",
 				"highlight": false,
-				"returnType": "number"
+				"returnType": "number",
+				"c2id": 1				
 			},
 			{
-				"c2id": 2,
 				"id": "height",
 				"expressionName": "Height",
 				"scriptName": "Height",
 				"highlight": false,
-				"returnType": "number"
-			}
+				"returnType": "number",
+				"c2id": 2				
+			}			
 		]
 	},
 	"offset": {
 		"conditions": [
 		],
 		"actions": [
+			{
+				"id": "set-offset",
+				"scriptName": "SetOffset",
+				"highlight": false,
+				"params": [
+					{"id":"x0", "type":"number", "initialValue":"0"},
+					{"id":"y1", "type":"number", "initialValue":"0"}
+				],
+				"c2id": 4				
+			}
 		],
 		"expressions": [
 			{
-				"c2id": 3,
 				"id": "pox",
 				"expressionName": "POX",
 				"scriptName": "POX",
 				"highlight": false,
-				"returnType": "number"
+				"returnType": "number",
+				"c2id": 3				
 			},
 			{
-				"c2id": 4,
 				"id": "poy",
 				"expressionName": "POY",
 				"scriptName": "POY",
 				"highlight": false,
-				"returnType": "number"
-			}
+				"returnType": "number",
+				"c2id": 4				
+			}			
 		]
 	},
 	"direction-code-left-right": {
@@ -118,52 +102,52 @@
 		],
 		"expressions": [
 			{
-				"c2id": 11,
 				"id": "lr-right",
 				"expressionName": "DIRLRRIGHT",
 				"scriptName": "DIRLRRIGHT",
 				"highlight": false,
-				"returnType": "number"
+				"returnType": "number",
+				"c2id": 11				
 			},
 			{
-				"c2id": 12,
 				"id": "lr-down-right",
 				"expressionName": "DIRLRDOWNRIGHT",
 				"scriptName": "DIRLRDOWNRIGHT",
 				"highlight": false,
-				"returnType": "number"
+				"returnType": "number",
+				"c2id": 12				
 			},
 			{
-				"c2id": 13,
 				"id": "lr-down-left",
 				"expressionName": "DIRLRDOWNLEFT",
 				"scriptName": "DIRLRDOWNLEFT",
 				"highlight": false,
-				"returnType": "number"
+				"returnType": "number",
+				"c2id": 13				
 			},
 			{
-				"c2id": 14,
 				"id": "lr-left",
 				"expressionName": "DIRLRLEFT",
 				"scriptName": "DIRLRLEFT",
 				"highlight": false,
-				"returnType": "number"
+				"returnType": "number",
+				"c2id": 14				
 			},
 			{
-				"c2id": 15,
 				"id": "lr-up-left",
 				"expressionName": "DIRLRUPLEFT",
 				"scriptName": "DIRLRUPLEFT",
 				"highlight": false,
-				"returnType": "number"
+				"returnType": "number",
+				"c2id": 15				
 			},
 			{
-				"c2id": 16,
 				"id": "lr-up-right",
 				"expressionName": "DIRLRUPRIGHT",
 				"scriptName": "DIRLRUPRIGHT",
 				"highlight": false,
-				"returnType": "number"
+				"returnType": "number",
+				"c2id": 16				
 			}
 		]
 	},
@@ -174,52 +158,52 @@
 		],
 		"expressions": [
 			{
-				"c2id": 17,
 				"id": "ru-ddown-right",
 				"expressionName": "DIRUDDOWNRIGHT",
 				"scriptName": "DIRUDDOWNRIGHT",
 				"highlight": false,
-				"returnType": "number"
+				"returnType": "number",
+				"c2id": 17				
 			},
 			{
-				"c2id": 18,
-				"id": "diruddown",
+				"id": "ud-down",
 				"expressionName": "DIRUDDOWN",
 				"scriptName": "DIRUDDOWN",
 				"highlight": false,
-				"returnType": "number"
+				"returnType": "number",
+				"c2id": 18				
 			},
 			{
-				"c2id": 19,
-				"id": "diruddownleft",
+				"id": "ud-down-left",
 				"expressionName": "DIRUDDOWNLEFT",
 				"scriptName": "DIRUDDOWNLEFT",
 				"highlight": false,
-				"returnType": "number"
+				"returnType": "number",
+				"c2id": 19				
 			},
 			{
-				"c2id": 20,
-				"id": "dirudupleft",
+				"id": "ud-up-left",
 				"expressionName": "DIRUDUPLEFT",
 				"scriptName": "DIRUDUPLEFT",
 				"highlight": false,
-				"returnType": "number"
+				"returnType": "number",
+				"c2id": 20								
 			},
 			{
-				"c2id": 21,
-				"id": "dirudup",
+				"id": "ud-up",
 				"expressionName": "DIRUDUP",
 				"scriptName": "DIRUDUP",
 				"highlight": false,
-				"returnType": "number"
+				"returnType": "number",
+				"c2id": 21				
 			},
 			{
-				"c2id": 22,
-				"id": "dirudupright",
+				"id": "ud-up-right",
 				"expressionName": "DIRUDUPRIGHT",
 				"scriptName": "DIRUDUPRIGHT",
 				"highlight": false,
-				"returnType": "number"
+				"returnType": "number",
+				"c2id": 22				
 			}
 		]
 	},
@@ -230,8 +214,7 @@
 		],
 		"expressions": [
 			{
-				"c2id": 51,
-				"id": "lxy2px",
+				"id": "lxy-to-px",
 				"expressionName": "LXY2PX",
 				"scriptName": "LXY2PX",
 				"highlight": false,
@@ -239,11 +222,11 @@
 				"params": [
 					{"id":"x0", "type":"number", "initialValue":"0"},
 					{"id":"y1", "type":"number", "initialValue":"0"}
-				]
+				],
+				"c2id": 51				
 			},
 			{
-				"c2id": 52,
-				"id": "lxy2py",
+				"id": "lxy-to-py",
 				"expressionName": "LXY2PY",
 				"scriptName": "LXY2PY",
 				"highlight": false,
@@ -251,7 +234,8 @@
 				"params": [
 					{"id":"x0", "type":"number", "initialValue":"0"},
 					{"id":"y1", "type":"number", "initialValue":"0"}
-				]
+				],
+				"c2id": 52				
 			}
 		]
 	},
@@ -262,8 +246,7 @@
 		],
 		"expressions": [
 			{
-				"c2id": 53,
-				"id": "pxy2lx",
+				"id": "pxy-to-lx",
 				"expressionName": "PXY2LX",
 				"scriptName": "PXY2LX",
 				"highlight": false,
@@ -271,11 +254,11 @@
 				"params": [
 					{"id":"x0", "type":"number", "initialValue":"0"},
 					{"id":"y1", "type":"number", "initialValue":"0"}
-				]
+				],
+				"c2id": 53				
 			},
 			{
-				"c2id": 54,
-				"id": "pxy2ly",
+				"id": "pxy-to-ly",
 				"expressionName": "PXY2LY",
 				"scriptName": "PXY2LY",
 				"highlight": false,
@@ -283,7 +266,8 @@
 				"params": [
 					{"id":"x0", "type":"number", "initialValue":"0"},
 					{"id":"y1", "type":"number", "initialValue":"0"}
-				]
+				],
+				"c2id": 54				
 			}
 		]
 	}
