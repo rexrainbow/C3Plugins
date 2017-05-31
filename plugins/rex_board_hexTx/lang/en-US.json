@@ -1,0 +1,196 @@
+{
+	"languageTag": "en-US",
+	"fileDescription": "Strings for Hex Tx.",
+	"text": {
+		"plugins": {
+			"rex_slghextx": {
+				"name": "Hex Tx",
+				"description": "Transfer logic position to physical position with hexagonal layout",
+				"help-url": "https://rexrainbow.github.io/C2RexDoc/c2rexpluginsACE/plugin_rex_board_hexTx.html",
+				"properties": {
+					"x-at-(0,0)": {
+						"name": "X at (0,0)",
+						"desc": "Physical X co-ordinate at logic (0,0)."
+						},
+					"y-at-(0,0)": {
+						"name": "Y at (0,0)",
+						"desc": "Physical Y co-ordinate at logic (0,0)."
+						},
+					"width": {
+						"name": "Width",
+						"desc": "Cell width in pixels."
+						},
+					"height": {
+						"name": "Height",
+						"desc": "Cell height in pixels."
+						},
+					"axis": {
+						"name": "Axis",
+						"desc": "The axis of layout.",
+						"items": {
+							"left-right":"Left-Right",
+							"up-down":"Up-Down"
+							}
+						},
+					"indent": {
+						"name": "Indent",
+						"desc": "Indent first row or column.",
+						"items": {
+							"no":"No",
+							"yes":"Yes"
+							}
+						}
+				},
+				"aceCategories": {
+					"arrangement": "Arrangement",
+					"size": "Size",
+					"position": "Position",
+					"cell": "Cell",
+					"offset": "Offset",
+					"direction-code-left-right": "Direction code (Left-Right)",
+					"direction-code-up-down": "Direction code (Up-Down)",
+					"physical": "Physical",
+					"logic": "Logic"
+				},
+				"conditions": {
+				},
+				"actions": {
+					"set-layout-mode": {
+						"list-name": "Set layout",
+						"display-text": "Set axis to [i]{0}[/i], indent to [i]{1}[/i]",
+						"description": "Set layout.",
+						"params": {
+							"axis2": { "name":"Axis", "desc":"The axis of layout.", "items":{"left-right":"Left-Right","up-down":"Up-Down"}},
+							"indent5": { "name":"Indent", "desc":"Indent first row or column.", "items":{"left-right":"Left-Right","up-down":"Up-Down","no":"No","yes":"Yes"}}
+						}
+					},
+					"set-layout-mode-by-number": {
+						"list-name": "Set layout by number",
+						"display-text": "Set axis to [i]{0}[/i], indent to [i]{1}[/i]",
+						"description": "Set layout by number.",
+						"params": {
+							"axis0": { "name":"Axis", "desc":"0=Left-Right, 1=Up-Down."},
+							"indent1": { "name":"Indent", "desc":"0=No, 1=Yes."}
+						}
+					},
+					"set-cell-size": {
+						"list-name": "Set cell size",
+						"display-text": "Set cell width to [i]{0}[/i], height to [i]{1}[/i]",
+						"description": "Set cell size.",
+						"params": {
+							"width0": { "name":"Width", "desc":"Cell width in pixels."},
+							"height1": { "name":"Height", "desc":"Cell height in pixels."}
+						}
+					},
+					"set-offset": {
+						"list-name": "Set position offset",
+						"display-text": "Set offset to ([i]{0}[/i], [i]{1}[/i])",
+						"description": "Set Physical position offset (position of logic (0,0)).",
+						"params": {
+							"x0": { "name":"X", "desc":"Physical X co-ordinate at logic (0,0)."},
+							"y1": { "name":"Y", "desc":"Physical Y co-ordinate at logic (0,0)."}
+						}
+					}
+				},
+				"expressions": {
+					"width": {
+						"description": "Get cell width in pixels.",
+						"translated-name": "Width"
+						},
+					"height": {
+						"description": "Get cell height in pixels.",
+						"translated-name": "Height"
+						},
+					"pox": {
+						"description": "Get physical X co-ordinate at logic (0,0).",
+						"translated-name": "POX"
+						},
+					"poy": {
+						"description": "Get physical Y co-ordinate at logic (0,0).",
+						"translated-name": "POY"
+						},
+					"lr-right": {
+						"description": "Direction code of right.",
+						"translated-name": "DIRLRRIGHT"
+						},
+					"lr-down-right": {
+						"description": "Direction code of down-right.",
+						"translated-name": "DIRLRDOWNRIGHT"
+						},
+					"lr-down-left": {
+						"description": "Direction code of down-left.",
+						"translated-name": "DIRLRDOWNLEFT"
+						},
+					"lr-left": {
+						"description": "Direction code of left.",
+						"translated-name": "DIRLRLEFT"
+						},
+					"lr-up-left": {
+						"description": "Direction code of up-left.",
+						"translated-name": "DIRLRUPLEFT"
+						},
+					"lr-up-right": {
+						"description": "Direction code of up-right.",
+						"translated-name": "DIRLRUPRIGHT"
+						},
+					"ru-ddown-right": {
+						"description": "Direction code of down-right.",
+						"translated-name": "DIRUDDOWNRIGHT"
+						},
+					"diruddown": {
+						"description": "Direction code of down.",
+						"translated-name": "DIRUDDOWN"
+						},
+					"diruddownleft": {
+						"description": "Direction code of down-left.",
+						"translated-name": "DIRUDDOWNLEFT"
+						},
+					"dirudupleft": {
+						"description": "Direction code of up-left.",
+						"translated-name": "DIRUDUPLEFT"
+						},
+					"dirudup": {
+						"description": "Direction code of up.",
+						"translated-name": "DIRUDUP"
+						},
+					"dirudupright": {
+						"description": "Direction code of up-right.",
+						"translated-name": "DIRUDUPRIGHT"
+						},
+					"lxy2px": {
+						"description": "Get physical X co-ordinate by logic X,Y index. Return (-1) if this position does not exist.",
+						"translated-name": "LXY2PX",
+						"params": {
+							"x0": { "name":"X", "desc":"The logic X."},
+							"y1": { "name":"Y", "desc":"The logic Y."}
+						}
+						},
+					"lxy2py": {
+						"description": "Get physical Y co-ordinate by logic X,Y index. Return (-1) if this position does not exist.",
+						"translated-name": "LXY2PY",
+						"params": {
+							"x0": { "name":"X", "desc":"The logic X."},
+							"y1": { "name":"Y", "desc":"The logic Y."}
+						}
+						},
+					"pxy2lx": {
+						"description": "Get logic X by physical X,Y co-ordinate.",
+						"translated-name": "PXY2LX",
+						"params": {
+							"x0": { "name":"X", "desc":"The physical X."},
+							"y1": { "name":"Y", "desc":"The physical Y."}
+						}
+						},
+					"pxy2ly": {
+						"description": "Get logic Y by physical X,Y co-ordinate.",
+						"translated-name": "PXY2LY",
+						"params": {
+							"x0": { "name":"X", "desc":"The physical X."},
+							"y1": { "name":"Y", "desc":"The physical Y."}
+						}
+						}
+				}
+			}
+		}
+	}
+}

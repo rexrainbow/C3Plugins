@@ -1,0 +1,257 @@
+{
+	"orientation": {
+		"conditions": [
+		],
+		"actions": [
+			{
+				"id": "set-orientation",
+				"scriptName": "SetOrientation",
+				"highlight": false,
+				"params": [
+					{"id":"orientation3", "type":"combo", "items":["orthogonal","isometric","staggered"]}
+				],
+				"c2id": 1				
+			},
+			{
+				"id": "set-orientation-by-number",
+				"scriptName": "SetOrientation",
+				"highlight": false,
+				"params": [
+					{"id":"isometric0", "type":"number", "initialValue":"0"}
+				],
+				"c2id": 2				
+			}
+		],
+		"expressions": [
+		]
+	},
+	"size": {
+		"conditions": [
+		],
+		"actions": [
+			{
+				"id": "set-cell-size",
+				"scriptName": "SetCellSize",
+				"highlight": false,
+				"params": [
+					{"id":"width0", "type":"number", "initialValue":"0"},
+					{"id":"height1", "type":"number", "initialValue":"0"}
+				],
+				"c2id": 3				
+			}
+		],
+		"expressions": [
+		]
+	},
+	"offset": {
+		"conditions": [
+		],
+		"actions": [
+			{
+				"id": "set-offset",
+				"scriptName": "SetOffset",
+				"highlight": false,
+				"params": [
+					{"id":"x0", "type":"number", "initialValue":"0"},
+					{"id":"y1", "type":"number", "initialValue":"0"}
+				],
+				"c2id": 4				
+			}
+		],
+		"expressions": [
+			{
+				"id": "pox",
+				"expressionName": "POX",
+				"scriptName": "POX",
+				"highlight": false,
+				"returnType": "number",
+				"c2id": 3				
+			},
+			{
+				"id": "poy",
+				"expressionName": "POY",
+				"scriptName": "POY",
+				"highlight": false,
+				"returnType": "number",
+				"c2id": 4				
+			}
+		]
+	},
+	"directions": {
+		"conditions": [
+		],
+		"actions": [
+			{
+				"id": "set-direction-mode",
+				"scriptName": "SetDirections",
+				"highlight": false,
+				"params": [
+					{"id":"directions2", "type":"combo", "items":["4 directions","8 directions"]}
+				],
+				"c2id": 5				
+			}
+		],
+		"expressions": [
+		]
+	},
+	"cell": {
+		"conditions": [
+		],
+		"actions": [
+		],
+		"expressions": [
+			{
+				"id": "width",
+				"expressionName": "Width",
+				"scriptName": "Width",
+				"highlight": false,
+				"returnType": "number",
+				"c2id": 1				
+			},
+			{
+				"id": "height",
+				"expressionName": "Height",
+				"scriptName": "Height",
+				"highlight": false,
+				"returnType": "number",
+				"c2id": 2				
+			}
+		]
+	},
+	"direction-code": {
+		"conditions": [
+		],
+		"actions": [
+		],
+		"expressions": [
+			{
+				"id": "right",
+				"expressionName": "DIRRIGHT",
+				"scriptName": "DIRRIGHT",
+				"highlight": false,
+				"returnType": "number",
+				"c2id": 11				
+			},
+			{
+				"id": "down",
+				"expressionName": "DIRDOWN",
+				"scriptName": "DIRDOWN",
+				"highlight": false,
+				"returnType": "number",
+				"c2id": 12				
+			},
+			{
+				"id": "left",
+				"expressionName": "DIRLEFT",
+				"scriptName": "DIRLEFT",
+				"highlight": false,
+				"returnType": "number",
+				"c2id": 13								
+			},
+			{
+				"id": "up",
+				"expressionName": "DIRUP",
+				"scriptName": "DIRUP",
+				"highlight": false,
+				"returnType": "number",
+				"c2id": 14				
+			},
+			{
+				"id": "right-down",
+				"expressionName": "DIRRIGHTDOWN",
+				"scriptName": "DIRRIGHTDOWN",
+				"highlight": false,
+				"returnType": "number",
+				"c2id": 15				
+			},
+			{
+				"id": "left-down",
+				"expressionName": "DIRLEFTDOWN",
+				"scriptName": "DIRLEFTDOWN",
+				"highlight": false,
+				"returnType": "number",
+				"c2id": 16				
+			},
+			{
+				"id": "left-up",
+				"expressionName": "DIRLEFTUP",
+				"scriptName": "DIRLEFTUP",
+				"highlight": false,
+				"returnType": "number",
+				"c2id": 17				
+			},
+			{
+				"id": "right-up",
+				"expressionName": "DIRRIGHTUP",
+				"scriptName": "DIRRIGHTUP",
+				"highlight": false,
+				"returnType": "number",
+				"c2id": 18				
+			}
+		]
+	},
+	"physical": {
+		"conditions": [
+		],
+		"actions": [
+		],
+		"expressions": [
+			{
+				"id": "lxy-to-px",
+				"expressionName": "LXY2PX",
+				"scriptName": "LXY2PX",
+				"highlight": false,
+				"returnType": "number",
+				"params": [
+					{"id":"x0", "type":"number", "initialValue":"0"},
+					{"id":"y1", "type":"number", "initialValue":"0"}
+				],
+				"c2id": 51				
+			},
+			{
+				"id": "lxy-to-py",
+				"expressionName": "LXY2PY",
+				"scriptName": "LXY2PY",
+				"highlight": false,
+				"returnType": "number",
+				"params": [
+					{"id":"x0", "type":"number", "initialValue":"0"},
+					{"id":"y1", "type":"number", "initialValue":"0"}
+				],
+				"c2id": 52				
+			}
+		]
+	},
+	"logic": {
+		"conditions": [
+		],
+		"actions": [
+		],
+		"expressions": [
+			{
+				"id": "pxy-to-lx",
+				"expressionName": "PXY2LX",
+				"scriptName": "PXY2LX",
+				"highlight": false,
+				"returnType": "number",
+				"params": [
+					{"id":"x0", "type":"number", "initialValue":"0"},
+					{"id":"y1", "type":"number", "initialValue":"0"}
+				],
+				"c2id": 53				
+			},
+			{
+				"id": "pxy-to-ly",
+				"expressionName": "PXY2LY",
+				"scriptName": "PXY2LY",
+				"highlight": false,
+				"returnType": "number",
+				"params": [
+					{"id":"x0", "type":"number", "initialValue":"0"},
+					{"id":"y1", "type":"number", "initialValue":"0"}
+				],
+				"c2id": 54				
+			}
+		]
+	}
+}

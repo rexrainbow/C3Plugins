@@ -1,0 +1,186 @@
+{
+	"languageTag": "en-US",
+	"fileDescription": "Strings for Square Tx.",
+	"text": {
+		"plugins": {
+			"rex_slgsquaretx": {
+				"name": "Square Tx",
+				"description": "Transfer logic position to physical position with orthogonal or isometric layout",
+				"help-url": "https://rexrainbow.github.io/C2RexDoc/c2rexpluginsACE/plugin_rex_board_squareTx.html",
+				"properties": {
+					"orientation": {
+						"name": "Orientation",
+						"desc": "Map orientation.",
+						"items": {
+							"orthogonal":"Orthogonal",
+							"isometric":"Isometric",
+							"staggered":"Staggered"
+							}
+						},
+					"x-at-(0,0)": {
+						"name": "X at (0,0)",
+						"desc": "Physical X co-ordinate at logic (0,0)."
+						},
+					"y-at-(0,0)": {
+						"name": "Y at (0,0)",
+						"desc": "Physical Y co-ordinate at logic (0,0)."
+						},
+					"width": {
+						"name": "Width",
+						"desc": "Cell width in pixels."
+						},
+					"height": {
+						"name": "Height",
+						"desc": "Cell height in pixels."
+						},
+					"directions": {
+						"name": "Directions",
+						"desc": "Directions of neighbots.",
+						"items": {
+							"4 directions":"4 directions",
+							"8 directions":"8 directions"
+							}
+						}
+				},
+				"aceCategories": {
+					"orientation": "Orientation",
+					"size": "Size",
+					"offset": "Offset",
+					"directions": "Directions",
+					"cell": "Cell",
+					"direction-code": "Direction code",
+					"physical": "Physical",
+					"logic": "Logic"
+				},
+				"conditions": {
+				},
+				"actions": {
+					"set-orientation": {
+						"list-name": "Set orientation",
+						"display-text": "Set orientation to [b]{0}[/b]",
+						"description": "Set orientation.",
+						"params": {
+							"orientation3": { "name":"Orientation", "desc":"orientation of map", "items":{"orthogonal":"Orthogonal","isometric":"Isometric","staggered":"Staggered"}}
+						}
+					},
+					"set-orientation-by-number": {
+						"list-name": "Set orientation by number",
+						"display-text": "Set orientation to [b]{0}[/b]",
+						"description": "Set orientation.",
+						"params": {
+							"isometric0": { "name":"Isometric", "desc":"1=Isometric, 0=Orthogonal"}
+						}
+					},
+					"set-cell-size": {
+						"list-name": "Set cell size",
+						"display-text": "Set cell width to [b]{0}[/b], height to [b]{1}[/b]",
+						"description": "Set cell size.",
+						"params": {
+							"width0": { "name":"Width", "desc":"Cell width in pixels."},
+							"height1": { "name":"Height", "desc":"Cell height in pixels."}
+						}
+					},
+					"set-offset": {
+						"list-name": "Set position offset",
+						"display-text": "Set offset to ([b]{0}[/b], [b]{1}[/b])",
+						"description": "Set Physical position offset (position of logic (0,0)).",
+						"params": {
+							"x0": { "name":"X", "desc":"Physical X co-ordinate at logic (0,0)."},
+							"y1": { "name":"Y", "desc":"Physical Y co-ordinate at logic (0,0)."}
+						}
+					},
+					"set-direction-mode": {
+						"list-name": "Set directions",
+						"display-text": "Set directions to [b]{0}[/b]",
+						"description": "Set directions.",
+						"params": {
+							"directions2": { "name":"Directions", "desc":"Directions of neighbots", "items":{"4 directions":"4 directions","8 directions":"8 directions"}}
+						}
+					}
+				},
+				"expressions": {
+					"width": {
+						"description": "Get cell width in pixels.",
+						"translated-name": "Width"
+						},
+					"height": {
+						"description": "Get cell height in pixels.",
+						"translated-name": "Height"
+						},
+					"pox": {
+						"description": "Get physical X co-ordinate at logic (0,0).",
+						"translated-name": "POX"
+						},
+					"poy": {
+						"description": "Get physical Y co-ordinate at logic (0,0).",
+						"translated-name": "POY"
+						},
+					"right": {
+						"description": "Direction code of right.",
+						"translated-name": "DIRRIGHT"
+						},
+					"down": {
+						"description": "Direction code of down.",
+						"translated-name": "DIRDOWN"
+						},
+					"left": {
+						"description": "Direction code of left.",
+						"translated-name": "DIRLEFT"
+						},
+					"up": {
+						"description": "Direction code of up.",
+						"translated-name": "DIRUP"
+						},
+					"right-down": {
+						"description": "Direction code of right-down.",
+						"translated-name": "DIRRIGHTDOWN"
+						},
+					"left-down": {
+						"description": "Direction code of left-down.",
+						"translated-name": "DIRLEFTDOWN"
+						},
+					"left-up": {
+						"description": "Direction code of left-up.",
+						"translated-name": "DIRLEFTUP"
+						},
+					"right-up": {
+						"description": "Direction code of right-up.",
+						"translated-name": "DIRRIGHTUP"
+						},
+					"lxy-to-px": {
+						"description": "Get physical X co-ordinate by logic X,Y index. Return (-1) if this position does not exist.",
+						"translated-name": "LXY2PX",
+						"params": {
+							"x0": { "name":"X", "desc":"The logic X."},
+							"y1": { "name":"Y", "desc":"The logic Y."}
+						}
+						},
+					"lxy-to-py": {
+						"description": "Get physical Y co-ordinate by logic X,Y index. Return (-1) if this position does not exist.",
+						"translated-name": "LXY2PY",
+						"params": {
+							"x0": { "name":"X", "desc":"The logic X."},
+							"y1": { "name":"Y", "desc":"The logic Y."}
+						}
+						},
+					"pxy-to-lx": {
+						"description": "Get logic X by physical X,Y co-ordinate.",
+						"translated-name": "PXY2LX",
+						"params": {
+							"x0": { "name":"X", "desc":"The physical X."},
+							"y1": { "name":"Y", "desc":"The physical Y."}
+						}
+						},
+					"pxy-to-ly": {
+						"description": "Get logic Y by physical X,Y co-ordinate.",
+						"translated-name": "PXY2LY",
+						"params": {
+							"x0": { "name":"X", "desc":"The physical X."},
+							"y1": { "name":"Y", "desc":"The physical Y."}
+						}
+						}
+				}
+			}
+		}
+	}
+}
