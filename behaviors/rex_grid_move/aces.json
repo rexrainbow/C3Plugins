@@ -1,0 +1,651 @@
+{
+	"configuration": {
+		"conditions": [
+		],
+		"actions": [
+			{
+				"id": "set-activated",
+				"scriptName": "SetActivated",
+				"highlight": false,
+				"params": [
+					{"id":"activated2", "type":"combo", "items":["no","yes"]}
+				],
+				"c2id": 0				
+			},
+			{
+				"id": "set-force-moving",
+				"scriptName": "SetForceMoving",
+				"highlight": false,
+				"params": [
+					{"id":"force_move2", "type":"combo", "items":["no","yes"]}
+				],
+				"c2id": 101				
+			}
+		],
+		"expressions": [
+		]
+	},
+	"request:_square_grid": {
+		"conditions": [
+		],
+		"actions": [
+			{
+				"id": "move-to-neighbor-on-square-board",
+				"scriptName": "MoveToNeighbor",
+				"highlight": false,
+				"params": [
+					{"id":"direction8", "type":"combo", "items":["right","down","left","up","right-down","left-down","left-up","right-up"]}
+				],
+				"c2id": 1				
+			}
+		],
+		"expressions": [
+		]
+	},
+	"request": {
+		"conditions": [
+			{
+				"id": "on-moving-request-accepted",
+				"scriptName": "OnMovingRequestAccepted",
+				"isTrigger": "true",
+				"highlight": false,
+				"c2id": 4				
+			},
+			{
+				"id": "on-moving-request-rejected",
+				"scriptName": "OnMovingRequestRejected",
+				"isTrigger": "true",
+				"highlight": false,
+				"c2id": 5				
+			},
+			{
+				"id": "is-moving-request-accepted",
+				"scriptName": "IsMovingRequestAccepted",
+				"highlight": false,
+				"c2id": 6				
+			},
+			{
+				"id": "test-move-to-neighbor",
+				"scriptName": "TestMoveToNeighbor",
+				"highlight": false,
+				"params": [
+					{"id":"direction0", "type":"number", "initialValue":"0"}
+				],
+				"c2id": 8				
+			}
+		],
+		"actions": [
+			{
+				"id": "move-to-offset",
+				"scriptName": "MoveToOffset",
+				"highlight": false,
+				"params": [
+					{"id":"x_offset0", "type":"number", "initialValue":"0"},
+					{"id":"y_offset1", "type":"number", "initialValue":"0"}
+				],
+				"c2id": 2				
+			},
+			{
+				"id": "move-to-lxy",
+				"scriptName": "MoveToLXY",
+				"highlight": false,
+				"params": [
+					{"id":"logic_x0", "type":"number", "initialValue":"0"},
+					{"id":"logic_y1", "type":"number", "initialValue":"0"}
+				],
+				"c2id": 7				
+			},
+			{
+				"id": "movetoneighbor10",
+				"scriptName": "MoveToNeighbor",
+				"highlight": false,
+				"params": [
+					{"id":"direction0", "type":"number", "initialValue":"0"}
+				],
+				"c2id": 10				
+			},
+			{
+				"id": "movetotargetchess11",
+				"scriptName": "MoveToTargetChess",
+				"highlight": false,
+				"params": [
+					{"id":"target0", "type":"object"}
+				],
+				"c2id": 11				
+			},
+			{
+				"id": "movetotargetchess40",
+				"scriptName": "MoveToTargetChess",
+				"highlight": false,
+				"params": [
+					{"id":"uid0", "type":"any", "initialValue":"0"}
+				],
+				"c2id": 40				
+			}
+		],
+		"expressions": [
+			{
+				"id": "blockeruid",
+				"expressionName": "BlockerUID",
+				"scriptName": "BlockerUID",
+				"highlight": false,
+				"returnType": "any",
+				"c2id": 8				
+			},
+			{
+				"id": "direction",
+				"expressionName": "Direction",
+				"scriptName": "Direction",
+				"highlight": false,
+				"returnType": "number",
+				"c2id": 9				
+			},
+			{
+				"id": "destinationlx",
+				"expressionName": "DestinationLX",
+				"scriptName": "DestinationLX",
+				"highlight": false,
+				"returnType": "number",
+				"c2id": 10				
+			},
+			{
+				"id": "destinationly",
+				"expressionName": "DestinationLY",
+				"scriptName": "DestinationLY",
+				"highlight": false,
+				"returnType": "number",
+				"c2id": 11				
+			},
+			{
+				"id": "destinationlz",
+				"expressionName": "DestinationLZ",
+				"scriptName": "DestinationLZ",
+				"highlight": false,
+				"returnType": "number",
+				"c2id": 12				
+			},
+			{
+				"id": "sourcelx",
+				"expressionName": "SourceLX",
+				"scriptName": "SourceLX",
+				"highlight": false,
+				"returnType": "number",
+				"c2id": 13				
+			},
+			{
+				"id": "sourcely",
+				"expressionName": "SourceLY",
+				"scriptName": "SourceLY",
+				"highlight": false,
+				"returnType": "number",
+				"c2id": 14				
+			},
+			{
+				"id": "sourcelz",
+				"expressionName": "SourceLZ",
+				"scriptName": "SourceLZ",
+				"highlight": false,
+				"returnType": "number",
+				"c2id": 15				
+			}
+		]
+	},
+	"speed": {
+		"conditions": [
+		],
+		"actions": [
+			{
+				"id": "set-max-speed",
+				"scriptName": "SetMaxSpeed",
+				"highlight": false,
+				"params": [
+					{"id":"max_speed0", "type":"number", "initialValue":"400"}
+				],
+				"c2id": 3				
+			},
+			{
+				"id": "set-acceleration",
+				"scriptName": "SetAcceleration",
+				"highlight": false,
+				"params": [
+					{"id":"acceleration0", "type":"number", "initialValue":"0"}
+				],
+				"c2id": 4								
+			},
+			{
+				"id": "set-deceleration",
+				"scriptName": "SetDeceleration",
+				"highlight": false,
+				"params": [
+					{"id":"deceleration0", "type":"number", "initialValue":"0"}
+				],
+				"c2id": 5				
+			},
+			{
+				"id": "set-current-speed",
+				"scriptName": "SetCurrentSpeed",
+				"highlight": false,
+				"params": [
+					{"id":"current_speed0", "type":"number", "initialValue":"400"}
+				],
+				"c2id": 6				
+			}
+		],
+		"expressions": [
+		]
+	},
+	"swap": {
+		"conditions": [
+		],
+		"actions": [
+			{
+				"id": "swap",
+				"scriptName": "Swap",
+				"highlight": false,
+				"params": [
+					{"id":"uid0", "type":"any"}
+				],
+				"c2id": 8				
+			}
+		],
+		"expressions": [
+		]
+	},
+	"request:_hexagon_grid_(left-right)": {
+		"conditions": [
+		],
+		"actions": [
+			{
+				"id": "movetoneighbor9",
+				"scriptName": "MoveToNeighbor",
+				"highlight": false,
+				"params": [
+					{"id":"direction6", "type":"combo", "items":["right","down-right","down-left","left","up-left","up-right"]}
+				],
+				"c2id": 9				
+			}
+		],
+		"expressions": [
+		]
+	},
+	"ai-wander": {
+		"conditions": [
+		],
+		"actions": [
+			{
+				"id": "wander",
+				"scriptName": "Wander",
+				"highlight": false,
+				"c2id": 12				
+			},
+			{
+				"id": "set-wander-range-x",
+				"scriptName": "SetWanderRangeX",
+				"highlight": false,
+				"params": [
+					{"id":"range_x0", "type":"number", "initialValue":"1"}
+				],
+				"c2id": 13				
+			},
+			{
+				"id": "set-wander-range-y",
+				"scriptName": "SetWanderRangeY",
+				"highlight": false,
+				"params": [
+					{"id":"range_y0", "type":"number", "initialValue":"1"}
+				],
+				"c2id": 14				
+			},
+			{
+				"id": "set-random-generator",
+				"scriptName": "SetRandomGenerator",
+				"highlight": false,
+				"params": [
+					{"id":"random_generator0", "type":"object"}
+				],
+				"c2id": 15				
+			},
+			{
+				"id": "reset-wander-center",
+				"scriptName": "ResetWanderCenter",
+				"highlight": false,
+				"c2id": 16				
+			}
+		],
+		"expressions": [
+		]
+	},
+	"solid": {
+		"conditions": [
+			{
+				"id": "on-get-solid",
+				"scriptName": "OnGetSolid",
+				"isTrigger": "true",
+				"highlight": false,
+				"c2id": 12				
+			}
+		],
+		"actions": [
+			{
+				"id": "set-destination-solid",
+				"scriptName": "SetDestinationSolid",
+				"highlight": false,
+				"params": [
+					{"id":"solid2", "type":"combo", "items":["no","yes"]}
+				],
+				"c2id": 17				
+			},
+			{
+				"id": "set-destination-solid-by-number",
+				"scriptName": "SetDestinationSolid",
+				"highlight": false,
+				"params": [
+					{"id":"solid0", "type":"number", "initialValue":"0"}
+				],
+				"c2id": 18				
+			},
+			{
+				"id": "set-destination-moveable",
+				"scriptName": "SetDestinationMoveable",
+				"highlight": false,
+				"params": [
+					{"id":"move-able2", "type":"combo", "items":["no","yes"]}
+				],
+				"c2id": 21				
+			},
+			{
+				"c2id": 22,
+				"id": "set-destination-moveable-by-number",
+				"scriptName": "SetDestinationMoveable",
+				"highlight": false,
+				"params": [
+					{"id":"move-able0", "type":"number", "initialValue":"0"}
+				]
+			}
+		],
+		"expressions": [
+		]
+	},
+	"collision": {
+		"conditions": [
+			{
+				"id": "on-collided-begin-then-put-result-to-group",
+				"scriptName": "OnCollidedBegin",
+				"isTrigger": "true",
+				"highlight": false,
+				"params": [
+					{"id":"chess0", "type":"object"},
+					{"id":"group1", "type":"string", "initialValue":"\"\""}
+				],
+				"c2id": 11				
+			},
+			{
+				"id": "on-collided-begin",
+				"scriptName": "OnCollidedBegin",
+				"isTrigger": "true",
+				"highlight": false,
+				"params": [
+					{"id":"chess0", "type":"object"}
+				],
+				"c2id": 14				
+			}
+		],
+		"actions": [
+			{
+				"id": "set-instance-group",
+				"scriptName": "SetInstanceGroup",
+				"highlight": false,
+				"params": [
+					{"id":"group0", "type":"object"}
+				],
+				"c2id": 20				
+			}
+		],
+		"expressions": [
+		]
+	},
+	"request:_hexagon_grid_(up-down)": {
+		"conditions": [
+		],
+		"actions": [
+			{
+				"id": "movetoneighbor23",
+				"scriptName": "MoveToNeighbor",
+				"highlight": false,
+				"params": [
+					{"id":"direction6", "type":"combo", "items":["down-right","down","down-left","up-left","up","up-right"]}
+				],
+				"c2id": 23				
+			}
+		],
+		"expressions": [
+		]
+	},
+	"ai-approach-depart": {
+		"conditions": [
+		],
+		"actions": [
+			{
+				"id": "approachordepart24",
+				"scriptName": "ApproachOrDepart",
+				"highlight": false,
+				"params": [
+					{"id":"chess0", "type":"object"},
+					{"id":"mode3", "type":"combo", "items":["approach to","depart from"]}
+				],
+				"c2id": 24				
+			},
+			{
+				"id": "approachordepart25",
+				"scriptName": "ApproachOrDepart",
+				"highlight": false,
+				"params": [
+					{"id":"chess_uid0", "type":"any", "initialValue":"0"},
+					{"id":"mode3", "type":"combo", "items":["approach to","depart from"]}
+				],
+				"c2id": 25				
+			}
+		],
+		"expressions": [
+		]
+	},
+	"stop": {
+		"conditions": [
+		],
+		"actions": [
+			{
+				"id": "stop",
+				"scriptName": "Stop",
+				"highlight": false,
+				"c2id": 30						
+			}
+		],
+		"expressions": [
+		]
+	},
+	"reach": {
+		"conditions": [
+			{
+				"id": "onhittarget0",
+				"scriptName": "OnHitTarget",
+				"isTrigger": "true",
+				"highlight": false,
+				"c2id": 0				
+			}
+		],
+		"actions": [
+		],
+		"expressions": [
+		]
+	},
+	"move": {
+		"conditions": [
+			{
+				"id": "onmoving2",
+				"scriptName": "OnMoving",
+				"isTrigger": "true",
+				"highlight": false,
+				"c2id": 2				
+			},
+			{
+				"id": "ismoving3",
+				"scriptName": "IsMoving",
+				"highlight": false,
+				"c2id": 3				
+			}
+		],
+		"actions": [
+		],
+		"expressions": [
+		]
+	},
+	"test": {
+		"conditions": [
+			{
+				"id": "testmovetooffset7",
+				"scriptName": "TestMoveToOffset",
+				"highlight": false,
+				"params": [
+					{"id":"x_offset0", "type":"number", "initialValue":"0"},
+					{"id":"y_offset1", "type":"number", "initialValue":"0"}
+				],
+				"c2id": 7				
+			}
+		],
+		"actions": [
+		],
+		"expressions": [
+		]
+	},
+	"test:_square_grid": {
+		"conditions": [
+			{
+				"id": "testmovetoneighbor9",
+				"scriptName": "TestMoveToNeighbor",
+				"highlight": false,
+				"params": [
+					{"id":"direction8", "type":"combo", "items":["right","down","left","up","right-down","left-down","left-up","right-up"]}
+				],
+				"c2id": 9				
+			}
+		],
+		"actions": [
+		],
+		"expressions": [
+		]
+	},
+	"test:_hexagon_grid_(left-right)": {
+		"conditions": [
+			{
+				"id": "testmovetoneighbor10",
+				"scriptName": "TestMoveToNeighbor",
+				"highlight": false,
+				"params": [
+					{"id":"direction6", "type":"combo", "items":["right","down-right","down-left","left","up-left","up-right"]}
+				],
+				"c2id": 10				
+			}
+		],
+		"actions": [
+		],
+		"expressions": [
+		]
+	},
+	"test:_hexagon_grid_(up-down)": {
+		"conditions": [
+			{
+				"id": "testmovetoneighbor13",
+				"scriptName": "TestMoveToNeighbor",
+				"highlight": false,
+				"params": [
+					{"id":"direction6", "type":"combo", "items":["down-right","down","down-left","up-left","up","up-right"]}
+				],
+				"c2id": 13				
+			}
+		],
+		"actions": [
+		],
+		"expressions": [
+		]
+	},
+	"current": {
+		"conditions": [
+		],
+		"actions": [
+		],
+		"expressions": [
+			{
+				"id": "activated",
+				"expressionName": "Activated",
+				"scriptName": "Activated",
+				"highlight": false,
+				"returnType": "number",
+				"c2id": 0				
+			},
+			{
+				"id": "speed",
+				"expressionName": "Speed",
+				"scriptName": "Speed",
+				"highlight": false,
+				"returnType": "number",
+				"c2id": 1				
+			}
+		]
+	},
+	"setting": {
+		"conditions": [
+		],
+		"actions": [
+		],
+		"expressions": [
+			{
+				"id": "maxspeed",
+				"expressionName": "MaxSpeed",
+				"scriptName": "MaxSpeed",
+				"highlight": false,
+				"returnType": "number",
+				"c2id": 2				
+			},
+			{
+				"id": "acc",
+				"expressionName": "Acc",
+				"scriptName": "Acc",
+				"highlight": false,
+				"returnType": "number",				
+				"c2id": 3				
+			},
+			{
+				"id": "dec",
+				"expressionName": "Dec",
+				"scriptName": "Dec",
+				"highlight": false,
+				"returnType": "number",
+				"c2id": 4				
+			}
+		]
+	},
+	"target": {
+		"conditions": [
+		],
+		"actions": [
+		],
+		"expressions": [
+			{
+				"id": "targetx",
+				"expressionName": "TargetX",
+				"scriptName": "TargetX",
+				"highlight": false,
+				"returnType": "number",
+				"c2id": 5				
+			},
+			{
+				"id": "targety",
+				"expressionName": "TargetY",
+				"scriptName": "TargetY",
+				"highlight": false,
+				"returnType": "number",
+				"c2id": 6				
+			}
+		]
+	}
+}
