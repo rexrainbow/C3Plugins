@@ -1,0 +1,178 @@
+{
+	"request": {
+		"conditions": [
+		],
+		"actions": [
+			{
+				"id": "request",
+				"scriptName": "Request",
+				"highlight": false,
+				"c2id": 2				
+			},
+			{
+				"id": "goto-state",
+				"scriptName": "GotoState",
+				"highlight": false,
+				"params": [
+					{"id":"name0", "type":"string", "initialValue":"\"\""}
+				],
+				"c2id": 11				
+			}
+		],
+		"expressions": [
+		]
+	},
+	"setup": {
+		"conditions": [
+		],
+		"actions": [
+			{
+				"id": "set-activated",
+				"scriptName": "SetActivated",
+				"highlight": false,
+				"params": [
+					{"id":"activated2", "type":"combo", "items":["no","yes"]}
+				],
+				"c2id": 13				
+			}
+		],
+		"expressions": [
+		]
+	},
+	"logic": {
+		"conditions": [
+			{
+				"id": "on-logic",
+				"scriptName": "OnLogic",
+				"isTrigger": "true",
+				"highlight": false,
+				"params": [
+					{"id":"name0", "type":"string", "initialValue":"\"\""}
+				],
+				"c2id": 6				
+			},
+			{
+				"id": "on-default-logic",
+				"scriptName": "OnDefaultLogic",
+				"isTrigger": "true",
+				"highlight": false,
+				"c2id": 9				
+			}
+		],
+		"actions": [
+			{
+				"id": "set-next-state",
+				"scriptName": "NextStateSet",
+				"highlight": false,
+				"params": [
+					{"id":"name0", "type":"string", "initialValue":"\"\""}
+				],
+				"c2id": 14				
+			}
+		],
+		"expressions": [
+		]
+	},
+	"action": {
+		"conditions": [
+			{
+				"id": "on-enter",
+				"scriptName": "OnEnter",
+				"isTrigger": "true",
+				"highlight": false,
+				"params": [
+					{"id":"name0", "type":"string", "initialValue":"\"\""}
+				],
+				"c2id": 0				
+			},
+			{
+				"id": "on-exit",
+				"scriptName": "OnExit",
+				"isTrigger": "true",
+				"highlight": false,
+				"params": [
+					{"id":"name0", "type":"string", "initialValue":"\"\""}
+				],
+				"c2id": 1				
+			},
+			{
+				"id": "on-transfer",
+				"scriptName": "OnTransfer",
+				"isTrigger": "true",
+				"highlight": false,
+				"params": [
+					{"id":"exit0", "type":"string", "initialValue":"\"\""},
+					{"id":"enter1", "type":"string", "initialValue":"\"\""}
+				],
+				"c2id": 2				
+			},
+			{
+				"id": "on-default-enter",
+				"scriptName": "OnDefaultEnter",
+				"isTrigger": "true",
+				"highlight": false,
+				"c2id": 3				
+			},
+			{
+				"id": "on-default-exit",
+				"scriptName": "OnDefaultExit",
+				"isTrigger": "true",
+				"highlight": false,
+				"c2id": 4				
+			},
+			{
+				"id": "on-state-changed",
+				"scriptName": "OnStateChanged",
+				"isTrigger": "true",
+				"highlight": false,
+				"c2id": 5				
+			}
+		],
+		"actions": [
+		],
+		"expressions": [
+		]
+	},
+	"state": {
+		"conditions": [
+			{
+				"id": "compare-current-state",
+				"scriptName": "IsCurState",
+				"highlight": false,
+				"params": [
+					{"id":"name0", "type":"string", "initialValue":"\"\""}
+				],
+				"c2id": 7				
+			},
+			{
+				"id": "compare-previous-state",
+				"scriptName": "IsPreState",
+				"highlight": false,
+				"params": [
+					{"id":"name0", "type":"string", "initialValue":"\"\""}
+				],
+				"c2id": 8				
+			}
+		],
+		"actions": [
+		],
+		"expressions": [
+			{
+				"id": "current-state",
+				"expressionName": "CurState",
+				"scriptName": "CurState",
+				"highlight": false,
+				"returnType": "string",
+				"c2id": 0				
+			},
+			{
+				"id": "previous-state",
+				"expressionName": "PreState",
+				"scriptName": "PreState",
+				"highlight": false,
+				"returnType": "string",
+				"c2id": 1				
+			}
+		]
+	}
+}
