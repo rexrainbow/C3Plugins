@@ -1,0 +1,320 @@
+{
+	"invoke": {
+		"conditions": [
+		],
+		"actions": [
+			{
+				"c2id": 1,
+				"id": "invoke-function",
+				"scriptName": "InvokeFunction",
+				"highlight": true,
+				"params": [
+					{"id":"name0", "type":"string", "initialValue":"\"\""}
+				]
+			},
+			{
+				"c2id": 2,
+				"id": "create-instance",
+				"scriptName": "CreateInstance",
+				"highlight": false,
+				"params": [
+					{"id":"name0", "type":"string", "initialValue":"\"\""}
+				]
+			}
+		],
+		"expressions": [
+			{
+				"c2id": 21,
+				"id": "return-value",
+				"expressionName": "ReturnValue",
+				"scriptName": "ReturnValue",
+				"highlight": false,
+				"returnType": "any",
+				"isVariadicParameters": true
+			}			
+		]
+	},
+	"prepare-function-name": {
+		"conditions": [
+		],
+		"actions": [
+			{
+				"c2id": 12,
+				"id": "set-function-name",
+				"scriptName": "SetFunctionName",
+				"highlight": true,
+				"params": [
+					{"id":"name0", "type":"string", "initialValue":"\"\""}
+				]
+			}
+		],
+		"expressions": [
+		]
+	},
+	"prepare-parameter": {
+		"conditions": [
+		],
+		"actions": [
+			{
+				"c2id": 21,
+				"id": "add-value-parameter",
+				"scriptName": "AddValue",
+				"highlight": false,
+				"params": [
+					{"id":"value0", "type":"any", "initialValue":"0"}
+				]
+			},
+			{
+				"c2id": 22,
+				"id": "add-json-parameter",
+				"scriptName": "AddJSON",
+				"highlight": false,
+				"params": [
+					{"id":"json0", "type":"string", "initialValue":"\"\""}
+				]
+			},
+			{
+				"c2id": 23,
+				"id": "add-boolean-parameter",
+				"scriptName": "AddBoolean",
+				"highlight": false,
+				"params": [
+					{"id":"boolean2", "type":"combo", "items":["false","true"]}
+				]
+			},
+			{
+				"c2id": 24,
+				"id": "add-callback",
+				"scriptName": "AddCallback",
+				"highlight": false,
+				"params": [
+					{"id":"callback_tag0", "type":"any", "initialValue":"\"\""}
+				]
+			},
+			{
+				"c2id": 25,
+				"id": "add-null-parameter",
+				"scriptName": "AddNull",
+				"highlight": false
+			},
+			{
+				"c2id": 26,
+				"id": "add-object-parameter",
+				"scriptName": "AddObject",
+				"highlight": false,
+				"params": [
+					{"id":"name0", "type":"string", "initialValue":"\"\""}
+				]
+			},
+			{
+				"c2id": 27,
+				"id": "add-c2-callback-parameter",
+				"scriptName": "AddC2Callback",
+				"highlight": false,
+				"params": [
+					{"id":"function_name0", "type":"any", "initialValue":"\"\""}
+				]
+			}
+		],
+		"expressions": [
+		]
+	},
+	"prepare-object-type": {
+		"conditions": [
+		],
+		"actions": [
+			{
+				"c2id": 31,
+				"id": "set-object-name",
+				"scriptName": "SetFunctionName",
+				"highlight": false,
+				"params": [
+					{"id":"name0", "type":"string", "initialValue":"\"\""}
+				]
+			}
+		],
+		"expressions": [
+		]
+	},
+	"properties": {
+		"conditions": [
+		],
+		"actions": [
+			{
+				"c2id": 81,
+				"id": "set-property",
+				"scriptName": "SetProp",
+				"highlight": false,
+				"params": [
+					{"id":"name0", "type":"string", "initialValue":"\"\""},
+					{"id":"value1", "type":"any", "initialValue":"0"}
+				]
+			}
+		],
+		"expressions": [
+			{
+				"c2id": 31,
+				"id": "property",
+				"expressionName": "Prop",
+				"scriptName": "Prop",
+				"highlight": false,
+				"returnType": "any",
+				"isVariadicParameters": true,
+				"params": [
+					{"id":"property0", "type":"string", "initialValue":"\"\""}
+				]
+			}
+		]
+	},
+	"load-api": {
+		"conditions": [
+		],
+		"actions": [
+			{
+				"c2id": 101,
+				"id": "load-api",
+				"scriptName": "LoadAPI",
+				"highlight": false,
+				"params": [
+					{"id":"url0", "type":"string", "initialValue":"\"http://\""},
+					{"id":"success_callback_tag1", "type":"any", "initialValue":"\"\""},
+					{"id":"error_callback_tag2", "type":"any", "initialValue":"\"\""}
+				]
+			}
+		],
+		"expressions": [
+		]
+	},
+	"callback": {
+		"conditions": [
+			{
+				"c2id": 1,
+				"id": "on-callback",
+				"scriptName": "OnCallback",
+				"isTrigger": "true",
+				"highlight": false,
+				"params": [
+					{"id":"tag0", "type":"string", "initialValue":"\"\""}
+				]
+			}
+		],
+		"actions": [
+		],
+		"expressions": [
+			{
+				"c2id": 1,
+				"id": "parameter-of-callback",
+				"expressionName": "Param",
+				"scriptName": "Param",
+				"highlight": false,
+				"returnType": "any",
+				"isVariadicParameters": true,
+				"params": [
+					{"id":"index0", "type":"any"}
+				]
+			},
+			{
+				"c2id": 2,
+				"id": "parameter-count-of-callback",
+				"expressionName": "ParamCount",
+				"scriptName": "ParamCount",
+				"highlight": false,
+				"returnType": "number"
+			}
+		]
+	},
+	"call": {
+		"conditions": [
+		],
+		"actions": [
+		],
+		"expressions": [
+			{
+				"c2id": 201,
+				"id": "call",
+				"expressionName": "Call",
+				"scriptName": "Call",
+				"highlight": false,
+				"returnType": "any",
+				"isVariadicParameters": true,
+				"params": [
+					{"id":"name0", "type":"string", "initialValue":"\"\""}
+				]
+			},
+			{
+				"c2id": 211,
+				"id": "value-parameter",
+				"expressionName": "ValueParam",
+				"scriptName": "ValueParam",
+				"highlight": false,
+				"returnType": "string",
+				"params": [
+					{"id":"value0", "type":"any"}
+				]
+			},
+			{
+				"c2id": 212,
+				"id": "json-parameter",
+				"expressionName": "JSONParam",
+				"scriptName": "JSONParam",
+				"highlight": false,
+				"returnType": "string",
+				"params": [
+					{"id":"json0", "type":"string"}
+				]
+			},
+			{
+				"c2id": 213,
+				"id": "boolean-parameter",
+				"expressionName": "BooleanParam",
+				"scriptName": "BooleanParam",
+				"highlight": false,
+				"returnType": "string",
+				"params": [
+					{"id":"boolean0", "type":"number"}
+				]
+			},
+			{
+				"c2id": 214,
+				"id": "callback-parameter",
+				"expressionName": "CallbackParam",
+				"scriptName": "CallbackParam",
+				"highlight": false,
+				"returnType": "string",
+				"params": [
+					{"id":"callback0", "type":"string"}
+				]
+			},
+			{
+				"c2id": 215,
+				"id": "null-parameter",
+				"expressionName": "NullParam",
+				"scriptName": "NullParam",
+				"highlight": false,
+				"returnType": "string"
+			},
+			{
+				"c2id": 216,
+				"id": "object-parameter",
+				"expressionName": "ObjectParam",
+				"scriptName": "ObjectParam",
+				"highlight": false,
+				"returnType": "string",
+				"params": [
+					{"id":"name0", "type":"string", "initialValue":"\"\""}
+				]
+			},
+			{
+				"c2id": 217,
+				"id": "c2-function-parameter",
+				"expressionName": "C2FnParam",
+				"scriptName": "C2FnParam",
+				"highlight": false,
+				"returnType": "string",
+				"params": [
+					{"id":"c2_function_name0", "type":"string"}
+				]
+			}
+		]
+	}
+}

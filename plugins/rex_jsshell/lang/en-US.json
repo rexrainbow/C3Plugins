@@ -1,0 +1,218 @@
+{
+	"languageTag": "en-US",
+	"fileDescription": "Strings for JS Shell.",
+	"text": {
+		"plugins": {
+			"rex_jsshell": {
+				"name": "JS Shell",
+				"description": "Invoke javascript function.",
+				"help-url": "https://rexrainbow.github.io/C2RexDoc/c2rexpluginsACE/plugin_rex_jsshell.html",
+				"properties": {
+				},
+				"aceCategories": {
+					"invoke": "Invoke",
+					"prepare-function-name": "Prepare - Function name",
+					"prepare-parameter": "Prepare - Parameter",
+					"prepare-object-type": "Prepare - Object type",
+					"properties": "Properties",
+					"load-api": "Load API",
+					"callback": "Callback",
+					"call": "Call"
+				},
+				"conditions": {
+					"on-callback": {
+						"list-name": "Callback",
+						"display-text": "On {0}",
+						"description": "Callback.",
+						"params": {
+							"tag0": { "name":"Tag", "desc":"A tag, which can be anything you like, to distinguish between different callback."}
+						}
+						}
+				},
+				"actions": {
+					"invoke-function": {
+						"list-name": "Invoke",
+						"display-text": "Invoke function, put return object to {0}",
+						"description": "Invoke javascript function.",
+						"params": {
+							"name0": { "name":"Name", "desc":"Variable name in dot notation"}
+						}
+					},
+					"create-instance": {
+						"list-name": "Create instance",
+						"display-text": "Create instance to {0}",
+						"description": "Create instance.",
+						"params": {
+							"name0": { "name":"Name", "desc":"Variable name in dot notation"}
+						}
+					},
+					"set-function-name": {
+						"list-name": "Set function name",
+						"display-text": "Set function name to {0}",
+						"description": "Set function name.",
+						"params": {
+							"name0": { "name":"Name", "desc":"Function name in dot notation"}
+						}
+					},
+					"add-value-parameter": {
+						"list-name": "Add value",
+						"display-text": "Add {0} to parameter list",
+						"description": "Add a parameter.",
+						"params": {
+							"value0": { "name":"Value", "desc":"Value to set"}
+						}
+					},
+					"add-json-parameter": {
+						"list-name": "Add JSON",
+						"display-text": "Add JSON {0} to parameter list",
+						"description": "Add a JSON parameter.",
+						"params": {
+							"json0": { "name":"JSON", "desc":"JSON value to set"}
+						}
+					},
+					"add-boolean-parameter": {
+						"list-name": "Add boolean",
+						"display-text": "Add {0} to parameter list",
+						"description": "Add a boolean parameter.",
+						"params": {
+							"boolean2": { "name":"Boolean", "desc":"Boolean value.", "items":{"false":"false","true":"true"}}
+						}
+					},
+					"add-callback": {
+						"list-name": "Add callback",
+						"display-text": "Add callback {0} to parameter list",
+						"description": "Add a callback parameter.",
+						"params": {
+							"callback_tag0": { "name":"Callback tag", "desc":"Callback tag to set"}
+						}
+					},
+					"add-null-parameter": {
+						"list-name": "Add null",
+						"display-text": "Add null to parameter list",
+						"description": "Add null value parameter."
+					},
+					"add-object-parameter": {
+						"list-name": "Add object",
+						"display-text": "Add object {0} to parameter list",
+						"description": "Add an object parameter.",
+						"params": {
+							"name0": { "name":"Name", "desc":"Variable name in dot notation"}
+						}
+					},
+					"add-c2-callback-parameter": {
+						"list-name": "Add C2 function callback",
+						"display-text": "Add C2 function callback {0} to parameter list",
+						"description": "Add a C2 function callback parameter.",
+						"params": {
+							"function_name0": { "name":"Function name", "desc":"Function name of C2 function object"}
+						}
+					},
+					"set-object-name": {
+						"list-name": "Set object type",
+						"display-text": "Set object type to {0}",
+						"description": "Set object type.",
+						"params": {
+							"name0": { "name":"Name", "desc":"Object type in dot notation"}
+						}
+					},
+					"set-property": {
+						"list-name": "Set property",
+						"display-text": "Set property {0} to {1}",
+						"description": "Set property.",
+						"params": {
+							"name0": { "name":"Name", "desc":"Variable name in dot notation"},
+							"value1": { "name":"Value", "desc":"Value to set"}
+						}
+					},
+					"load-api": {
+						"list-name": "Load API",
+						"display-text": "Load API from {0} (success {1}, error {2})",
+						"description": "Load API.",
+						"params": {
+							"url0": { "name":"URL", "desc":"The URL to request."},
+							"success_callback_tag1": { "name":"Success callback tag", "desc":"Callback of loading success"},
+							"error_callback_tag2": { "name":"Error callback tag", "desc":"Callback of loading failed"}
+						}
+					}
+				},
+				"expressions": {
+					"parameter-of-callback": {
+						"description": "Get the value of a parameter passed to the callback.",
+						"translated-name": "Param",
+						"params": {
+							"index0": { "name":"Index", "desc":"The zero-based index of the parameter to get, or name in string."}
+						}
+						},
+					"parameter-count-of-callback": {
+						"description": "Get the number of parameters passed to callback.",
+						"translated-name": "ParamCount"
+						},
+					"return-value": {
+						"description": "Get return value.",
+						"translated-name": "ReturnValue"
+						},
+					"property": {
+						"description": "Get the value of a property.",
+						"translated-name": "Prop",
+						"params": {
+							"property0": { "name":"Property", "desc":"Property name in dot notation"}
+						}
+						},
+					"call": {
+						"description": "Call a javascript function with parameters and return its return value.",
+						"translated-name": "Call",
+						"params": {
+							"name0": { "name":"Name", "desc":"Function name in dot notation"}
+						}
+						},
+					"value-parameter": {
+						"description": "Add number or string parameter.",
+						"translated-name": "ValueParam",
+						"params": {
+							"value0": { "name":"Value", "desc":"Number or string value."}
+						}
+						},
+					"json-parameter": {
+						"description": "Add JSON parameter.",
+						"translated-name": "JSONParam",
+						"params": {
+							"json0": { "name":"JSON", "desc":"JSON string."}
+						}
+						},
+					"boolean-parameter": {
+						"description": "Add boolean parameter.",
+						"translated-name": "BooleanParam",
+						"params": {
+							"boolean0": { "name":"Boolean", "desc":"Boolean value. 1=true, 0=false."}
+						}
+						},
+					"callback-parameter": {
+						"description": "Add callback parameter.",
+						"translated-name": "CallbackParam",
+						"params": {
+							"callback0": { "name":"Callback", "desc":"Callback name."}
+						}
+						},
+					"null-parameter": {
+						"description": "Add null parameter.",
+						"translated-name": "NullParam"
+						},
+					"object-parameter": {
+						"description": "Add object parameter.",
+						"translated-name": "ObjectParam",
+						"params": {
+							"name0": { "name":"Name", "desc":"Variable name in dot notation"}
+						}
+						},
+					"c2-function-parameter": {
+						"description": "Add C2 function callback parameter.",
+						"translated-name": "C2FnParam",
+						"params": {
+							"c2_function_name0": { "name":"C2 function name", "desc":"C2 function name."}
+						}
+						}
+				}
+			}
+		}
+	}
+}
