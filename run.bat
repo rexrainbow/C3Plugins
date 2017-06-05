@@ -1,1 +1,0 @@
-node zipAll.js
