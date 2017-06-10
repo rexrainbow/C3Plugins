@@ -1,0 +1,158 @@
+{
+	"languageTag": "en-US",
+	"fileDescription": "Strings for Button.",
+	"text": {
+		"behaviors": {
+			"rex_button2": {
+				"name": "Button",
+				"description": "Get click event while \"touch end\".",
+				"help-url": "http://c2rexplugins.weebly.com/rex_button.html",
+				"properties": {
+					"activated": {
+						"name": "Activated",
+						"desc": "Enable if you wish this goto ACTIVE state at the start of the layout.",
+						"items": {
+							"no":"No",
+							"yes":"Yes"
+							}
+						},
+					"click-mode": {
+						"name": "Click mode",
+						"desc": "Clicking when touch released or pressed.",
+						"items": {
+							"released":"Released",
+							"pressed":"Pressed"
+							}
+						},
+					"activated-after-clicked": {
+						"name": "Activated after Clicked",
+						"desc": "Auto back to ACTIVE state after CLICKED state.",
+						"items": {
+							"no":"No",
+							"yes":"Yes"
+							}
+						},
+					"visible-checking": {
+						"name": "Visible checking",
+						"desc": "Set Yes to enable button if visible.",
+						"items": {
+							"no":"No",
+							"yes":"Yes"
+							}
+						}
+				},
+				"aceCategories": {
+					"request": "Request",
+					"display": "Display",
+					"event": "Event",
+					"enable": "Enable",
+					"state": "State"
+				},
+				"conditions": {
+					"on-click": {
+						"list-name": "On clicked",
+						"display-text": "On {my} clicked",
+						"description": "Triggered when clicked."
+						},
+					"on-click-cancel": {
+						"list-name": "On click cancel",
+						"display-text": "On {my} click cancel",
+						"description": "Triggered when clicking canceled."
+						},
+					"on-click-start": {
+						"list-name": "On click detecting start",
+						"display-text": "On {my} detecting start",
+						"description": "Triggered when clicking detecting start."
+						},
+					"on-activated": {
+						"list-name": "On activated",
+						"display-text": "On {my} activated",
+						"description": "Triggered when button activated."
+						},
+					"on-inactivated": {
+						"list-name": "On inactivated",
+						"display-text": "On {my} inactivated",
+						"description": "Triggered when button inactivated."
+						},
+					"on-rolling-in": {
+						"list-name": "On rolling in",
+						"display-text": "On {my} rolling in",
+						"description": "Triggered when rolling-in."
+						},
+					"on-rolling-out": {
+						"list-name": "On rolling out",
+						"display-text": "On {my} rolling out",
+						"description": "Triggered when rolling-out."
+						},
+					"is-enabled": {
+						"list-name": "Is enable",
+						"display-text": "Is {my} enable",
+						"description": "Return true if this button is enable."
+						}
+				},
+				"actions": {
+					"goto-active": {
+						"list-name": "Activate",
+						"display-text": "{my} goto ACTIVE state",
+						"description": "Goto ACTIVE state."
+					},
+					"goto-inactive": {
+						"list-name": "Deactivate",
+						"display-text": "{my} goto INACTIVE state",
+						"description": "Goto INACTIVE state."
+					},
+					"set-display-frame": {
+						"list-name": "Set display of states",
+						"display-text": "Set display of state, normal: [b]{0}[/b], click: [b]{1}[/b], INACTIVE: [b]{2}[/b], rolling-in: [b]{3}[/b]",
+						"description": "Set display of states.",
+						"params": {
+							"normal0": { "name":"Normal", "desc":"Frame index (number) or animation name (string) at normal state, \"\" is ignored."},
+							"click1": { "name":"Click", "desc":"Frame index (number) or animation name (string) at click state, \"\" is ignored."},
+							"inactive2": { "name":"INACTIVE", "desc":"Frame index (number) or animation name (string) at INACTIVE state, \"\" is ignored."},
+							"rolling-in3": { "name":"Rolling-in", "desc":"Frame index (number) or animation name (string) at rolling-un state, \"\" is ignored."}
+						}
+					},
+					"cancel-click-detecting": {
+						"list-name": "Cancel click detecting",
+						"display-text": "Cancel {my} click detecting",
+						"description": "Cancel click detecting at click detecting state."
+					},
+					"goto-active-if-at-layer": {
+						"list-name": "Activate in layer",
+						"display-text": "{my} goto ACTIVE state if in layer [b]{0}[/b], else goto INACTIVE state",
+						"description": "Goto ACTIVE state if in layer, else goto INACTIVE state.",
+						"params": {
+							"layer0": { "name":"Layer", "desc":"Layer name of number."}
+						}
+					},
+					"goto-inactive-if-at-layer": {
+						"list-name": "Deactivate in layer",
+						"display-text": "{my} goto INACTIVE state if in layer [b]{0}[/b], else goto ACTIVE state",
+						"description": "Goto INACTIVE state if in layer, else goto ACTIVE state.",
+						"params": {
+							"layer0": { "name":"Layer", "desc":"Layer name of number."}
+						}
+					},
+					"manual-trigger-event": {
+						"list-name": "Manual trigger",
+						"display-text": "Manual trigger {my} condition: [b]{0}[/b]",
+						"description": "Manual trigger condition.",
+						"params": {
+							"condition_type7": { "name":"Condition type", "desc":"Condition type.", "items":{"on clicked":"On clicked","on click cancel":"On click cancel","on click detecting start":"On click detecting start","on activated":"On activated","on inactivated":"On inactivated","on rolling in":"On rolling in","on rolling out":"On rolling out"}}
+						}
+					}
+				},
+				"expressions": {
+					"current-state": {
+						"description": "Get current button state.",
+						"translated-name": "CurState"
+						},
+					"previous-state": {
+						"description": "Get previous button state.",
+						"translated-name": "PreState"
+						}
+				}
+			}
+		}
+	}
+}

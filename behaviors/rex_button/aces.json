@@ -1,0 +1,170 @@
+{
+	"request": {
+		"conditions": [
+		],
+		"actions": [
+			{
+				"c2id": 1,
+				"id": "goto-active",
+				"scriptName": "GotoACTIVE",
+				"highlight": false
+			},
+			{
+				"c2id": 5,
+				"id": "goto-active-if-at-layer",
+				"scriptName": "GotoACTIVE",
+				"highlight": false,
+				"params": [
+					{"id":"layer0", "type":"layer"}
+				]
+			},
+			{
+				"c2id": 2,
+				"id": "goto-inactive",
+				"scriptName": "GotoINACTIVE",
+				"highlight": false
+			},
+			{
+				"c2id": 6,
+				"id": "goto-inactive-if-at-layer",
+				"scriptName": "GotoINACTIVE",
+				"highlight": false,
+				"params": [
+					{"id":"layer0", "type":"layer"}
+				]
+			},
+			{
+				"c2id": 4,
+				"id": "cancel-click-detecting",
+				"scriptName": "GotoACTIVE",
+				"highlight": false
+			}					
+		],
+		"expressions": [
+		]
+	},
+	"display": {
+		"conditions": [
+		],
+		"actions": [
+			{
+				"c2id": 3,
+				"id": "set-display-frame",
+				"scriptName": "SetDisplay",
+				"highlight": false,
+				"params": [
+					{"id":"normal0", "type":"any", "initialValue":"\"\""},
+					{"id":"click1", "type":"any", "initialValue":"\"\""},
+					{"id":"inactive2", "type":"any", "initialValue":"\"\""},
+					{"id":"rolling-in3", "type":"any", "initialValue":"\"\""}
+				]
+			}
+		],
+		"expressions": [
+		]
+	},
+	"event": {
+		"conditions": [
+			{
+				"c2id": 1,
+				"id": "on-click",
+				"scriptName": "OnClick",
+				"isTrigger": "true",
+				"highlight": true
+			},
+			{
+				"c2id": 2,
+				"id": "on-click-cancel",
+				"scriptName": "OnClickCancel",
+				"isTrigger": "true",
+				"highlight": false
+			},
+			{
+				"c2id": 3,
+				"id": "on-click-start",
+				"scriptName": "OnClickStart",
+				"isTrigger": "true",
+				"highlight": false
+			},	
+			{
+				"c2id": 6,
+				"id": "on-rolling-in",
+				"scriptName": "OnRollingIn",
+				"isTrigger": "true",
+				"highlight": false
+			},
+			{
+				"c2id": 7,
+				"id": "on-rolling-out",
+				"scriptName": "OnRollingOut",
+				"isTrigger": "true",
+				"highlight": false
+			},			
+			{
+				"c2id": 4,
+				"id": "on-activated",
+				"scriptName": "OnActivated",
+				"isTrigger": "true",
+				"highlight": false
+			},
+			{
+				"c2id": 5,
+				"id": "on-inactivated",
+				"scriptName": "OnInactivated",
+				"isTrigger": "true",
+				"highlight": false
+			}					
+		],
+		"actions": [
+			{
+				"c2id": 11,
+				"id": "manual-trigger-event",
+				"scriptName": "ManualTriggerCondition",
+				"highlight": false,
+				"params": [
+					{"id":"condition_type7", "type":"combo", "items":["on clicked","on click cancel","on click detecting start","on activated","on inactivated","on rolling in","on rolling out"]}
+				]
+			}
+		],
+		"expressions": [
+		]
+	},
+	"enable": {
+		"conditions": [
+			{
+				"c2id": 11,
+				"id": "is-enabled",
+				"scriptName": "IsEnable",
+				"highlight": false
+			}
+		],
+		"actions": [
+		],
+		"expressions": [
+		]
+	},
+	"state": {
+		"conditions": [
+		],
+		"actions": [
+		],
+		"expressions": [
+			{
+				"c2id": 0,
+				"id": "current-state",
+				"expressionName": "CurState",
+				"scriptName": "CurState",
+				"highlight": false,
+				"returnType": "string"
+			},
+			{
+				"c2id": 1,
+				"id": "previous-state",
+				"expressionName": "PreState",
+				"scriptName": "PreState",
+				"highlight": false,
+				"returnType": "string"
+			}
+		]
+	}
+}
