@@ -1,0 +1,517 @@
+{
+	"enable": {
+		"conditions": [
+		],
+		"actions": [
+			{
+				"c2id": 100,
+				"id": "set-enable",
+				"scriptName": "SetEnable",
+				"highlight": false,
+				"params": [
+					{"id":"enable2", "type":"combo", "items":["off","on"]}
+				]
+			}
+		],
+		"expressions": [
+		]
+	},
+	"touch": {
+		"conditions": [
+			{
+				"c2id": 0,
+				"id": "on-touch-start",
+				"scriptName": "OnTouchStart",
+				"isTrigger": "true",
+				"highlight": false
+			},
+			{
+				"c2id": 1,
+				"id": "on-touch-end",
+				"scriptName": "OnTouchEnd",
+				"isTrigger": "true",
+				"highlight": false
+			},
+			{
+				"c2id": 2,
+				"id": "is-in-touch",
+				"scriptName": "IsInTouch",
+				"highlight": false
+			},
+			{
+				"c2id": 3,
+				"id": "on-touch-object",
+				"scriptName": "OnTouchObject",
+				"isTrigger": "true",
+				"highlight": false,
+				"params": [
+					{"id":"object0", "type":"object"}
+				]
+			},
+			{
+				"c2id": 4,
+				"id": "is-touching-object",
+				"scriptName": "IsTouchingObject",
+				"highlight": false,
+				"params": [
+					{"id":"object0", "type":"object"}
+				]
+			},
+			{
+				"c2id": 7,
+				"id": "compare-touch-speed",
+				"scriptName": "CompareTouchSpeed",
+				"highlight": false,
+				"params": [
+					{"id":"touch_index0", "type":"number"},
+					{"id":"comparison1", "type":"cmp"},
+					{"id":"speed2", "type":"number"}
+				]
+			},
+			{
+				"c2id": 10,
+				"id": "on-nth-touch-start",
+				"scriptName": "OnNthTouchStart",
+				"isTrigger": "true",
+				"highlight": false,
+				"params": [
+					{"id":"touch_number0", "type":"number"}
+				]
+			},
+			{
+				"c2id": 11,
+				"id": "on-nth-touch-end",
+				"scriptName": "OnNthTouchEnd",
+				"isTrigger": "true",
+				"highlight": false,
+				"params": [
+					{"id":"touch_number0", "type":"number"}
+				]
+			},
+			{
+				"c2id": 12,
+				"id": "has-nth-touch",
+				"scriptName": "HasNthTouch",
+				"highlight": false,
+				"params": [
+					{"id":"touch_number0", "type":"number"}
+				]
+			}
+		],
+		"actions": [
+		],
+		"expressions": [
+			{
+				"c2id": 0,
+				"id": "x",
+				"expressionName": "X",
+				"scriptName": "X",
+				"highlight": false,
+				"returnType": "any",
+				"isVariadicParameters": true
+			},
+			{
+				"c2id": 1,
+				"id": "y",
+				"expressionName": "Y",
+				"scriptName": "Y",
+				"highlight": false,
+				"returnType": "any",
+				"isVariadicParameters": true
+			},
+			{
+				"c2id": 2,
+				"id": "absolute-x",
+				"expressionName": "AbsoluteX",
+				"scriptName": "AbsoluteX",
+				"highlight": false,
+				"returnType": "number"
+			},
+			{
+				"c2id": 3,
+				"id": "absolute-y",
+				"expressionName": "AbsoluteY",
+				"scriptName": "AbsoluteY",
+				"highlight": false,
+				"returnType": "number"
+			},
+			{
+				"c2id": 13,
+				"id": "touch-count",
+				"expressionName": "TouchCount",
+				"scriptName": "TouchCount",
+				"highlight": false,
+				"returnType": "number"
+			},
+			{
+				"c2id": 14,
+				"id": "x-at",
+				"expressionName": "XAt",
+				"scriptName": "XAt",
+				"highlight": false,
+				"returnType": "any",
+				"isVariadicParameters": true,
+				"params": [
+					{"id":"index0", "type":"number"}
+				]
+			},
+			{
+				"c2id": 15,
+				"id": "y-at",
+				"expressionName": "YAt",
+				"scriptName": "YAt",
+				"highlight": false,
+				"returnType": "any",
+				"isVariadicParameters": true,
+				"params": [
+					{"id":"index0", "type":"number"}
+				]
+			},
+			{
+				"c2id": 16,
+				"id": "absolute-x-at",
+				"expressionName": "AbsoluteXAt",
+				"scriptName": "AbsoluteXAt",
+				"highlight": false,
+				"returnType": "number",
+				"params": [
+					{"id":"index0", "type":"number"}
+				]
+			},
+			{
+				"c2id": 17,
+				"id": "absolute-y-at",
+				"expressionName": "AbsoluteYAt",
+				"scriptName": "AbsoluteYAt",
+				"highlight": false,
+				"returnType": "number",
+				"params": [
+					{"id":"index0", "type":"number"}
+				]
+			},
+			{
+				"c2id": 18,
+				"id": "speed-at",
+				"expressionName": "SpeedAt",
+				"scriptName": "SpeedAt",
+				"highlight": false,
+				"returnType": "number",
+				"params": [
+					{"id":"index0", "type":"number"}
+				]
+			},
+			{
+				"c2id": 19,
+				"id": "angle-at",
+				"expressionName": "AngleAt",
+				"scriptName": "AngleAt",
+				"highlight": false,
+				"returnType": "number",
+				"params": [
+					{"id":"index0", "type":"number"}
+				]
+			},
+			{
+				"c2id": 20,
+				"id": "touch-index",
+				"expressionName": "TouchIndex",
+				"scriptName": "TouchIndex",
+				"highlight": false,
+				"returnType": "number"
+			},
+			{
+				"c2id": 21,
+				"id": "touch-id",
+				"expressionName": "TouchID",
+				"scriptName": "TouchID",
+				"highlight": false,
+				"returnType": "number"
+			},
+			{
+				"c2id": 22,
+				"id": "x-for-id",
+				"expressionName": "XForID",
+				"scriptName": "XForID",
+				"highlight": false,
+				"returnType": "any",
+				"isVariadicParameters": true,
+				"params": [
+					{"id":"id0", "type":"number"}
+				]
+			},
+			{
+				"c2id": 23,
+				"id": "y-for-id",
+				"expressionName": "YForID",
+				"scriptName": "YForID",
+				"highlight": false,
+				"returnType": "any",
+				"isVariadicParameters": true,
+				"params": [
+					{"id":"id0", "type":"number"}
+				]
+			},
+			{
+				"c2id": 24,
+				"id": "absolute-x-for-id",
+				"expressionName": "AbsoluteXForID",
+				"scriptName": "AbsoluteXForID",
+				"highlight": false,
+				"returnType": "number",
+				"params": [
+					{"id":"id0", "type":"number"}
+				]
+			},
+			{
+				"c2id": 25,
+				"id": "absolute-y-for-id",
+				"expressionName": "AbsoluteYForID",
+				"scriptName": "AbsoluteYForID",
+				"highlight": false,
+				"returnType": "number",
+				"params": [
+					{"id":"id0", "type":"number"}
+				]
+			},
+			{
+				"c2id": 26,
+				"id": "speed-for-id",
+				"expressionName": "SpeedForID",
+				"scriptName": "SpeedForID",
+				"highlight": false,
+				"returnType": "number",
+				"params": [
+					{"id":"id0", "type":"number"}
+				]
+			},
+			{
+				"c2id": 27,
+				"id": "angle-for-id",
+				"expressionName": "AngleForID",
+				"scriptName": "AngleForID",
+				"highlight": false,
+				"returnType": "number",
+				"params": [
+					{"id":"id0", "type":"number"}
+				]
+			},
+			{
+				"c2id": 28,
+				"id": "width-for-id",
+				"expressionName": "WidthForID",
+				"scriptName": "WidthForID",
+				"highlight": false,
+				"returnType": "number",
+				"params": [
+					{"id":"id0", "type":"number"}
+				]
+			},
+			{
+				"c2id": 29,
+				"id": "height-for-id",
+				"expressionName": "HeightForID",
+				"scriptName": "HeightForID",
+				"highlight": false,
+				"returnType": "number",
+				"params": [
+					{"id":"id0", "type":"number"}
+				]
+			},
+			{
+				"c2id": 30,
+				"id": "pressure-for-id",
+				"expressionName": "PressureForID",
+				"scriptName": "PressureForID",
+				"highlight": false,
+				"returnType": "number",
+				"params": [
+					{"id":"id0", "type":"number"}
+				]
+			}
+		]
+	},
+	"orientation-and-motion": {
+		"conditions": [
+			{
+				"c2id": 5,
+				"id": "orientation-supported",
+				"scriptName": "OrientationSupported",
+				"isDeprecated": "true",
+				"highlight": false
+			},
+			{
+				"c2id": 6,
+				"id": "motion-supported",
+				"scriptName": "MotionSupported",
+				"isDeprecated": "true",
+				"highlight": false
+			},
+			{
+				"c2id": 9,
+				"id": "compare-acceleration",
+				"scriptName": "CompareAcceleration",
+				"highlight": false,
+				"params": [
+					{"id":"orientation3", "type":"combo", "items":["alpha","beta","gamma"]},
+					{"id":"comparison4", "type":"cmp"},
+					{"id":"axis12", "type":"combo", "items":["x (with gravity)","y (with gravity)","z (with gravity)","x (without gravity)","y (without gravity)","z (without gravity)"]},
+					{"id":"comparison13", "type":"cmp"},
+					{"id":"acceleration14", "type":"number"}
+				]
+			}
+		],
+		"actions": [
+		],
+		"expressions": [
+			{
+				"c2id": 4,
+				"id": "alpha",
+				"expressionName": "Alpha",
+				"scriptName": "Alpha",
+				"highlight": false,
+				"returnType": "number"
+			},
+			{
+				"c2id": 5,
+				"id": "beta",
+				"expressionName": "Beta",
+				"scriptName": "Beta",
+				"highlight": false,
+				"returnType": "number"
+			},
+			{
+				"c2id": 6,
+				"id": "gamma",
+				"expressionName": "Gamma",
+				"scriptName": "Gamma",
+				"highlight": false,
+				"returnType": "number"
+			},
+			{
+				"c2id": 7,
+				"id": "acceleration-x-with-g",
+				"expressionName": "AccelerationXWithG",
+				"scriptName": "AccelerationXWithG",
+				"highlight": false,
+				"returnType": "number"
+			},
+			{
+				"c2id": 8,
+				"id": "acceleration-y-with-g",
+				"expressionName": "AccelerationYWithG",
+				"scriptName": "AccelerationYWithG",
+				"highlight": false,
+				"returnType": "number"
+			},
+			{
+				"c2id": 9,
+				"id": "acceleration-z-with-g",
+				"expressionName": "AccelerationZWithG",
+				"scriptName": "AccelerationZWithG",
+				"highlight": false,
+				"returnType": "number"
+			},
+			{
+				"c2id": 10,
+				"id": "acceleration-x",
+				"expressionName": "AccelerationX",
+				"scriptName": "AccelerationX",
+				"highlight": false,
+				"returnType": "number"
+			},
+			{
+				"c2id": 11,
+				"id": "acceleration-y",
+				"expressionName": "AccelerationY",
+				"scriptName": "AccelerationY",
+				"highlight": false,
+				"returnType": "number"
+			},
+			{
+				"c2id": 12,
+				"id": "acceleration-z",
+				"expressionName": "AccelerationZ",
+				"scriptName": "AccelerationZ",
+				"highlight": false,
+				"returnType": "number"
+			}
+		]
+	},
+	"gestures": {
+		"conditions": [
+			{
+				"c2id": 13,
+				"id": "on-hold-gesture",
+				"scriptName": "OnHoldGesture",
+				"isTrigger": "true",
+				"highlight": false
+			},
+			{
+				"c2id": 14,
+				"id": "on-tap-gesture",
+				"scriptName": "OnTapGesture",
+				"isTrigger": "true",
+				"highlight": false
+			},
+			{
+				"c2id": 15,
+				"id": "on-double-tap-gesture",
+				"scriptName": "OnDoubleTapGesture",
+				"isTrigger": "true",
+				"highlight": false
+			},
+			{
+				"c2id": 16,
+				"id": "on-hold-gesture-object",
+				"scriptName": "OnHoldGestureObject",
+				"isTrigger": "true",
+				"highlight": false,
+				"params": [
+					{"id":"object0", "type":"object"}
+				]
+			},
+			{
+				"c2id": 17,
+				"id": "on-tap-gesture-object",
+				"scriptName": "OnTapGestureObject",
+				"isTrigger": "true",
+				"highlight": false,
+				"params": [
+					{"id":"object0", "type":"object"}
+				]
+			},
+			{
+				"c2id": 18,
+				"id": "on-double-tap-gesture-object",
+				"scriptName": "OnDoubleTapGestureObject",
+				"isTrigger": "true",
+				"highlight": false,
+				"params": [
+					{"id":"object0", "type":"object"}
+				]
+			}
+		],
+		"actions": [
+		],
+		"expressions": [
+		]
+	},
+	"touch-released": {
+		"conditions": [
+			{
+				"c2id": 101,
+				"id": "on-touch-released-object",
+				"scriptName": "OnTouchReleasedObject",
+				"isTrigger": "true",
+				"highlight": false,
+				"params": [
+					{"id":"object0", "type":"object"}
+				]
+			}
+		],
+		"actions": [
+		],
+		"expressions": [
+		]
+	}
+}

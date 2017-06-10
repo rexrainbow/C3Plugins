@@ -1,0 +1,355 @@
+{
+	"languageTag": "en-US",
+	"fileDescription": "Strings for Touch wrap.",
+	"text": {
+		"plugins": {
+			"rex_touchwrap": {
+				"name": "Touch wrap",
+				"description": "A wrap from official Touch plugin to export touch/mouse input to other plugins.",
+				"help-url": "https://rexrainbow.github.io/C2RexDoc/c2rexpluginsACE/plugin_rex_touchwrap.html",
+				"properties": {
+					"use-mouse-input": {
+						"name": "Use mouse input",
+						"desc": "Use mouse clicks as single-touch input (useful for testing).",
+						"items": {
+							"no":"No",
+							"yes":"Yes"
+							}
+						},
+					"enable": {
+						"name": "Enable",
+						"desc": "Enable touch detecting.",
+						"items": {
+							"no":"No",
+							"yes":"Yes"
+							}
+						}
+				},
+				"aceCategories": {
+					"enable": "Enable",
+					"touch": "Touch",
+					"orientation-and-motion": "Orientation & motion",
+					"gestures": "Gestures",
+					"touch-released": "Touch released"
+				},
+				"conditions": {
+					"on-touch-start": {
+						"list-name": "On any touch start",
+						"display-text": "On any touch start",
+						"description": "Triggered when any touch input begins."
+						},
+					"on-touch-end": {
+						"list-name": "On any touch end",
+						"display-text": "On any touch end",
+						"description": "Triggered when any touch input ends."
+						},
+					"is-in-touch": {
+						"list-name": "Is in touch",
+						"display-text": "Is in touch",
+						"description": "True if any touch is currently in contact with the device."
+						},
+					"on-touch-object": {
+						"list-name": "On touched object",
+						"display-text": "On touched {0}",
+						"description": "Triggered when an object is touched.",
+						"params": {
+							"object0": { "name":"Object", "desc":"Choose the object to check for touch."}
+						}
+						},
+					"is-touching-object": {
+						"list-name": "Is touching object",
+						"display-text": "Is touching {0}",
+						"description": "Test if in a touch and the touch point is over an object.",
+						"params": {
+							"object0": { "name":"Object", "desc":"Choose the object to check for being touched."}
+						}
+						},
+					"orientation-supported": {
+						"list-name": "Device orientation supported",
+						"display-text": "Device orientation is supported",
+						"description": "True if the device supports orientation detection."
+						},
+					"motion-supported": {
+						"list-name": "Device motion supported",
+						"display-text": "Device motion is supported",
+						"description": "True if the device supports motion detection."
+						},
+					"compare-touch-speed": {
+						"list-name": "Compare touch speed",
+						"display-text": "Touch [b]{0}[/b] speed {1} [b]{2}[/b]",
+						"description": "Compare the speed of a touch, e.g. to detect a swipe.",
+						"params": {
+							"touch_index0": { "name":"Touch index", "desc":"The zero-based index of the touch to test the speed for.  0 is the first touch."},
+							"comparison1": { "name":"Comparison", "desc":"How to compare the touch speed."},
+							"speed2": { "name":"Speed", "desc":"Speed to compare to, in absolute pixels per second."}
+						}
+						},
+					"compare-acceleration": {
+						"list-name": "Compare acceleration",
+						"display-text": "{0} acceleration {1} [b]{2}[/b] {3} {4}",
+						"description": "Compare the acceleration of the device along an axis.",
+						"params": {
+							"orientation3": { "name":"Orientation", "desc":"Choose the orientation to compare (alpha = compass direction, beta = front-to-back tilt, gamma = left-to-right tilt).", "items":{"alpha":"Alpha","beta":"Beta","gamma":"Gamma"}},
+							"comparison4": { "name":"Comparison", "desc":"How to compare the orientation."},
+							"axis12": { "name":"Axis", "desc":"Choose the axis to compare acceleration for, and whether the measurement should include the force of gravity.", "items":{"x (with gravity)":"X (with gravity)","y (with gravity)":"Y (with gravity)","z (with gravity)":"Z (with gravity)","x (without gravity)":"X (without gravity)","y (without gravity)":"Y (without gravity)","z (without gravity)":"Z (without gravity)"}},
+							"comparison13": { "name":"Comparison", "desc":"How to compare the acceleration."},
+							"acceleration14": { "name":"Acceleration", "desc":"The acceleration to compare to, in m/s^2."}
+						}
+						},
+					"on-nth-touch-start": {
+						"list-name": "On Nth touch start",
+						"display-text": "On touch {0} start",
+						"description": "Triggered when a particular touch input begins.",
+						"params": {
+							"touch_number0": { "name":"Touch number", "desc":"Enter a zero-based index of the touch to test, e.g. 0 for first touch, 1 for second, etc."}
+						}
+						},
+					"on-nth-touch-end": {
+						"list-name": "On Nth touch end",
+						"display-text": "On touch {0} end",
+						"description": "Triggered when a particular touch input ends.",
+						"params": {
+							"touch_number0": { "name":"Touch number", "desc":"Enter a zero-based index of the touch to test, e.g. 0 for first touch, 1 for second, etc."}
+						}
+						},
+					"has-nth-touch": {
+						"list-name": "Has Nth touch",
+						"display-text": "Has touch {0}",
+						"description": "True if a particular touch is currently in contact with the device.",
+						"params": {
+							"touch_number0": { "name":"Touch number", "desc":"Enter a zero-based index of the touch to test, e.g. 0 for first touch, 1 for second, etc."}
+						}
+						},
+					"on-hold-gesture": {
+						"list-name": "On hold",
+						"display-text": "On hold gesture",
+						"description": "Triggered when a touch held in the same place for a time."
+						},
+					"on-tap-gesture": {
+						"list-name": "On tap",
+						"display-text": "On tap gesture",
+						"description": "Triggered when a touch is quickly released from its start location."
+						},
+					"on-double-tap-gesture": {
+						"list-name": "On double-tap",
+						"display-text": "On double-tap gesture",
+						"description": "Triggered when two taps occur in quick succession."
+						},
+					"on-hold-gesture-object": {
+						"list-name": "On hold over object",
+						"display-text": "On hold gesture over {0}",
+						"description": "Triggered when a hold gesture is made over an object.",
+						"params": {
+							"object0": { "name":"Object", "desc":"Choose the object to check."}
+						}
+						},
+					"on-tap-gesture-object": {
+						"list-name": "On tap object",
+						"display-text": "On tap gesture on {0}",
+						"description": "Triggered when a tap gesture is made on an object.",
+						"params": {
+							"object0": { "name":"Object", "desc":"Choose the object to check."}
+						}
+						},
+					"on-double-tap-gesture-object": {
+						"list-name": "On double-tap object",
+						"display-text": "On double-tap gesture on {0}",
+						"description": "Triggered when a double-tap gesture is made on an object.",
+						"params": {
+							"object0": { "name":"Object", "desc":"Choose the object to check."}
+						}
+						},
+					"on-touch-released-object": {
+						"list-name": "On touch released at object",
+						"display-text": "On touch released at {0}",
+						"description": "Triggered when an object is touch released.",
+						"params": {
+							"object0": { "name":"Object", "desc":"Choose the object to check for touch released."}
+						}
+						}
+				},
+				"actions": {
+					"set-enable": {
+						"list-name": "Set enable",
+						"display-text": "Set touch enable to [i]{0}[/i]",
+						"description": "Set touch enable.",
+						"params": {
+							"enable2": { "name":"Enable", "desc":"Enable the touch detecting.", "items":{"off":"Off","on":"On"}}
+						}
+					}
+				},
+				"expressions": {
+					"x": {
+						"description": "Get the primary touch X co-ordinate in the layout.",
+						"translated-name": "X"
+						},
+					"y": {
+						"description": "Get the primary touch Y co-ordinate in the layout.",
+						"translated-name": "Y"
+						},
+					"absolute-x": {
+						"description": "Get the primary touch X co-ordinate on the canvas.",
+						"translated-name": "AbsoluteX"
+						},
+					"absolute-y": {
+						"description": "Get the primary touch Y co-ordinate on the canvas.",
+						"translated-name": "AbsoluteY"
+						},
+					"alpha": {
+						"description": "The device compass direction, in degrees.",
+						"translated-name": "Alpha"
+						},
+					"beta": {
+						"description": "The device front-to-back tilt, in degrees (front is positive).",
+						"translated-name": "Beta"
+						},
+					"gamma": {
+						"description": "The device left-to-right tilt, in degrees (right is positive).",
+						"translated-name": "Gamma"
+						},
+					"acceleration-x-with-g": {
+						"description": "The device X acceleration with gravity, in m/s^2.",
+						"translated-name": "AccelerationXWithG"
+						},
+					"acceleration-y-with-g": {
+						"description": "The device Y acceleration with gravity, in m/s^2.",
+						"translated-name": "AccelerationYWithG"
+						},
+					"acceleration-z-with-g": {
+						"description": "The device Z acceleration with gravity, in m/s^2.",
+						"translated-name": "AccelerationZWithG"
+						},
+					"acceleration-x": {
+						"description": "The device X acceleration without gravity (if supported), in m/s^2.",
+						"translated-name": "AccelerationX"
+						},
+					"acceleration-y": {
+						"description": "The device Y acceleration without gravity (if supported), in m/s^2.",
+						"translated-name": "AccelerationY"
+						},
+					"acceleration-z": {
+						"description": "The device Z acceleration without gravity (if supported), in m/s^2.",
+						"translated-name": "AccelerationZ"
+						},
+					"touch-count": {
+						"description": "Get the number of current touches.",
+						"translated-name": "TouchCount"
+						},
+					"x-at": {
+						"description": "Get a touch X co-ordinate in the layout from a zero-based index of the touch.",
+						"translated-name": "XAt",
+						"params": {
+							"index0": { "name":"Index", "desc":"Zero-based index of the touch to get."}
+						}
+						},
+					"y-at": {
+						"description": "Get a touch Y co-ordinate in the layout from a zero-based index of the touch.",
+						"translated-name": "YAt",
+						"params": {
+							"index0": { "name":"Index", "desc":"Zero-based index of the touch to get."}
+						}
+						},
+					"absolute-x-at": {
+						"description": "Get a touch X co-ordinate on the canvas from a zero-based index of the touch.",
+						"translated-name": "AbsoluteXAt",
+						"params": {
+							"index0": { "name":"Index", "desc":"Zero-based index of the touch to get."}
+						}
+						},
+					"absolute-y-at": {
+						"description": "Get a touch Y co-ordinate on the canvas from a zero-based index of the touch.",
+						"translated-name": "AbsoluteYAt",
+						"params": {
+							"index0": { "name":"Index", "desc":"Zero-based index of the touch to get."}
+						}
+						},
+					"speed-at": {
+						"description": "Get the speed of a touch, in absolute (screen) pixels per second.",
+						"translated-name": "SpeedAt",
+						"params": {
+							"index0": { "name":"Index", "desc":"Zero-based index of the touch to get."}
+						}
+						},
+					"angle-at": {
+						"description": "Get the angle of motion of a touch, in degrees.",
+						"translated-name": "AngleAt",
+						"params": {
+							"index0": { "name":"Index", "desc":"Zero-based index of the touch to get."}
+						}
+						},
+					"touch-index": {
+						"description": "Get the index of the current touch.",
+						"translated-name": "TouchIndex"
+						},
+					"touch-id": {
+						"description": "Get the unique ID of the current touch.",
+						"translated-name": "TouchID"
+						},
+					"x-for-id": {
+						"description": "Get a touch X co-ordinate in the layout for a touch with a specific ID.",
+						"translated-name": "XForID",
+						"params": {
+							"id0": { "name":"ID", "desc":"ID of the touch to get."}
+						}
+						},
+					"y-for-id": {
+						"description": "Get a touch Y co-ordinate in the layout for a touch with a specific ID.",
+						"translated-name": "YForID",
+						"params": {
+							"id0": { "name":"ID", "desc":"ID of the touch to get."}
+						}
+						},
+					"absolute-x-for-id": {
+						"description": "Get a touch X co-ordinate on the canvas for a touch with a specific ID.",
+						"translated-name": "AbsoluteXForID",
+						"params": {
+							"id0": { "name":"ID", "desc":"ID of the touch to get."}
+						}
+						},
+					"absolute-y-for-id": {
+						"description": "Get a touch Y co-ordinate on the canvas for a touch with a specific ID.",
+						"translated-name": "AbsoluteYForID",
+						"params": {
+							"id0": { "name":"ID", "desc":"ID of the touch to get."}
+						}
+						},
+					"speed-for-id": {
+						"description": "Get the speed of a touch with a specific ID, in absolute (screen) pixels per second.",
+						"translated-name": "SpeedForID",
+						"params": {
+							"id0": { "name":"ID", "desc":"ID of the touch to get."}
+						}
+						},
+					"angle-for-id": {
+						"description": "Get the angle of motion of a touch with a specific ID, in degrees.",
+						"translated-name": "AngleForID",
+						"params": {
+							"id0": { "name":"ID", "desc":"ID of the touch to get."}
+						}
+						},
+					"width-for-id": {
+						"description": "Get the width of a touch with a specific ID.",
+						"translated-name": "WidthForID",
+						"params": {
+							"id0": { "name":"ID", "desc":"ID of the touch to get."}
+						}
+						},
+					"height-for-id": {
+						"description": "Get the height of a touch with a specific ID.",
+						"translated-name": "HeightForID",
+						"params": {
+							"id0": { "name":"ID", "desc":"ID of the touch to get."}
+						}
+						},
+					"pressure-for-id": {
+						"description": "Get the pressure (from 0 to 1) of a touch with a specific ID.",
+						"translated-name": "PressureForID",
+						"params": {
+							"id0": { "name":"ID", "desc":"ID of the touch to get."}
+						}
+						}
+				}
+			}
+		}
+	}
+}

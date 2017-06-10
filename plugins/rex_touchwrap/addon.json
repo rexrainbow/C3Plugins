@@ -1,0 +1,26 @@
+{
+	"is-c3-addon": true,
+	"type": "plugin",
+	"name": "Touch wrap",
+	"id": "rex_TouchWrap",
+	"version": "0.1.0.0",
+	"author": "Rex.Rainbow",
+	"website": "https://rexrainbow.github.io/C3RexDoc/plugins.md/index.html",
+	"documentation": "https://rexrainbow.github.io/C3RexDoc/plugins.md/rex_touchwrap.html",
+	"description": "A wrap from official Touch plugin to export touch/mouse input to other plugins.",
+	"editor-scripts": [
+						"plugin.js",
+						"type.js",
+						"instance.js"
+					],
+	"file-list": [
+		"c2runtime/runtime.js",
+		"lang/en-US.json",
+		"aces.json",
+		"addon.json",
+		"icon.png",
+		"instance.js",
+		"plugin.js",
+		"type.js"
+	]
+}
