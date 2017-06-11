@@ -85,7 +85,7 @@
 					"target": "Target"
 				},
 				"conditions": {
-					"onhittarget0": {
+					"on-reached-target": {
 						"list-name": "On reach target position",
 						"display-text": "On {my} reach target",
 						"description": "Triggered when reach target position."
@@ -409,15 +409,15 @@
 						"description": "The current object speed, in pixel per second.",
 						"translated-name": "Speed"
 						},
-					"maxspeed": {
+					"max-speed": {
 						"description": "The maximum speed setting, in pixel per second.",
 						"translated-name": "MaxSpeed"
 						},
-					"acc": {
+					"acceleration": {
 						"description": "The acceleration setting, in pixel per second per second.",
 						"translated-name": "Acc"
 						},
-					"dec": {
+					"deceleration": {
 						"description": "The deceleration setting, in pixel per second per second.",
 						"translated-name": "Dec"
 						},

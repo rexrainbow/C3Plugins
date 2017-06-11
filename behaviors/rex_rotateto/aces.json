@@ -1,0 +1,198 @@
+{
+	"enable": {
+		"conditions": [
+
+		],
+		"actions": [
+			{
+				"c2id": 0,
+				"id": "set-activated",
+				"scriptName": "SetActivated",
+				"highlight": false,
+				"params": [
+					{"id":"activated2", "type":"combo", "items":["no","yes"]}
+				]
+			}
+		],
+		"expressions": [
+			{
+				"c2id": 0,
+				"id": "activated",
+				"expressionName": "Activated",
+				"scriptName": "Activated",
+				"highlight": false,
+				"returnType": "number"
+			}			
+		]
+	},
+	"speed": {
+		"conditions": [
+			{
+				"c2id": 1,
+				"id": "compare-speed",
+				"scriptName": "CompareSpeed",
+				"highlight": false,
+				"params": [
+					{"id":"comparison0", "type":"cmp"},
+					{"id":"speed1", "type":"number"}
+				]
+			}
+		],
+		"actions": [
+			{
+				"c2id": 1,
+				"id": "set-max-speed",
+				"scriptName": "SetMaxSpeed",
+				"highlight": false,
+				"params": [
+					{"id":"max_speed0", "type":"number"}
+				]
+			},
+			{
+				"c2id": 2,
+				"id": "set-acceleration",
+				"scriptName": "SetAcceleration",
+				"highlight": false,
+				"params": [
+					{"id":"acceleration0", "type":"number"}
+				]
+			},
+			{
+				"c2id": 3,
+				"id": "set-deceleration",
+				"scriptName": "SetDeceleration",
+				"highlight": false,
+				"params": [
+					{"id":"deceleration0", "type":"number"}
+				]
+			},
+			{
+				"c2id": 5,
+				"id": "set-current-speed",
+				"scriptName": "SetCurrentSpeed",
+				"highlight": false,
+				"params": [
+					{"id":"current_speed0", "type":"number", "initialValue":"180"}
+				]
+			}
+		],
+		"expressions": [
+			{
+				"c2id": 2,
+				"id": "max-speed",
+				"expressionName": "MaxSpeed",
+				"scriptName": "MaxSpeed",
+				"highlight": false,
+				"returnType": "number"
+			},
+			{
+				"c2id": 3,
+				"id": "acceleration",
+				"expressionName": "Acc",
+				"scriptName": "Acc",
+				"highlight": false,
+				"returnType": "number"
+			},
+			{
+				"c2id": 4,
+				"id": "deceleration",
+				"expressionName": "Dec",
+				"scriptName": "Dec",
+				"highlight": false,
+				"returnType": "number"
+			},			
+			{
+				"c2id": 1,
+				"id": "speed",
+				"expressionName": "Speed",
+				"scriptName": "Speed",
+				"highlight": false,
+				"returnType": "number"
+			}			
+		]
+	},
+	"rotate-to": {
+		"conditions": [
+			{
+				"c2id": 3,
+				"id": "is-rotating",
+				"scriptName": "IsRotating",
+				"highlight": false
+			}			
+		],
+		"actions": [
+			{
+				"c2id": 4,
+				"id": "set-target-angle",
+				"scriptName": "SetTargetAngle",
+				"highlight": false,
+				"params": [
+					{"id":"angle0", "type":"number"},
+					{"id":"clockwise4", "type":"combo", "items":["anti-clockwise","clockwise","nearest side"]}
+				]
+			},
+			{
+				"c2id": 6,
+				"id": "set-target-angle-on-object",
+				"scriptName": "SetTargetAngleOnObject",
+				"highlight": false,
+				"params": [
+					{"id":"target0", "type":"object"},
+					{"id":"clockwise4", "type":"combo", "items":["anti-clockwise","clockwise","nearest side"]}
+				]
+			},
+			{
+				"c2id": 7,
+				"id": "set-target-angle-by-delta-angle",
+				"scriptName": "SetTargetAngleByDeltaAngle",
+				"highlight": false,
+				"params": [
+					{"id":"da0", "type":"number", "initialValue":"0"},
+					{"id":"clockwise4", "type":"combo", "items":["anti-clockwise","clockwise","nearest side"]}
+				]
+			},
+			{
+				"c2id": 8,
+				"id": "set-target-angle-to-position",
+				"scriptName": "SetTargetAngleToPos",
+				"highlight": false,
+				"params": [
+					{"id":"x0", "type":"number", "initialValue":"0"},
+					{"id":"y1", "type":"number", "initialValue":"0"},
+					{"id":"clockwise5", "type":"combo", "items":["anti-clockwise","clockwise","nearest side"]}
+				]
+			}
+		],
+		"expressions": [
+			{
+				"c2id": 5,
+				"id": "target-angle",
+				"expressionName": "TargetAngle",
+				"scriptName": "TargetAngle",
+				"highlight": false,
+				"returnType": "number"
+			}			
+		]
+	},
+	"stop": {
+		"conditions": [
+			{
+				"c2id": 0,
+				"id": "on-reached-target",
+				"scriptName": "OnHitTarget",
+				"isTrigger": "true",
+				"highlight": false
+			}			
+		],
+		"actions": [
+			{
+				"c2id": 9,
+				"id": "stop",
+				"scriptName": "Stop",
+				"highlight": false
+			}
+		],
+		"expressions": [
+		]
+	}
+}

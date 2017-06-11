@@ -466,7 +466,7 @@
 	"reach": {
 		"conditions": [
 			{
-				"id": "onhittarget0",
+				"id": "on-reached-target",
 				"scriptName": "OnHitTarget",
 				"isTrigger": "true",
 				"highlight": false,
@@ -599,7 +599,7 @@
 		],
 		"expressions": [
 			{
-				"id": "maxspeed",
+				"id": "max-speed",
 				"expressionName": "MaxSpeed",
 				"scriptName": "MaxSpeed",
 				"highlight": false,
@@ -607,7 +607,7 @@
 				"c2id": 2				
 			},
 			{
-				"id": "acc",
+				"id": "acceleration",
 				"expressionName": "Acc",
 				"scriptName": "Acc",
 				"highlight": false,
@@ -615,7 +615,7 @@
 				"c2id": 3				
 			},
 			{
-				"id": "dec",
+				"id": "deceleration",
 				"expressionName": "Dec",
 				"scriptName": "Dec",
 				"highlight": false,
