@@ -1,0 +1,79 @@
+{
+	"enable": {
+		"conditions": [
+		],
+		"actions": [
+			{
+				"c2id": 0,
+				"id": "set-enabled",
+				"scriptName": "SetEnabled",
+				"highlight": false,
+				"params": [
+					{"id":"state2", "type":"combo", "items":["disabled","enabled"]}
+				]
+			}
+		],
+		"expressions": [
+		]
+	},
+	"obstacle": {
+		"conditions": [
+		],
+		"actions": [
+			{
+				"c2id": 11,
+				"id": "add-obstacle",
+				"scriptName": "AddObstacle",
+				"highlight": false,
+				"params": [
+					{"id":"obstacle0", "type":"object"}
+				]
+			},
+			{
+				"c2id": 12,
+				"id": "clear-obstacles",
+				"scriptName": "ClearObstacles",
+				"highlight": false
+			}
+		],
+		"expressions": [
+		]
+	},
+	"push-out": {
+		"conditions": [
+		],
+		"actions": [
+			{
+				"c2id": 21,
+				"id": "push-out-nearest",
+				"scriptName": "PushOutNearest",
+				"highlight": false,
+				"params": [
+					{"id":"max_push_distance0", "type":"number", "initialValue":"100"}
+				]
+			},
+			{
+				"c2id": 22,
+				"id": "push-out-angle",
+				"scriptName": "PushOutAngle",
+				"highlight": false,
+				"params": [
+					{"id":"angle0", "type":"number", "initialValue":"0"},
+					{"id":"max_push_distance1", "type":"number", "initialValue":"100"}
+				]
+			},
+			{
+				"c2id": 23,
+				"id": "push-out-to-position",
+				"scriptName": "PushOutToPos",
+				"highlight": false,
+				"params": [
+					{"id":"x0", "type":"number"},
+					{"id":"y1", "type":"number"}
+				]
+			}
+		],
+		"expressions": [
+		]
+	}
+}
