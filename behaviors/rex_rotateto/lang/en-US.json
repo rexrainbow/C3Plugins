@@ -38,9 +38,9 @@
 				},
 				"conditions": {
 					"on-reached-target": {
-						"list-name": "On hit target angle",
-						"display-text": "On {my} hit angle",
-						"description": "Triggered when hit target angle."
+						"list-name": "On reached target angle",
+						"display-text": "On {my} reached angle",
+						"description": "Triggered when reached target angle."
 						},
 					"compare-speed": {
 						"list-name": "Compare speed",
