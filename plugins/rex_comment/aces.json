@@ -1,0 +1,28 @@
+{
+	"comment": {
+		"conditions": [
+			{
+				"c2id": 1,
+				"id": "add-comment",
+				"scriptName": "NOOP",
+				"highlight": false,
+				"params": [
+					{"id":"comment0", "type":"string", "initialValue":"\"\""}
+				]
+			}
+		],
+		"actions": [
+			{
+				"c2id": 1,
+				"id": "add-comment",
+				"scriptName": "NOOP",
+				"highlight": false,
+				"params": [
+					{"id":"comment0", "type":"string", "initialValue":"\"\""}
+				]
+			}
+		],
+		"expressions": [
+		]
+	}
+}

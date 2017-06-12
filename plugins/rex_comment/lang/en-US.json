@@ -1,0 +1,40 @@
+{
+	"languageTag": "en-US",
+	"fileDescription": "Strings for Comments.",
+	"text": {
+		"plugins": {
+			"rex_comment": {
+				"name": "Comments",
+				"description": "Show comments in actions.",
+				"help-url": "https://rexrainbow.github.io/C2RexDoc/c2rexpluginsACE/plugin_rex_comment.html",
+				"properties": {
+				},
+				"aceCategories": {
+					"comment": "comment"
+				},
+				"conditions": {
+					"add-comment": {
+						"list-name": "Add comment",
+						"display-text": "[i][b]{0}[/b][/i]",
+						"description": "Add comment.",
+						"params": {
+							"comment0": { "name":"Comment", "desc":"Comment."}
+						}
+						}
+				},
+				"actions": {
+					"add-comment": {
+						"list-name": "Add comment",
+						"display-text": "[i][b]{0}[/b][/i]",
+						"description": "Add comment.",
+						"params": {
+							"comment0": { "name":"Comment", "desc":"Comment."}
+						}
+					}
+				},
+				"expressions": {
+				}
+			}
+		}
+	}
+}
