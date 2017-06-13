@@ -1,0 +1,308 @@
+{
+	"timeline_-_manual": {
+		"conditions": [
+		],
+		"actions": [
+			{
+				"c2id": 0,
+				"id": "pushtimeline0",
+				"scriptName": "PushTimeLine",
+				"highlight": false,
+				"params": [
+					{"id":"time0", "type":"number", "initialValue":"0"}
+				]
+			},
+			{
+				"c2id": 40,
+				"id": "pushtimelineto40",
+				"scriptName": "PushTimeLineTo",
+				"highlight": false,
+				"params": [
+					{"id":"time0", "type":"number", "initialValue":"0"}
+				]
+			}
+		],
+		"expressions": [
+		]
+	},
+	"z-deprecated": {
+		"conditions": [
+		],
+		"actions": [
+			{
+				"c2id": 1,
+				"id": "setup_deprecated1",
+				"scriptName": "Setup_deprecated",
+				"isDeprecated": "true",
+				"highlight": false,
+				"params": [
+					{"id":"function0", "type":"object"}
+				]
+			},
+			{
+				"c2id": 2,
+				"id": "createtimer_deprecated2",
+				"scriptName": "CreateTimer_deprecated",
+				"isDeprecated": "true",
+				"highlight": false,
+				"params": [
+					{"id":"timer0", "type":"string", "initialValue":"\"\""},
+					{"id":"commands1", "type":"string", "initialValue":"\"\""}
+				]
+			},
+			{
+				"c2id": 10,
+				"id": "settimerparameter10",
+				"scriptName": "SetTimerParameter",
+				"isDeprecated": "true",
+				"highlight": false,
+				"params": [
+					{"id":"name0", "type":"string", "initialValue":"\"\""},
+					{"id":"index1", "type":"any", "initialValue":"0"},
+					{"id":"value2", "type":"any", "initialValue":"0"}
+				]
+			}
+		],
+		"expressions": [
+		]
+	},
+	"timer:_control": {
+		"conditions": [
+		],
+		"actions": [
+			{
+				"c2id": 3,
+				"id": "starttimer3",
+				"scriptName": "StartTimer",
+				"highlight": false,
+				"params": [
+					{"id":"name0", "type":"string", "initialValue":"\"\""},
+					{"id":"time1", "type":"number", "initialValue":"0"},
+					{"id":"repeat2", "type":"number", "initialValue":"1"}
+				]
+			},
+			{
+				"c2id": 5,
+				"id": "pausetimer5",
+				"scriptName": "PauseTimer",
+				"highlight": false,
+				"params": [
+					{"id":"name0", "type":"string", "initialValue":"\"\""}
+				]
+			},
+			{
+				"c2id": 6,
+				"id": "resumetimer6",
+				"scriptName": "ResumeTimer",
+				"highlight": false,
+				"params": [
+					{"id":"name0", "type":"string", "initialValue":"\"\""}
+				]
+			},
+			{
+				"c2id": 7,
+				"id": "stoptimer7",
+				"scriptName": "StopTimer",
+				"highlight": false,
+				"params": [
+					{"id":"name0", "type":"string", "initialValue":"\"\""}
+				]
+			}
+		],
+		"expressions": [
+		]
+	},
+	"timer:_triggered_timer": {
+		"conditions": [
+		],
+		"actions": [
+			{
+				"c2id": 4,
+				"id": "starttrgtimer4",
+				"scriptName": "StartTrgTimer",
+				"highlight": false,
+				"params": [
+					{"id":"time0", "type":"number", "initialValue":"0"}
+				]
+			},
+			{
+				"c2id": 32,
+				"id": "settrgtimerparameters32",
+				"scriptName": "SetTrgTimerParameters",
+				"highlight": false
+			},
+			{
+				"c2id": 33,
+				"id": "deletetrgtimer33",
+				"scriptName": "DeleteTrgTimer",
+				"highlight": false
+			}
+		],
+		"expressions": [
+		]
+	},
+	"timeline": {
+		"conditions": [
+		],
+		"actions": [
+			{
+				"c2id": 8,
+				"id": "cleantimeline8",
+				"scriptName": "CleanTimeLine",
+				"highlight": false
+			},
+			{
+				"c2id": 20,
+				"id": "pausetimeline20",
+				"scriptName": "PauseTimeLine",
+				"highlight": false
+			},
+			{
+				"c2id": 21,
+				"id": "resumetimeline21",
+				"scriptName": "ResumeTimeLine",
+				"highlight": false
+			}
+		],
+		"expressions": [
+			{
+				"c2id": 4,
+				"id": "timelinetime",
+				"expressionName": "TimeLineTime",
+				"scriptName": "TimeLineTime",
+				"highlight": false,
+				"returnType": "number"
+			}
+		]
+	},
+	"timer": {
+		"conditions": [
+			{
+				"c2id": 0,
+				"id": "isrunning0",
+				"scriptName": "IsRunning",
+				"highlight": false,
+				"params": [
+					{"id":"name0", "type":"any", "initialValue":"\"\""}
+				]
+			}
+		],
+		"actions": [
+			{
+				"c2id": 9,
+				"id": "deletetimer9",
+				"scriptName": "DeleteTimer",
+				"highlight": false,
+				"params": [
+					{"id":"name0", "type":"string", "initialValue":"\"\""}
+				]
+			},
+			{
+				"c2id": 30,
+				"id": "createtimer30",
+				"scriptName": "CreateTimer",
+				"highlight": false,
+				"params": [
+					{"id":"timer0", "type":"string", "initialValue":"\"\""},
+					{"id":"name1", "type":"string", "initialValue":"\"\""}
+				]
+			},
+			{
+				"c2id": 31,
+				"id": "settimerparameters31",
+				"scriptName": "SetTimerParameters",
+				"highlight": false,
+				"params": [
+					{"id":"name0", "type":"string", "initialValue":"\"\""}
+				]
+			}
+		],
+		"expressions": [
+			{
+				"c2id": 0,
+				"id": "timerremainder",
+				"expressionName": "TimerRemainder",
+				"scriptName": "TimerRemainder",
+				"highlight": false,
+				"returnType": "any",
+				"isVariadicParameters": true,
+				"params": [
+					{"id":"name0", "type":"string", "initialValue":"\"\""}
+				]
+			},
+			{
+				"c2id": 1,
+				"id": "timerelapsed",
+				"expressionName": "TimerElapsed",
+				"scriptName": "TimerElapsed",
+				"highlight": false,
+				"returnType": "any",
+				"isVariadicParameters": true,
+				"params": [
+					{"id":"name0", "type":"string", "initialValue":"\"\""}
+				]
+			},
+			{
+				"c2id": 2,
+				"id": "timerremainderpercent",
+				"expressionName": "TimerRemainderPercent",
+				"scriptName": "TimerRemainderPercent",
+				"highlight": false,
+				"returnType": "any",
+				"isVariadicParameters": true,
+				"params": [
+					{"id":"name0", "type":"string", "initialValue":"\"\""}
+				]
+			},
+			{
+				"c2id": 3,
+				"id": "timerelapsedpercent",
+				"expressionName": "TimerElapsedPercent",
+				"scriptName": "TimerElapsedPercent",
+				"highlight": false,
+				"returnType": "any",
+				"isVariadicParameters": true,
+				"params": [
+					{"id":"name0", "type":"string", "initialValue":"\"\""}
+				]
+			},
+			{
+				"c2id": 5,
+				"id": "triggeredtimername",
+				"expressionName": "TriggeredTimerName",
+				"scriptName": "TriggeredTimerName",
+				"highlight": false,
+				"returnType": "string"
+			},
+			{
+				"c2id": 6,
+				"id": "timerdelaytime",
+				"expressionName": "TimerDelayTime",
+				"scriptName": "TimerDelayTime",
+				"highlight": false,
+				"returnType": "any",
+				"isVariadicParameters": true,
+				"params": [
+					{"id":"name0", "type":"string", "initialValue":"\"\""}
+				]
+			}
+		]
+	},
+	"setup": {
+		"conditions": [
+		],
+		"actions": [
+			{
+				"c2id": 101,
+				"id": "setupcallback101",
+				"scriptName": "SetupCallback",
+				"highlight": false,
+				"params": [
+					{"id":"callback2", "type":"combo", "items":["official function","rex function2"]}
+				]
+			}
+		],
+		"expressions": [
+		]
+	}
+}

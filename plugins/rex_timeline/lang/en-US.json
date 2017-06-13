@@ -1,0 +1,233 @@
+{
+	"languageTag": "en-US",
+	"fileDescription": "Strings for TimeLine.",
+	"text": {
+		"plugins": {
+			"rex_timeline": {
+				"name": "TimeLine",
+				"description": "TimeLine & Timer",
+				"help-url": "http://c2rexplugins.weebly.com/rex_timeline.html",
+				"properties": {
+					"game-time": {
+						"name": "Game time",
+						"desc": "Enable to update timeline with game time, or real-time.",
+						"items": {
+							"no":"No",
+							"yes":"Yes",
+							"real-time":"Real-time"
+							}
+						}
+				},
+				"aceCategories": {
+					"timeline_-_manual": "TimeLine - manual",
+					"z-deprecated": "Z: Deprecated",
+					"timer:_control": "Timer: Control",
+					"timer:_triggered_timer": "Timer: Triggered timer",
+					"timeline": "TimeLine",
+					"timer": "Timer",
+					"setup": "Setup"
+				},
+				"conditions": {
+					"isrunning0": {
+						"list-name": "Is timer running",
+						"display-text": "[i]{0}[/i] is running",
+						"description": "Return true if timer is running.",
+						"params": {
+							"name0": { "name":"Name", "desc":"Timer's name"}
+						}
+						}
+				},
+				"actions": {
+					"pushtimeline0": {
+						"list-name": "Push timeline forward",
+						"display-text": "Push timeline forward with delta-time to [i]{0}[/i]",
+						"description": "Push timeline forward with delta-time.",
+						"params": {
+							"time0": { "name":"Time", "desc":"Delta-time in seconds"}
+						}
+					},
+					"setup_deprecated1": {
+						"list-name": "Setup timer",
+						"display-text": "Set timer's callback to [i]{0}[/i]",
+						"description": "Setup timer.",
+						"params": {
+							"function0": { "name":"Function", "desc":"Function object for timer's callback"}
+						}
+					},
+					"createtimer_deprecated2": {
+						"list-name": "Create timer",
+						"display-text": "Create timer [i]{0}[/i] with callback [i]{1}[/i]",
+						"description": "Create timer.",
+						"params": {
+							"timer0": { "name":"Timer", "desc":"Timer's name"},
+							"commands1": { "name":"Commands", "desc":"Execute commands when timer's time-out"}
+						}
+					},
+					"starttimer3": {
+						"list-name": "Start",
+						"display-text": "Start timer [i]{0}[/i], time-out to [i]{1}[/i] seconds, repeat count to [i]{2}[/i]",
+						"description": "Start timer.",
+						"params": {
+							"name0": { "name":"Name", "desc":"Timer's name."},
+							"time1": { "name":"Time", "desc":"Time-out in seconds"},
+							"repeat2": { "name":"Repeat", "desc":"Repeat count, 0 is infinity."}
+						}
+					},
+					"starttrgtimer4": {
+						"list-name": "Start triggered timer",
+						"display-text": "Start triggered timer, time-out is [i]{0}[/i] seconds",
+						"description": "Start triggered timer.",
+						"params": {
+							"time0": { "name":"Time", "desc":"Time-out in seconds"}
+						}
+					},
+					"pausetimer5": {
+						"list-name": "Pause",
+						"display-text": "Pause timer [i]{0}[/i]",
+						"description": "Pause timer.",
+						"params": {
+							"name0": { "name":"Name", "desc":"Timer's name."}
+						}
+					},
+					"resumetimer6": {
+						"list-name": "Resume",
+						"display-text": "Resume timer [i]{0}[/i]",
+						"description": "Resume timer.",
+						"params": {
+							"name0": { "name":"Name", "desc":"Timer's name."}
+						}
+					},
+					"stoptimer7": {
+						"list-name": "Stop",
+						"display-text": "Stop timer [i]{0}[/i]",
+						"description": "Stop timer.",
+						"params": {
+							"name0": { "name":"Name", "desc":"Timer's name."}
+						}
+					},
+					"cleantimeline8": {
+						"list-name": "Clean",
+						"display-text": "Clean timeline",
+						"description": "Clean timeline."
+					},
+					"deletetimer9": {
+						"list-name": "Delete",
+						"display-text": "Delete timer [i]{0}[/i]",
+						"description": "Delete timer.",
+						"params": {
+							"name0": { "name":"Name", "desc":"Timer's name."}
+						}
+					},
+					"settimerparameter10": {
+						"list-name": "Set a parameter",
+						"display-text": "Set timer [i]{0}[/i] 's parameter[[i]{1}[/i]] to [i]{2}[/i]",
+						"description": "Set a parameter pass into callback.",
+						"params": {
+							"name0": { "name":"Name", "desc":"Timer's name."},
+							"index1": { "name":"Index", "desc":"Index of parameter, can be number of string"},
+							"value2": { "name":"Value", "desc":"Value of paramete"}
+						}
+					},
+					"pausetimeline20": {
+						"list-name": "Pause timeline",
+						"display-text": "Pause timeline",
+						"description": "Pause timeline, it will pause all timers registed on it."
+					},
+					"resumetimeline21": {
+						"list-name": "Resume timeline",
+						"display-text": "Resume timeline",
+						"description": "Resume timeline, it will resume all timers registed on it."
+					},
+					"createtimer30": {
+						"list-name": "Create timer",
+						"display-text": "Create timer [i]{0}[/i] with callback [i]{1}[/i] ([i]{...}[/i])",
+						"description": "Create timer.",
+						"params": {
+							"timer0": { "name":"Timer", "desc":"Timer's name"},
+							"name1": { "name":"Name", "desc":"The name of the callback."}
+						}
+					},
+					"settimerparameters31": {
+						"list-name": "Set parameters",
+						"display-text": "Set timer [i]{0}[/i] 's parameters to ([i]{...}[/i])",
+						"description": "Set parameters passed into callback.",
+						"params": {
+							"name0": { "name":"Name", "desc":"Timer's name."}
+						}
+					},
+					"settrgtimerparameters32": {
+						"list-name": "Set parameters",
+						"display-text": "Set triggered timer's parameters to ([i]{...}[/i])",
+						"description": "Set triggered timer's parameters passed into callback."
+					},
+					"deletetrgtimer33": {
+						"list-name": "Delete triggered timer",
+						"display-text": "Delete triggered timer",
+						"description": "Delete triggered timer."
+					},
+					"pushtimelineto40": {
+						"list-name": "Push timeline to",
+						"display-text": "Push timeline to [i]{0}[/i]",
+						"description": "Push timeline to specific time. It could not turn back the timeline.",
+						"params": {
+							"time0": { "name":"Time", "desc":"Time in seconds"}
+						}
+					},
+					"setupcallback101": {
+						"list-name": "Setup callback",
+						"display-text": "Set callback to [i]{0}[/i]",
+						"description": "Setup callback.",
+						"params": {
+							"callback2": { "name":"Callback", "desc":"Callback object.", "items":{"official function":"Official function","rex function2":"Rex function2"}}
+						}
+					}
+				},
+				"expressions": {
+					"timerremainder": {
+						"description": "Get remainder time of timer.",
+						"translated-name": "TimerRemainder",
+						"params": {
+							"name0": { "name":"Name", "desc":"Timer's name."}
+						}
+						},
+					"timerelapsed": {
+						"description": "Get elapsed time of timer.",
+						"translated-name": "TimerElapsed",
+						"params": {
+							"name0": { "name":"Name", "desc":"Timer's name."}
+						}
+						},
+					"timerremainderpercent": {
+						"description": "Get remainder time percentage of timer.",
+						"translated-name": "TimerRemainderPercent",
+						"params": {
+							"name0": { "name":"Name", "desc":"Timer's name."}
+						}
+						},
+					"timerelapsedpercent": {
+						"description": "Get elapsed time percentage of timer.",
+						"translated-name": "TimerElapsedPercent",
+						"params": {
+							"name0": { "name":"Name", "desc":"Timer's name."}
+						}
+						},
+					"timelinetime": {
+						"description": "Get current time of timeline.",
+						"translated-name": "TimeLineTime"
+						},
+					"triggeredtimername": {
+						"description": "Get triggered timer's name.",
+						"translated-name": "TriggeredTimerName"
+						},
+					"timerdelaytime": {
+						"description": "Get delay time of timer.",
+						"translated-name": "TimerDelayTime",
+						"params": {
+							"name0": { "name":"Name", "desc":"Timer's name."}
+						}
+						}
+				}
+			}
+		}
+	}
+}
