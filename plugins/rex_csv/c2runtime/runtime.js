@@ -380,14 +380,14 @@ cr.plugins_.Rex_CSV = function(runtime)
          this.TurnPage(page);
 	};
     
-	Acts.prototype.StringToPage = function (JSON_string)
+	Acts.prototype.StringToPage = function (jsonString)
 	{
-        this.currentTable.JSONString2Page(JSON_string);
+        this.currentTable.JSONString2Page(jsonString);
 	};    
     
-	Acts.prototype.StringToPage = function (JSON_string)
+	Acts.prototype.StringToPage = function (jsonString)
 	{
-        this.currentTable.JSONString2Page(JSON_string);
+        this.currentTable.JSONString2Page(jsonString);
 	};   
     
 	Acts.prototype.AppendCol = function (col, init_value)
@@ -427,10 +427,10 @@ cr.plugins_.Rex_CSV = function(runtime)
         this.strDelimiter = s;
 	}; 
 
-	Acts.prototype.StringToAllTables = function (JSON_string)
+	Acts.prototype.StringToAllTables = function (jsonString)
 	{   
 	    var page;
-	    var tables=JSON.parse(JSON_string);
+	    var tables=JSON.parse(jsonString);
 	    for (page in tables)
 	    {
 	        this.TurnPage(page);
@@ -653,9 +653,9 @@ cr.plugins_.Rex_CSV = function(runtime)
 		return JSON.stringify(save_data);   
 	};
     
-	CSVKlassProto.JSONString2Page = function(JSON_string)
+	CSVKlassProto.JSONString2Page = function(jsonString)
 	{
-        var save_data = JSON.parse(JSON_string);
+        var save_data = JSON.parse(jsonString);
         try
         {
 	        this.table = save_data["table"];

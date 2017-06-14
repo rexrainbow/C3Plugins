@@ -1,0 +1,403 @@
+{
+	"key-value": {
+		"conditions": [
+			{
+				"c2id": 2,
+				"id": "is-key-existed",
+				"scriptName": "KeyExists",
+				"highlight": false,
+				"params": [
+					{"id":"key_string0", "type":"string", "initialValue":"\"\""}
+				]
+			}			
+		],
+		"actions": [
+			{
+				"c2id": 1,
+				"id": "set-value",
+				"scriptName": "SetValueByKeyString",
+				"highlight": true,
+				"params": [
+					{"id":"key_string0", "type":"string", "initialValue":"\"\""},
+					{"id":"value1", "type":"any", "initialValue":"0"}
+				]
+			},
+			{
+				"c2id": 6,
+				"id": "remove",
+				"scriptName": "RemoveByKeyString",
+				"highlight": false,
+				"params": [
+					{"id":"key_string0", "type":"string", "initialValue":"\"\""}
+				]
+			},
+			{
+				"c2id": 9,
+				"id": "set-json",
+				"scriptName": "SetJSONByKeyString",
+				"highlight": false,
+				"params": [
+					{"id":"key_string0", "type":"string", "initialValue":"\"\""},
+					{"id":"json1", "type":"string", "initialValue":"\"{}\""}
+				]
+			},
+			{
+				"c2id": 10,
+				"id": "add-to-value",
+				"scriptName": "AddToValueByKeyString",
+				"highlight": false,
+				"params": [
+					{"id":"key_string0", "type":"string", "initialValue":"\"\""},
+					{"id":"value1", "type":"any", "initialValue":"0"}
+				]
+			}			
+		],
+		"expressions": [
+			{
+				"c2id": 3,
+				"id": "at",
+				"expressionName": "At",
+				"scriptName": "At",
+				"highlight": true,
+				"returnType": "any",
+				"isVariadicParameters": true,
+				"params": [
+					{"id":"key0", "type":"string", "initialValue":"\"\""}
+				]
+			},
+			{
+				"c2id": 6,
+				"id": "at-keys",
+				"expressionName": "AtKeys",
+				"scriptName": "AtKeys",
+				"highlight": false,
+				"returnType": "any",
+				"isVariadicParameters": true,
+				"params": [
+					{"id":"key0", "type":"any", "initialValue":"\"\""}
+				]
+			},
+			{
+				"c2id": 11,
+				"id": "random-key-at",
+				"expressionName": "RandomKeyAt",
+				"scriptName": "RandomKeyAt",
+				"highlight": false,
+				"returnType": "any",
+				"isVariadicParameters": true,
+				"params": [
+					{"id":"key0", "type":"string", "initialValue":"\"\""}
+				]
+			}			
+		]
+	},
+	"json": {
+		"conditions": [
+		],
+		"actions": [
+			{
+				"c2id": 4,
+				"id": "clean-all",
+				"scriptName": "CleanAll",
+				"highlight": false
+			},
+			{
+				"c2id": 5,
+				"id": "load-json",
+				"scriptName": "LoadJSON",
+				"highlight": true,
+				"params": [
+					{"id":"json_string0", "type":"string", "initialValue":"\"\""}
+				]
+			},
+			{
+				"c2id": 8,
+				"id": "merge-two-json",
+				"scriptName": "MergeTwoJSON",
+				"highlight": false,
+				"params": [
+					{"id":"hash_table_b0", "type":"object"},
+					{"id":"mode4", "type":"combo", "items":["overwrite from hash b","merge new keys from hash table b","clean then copy from hash table b"]}
+				]
+			}
+		],
+		"expressions": [
+			{
+				"c2id": 9,
+				"id": "tostring",
+				"expressionName": "ToString",
+				"scriptName": "ToString",
+				"highlight": true,
+				"returnType": "any",
+				"isVariadicParameters": true
+			},
+			{
+				"c2id": 10,
+				"id": "asjson",
+				"expressionName": "AsJSON",
+				"scriptName": "AsJSON",
+				"highlight": false,
+				"returnType": "string"
+			}			
+		]
+	},
+	"keys": {
+		"conditions": [
+			{
+				"c2id": 3,
+				"id": "is-empty",
+				"scriptName": "IsEmpty",
+				"highlight": false,
+				"params": [
+					{"id":"key_string0", "type":"string", "initialValue":"\"\""}
+				]
+			}			
+		],
+		"actions": [
+			{
+				"c2id": 7,
+				"id": "pick-keys-to-array",
+				"scriptName": "PickKeysToArray",
+				"highlight": false,
+				"params": [
+					{"id":"key_string0", "type":"string", "initialValue":"\"\""},
+					{"id":"array1", "type":"object"}
+				]
+			}
+		],
+		"expressions": [
+			{
+				"c2id": 7,
+				"id": "item-count",
+				"expressionName": "ItemCnt",
+				"scriptName": "ItemCnt",
+				"highlight": false,
+				"returnType": "number",
+				"params": [
+					{"id":"key0", "type":"string", "initialValue":"\"\""}
+				]
+			},
+			{
+				"c2id": 8,
+				"id": "key-to-item-count",
+				"expressionName": "Keys2ItemCnt",
+				"scriptName": "Keys2ItemCnt",
+				"highlight": false,
+				"returnType": "any",
+				"isVariadicParameters": true,
+				"params": [
+					{"id":"key0", "type":"any", "initialValue":"\"\""}
+				]
+			}			
+		]
+	},
+	"array": {
+		"conditions": [
+		],
+		"actions": [
+			{
+				"c2id": 23,
+				"id": "push-json",
+				"scriptName": "PushJSON",
+				"highlight": false,
+				"params": [
+					{"id":"key_string0", "type":"string", "initialValue":"\"\""},
+					{"id":"json1", "type":"string", "initialValue":"\"{}\""}
+				]
+			},
+			{
+				"c2id": 24,
+				"id": "push-value",
+				"scriptName": "PushValue",
+				"highlight": false,
+				"params": [
+					{"id":"key_string0", "type":"string", "initialValue":"\"\""},
+					{"id":"value1", "type":"any", "initialValue":"0"}
+				]
+			},
+			{
+				"c2id": 25,
+				"id": "insert-json",
+				"scriptName": "InsertJSON",
+				"highlight": false,
+				"params": [
+					{"id":"key_string0", "type":"string", "initialValue":"\"\""},
+					{"id":"json1", "type":"string", "initialValue":"\"{}\""},
+					{"id":"index2", "type":"number", "initialValue":"0"}
+				]
+			},
+			{
+				"c2id": 26,
+				"id": "insert-value",
+				"scriptName": "InsertValue",
+				"highlight": false,
+				"params": [
+					{"id":"key_string0", "type":"string", "initialValue":"\"\""},
+					{"id":"value1", "type":"any", "initialValue":"0"},
+					{"id":"index2", "type":"number", "initialValue":"0"}
+				]
+			}
+		],
+		"expressions": [
+			{
+				"c2id": 21,
+				"id": "pop",
+				"expressionName": "Pop",
+				"scriptName": "Pop",
+				"highlight": false,
+				"returnType": "any",
+				"isVariadicParameters": true,
+				"params": [
+					{"id":"key0", "type":"string", "initialValue":"\"\""}
+				]
+			}
+		]
+	},
+	"array-order": {
+		"conditions": [
+		],
+		"actions": [
+			{
+				"c2id": 21,
+				"id": "shuffle",
+				"scriptName": "Shuffle",
+				"highlight": false,
+				"params": [
+					{"id":"key_string0", "type":"string", "initialValue":"\"\""}
+				]
+			},
+			{
+				"c2id": 22,
+				"id": "sort",
+				"scriptName": "Sort",
+				"highlight": false,
+				"params": [
+					{"id":"entry0", "type":"string", "initialValue":"\"\""},
+					{"id":"key1", "type":"string", "initialValue":"\"\""},
+					{"id":"sort6", "type":"combo", "items":["descending","ascending","logical descending","logical ascending"]}
+				]
+			}
+		],
+		"expressions": [
+		]
+	},	
+	"indent": {
+		"conditions": [
+		],
+		"actions": [
+			{
+				"c2id": 101,
+				"id": "set-indent",
+				"scriptName": "SetIndent",
+				"highlight": false,
+				"params": [
+					{"id":"value0", "type":"any", "initialValue":"0"}
+				]
+			}
+		],
+		"expressions": [
+		]
+	},
+	"for-each": {
+		"conditions": [
+			{
+				"c2id": 1,
+				"id": "for-each-key",
+				"scriptName": "ForEachKey",
+				"isLooping": "true",
+				"isInvertible": "false",
+				"highlight": false,
+				"params": [
+					{"id":"key_string0", "type":"string", "initialValue":"\"\""}
+				]
+			}
+		],
+		"actions": [
+		],
+		"expressions": [
+			{
+				"c2id": 4,
+				"id": "current-key",
+				"expressionName": "CurKey",
+				"scriptName": "CurKey",
+				"highlight": false,
+				"returnType": "string"
+			},
+			{
+				"c2id": 5,
+				"id": "current-value",
+				"expressionName": "CurValue",
+				"scriptName": "CurValue",
+				"highlight": false,
+				"returnType": "any",
+				"isVariadicParameters": true
+			},
+			{
+				"c2id": 12,
+				"id": "loop-index",
+				"expressionName": "Loopindex",
+				"scriptName": "Loopindex",
+				"highlight": false,
+				"returnType": "number"
+			}
+		]
+	},
+	"z-deprecated":{
+		"conditions": [
+		],
+		"actions": [
+			{
+				"c2id": 2,
+				"id": "set-entey",
+				"scriptName": "SetCurHashEntey",
+				"isDeprecated": "true",
+				"highlight": false,
+				"params": [
+					{"id":"key_string0", "type":"string", "initialValue":"\"\""}
+				]
+			},
+			{
+				"c2id": 3,
+				"id": "set-value-in-current-entry",
+				"scriptName": "SetValueInCurHashEntry",
+				"isDeprecated": "true",
+				"highlight": false,
+				"params": [
+					{"id":"key_name0", "type":"string", "initialValue":"\"\""},
+					{"id":"value1", "type":"any", "initialValue":"0"}
+				]
+			}					
+		],
+		"expressions":[			
+			{
+				"c2id": 0,
+				"id": "hash",
+				"expressionName": "Hash",
+				"scriptName": "Hash",
+				"isDeprecated": "true",
+				"highlight": false,
+				"returnType": "any",
+				"isVariadicParameters": true
+			},
+			{
+				"c2id": 1,
+				"id": "entry",
+				"expressionName": "Entry",
+				"scriptName": "Entry",
+				"isDeprecated": "true",
+				"highlight": false,
+				"returnType": "any",
+				"isVariadicParameters": true
+			},
+			{
+				"c2id": 2,
+				"id": "hash-table-to-string",
+				"expressionName": "HashTableToString",
+				"scriptName": "HashTableToString",
+				"isDeprecated": "true",
+				"highlight": false,
+				"returnType": "any"
+			}					
+		]
+	}
+}
