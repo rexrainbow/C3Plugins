@@ -1,0 +1,118 @@
+{
+	"csv-to-array": {
+		"conditions": [
+		],
+		"actions": [
+			{
+				"c2id": 1,
+				"id": "csv-to-array-z0",
+				"scriptName": "CSV2Array",
+				"isDeprecated": "true",
+				"highlight": false,
+				"params": [
+					{"id":"data0", "type":"string", "initialValue":""},
+					{"id":"array1", "type":"object"},
+					{"id":"mapping4", "type":"combo", "items":["row to x, col to y","row to y, col to x"]}
+				]
+			},
+			{
+				"c2id": 2,
+				"id": "csv-to-array-z",
+				"scriptName": "CSV2Array",
+				"highlight": false,
+				"params": [
+					{"id":"data0", "type":"string", "initialValue":""},
+					{"id":"array1", "type":"object"},
+					{"id":"mapping4", "type":"combo", "items":["row to x, col to y","row to y, col to x"]},
+					{"id":"z5", "type":"number", "initialValue":"0"}
+				]
+			}
+		],
+		"expressions": [
+		]
+	},
+	"delimiter": {
+		"conditions": [
+		],
+		"actions": [
+			{
+				"c2id": 11,
+				"id": "set-delimiter",
+				"scriptName": "SetDelimiter",
+				"highlight": false,
+				"params": [
+					{"id":"delimiter0", "type":"string", "initialValue":"\",\""}
+				]
+			}
+		],
+		"expressions": [
+			{
+				"c2id": 11,
+				"id": "delimiter",
+				"expressionName": "Delimiter",
+				"scriptName": "Delimiter",
+				"highlight": false,
+				"returnType": "string"
+			}
+		]
+	},
+	"for-each-cell": {
+		"conditions": [
+			{
+				"c2id": 1,
+				"id": "for-each-cell",
+				"scriptName": "ForEachCell",
+				"isLooping": "true",
+				"isInvertible": "false",
+				"highlight": false,
+				"params": [
+					{"id":"data0", "type":"string", "initialValue":""}
+				]
+			}
+		],
+		"actions": [
+		],
+		"expressions": [
+			{
+				"c2id": 1,
+				"id": "current-x",
+				"expressionName": "CurX",
+				"scriptName": "CurX",
+				"highlight": false,
+				"returnType": "number"
+			},
+			{
+				"c2id": 2,
+				"id": "current-y",
+				"expressionName": "CurY",
+				"scriptName": "CurY",
+				"highlight": false,
+				"returnType": "number"
+			},
+			{
+				"c2id": 3,
+				"id": "current-value",
+				"expressionName": "CurValue",
+				"scriptName": "CurValue",
+				"highlight": false,
+				"returnType": "any"
+			},
+			{
+				"c2id": 4,
+				"id": "width",
+				"expressionName": "Width",
+				"scriptName": "Width",
+				"highlight": false,
+				"returnType": "number"
+			},
+			{
+				"c2id": 5,
+				"id": "height",
+				"expressionName": "Height",
+				"scriptName": "Height",
+				"highlight": false,
+				"returnType": "number"
+			}
+		]
+	}
+}
