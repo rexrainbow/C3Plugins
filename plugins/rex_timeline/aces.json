@@ -1,11 +1,11 @@
 {
-	"timeline_-_manual": {
+	"timeline-manual": {
 		"conditions": [
 		],
 		"actions": [
 			{
 				"c2id": 0,
-				"id": "pushtimeline0",
+				"id": "push-timeline",
 				"scriptName": "PushTimeLine",
 				"highlight": false,
 				"params": [
@@ -14,7 +14,7 @@
 			},
 			{
 				"c2id": 40,
-				"id": "pushtimelineto40",
+				"id": "push-timeline-to",
 				"scriptName": "PushTimeLineTo",
 				"highlight": false,
 				"params": [
@@ -66,13 +66,13 @@
 		"expressions": [
 		]
 	},
-	"timer:_control": {
+	"timer-control": {
 		"conditions": [
 		],
 		"actions": [
 			{
 				"c2id": 3,
-				"id": "starttimer3",
+				"id": "start-timer",
 				"scriptName": "StartTimer",
 				"highlight": false,
 				"params": [
@@ -83,7 +83,7 @@
 			},
 			{
 				"c2id": 5,
-				"id": "pausetimer5",
+				"id": "pause-timer",
 				"scriptName": "PauseTimer",
 				"highlight": false,
 				"params": [
@@ -92,7 +92,7 @@
 			},
 			{
 				"c2id": 6,
-				"id": "resumetimer6",
+				"id": "resume-timer",
 				"scriptName": "ResumeTimer",
 				"highlight": false,
 				"params": [
@@ -101,7 +101,7 @@
 			},
 			{
 				"c2id": 7,
-				"id": "stoptimer7",
+				"id": "stop-timer",
 				"scriptName": "StopTimer",
 				"highlight": false,
 				"params": [
@@ -112,13 +112,13 @@
 		"expressions": [
 		]
 	},
-	"timer:_triggered_timer": {
+	"timer-triggered-timer": {
 		"conditions": [
 		],
 		"actions": [
 			{
 				"c2id": 4,
-				"id": "starttrgtimer4",
+				"id": "start-trigger-timer",
 				"scriptName": "StartTrgTimer",
 				"highlight": false,
 				"params": [
@@ -127,13 +127,13 @@
 			},
 			{
 				"c2id": 32,
-				"id": "settrgtimerparameters32",
+				"id": "set-trigger-timer-parameters",
 				"scriptName": "SetTrgTimerParameters",
 				"highlight": false
 			},
 			{
 				"c2id": 33,
-				"id": "deletetrgtimer33",
+				"id": "delete-trigger-timer",
 				"scriptName": "DeleteTrgTimer",
 				"highlight": false
 			}
@@ -147,19 +147,19 @@
 		"actions": [
 			{
 				"c2id": 8,
-				"id": "cleantimeline8",
+				"id": "clean-timeline",
 				"scriptName": "CleanTimeLine",
 				"highlight": false
 			},
 			{
 				"c2id": 20,
-				"id": "pausetimeline20",
+				"id": "pause-timeline",
 				"scriptName": "PauseTimeLine",
 				"highlight": false
 			},
 			{
 				"c2id": 21,
-				"id": "resumetimeline21",
+				"id": "resume-timeline",
 				"scriptName": "ResumeTimeLine",
 				"highlight": false
 			}
@@ -167,7 +167,7 @@
 		"expressions": [
 			{
 				"c2id": 4,
-				"id": "timelinetime",
+				"id": "timeline-time",
 				"expressionName": "TimeLineTime",
 				"scriptName": "TimeLineTime",
 				"highlight": false,
@@ -179,7 +179,7 @@
 		"conditions": [
 			{
 				"c2id": 0,
-				"id": "isrunning0",
+				"id": "is-running",
 				"scriptName": "IsRunning",
 				"highlight": false,
 				"params": [
@@ -190,7 +190,7 @@
 		"actions": [
 			{
 				"c2id": 9,
-				"id": "deletetimer9",
+				"id": "delete-timer",
 				"scriptName": "DeleteTimer",
 				"highlight": false,
 				"params": [
@@ -199,7 +199,7 @@
 			},
 			{
 				"c2id": 30,
-				"id": "createtimer30",
+				"id": "create-timer",
 				"scriptName": "CreateTimer",
 				"highlight": false,
 				"params": [
@@ -209,7 +209,7 @@
 			},
 			{
 				"c2id": 31,
-				"id": "settimerparameters31",
+				"id": "set-timer-parameters",
 				"scriptName": "SetTimerParameters",
 				"highlight": false,
 				"params": [
@@ -220,7 +220,7 @@
 		"expressions": [
 			{
 				"c2id": 0,
-				"id": "timerremainder",
+				"id": "timer-remainder",
 				"expressionName": "TimerRemainder",
 				"scriptName": "TimerRemainder",
 				"highlight": false,
@@ -232,7 +232,7 @@
 			},
 			{
 				"c2id": 1,
-				"id": "timerelapsed",
+				"id": "timer-elapsed",
 				"expressionName": "TimerElapsed",
 				"scriptName": "TimerElapsed",
 				"highlight": false,
@@ -244,7 +244,7 @@
 			},
 			{
 				"c2id": 2,
-				"id": "timerremainderpercent",
+				"id": "timer-remainder-percent",
 				"expressionName": "TimerRemainderPercent",
 				"scriptName": "TimerRemainderPercent",
 				"highlight": false,
@@ -256,7 +256,7 @@
 			},
 			{
 				"c2id": 3,
-				"id": "timerelapsedpercent",
+				"id": "timer-elapsed-percent",
 				"expressionName": "TimerElapsedPercent",
 				"scriptName": "TimerElapsedPercent",
 				"highlight": false,
@@ -268,7 +268,7 @@
 			},
 			{
 				"c2id": 5,
-				"id": "triggeredtimername",
+				"id": "triggered-timer-name",
 				"expressionName": "TriggeredTimerName",
 				"scriptName": "TriggeredTimerName",
 				"highlight": false,
@@ -276,7 +276,7 @@
 			},
 			{
 				"c2id": 6,
-				"id": "timerdelaytime",
+				"id": "timer-delay-time",
 				"expressionName": "TimerDelayTime",
 				"scriptName": "TimerDelayTime",
 				"highlight": false,
@@ -294,7 +294,7 @@
 		"actions": [
 			{
 				"c2id": 101,
-				"id": "setupcallback101",
+				"id": "setup-callback",
 				"scriptName": "SetupCallback",
 				"highlight": false,
 				"params": [
