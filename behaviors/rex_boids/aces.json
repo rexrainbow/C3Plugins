@@ -1,0 +1,155 @@
+{
+	"add-force": {
+		"conditions": [
+		],
+		"actions": [
+			{
+				"c2id": 1,
+				"id": "clean-force",
+				"scriptName": "CleanForce",
+				"highlight": false
+			},			
+			{
+				"c2id": 2,
+				"id": "add-cohesion-force",
+				"scriptName": "AddCohesionForce",
+				"highlight": false,
+				"params": [
+					{"id":"neighbors0", "type":"object"},
+					{"id":"distance1", "type":"number", "initialValue":"300"},
+					{"id":"weight2", "type":"number", "initialValue":"0.7"}
+				]
+			},
+			{
+				"c2id": 3,
+				"id": "add-alignment-force",
+				"scriptName": "AddAlignmentForce",
+				"highlight": false,
+				"params": [
+					{"id":"neighbors0", "type":"object"},
+					{"id":"weight1", "type":"number", "initialValue":"0.2"}
+				]
+			},
+			{
+				"c2id": 4,
+				"id": "add-separation-force",
+				"scriptName": "AddSeparationForce",
+				"highlight": false,
+				"params": [
+					{"id":"neighbors0", "type":"object"},
+					{"id":"distance1", "type":"number", "initialValue":"100"},
+					{"id":"weight2", "type":"number", "initialValue":"1"}
+				]
+			},
+			{
+				"c2id": 21,
+				"id": "apply-force-toward",
+				"scriptName": "ApplyForceToward",
+				"highlight": false,
+				"params": [
+					{"id":"x0", "type":"number"},
+					{"id":"y1", "type":"number"},
+					{"id":"force2", "type":"number"}
+				]
+			},
+			{
+				"c2id": 22,
+				"id": "apply-force-at-angle",
+				"scriptName": "ApplyForceAtAngle",
+				"highlight": false,
+				"params": [
+					{"id":"angle0", "type":"number"},
+					{"id":"force1", "type":"number"}
+				]
+			}			
+		],
+		"expressions": [
+		]
+	},
+	"output": {
+		"conditions": [
+			{
+				"c2id": 1,
+				"id": "has-force",
+				"scriptName": "HasForce",
+				"highlight": false
+			}
+		],
+		"actions": [
+		],
+		"expressions": [
+			{
+				"c2id": 11,
+				"id": "force-angle",
+				"expressionName": "ForceAngle",
+				"scriptName": "ForceAngle",
+				"highlight": false,
+				"returnType": "number"
+			},
+			{
+				"c2id": 12,
+				"id": "force-magnitude",
+				"expressionName": "ForceMagnitude",
+				"scriptName": "ForceMagnitude",
+				"highlight": false,
+				"returnType": "number"
+			},
+			{
+				"c2id": 13,
+				"id": "force-dx",
+				"expressionName": "ForceDx",
+				"scriptName": "ForceDx",
+				"highlight": false,
+				"returnType": "number"
+			},
+			{
+				"c2id": 14,
+				"id": "force-dy",
+				"expressionName": "ForceDy",
+				"scriptName": "ForceDy",
+				"highlight": false,
+				"returnType": "number"
+			}
+		]
+	},
+	"output-cohesion": {
+		"conditions": [
+		],
+		"actions": [
+		],
+		"expressions": [
+			{
+				"c2id": 21,
+				"id": "last-cohesion-x",
+				"expressionName": "LastCohesionX",
+				"scriptName": "LastCohesionX",
+				"highlight": false,
+				"returnType": "number"
+			},
+			{
+				"c2id": 22,
+				"id": "last-cohesion-y",
+				"expressionName": "LastCohesionY",
+				"scriptName": "LastCohesionY",
+				"highlight": false,
+				"returnType": "number"
+			}
+		]
+	},
+	"output-alignment": {
+		"conditions": [
+		],
+		"actions": [
+		],
+		"expressions": [
+			{
+				"c2id": 23,
+				"id": "last-alignment-angle",
+				"expressionName": "LastAlignmentAngle",
+				"scriptName": "LastAlignmentAngle",
+				"highlight": false,
+				"returnType": "number"
+			}
+		]
+	}
+}

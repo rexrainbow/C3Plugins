@@ -1,0 +1,113 @@
+{
+	"languageTag": "en-US",
+	"fileDescription": "Strings for Boids.",
+	"text": {
+		"behaviors": {
+			"rex_boids": {
+				"name": "Boids",
+				"description": "Calculate steer force by flocking algorithm.",
+				"help-url": "https://rexrainbow.github.io/C2RexDoc/c2rexpluginsACE/behavior_rex_boids.html",
+				"properties": {
+				},
+				"aceCategories": {
+					"add-force": "Force - flocking",
+					"output": "Output",
+					"output-cohesion": "Output - cohesion",
+					"output-alignment": "Output - alignment"
+				},
+				"conditions": {
+					"has-force": {
+						"list-name": "Has force",
+						"display-text": "{my} has force",
+						"description": "Return true if force is not 0."
+						}
+				},
+				"actions": {
+					"clean-force": {
+						"list-name": "Clean",
+						"display-text": "{my} Clean output force to 0",
+						"description": "Clean output force to 0."
+					},
+					"add-cohesion-force": {
+						"list-name": "Cohesion",
+						"display-text": "{my} Add cohesion force by [b]{0}[/b], with cohesion distance to [b]{1}[/b] (x [b]{2}[/b])",
+						"description": "Add cohesion force which remaining close to the centre of neighbors.",
+						"params": {
+							"neighbors0": { "name":"Neighbors", "desc":"Object of neighbors"},
+							"distance1": { "name":"Distance", "desc":"Cohesion distance, in pixels, to normalize the cohesion force."},
+							"weight2": { "name":"weight", "desc":"Weight of cohesion force."}
+						}
+					},
+					"add-alignment-force": {
+						"list-name": "Alignment",
+						"display-text": "{my} Add alignment force by [b]{0}[/b] (x [b]{1}[/b])",
+						"description": "Add alignment force which aligning to the average direction of neighbors.",
+						"params": {
+							"neighbors0": { "name":"Neighbors", "desc":"Object of neighbors"},
+							"weight1": { "name":"weight", "desc":"Weight of alignment force."}
+						}
+					},
+					"add-separation-force": {
+						"list-name": "Separation",
+						"display-text": "{my} Add separation force by [b]{0}[/b], with separation distance to [b]{1}[/b] (x [b]{2}[/b])",
+						"description": "Add separation force which retaining separation from close neighbours.",
+						"params": {
+							"neighbors0": { "name":"Neighbors", "desc":"Object of neighbors"},
+							"distance1": { "name":"Distance", "desc":"Separation distance, in pixels, to normalize the separation force."},
+							"weight2": { "name":"weight", "desc":"Weight of separation force."}
+						}
+					},
+					"apply-force-toward": {
+						"list-name": "Apply force towards position",
+						"display-text": "{my} Apply force [b]{2}[/b] toward ([b]{0}[/b], [b]{1}[/b])",
+						"description": "Apply a force towards a position.",
+						"params": {
+							"x0": { "name":"X", "desc":"The X co-ordinate to apply the force towards."},
+							"y1": { "name":"Y", "desc":"The Y co-ordinate to apply the force towards."},
+							"force2": { "name":"Force", "desc":"The force to apply."}
+						}
+					},
+					"apply-force-at-angle": {
+						"list-name": "Apply force at angle",
+						"display-text": "{my} Apply force [b]{1}[/b] at angle [b]{0}[/b]",
+						"description": "Apply a force in a particular direction.",
+						"params": {
+							"angle0": { "name":"Angle", "desc":"The angle, in degrees, to apply the force towards."},
+							"force1": { "name":"Force", "desc":"The force to apply."}
+						}
+					}
+				},
+				"expressions": {
+					"force-angle": {
+						"description": "Get angle of total attracting force.",
+						"translated-name": "ForceAngle"
+						},
+					"force-magnitude": {
+						"description": "Get magnitude of total attracting force.",
+						"translated-name": "ForceMagnitude"
+						},
+					"force-dx": {
+						"description": "Get dx of total attracting force.",
+						"translated-name": "ForceDx"
+						},
+					"force-dy": {
+						"description": "Get dy of total attracting force.",
+						"translated-name": "ForceDy"
+						},
+					"last-cohesion-x": {
+						"description": "Get last position X of cohesion.",
+						"translated-name": "LastCohesionX"
+						},
+					"last-cohesion-y": {
+						"description": "Get last position Y of cohesion.",
+						"translated-name": "LastCohesionY"
+						},
+					"last-alignment-angle": {
+						"description": "Get last angle of alignment.",
+						"translated-name": "LastAlignmentAngle"
+						}
+				}
+			}
+		}
+	}
+}
