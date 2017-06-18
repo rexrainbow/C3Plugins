@@ -5,8 +5,8 @@
 	"id": "Rex_Zigzag",
 	"version": "1.0.0.0",
 	"author": "Rex.Rainbow",
-	"website": "https://rexrainbow.github.io/C2RexDoc/c2rexpluginsACE/rex_zigzag.html",
-	"documentation": "https://rexrainbow.github.io/C2RexDoc/c2rexpluginsACE/rex_zigzag.html",
+	"website": "https://rexrainbow.github.io/C3RexDoc/plugins.md/index.html",
+	"documentation": "https://rexrainbow.github.io/C3RexDoc/plugins.md/rex_zigzag.html",
 	"description": "Using LOGO-like script to move or rotate sprite.",
 	"editor-scripts": [
 						"behavior.js",
