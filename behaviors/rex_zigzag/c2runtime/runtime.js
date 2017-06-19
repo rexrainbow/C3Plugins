@@ -43,7 +43,7 @@ cr.behaviors.Rex_Zigzag = function(runtime)
 
 	var behinstProto = behaviorProto.Instance.prototype;
     
-    var _cmd_transfer = function(name, param)
+    var transferCmd = function(name, param)
     {
         switch (name)
         {
@@ -70,7 +70,7 @@ cr.behaviors.Rex_Zigzag = function(runtime)
         return ({"cmd":name,"param":param});
     };
     
-    var _speed_parsing = function(speedString)
+    var parseSpeed = function(speedString)
     {
         var newSpeedValue = (speedString != "")?
                             eval("("+speedString+")"): null;
@@ -78,7 +78,7 @@ cr.behaviors.Rex_Zigzag = function(runtime)
     };
     
     var parsingRresult = [null, null];
-    var _cmd_parsing1 = function(cmd)      // split cmd string and speed setting
+    var parseCmd1 = function(cmd)      // split cmd string and speed setting
     {   
         var startIndex = cmd.indexOf("[");
         var retCmd;        
@@ -99,7 +99,7 @@ cr.behaviors.Rex_Zigzag = function(runtime)
         return parsingRresult;
     };    
     
-    var _cmds_string_parsing = function(cmdString)
+    var parseCmdString = function(cmdString)
     {
         var ret_cmds = [];
         var cmds = cmdString.split(";");
@@ -109,7 +109,7 @@ cr.behaviors.Rex_Zigzag = function(runtime)
         var tmp;
         for (i=0; i<cmd_length; i++)
         {
-            tmp = _cmd_parsing1(cmds[i]);
+            tmp = parseCmd1(cmds[i]);
             cmd = tmp[0];
             cmd = cmd.replace(/(^\s*)|(\s*$)/g,"");
             cmd = cmd.replace(/(\s+)/g," ");
@@ -118,10 +118,10 @@ cr.behaviors.Rex_Zigzag = function(runtime)
             {
                 cmd_name = cmd_slices[0].toUpperCase();
                 cmd_param = parseFloat(cmd_slices[1]);
-                cmd_parsed = _cmd_transfer(cmd_name, cmd_param);               
+                cmd_parsed = transferCmd(cmd_name, cmd_param);               
                 if (cmd_parsed)
                 {
-                    cmd_parsed["speed"] = _speed_parsing(tmp[1]);
+                    cmd_parsed["speed"] = parseSpeed(tmp[1]);
                     ret_cmds.push(cmd_parsed);
                 }
                 else
@@ -279,13 +279,13 @@ cr.behaviors.Rex_Zigzag = function(runtime)
     
     behinstProto.AddCommand = function (cmd, param)
     {
-        this.CmdQueue.Push( _cmd_transfer( cmd, param ) );
+        this.CmdQueue.Push( transferCmd( cmd, param ) );
     };
     
     behinstProto.AddCommandString = function (cmdString)
     {
         if ( cmdString != "" )
-            this.CmdQueue.PushList(_cmds_string_parsing(cmdString));
+            this.CmdQueue.PushList(parseCmdString(cmdString));
     };
     
 	behinstProto.saveToJSON = function ()

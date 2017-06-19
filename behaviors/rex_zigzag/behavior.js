@@ -4,7 +4,7 @@
 {
 	const BEHAVIOR_ID = "Rex_Zigzag";
 	const BEHAVIOR_VERSION = "1.0.0.0";
-	const BEHAVIOR_CATEGORY = "other";
+	const BEHAVIOR_CATEGORY = "movements";
 	const BEHAVIOR_CLASS = SDK.Behaviors.Rex_Zigzag = class Rex_Zigzag extends SDK.IBehaviorBase
 	{
 		constructor()
