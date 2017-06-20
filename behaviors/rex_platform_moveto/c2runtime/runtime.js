@@ -45,7 +45,7 @@ cr.behaviors.Rex_Platform_MoveTo = function(runtime)
 
 	behinstProto.onCreate = function()
 	{
-	    this.platform_behavior_inst = null;
+	    this.platformBehaviorInst = null;
         this.activated = (this.properties[0] == 1);
         this.isMoving = false;
         this.target = {"m":0,       // 0: x mode , 1: distance mode
@@ -59,8 +59,8 @@ cr.behaviors.Rex_Platform_MoveTo = function(runtime)
 	
 	behinstProto.getPlatformBehaviorInst = function ()
     {
-        if (this.platform_behavior_inst != null)
-            return this.platform_behavior_inst;
+        if (this.platformBehaviorInst != null)
+            return this.platformBehaviorInst;
 
 	    if (!cr.behaviors.Platform)
 		{
@@ -72,8 +72,8 @@ cr.behaviors.Rex_Platform_MoveTo = function(runtime)
 		{
 			if (behavior_insts[i] instanceof cr.behaviors.Platform.prototype.Instance)
 			{
-			    this.platform_behavior_inst = behavior_insts[i];
-				return this.platform_behavior_inst;
+			    this.platformBehaviorInst = behavior_insts[i];
+				return this.platformBehaviorInst;
 	        }
 		}
 		
@@ -82,8 +82,8 @@ cr.behaviors.Rex_Platform_MoveTo = function(runtime)
     	
 	behinstProto.move = function (dir)   // 0: left , 1: right
     {
-        var platform_behavior_inst = this.getPlatformBehaviorInst();        
-        cr.behaviors.Platform.prototype.acts.SimulateControl.call(platform_behavior_inst, dir);        
+        var platformBehaviorInst = this.getPlatformBehaviorInst();        
+        cr.behaviors.Platform.prototype.acts.SimulateControl.call(platformBehaviorInst, dir);        
     };
     
     behinstProto.tick = function ()
@@ -148,11 +148,24 @@ cr.behaviors.Rex_Platform_MoveTo = function(runtime)
         this.target["ds"] = 0;           
 	};  
 	
+    function clone(obj) 
+	{
+        if (null == obj || "object" != typeof obj) 
+		    return obj;
+        var result = obj.constructor();
+        for (var attr in obj) 
+		{
+            if (obj.hasOwnProperty(attr)) 
+			    result[attr] = obj[attr];
+        }
+        return result;
+    };
+    	
 	behinstProto.saveToJSON = function ()
 	{
 		return { "en": this.activated,
 		         "im": this.isMoving,
-		         "t": this.target,
+		         "t": clone(this.target),
                };
 	};
 	
