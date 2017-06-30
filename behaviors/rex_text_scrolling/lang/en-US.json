@@ -1,0 +1,128 @@
+{
+	"languageTag": "en-US",
+	"fileDescription": "Strings for Scrolling.",
+	"text": {
+		"behaviors": {
+			"rex_text_scrolling": {
+				"name": "Scrolling",
+				"description": "Scroll text on text object.",
+				"help-url": "https://rexrainbow.github.io/C2RexDoc/c2rexpluginsACE/rex_text_scrolling.html",
+				"properties": {
+					"auto-redraw": {
+						"name": "Auto redraw",
+						"desc": "Enable to redraw after size changed.",
+						"items": {
+							"no":"No",
+							"yes":"Yes"
+							}
+						}
+				},
+				"aceCategories": {
+					"content": "Content",
+					"scroll-to-percent": "Scroll to percent",
+					"scroll-to-line": "Scroll to line",
+					"scroll-to-page": "Scroll to page"
+				},
+				"conditions": {
+					"is-last-page": {
+						"list-name": "Last page",
+						"display-text": "{my} at last page",
+						"description": "Return true if current page is last page."
+						}
+				},
+				"actions": {
+					"set-content": {
+						"list-name": "Set content",
+						"display-text": "{my} set content to [b]{0}[/b]",
+						"description": "Set content.",
+						"params": {
+							"text0": { "name":"Text", "desc":"Enter the text to set the object's content to."}
+						}
+					},
+					"scroll-to-percent": {
+						"list-name": "To percentage",
+						"display-text": "{my} scroll content to percentage to [b]{0}[/b]",
+						"description": "Scroll content to percentage. 0 is top, 1 is bottom.",
+						"params": {
+							"percentage0": { "name":"Percentage", "desc":"Scroll content, 0 is top, 1 is bottom."}
+						}
+					},
+					"append-content": {
+						"list-name": "Append content",
+						"display-text": "{my} append [b]{0}[/b]",
+						"description": "Add text to the end of the existing content.",
+						"params": {
+							"text0": { "name":"Text", "desc":"Enter the text to append to the object's content."}
+						}
+					},
+					"scroll-to-line-index": {
+						"list-name": "To line",
+						"display-text": "{my} scroll content to line [b]{0}[/b]",
+						"description": "Scroll content to line.",
+						"params": {
+							"line_index0": { "name":"Line index", "desc":"Scroll the first line to index (0-based)."}
+						}
+					},
+					"next-line": {
+						"list-name": "Next line",
+						"display-text": "{my} scroll content to next line",
+						"description": "Scroll content to next line."
+					},
+					"previous-line": {
+						"list-name": "Previous line",
+						"display-text": "{my} scroll content to previous line",
+						"description": "Scroll content to previous line."
+					},
+					"next-page": {
+						"list-name": "Next page",
+						"display-text": "{my} scroll content to next page",
+						"description": "Scroll content to next page."
+					},
+					"previous-page": {
+						"list-name": "Previous page",
+						"display-text": "{my} scroll content to previous page",
+						"description": "Scroll content to previous page."
+					},
+					"scroll-to-page-index": {
+						"list-name": "To page",
+						"display-text": "{my} scroll content to page [b]{0}[/b]",
+						"description": "Scroll content to page.",
+						"params": {
+							"page_index0": { "name":"Page index", "desc":"Scroll the first line to page index (0-based)."}
+						}
+					}
+				},
+				"expressions": {
+					"text": {
+						"description": "Get text.",
+						"translated-name": "Text"
+						},
+					"total-line-count": {
+						"description": "Get total lines count of content.",
+						"translated-name": "TotalCnt"
+						},
+					"visible-line-count": {
+						"description": "Get visible lines count of content.",
+						"translated-name": "VisibleCnt"
+						},
+					"first-line-index-of-current-page": {
+						"description": "Get current lines index.",
+						"translated-name": "CurrIndex"
+						},
+					"last-line-index-of-current-page": {
+						"description": "Get current last lines index.",
+						"translated-name": "CurrLastIndex"
+						},
+					"lines": {
+						"description": "Get text by line index.",
+						"translated-name": "Lines",
+						"params": {
+							"line_index0": { "name":"Line index", "desc":"Start line index (0-based)."},
+							"line_index1": { "name":"Line index", "desc":"End line index (0-based). Not included this line."}
+						}
+						}
+				}
+			}
+		}
+	}
+}

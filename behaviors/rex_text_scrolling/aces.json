@@ -1,0 +1,161 @@
+{
+	"content": {
+		"conditions": [
+		],
+		"actions": [
+			{
+				"c2id": 1,
+				"id": "set-content",
+				"scriptName": "SetContent",
+				"highlight": true,
+				"params": [
+					{"id":"text0", "type":"any", "initialValue":"\"\""}
+				]
+			},
+			{
+				"c2id": 3,
+				"id": "append-content",
+				"scriptName": "AppendContent",
+				"highlight": false,
+				"params": [
+					{"id":"text0", "type":"any", "initialValue":"\"\""}
+				]
+			}
+		],
+		"expressions": [
+			{
+				"c2id": 1,
+				"id": "total-line-count",
+				"expressionName": "TotalCnt",
+				"scriptName": "TotalCnt",
+				"highlight": false,
+				"returnType": "number"
+			},
+			{
+				"c2id": 2,
+				"id": "visible-line-count",
+				"expressionName": "VisibleCnt",
+				"scriptName": "VisibleCnt",
+				"highlight": false,
+				"returnType": "number"
+			},	
+			{
+				"c2id": 3,
+				"id": "first-line-index-of-current-page",
+				"expressionName": "CurrIndex",
+				"scriptName": "CurrIndex",
+				"highlight": false,
+				"returnType": "number"
+			},
+			{
+				"c2id": 4,
+				"id": "last-line-index-of-current-page",
+				"expressionName": "CurrLastIndex",
+				"scriptName": "CurrLastIndex",
+				"highlight": false,
+				"returnType": "number"
+			},
+			{
+				"c2id": 0,
+				"id": "text",
+				"expressionName": "Text",
+				"scriptName": "Text",
+				"highlight": false,
+				"returnType": "string"
+			},
+			{
+				"c2id": 5,
+				"id": "lines",
+				"expressionName": "Lines",
+				"scriptName": "Lines",
+				"highlight": false,
+				"returnType": "string",
+				"params": [
+					{"id":"line_index0", "type":"number", "initialValue":"0"},
+					{"id":"line_index1", "type":"number", "initialValue":"0"}
+				]
+			}			
+		]
+	},
+	"scroll-to-percent": {
+		"conditions": [
+		],
+		"actions": [
+			{
+				"c2id": 2,
+				"id": "scroll-to-percent",
+				"scriptName": "ScrollToPercent",
+				"highlight": true,
+				"params": [
+					{"id":"percentage0", "type":"number", "initialValue":"1"}
+				]
+			}
+		],
+		"expressions": [
+		]
+	},
+	"scroll-to-line": {
+		"conditions": [
+		],
+		"actions": [
+			{
+				"c2id": 4,
+				"id": "scroll-to-line-index",
+				"scriptName": "ScrollToLineIndex",
+				"highlight": false,
+				"params": [
+					{"id":"line_index0", "type":"number", "initialValue":"0"}
+				]
+			},
+			{
+				"c2id": 6,
+				"id": "next-line",
+				"scriptName": "NextLine",
+				"highlight": false
+			},
+			{
+				"c2id": 7,
+				"id": "previous-line",
+				"scriptName": "PreviousLine",
+				"highlight": false
+			}
+		],
+		"expressions": [
+		]
+	},
+	"scroll-to-page": {
+		"conditions": [
+		],
+		"actions": [
+			{
+				"c2id": 8,
+				"id": "next-page",
+				"scriptName": "NextPage",
+				"highlight": true
+			},
+			{
+				"c2id": 9,
+				"id": "previous-page",
+				"scriptName": "PreviousPage",
+				"highlight": false
+			},
+			{
+				"c2id": 10,
+				"id": "scroll-to-page-index",
+				"scriptName": "ScrollToPageIndex",
+				"highlight": false,
+				"params": [
+					{"id":"page_index0", "type":"number", "initialValue":"0"}
+				]
+			}
+		],
+		"expressions": [
+			{
+				"c2id": 1,
+				"id": "is-last-page",
+				"scriptName": "IsLastPage",
+				"highlight": true
+			}			
+		]
+	}
+}
