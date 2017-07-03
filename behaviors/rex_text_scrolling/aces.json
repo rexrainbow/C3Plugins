@@ -125,6 +125,12 @@
 	},
 	"scroll-to-page": {
 		"conditions": [
+			{
+				"c2id": 1,
+				"id": "is-last-page",
+				"scriptName": "IsLastPage",
+				"highlight": true
+			}				
 		],
 		"actions": [
 			{
@@ -149,13 +155,7 @@
 				]
 			}
 		],
-		"expressions": [
-			{
-				"c2id": 1,
-				"id": "is-last-page",
-				"scriptName": "IsLastPage",
-				"highlight": true
-			}			
+		"expressions": [		
 		]
 	}
 }
