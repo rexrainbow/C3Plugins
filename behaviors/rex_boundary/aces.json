@@ -1,0 +1,313 @@
+{
+	"enable": {
+		"conditions": [
+		],
+		"actions": [
+			{
+				"c2id": 3,
+				"id": "enable-horizontal",
+				"scriptName": "EnableHorizontal",
+				"highlight": false,
+				"params": [
+					{"id":"horizontal2", "type":"combo", "items":["no","yes"]}
+				]
+			},
+			{
+				"c2id": 4,
+				"id": "enable-vertical",
+				"scriptName": "EnableVertical",
+				"highlight": false,
+				"params": [
+					{"id":"vertical2", "type":"combo", "items":["no","yes"]}
+				]
+			}
+		],
+		"expressions": [
+			{
+				"c2id": 1,
+				"id": "horizontal-enable",
+				"expressionName": "HorizontalEnable",
+				"scriptName": "HorizontalEnable",
+				"highlight": false,
+				"returnType": "number"
+			},
+			{
+				"c2id": 2,
+				"id": "vertical-enable",
+				"expressionName": "VerticalEnable",
+				"scriptName": "VerticalEnable",
+				"highlight": false,
+				"returnType": "number"
+			}			
+		]
+	},
+	"set_boundary": {
+		"conditions": [
+		],
+		"actions": [
+			{
+				"c2id": 5,
+				"id": "sethorizontalboundary5",
+				"scriptName": "SetHorizontalBoundary",
+				"highlight": false,
+				"params": [
+					{"id":"left0", "type":"number"},
+					{"id":"right1", "type":"number"}
+				]
+			},
+			{
+				"c2id": 6,
+				"id": "setverticalboundary6",
+				"scriptName": "SetVerticalBoundary",
+				"highlight": false,
+				"params": [
+					{"id":"top0", "type":"number"},
+					{"id":"bottom1", "type":"number"}
+				]
+			}
+		],
+		"expressions": [
+		]
+	},
+	"set-boundary-to-object": {
+		"conditions": [
+		],
+		"actions": [
+			{
+				"c2id": 7,
+				"id": "set-horizontal-boundary-to-object",
+				"scriptName": "SetHorizontalBoundaryToObject",
+				"highlight": false,
+				"params": [
+					{"id":"pin_to0", "type":"object"},
+					{"id":"left1", "type":"any"},
+					{"id":"right2", "type":"any"}
+				]
+			},
+			{
+				"c2id": 8,
+				"id": "set-vertical-boundary-to-object",
+				"scriptName": "SetVerticalBoundaryToObject",
+				"highlight": false,
+				"params": [
+					{"id":"pin_to0", "type":"object"},
+					{"id":"top1", "type":"any"},
+					{"id":"bottom2", "type":"any"}
+				]
+			}
+		],
+		"expressions": [
+		]
+	},
+	"position": {
+		"conditions": [
+		],
+		"actions": [
+			{
+				"c2id": 11,
+				"id": "setxbypercentage11",
+				"scriptName": "SetXByPercentage",
+				"isDeprecated": "true",
+				"highlight": false,
+				"params": [
+					{"id":"percentage0", "type":"number"}
+				]
+			},
+			{
+				"c2id": 12,
+				"id": "set-position-y-by-percentage",
+				"scriptName": "SetYByPercentage",
+				"isDeprecated": "true",
+				"highlight": false,
+				"params": [
+					{"id":"percentage0", "type":"number"}
+				]
+			},
+			{
+				"c2id": 13,
+				"id": "set-position-by-percentage",
+				"scriptName": "SetYXByPercentage",
+				"isDeprecated": "true",
+				"highlight": false,
+				"params": [
+					{"id":"horizontal0", "type":"number"},
+					{"id":"vertical1", "type":"number"}
+				]
+			}
+		],
+		"expressions": [
+			{
+				"c2id": 11,
+				"id": "horizontal-percent-to-position-x",
+				"expressionName": "HorPercent2PosX",
+				"scriptName": "HorPercent2PosX",
+				"highlight": false,
+				"returnType": "number",
+				"params": [
+					{"id":"percentage0", "type":"number"}
+				]
+			},
+			{
+				"c2id": 12,
+				"id": "vertical-percent-to-position-x",
+				"expressionName": "VerPercent2PosY",
+				"scriptName": "VerPercent2PosY",
+				"highlight": false,
+				"returnType": "number",
+				"params": [
+					{"id":"percentage0", "type":"number"}
+				]
+			}
+		]
+	},
+	"reach": {
+		"conditions": [
+			{
+				"c2id": 2,
+				"id": "on-reached-any-boundary",
+				"scriptName": "OnHitAnyBoundary",
+				"isTrigger": "true",
+				"highlight": false
+			},
+			{
+				"c2id": 3,
+				"id": "on-reached-left-boundary",
+				"scriptName": "OnHitLeftBoundary",
+				"isTrigger": "true",
+				"highlight": false
+			},
+			{
+				"c2id": 4,
+				"id": "onhitrightboundary4",
+				"scriptName": "OnHitRightBoundary",
+				"isTrigger": "true",
+				"highlight": false
+			},
+			{
+				"c2id": 5,
+				"id": "onhittopboundary5",
+				"scriptName": "OnHitTopBoundary",
+				"isTrigger": "true",
+				"highlight": false
+			},
+			{
+				"c2id": 6,
+				"id": "onhitbottomboundary6",
+				"scriptName": "OnHitBottomBoundary",
+				"isTrigger": "true",
+				"highlight": false
+			},
+			{
+				"c2id": 12,
+				"id": "is-reached-any-boundary",
+				"scriptName": "IsHitBoundary",
+				"highlight": false,
+				"params": [
+					{"id":"boundary5", "type":"combo", "items":["any","left","right","top","bottom"]}
+				]
+			}
+		],
+		"actions": [
+		],
+		"expressions": [
+		]
+	},
+	"boundary": {
+		"conditions": [
+		],
+		"actions": [
+		],
+		"expressions": [
+			{
+				"c2id": 3,
+				"id": "leftbound",
+				"expressionName": "LeftBound",
+				"scriptName": "LeftBound",
+				"highlight": false,
+				"returnType": "number"
+			},
+			{
+				"c2id": 4,
+				"id": "rightbound",
+				"expressionName": "RightBound",
+				"scriptName": "RightBound",
+				"highlight": false,
+				"returnType": "number"
+			},
+			{
+				"c2id": 5,
+				"id": "topbound",
+				"expressionName": "TopBound",
+				"scriptName": "TopBound",
+				"highlight": false,
+				"returnType": "number"
+			},
+			{
+				"c2id": 6,
+				"id": "bottombound",
+				"expressionName": "BottomBound",
+				"scriptName": "BottomBound",
+				"highlight": false,
+				"returnType": "number"
+			}
+		]
+	},
+	"persentage": {
+		"conditions": [
+		],
+		"actions": [
+		],
+		"expressions": [
+			{
+				"c2id": 7,
+				"id": "horpercent",
+				"expressionName": "HorPercent",
+				"scriptName": "HorPercent",
+				"highlight": false,
+				"returnType": "number"
+			},
+			{
+				"c2id": 8,
+				"id": "verpercent",
+				"expressionName": "VerPercent",
+				"scriptName": "VerPercent",
+				"highlight": false,
+				"returnType": "number"
+			}
+		]
+	},
+	"scaled_value": {
+		"conditions": [
+		],
+		"actions": [
+		],
+		"expressions": [
+			{
+				"c2id": 9,
+				"id": "horscale",
+				"expressionName": "HorScale",
+				"scriptName": "HorScale",
+				"highlight": false,
+				"returnType": "any",
+				"isVariadicParameters": true,
+				"params": [
+					{"id":"left0", "type":"number", "initialValue":"0"},
+					{"id":"right1", "type":"number", "initialValue":"1"}
+				]
+			},
+			{
+				"c2id": 10,
+				"id": "verscale",
+				"expressionName": "VerScale",
+				"scriptName": "VerScale",
+				"highlight": false,
+				"returnType": "any",
+				"isVariadicParameters": true,
+				"params": [
+					{"id":"top0", "type":"number", "initialValue":"0"},
+					{"id":"bottom1", "type":"number", "initialValue":"1"}
+				]
+			}
+		]
+	}
+}
