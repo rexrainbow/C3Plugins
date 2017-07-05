@@ -35,13 +35,13 @@
 						"display-text": "Invoke function, put return object to {0}",
 						"description": "Invoke javascript function.",
 						"params": {
-							"name0": { "name":"Name", "desc":"Variable name in dot notation"}
+							"name0": { "name":"Return value", "desc":"Variable to save return value, in dot notation"}
 						}
 					},
 					"create-instance": {
-						"list-name": "Create instance",
-						"display-text": "Create instance to {0}",
-						"description": "Create instance.",
+						"list-name": "New instance",
+						"display-text": "New instance to {0}",
+						"description": "New instance.",
 						"params": {
 							"name0": { "name":"Name", "desc":"Variable name in dot notation"}
 						}
