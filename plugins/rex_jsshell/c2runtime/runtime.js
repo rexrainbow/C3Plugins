@@ -259,6 +259,11 @@ cr.plugins_.Rex_jsshell = function(runtime)
 
     Acts.prototype.LoadAPI = function (src, successTag, errorTag)
 	{
+        // load api in local file
+        if (!this.runtime.isAbsoluteUrl(src))
+        {
+            src = this.runtime.getProjectFileUrl(src);
+        }
 		this.LoadAPI(src, this.getCallback(successTag), this.getCallback(errorTag));   
 	};
 	//////////////////////////////////////
