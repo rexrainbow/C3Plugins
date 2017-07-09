@@ -41,13 +41,13 @@
 			}			
 		]
 	},
-	"set_boundary": {
+	"set-boundary": {
 		"conditions": [
 		],
 		"actions": [
 			{
 				"c2id": 5,
-				"id": "sethorizontalboundary5",
+				"id": "set-horizontal-boundary",
 				"scriptName": "SetHorizontalBoundary",
 				"highlight": false,
 				"params": [
@@ -57,7 +57,7 @@
 			},
 			{
 				"c2id": 6,
-				"id": "setverticalboundary6",
+				"id": "set-vertical-boundary",
 				"scriptName": "SetVerticalBoundary",
 				"highlight": false,
 				"params": [
@@ -105,7 +105,7 @@
 		"actions": [
 			{
 				"c2id": 11,
-				"id": "setxbypercentage11",
+				"id": "set-position-x-by-percentage",
 				"scriptName": "SetXByPercentage",
 				"isDeprecated": "true",
 				"highlight": false,
@@ -149,7 +149,7 @@
 			},
 			{
 				"c2id": 12,
-				"id": "vertical-percent-to-position-x",
+				"id": "vertical-percent-to-position-y",
 				"expressionName": "VerPercent2PosY",
 				"scriptName": "VerPercent2PosY",
 				"highlight": false,
@@ -178,21 +178,21 @@
 			},
 			{
 				"c2id": 4,
-				"id": "onhitrightboundary4",
+				"id": "on-reached-right-boundary",
 				"scriptName": "OnHitRightBoundary",
 				"isTrigger": "true",
 				"highlight": false
 			},
 			{
 				"c2id": 5,
-				"id": "onhittopboundary5",
+				"id": "on-reached-top-boundary",
 				"scriptName": "OnHitTopBoundary",
 				"isTrigger": "true",
 				"highlight": false
 			},
 			{
 				"c2id": 6,
-				"id": "onhitbottomboundary6",
+				"id": "on-reachedbottom-boundary",
 				"scriptName": "OnHitBottomBoundary",
 				"isTrigger": "true",
 				"highlight": false
@@ -220,7 +220,7 @@
 		"expressions": [
 			{
 				"c2id": 3,
-				"id": "leftbound",
+				"id": "left-bound",
 				"expressionName": "LeftBound",
 				"scriptName": "LeftBound",
 				"highlight": false,
@@ -228,7 +228,7 @@
 			},
 			{
 				"c2id": 4,
-				"id": "rightbound",
+				"id": "right-bound",
 				"expressionName": "RightBound",
 				"scriptName": "RightBound",
 				"highlight": false,
@@ -236,7 +236,7 @@
 			},
 			{
 				"c2id": 5,
-				"id": "topbound",
+				"id": "top-bound",
 				"expressionName": "TopBound",
 				"scriptName": "TopBound",
 				"highlight": false,
@@ -244,7 +244,7 @@
 			},
 			{
 				"c2id": 6,
-				"id": "bottombound",
+				"id": "bottom-bound",
 				"expressionName": "BottomBound",
 				"scriptName": "BottomBound",
 				"highlight": false,
@@ -252,7 +252,7 @@
 			}
 		]
 	},
-	"persentage": {
+	"percentage": {
 		"conditions": [
 		],
 		"actions": [
@@ -260,7 +260,7 @@
 		"expressions": [
 			{
 				"c2id": 7,
-				"id": "horpercent",
+				"id": "horizontal-percent",
 				"expressionName": "HorPercent",
 				"scriptName": "HorPercent",
 				"highlight": false,
@@ -268,7 +268,7 @@
 			},
 			{
 				"c2id": 8,
-				"id": "verpercent",
+				"id": "vertical-percent",
 				"expressionName": "VerPercent",
 				"scriptName": "VerPercent",
 				"highlight": false,
@@ -276,7 +276,7 @@
 			}
 		]
 	},
-	"scaled_value": {
+	"scaled-value": {
 		"conditions": [
 		],
 		"actions": [
@@ -284,7 +284,7 @@
 		"expressions": [
 			{
 				"c2id": 9,
-				"id": "horscale",
+				"id": "horizontal-scale",
 				"expressionName": "HorScale",
 				"scriptName": "HorScale",
 				"highlight": false,

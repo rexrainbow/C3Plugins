@@ -60,13 +60,13 @@
 				},
 				"aceCategories": {
 					"enable": "Enable boundary",
-					"set_boundary": "Set boundary",
+					"set-boundary": "Set boundary",
 					"set-boundary-to-object": "Set boundary to object",
 					"position": "Position",
-					"reach": "Hit",
+					"reach": "Reach",
 					"boundary": "Boundary",
-					"persentage": "Persentage",
-					"scaled_value": "Scaled value"
+					"percentage": "Percentage",
+					"scaled-value": "Scaled value"
 				},
 				"conditions": {
 					"on-reached-any-boundary": {
@@ -79,24 +79,24 @@
 						"display-text": "On {my} reach left boundary",
 						"description": "Triggered when object reach left boundary."
 						},
-					"onhitrightboundary4": {
+					"on-reached-right-boundary": {
 						"list-name": "On reach right boundary",
 						"display-text": "On {my} reach right boundary",
 						"description": "Triggered when object reach right boundary."
 						},
-					"onhittopboundary5": {
+					"on-reached-top-boundary": {
 						"list-name": "On reach top boundary",
 						"display-text": "On {my} reach top boundary",
 						"description": "Triggered when object reach top boundary."
 						},
-					"onhitbottomboundary6": {
+					"on-reachedbottom-boundary": {
 						"list-name": "On reach bottom boundary",
 						"display-text": "On {my} reach bottom boundary",
 						"description": "Triggered when object reach bottom boundary."
 						},
 					"is-reached-any-boundary": {
 						"list-name": "Is reach boundary",
-						"display-text": "Is {my} reach [i]{0}[/i] boundary",
+						"display-text": "Is {my} reach [b]{0}[/b] boundary",
 						"description": "Return true if object reach any boundary.",
 						"params": {
 							"boundary5": { "name":"Boundary", "desc":"Enable the horizontal boundary.", "items":{"any":"Any","left":"Left","right":"Right","top":"Top","bottom":"Bottom"}}
@@ -106,7 +106,7 @@
 				"actions": {
 					"enable-horizontal": {
 						"list-name": "Horizontal boundary enable",
-						"display-text": "Set {my} horizontal boundary enable to [i]{0}[/i]",
+						"display-text": "Set {my} horizontal boundary enable to [b]{0}[/b]",
 						"description": "Enable the object's horizontal boundary.",
 						"params": {
 							"horizontal2": { "name":"Horizontal", "desc":"Enable the horizontal boundary.", "items":{"no":"No","yes":"Yes"}}
@@ -114,24 +114,24 @@
 					},
 					"enable-vertical": {
 						"list-name": "Vertical boundary enable",
-						"display-text": "Set {my} vertical boundary enable to [i]{0}[/i]",
+						"display-text": "Set {my} vertical boundary enable to [b]{0}[/b]",
 						"description": "Enable the object's vertical boundary.",
 						"params": {
 							"vertical2": { "name":"Vertical", "desc":"Enable the vertical boundary.", "items":{"no":"No","yes":"Yes"}}
 						}
 					},
-					"sethorizontalboundary5": {
+					"set-horizontal-boundary": {
 						"list-name": "Set horizontal boundary",
-						"display-text": "Set {my} horizontal boundary to [[i]{0}[/i], [i]{1}[/i]]",
+						"display-text": "Set {my} horizontal boundary to [[b]{0}[/b], [b]{1}[/b]]",
 						"description": "Set the object's horizontal boundary.",
 						"params": {
 							"left0": { "name":"Left", "desc":"Left boundary."},
 							"right1": { "name":"Right", "desc":"Right boundary."}
 						}
 					},
-					"setverticalboundary6": {
+					"set-vertical-boundary": {
 						"list-name": "Set vertical boundary",
-						"display-text": "Set {my} vertical boundary to [[i]{0}[/i], [i]{1}[/i]]",
+						"display-text": "Set {my} vertical boundary to [[b]{0}[/b], [b]{1}[/b]]",
 						"description": "Set the object's vertical boundary.",
 						"params": {
 							"top0": { "name":"Top", "desc":"Top boundary."},
@@ -140,7 +140,7 @@
 					},
 					"set-horizontal-boundary-to-object": {
 						"list-name": "Set horizontal boundary to",
-						"display-text": "Set {my} horizontal boundary to [i]{0}[/i] at image point [[i]{1}[/i], [i]{2}[/i]]",
+						"display-text": "Set {my} horizontal boundary to [b]{0}[/b] at image point [[b]{1}[/b], [b]{2}[/b]]",
 						"description": "Set the object's horizontal boundary.",
 						"params": {
 							"pin_to0": { "name":"Pin to", "desc":"Choose the object to pin to."},
@@ -150,7 +150,7 @@
 					},
 					"set-vertical-boundary-to-object": {
 						"list-name": "Set vertical boundary to",
-						"display-text": "Set {my} vertical boundary to [i]{0}[/i] at image point [[i]{1}[/i], [i]{2}[/i]]",
+						"display-text": "Set {my} vertical boundary to [b]{0}[/b] at image point [[b]{1}[/b], [b]{2}[/b]]",
 						"description": "Set the object's vertical boundary.",
 						"params": {
 							"pin_to0": { "name":"Pin to", "desc":"Choose the object to pin to."},
@@ -158,9 +158,9 @@
 							"bottom2": { "name":"Bottom", "desc":"Name or number of image point for bottom boundary."}
 						}
 					},
-					"setxbypercentage11": {
+					"set-position-x-by-percentage": {
 						"list-name": "Set X",
-						"display-text": "Set X to [i]{0}[/i] of {my} horizontal boundaries",
+						"display-text": "Set X to [b]{0}[/b] of {my} horizontal boundaries",
 						"description": "Set the object's X position by horizontal boundaries.",
 						"params": {
 							"percentage0": { "name":"Percentage", "desc":"Percentage between 0 to 1."}
@@ -168,7 +168,7 @@
 					},
 					"set-position-y-by-percentage": {
 						"list-name": "Set Y",
-						"display-text": "Set Y to [i]{0}[/i] of {my} vertical boundaries",
+						"display-text": "Set Y to [b]{0}[/b] of {my} vertical boundaries",
 						"description": "Set the object's Y position by percentage of vertical boundaries.",
 						"params": {
 							"percentage0": { "name":"Percentage", "desc":"Percentage between 0 to 1."}
@@ -176,7 +176,7 @@
 					},
 					"set-position-by-percentage": {
 						"list-name": "Set psoition",
-						"display-text": "Set position to ([i]{0}[/i], [i]{1}[/i]) of {my} horizontal and vertical boundaries",
+						"display-text": "Set position to ([b]{0}[/b], [b]{1}[/b]) of {my} horizontal and vertical boundaries",
 						"description": "Set the object's position by horizontal and boundaries.",
 						"params": {
 							"horizontal0": { "name":"Horizontal", "desc":"Percentage of horizontal between 0 to 1."},
@@ -193,31 +193,31 @@
 						"description": "Vertical boundary enable setting.",
 						"translated-name": "VerticalEnable"
 						},
-					"leftbound": {
+					"left-bound": {
 						"description": "Left boundary setting.",
 						"translated-name": "LeftBound"
 						},
-					"rightbound": {
+					"right-bound": {
 						"description": "Right boundary setting.",
 						"translated-name": "RightBound"
 						},
-					"topbound": {
+					"top-bound": {
 						"description": "Top boundary setting.",
 						"translated-name": "TopBound"
 						},
-					"bottombound": {
+					"bottom-bound": {
 						"description": "Bottom boundary setting.",
 						"translated-name": "BottomBound"
 						},
-					"horpercent": {
-						"description": "Get horizontal position persentage. 0 is at left boundary, 1 is at right boundary",
+					"horizontal-percent": {
+						"description": "Get horizontal position percentage. 0 is at left boundary, 1 is at right boundary",
 						"translated-name": "HorPercent"
 						},
-					"verpercent": {
-						"description": "Get vertical position persentage. 0 is at top boundary, 1 is at bottom boundary",
+					"vertical-percent": {
+						"description": "Get vertical position percentage. 0 is at top boundary, 1 is at bottom boundary",
 						"translated-name": "VerPercent"
 						},
-					"horscale": {
+					"horizontal-scale": {
 						"description": "Get horizontal scaled value between left and right value",
 						"translated-name": "HorScale",
 						"params": {
@@ -240,7 +240,7 @@
 							"percentage0": { "name":"Percentage", "desc":"Percentage between 0 to 1."}
 						}
 						},
-					"vertical-percent-to-position-x": {
+					"vertical-percent-to-position-y": {
 						"description": "Get position X by percentage of vertical boundaries",
 						"translated-name": "VerPercent2PosY",
 						"params": {
