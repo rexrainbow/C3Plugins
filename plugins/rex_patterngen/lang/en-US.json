@@ -1,0 +1,173 @@
+{
+	"languageTag": "en-US",
+	"fileDescription": "Strings for Gashapon.",
+	"text": {
+		"plugins": {
+			"rex_patterngen": {
+				"name": "Gashapon",
+				"description": "Gashapon in shuffle or random mode.",
+				"help-url": "https://dl.dropboxusercontent.com/u/5779181/C2Repo/rex_patterngen.html",
+				"properties": {
+					"mode": {
+						"name": "Mode",
+						"desc": "Generater mode.",
+						"items": {
+							"shuffle":"Shuffle",
+							"random":"Random",
+							"shuffle wo restart":"Shuffle wo restart"
+							}
+						},
+					"patterns": {
+						"name": "Patterns",
+						"desc": "Set patterns. ex:\"{\"A\":10,\"B\":20}\"."
+						}
+				},
+				"aceCategories": {
+					"mode": "Mode",
+					"pattern": "Pattern",
+					"generator": "Generator",
+					"json": "JSON",
+					"setup": "Setup",
+					"for-each-pattern": "Pattern - for each"
+				},
+				"conditions": {
+					"for-each-pattern": {
+						"list-name": "For each pattern",
+						"display-text": "For each pattern, sort by [b]{0}[/b]",
+						"description": "Repeat the event for each pattern.",
+						"params": {
+							"order4": { "name":"Order", "desc":"Sort by name or count.", "items":{"pattern count in ascending order":"Pattern count in ascending order","pattern count in descending order":"Pattern count in descending order","pattern name in ascending order":"Pattern name in ascending order","pattern name in descending order":"Pattern name in descending order"}}
+						}
+						}
+				},
+				"actions": {
+					"set-mode": {
+						"list-name": "Set mode",
+						"display-text": "Set mode to [b]{0}[/b]",
+						"description": "Set mode of pattern generator.",
+						"params": {
+							"mode3": { "name":"Mode", "desc":"Mode of pattern generator.", "items":{"shuffle":"Shuffle","random":"Random","shuffle without restart":"Shuffle without restart"}}
+						}
+					},
+					"set-pattern": {
+						"list-name": "Set pattern",
+						"display-text": "Set pattern [b]{0}[/b] with count to [b]{1}[/b]",
+						"description": "Set pattern.",
+						"params": {
+							"pattern0": { "name":"Pattern", "desc":"Pattern in gererator."},
+							"count1": { "name":"Count", "desc":"Pattern count."}
+						}
+					},
+					"remove-pattern": {
+						"list-name": "Remove pattern",
+						"display-text": "Remove pattern [b]{0}[/b]",
+						"description": "Remove pattern.",
+						"params": {
+							"pattern0": { "name":"Pattern", "desc":"Pattern in gererator."}
+						}
+					},
+					"remove-all-patterns": {
+						"list-name": "Remove all patterns",
+						"display-text": "Remove all patterns",
+						"description": "Remove all patterns."
+					},
+					"start-generator": {
+						"list-name": "Start",
+						"display-text": "Start generator",
+						"description": "Start generator."
+					},
+					"generate": {
+						"list-name": "Generate",
+						"display-text": "Generate a new pattern",
+						"description": "Generate a new pattern."
+					},
+					"add-to-pattern": {
+						"list-name": "Add to pattern",
+						"display-text": "Add [b]{1}[/b] to pattern [b]{0}[/b]",
+						"description": "Add to pattern.",
+						"params": {
+							"pattern0": { "name":"Pattern", "desc":"Pattern in gererator."},
+							"count1": { "name":"Count", "desc":"Pattern count."}
+						}
+					},
+					"put-pattern-back": {
+						"list-name": "Put pattern back",
+						"display-text": "Put pattern [b]{0}[/b] with count to [b]{1}[/b] back",
+						"description": "Put pattern back without change total count of this pattern, do nothing if the pattern is not existed. It is only ussd in Shuffle mode.",
+						"params": {
+							"pattern0": { "name":"Pattern", "desc":"Pattern in gererator."},
+							"count1": { "name":"Count", "desc":"Pattern count."}
+						}
+					},
+					"json-load": {
+						"list-name": "Load",
+						"display-text": "Load from JSON string [b]{0}[/b]",
+						"description": "Load from an object previously encoded in JSON format.",
+						"params": {
+							"json0": { "name":"JSON", "desc":"A string of the JSON data to load."}
+						}
+					},
+					"set-random-generator": {
+						"list-name": "Set random generator",
+						"display-text": "Set random generator object to [b]{0}[/b]",
+						"description": "Set random generator object.",
+						"params": {
+							"random_generator0": { "name":"Random generator", "desc":"Random generator object"}
+						}
+					}
+				},
+				"expressions": {
+					"pattern": {
+						"description": "Get pattern from generator.",
+						"translated-name": "Pattern"
+						},
+					"total-count": {
+						"description": "Get total count of patterns.",
+						"translated-name": "TotalCount",
+						"params": {
+							"pattern0": { "name":"Pattern", "desc":"Pattern in gererator."}
+						}
+						},
+					"manual-pick": {
+						"description": "Manual pick pattern. Return pattern if success, else return \"\"",
+						"translated-name": "ManualPick",
+						"params": {
+							"pattern0": { "name":"Pattern", "desc":"Pattern in gererator."}
+						}
+						},
+					"last-pattern": {
+						"description": "Get last generated pattern.",
+						"translated-name": "LastPattern"
+						},
+					"remain-count": {
+						"description": "Get count of remain patterns.",
+						"translated-name": "RemainCount",
+						"params": {
+							"pattern0": { "name":"Pattern", "desc":"Pattern in gererator."}
+						}
+						},
+					"as-json": {
+						"description": "Return the contents of the patterngen in JSON format.",
+						"translated-name": "AsJSON"
+						},
+					"current-pattern-name": {
+						"description": "Get current pattern name under \"Condition: For each pattern\".",
+						"translated-name": "CurPatternName"
+						},
+					"current-pattern-total-count": {
+						"description": "Get total count of current pattern under \"Condition: For each pattern\".",
+						"translated-name": "CurPatternTotalCount"
+						},
+					"current-pattern-remain-count": {
+						"description": "Get remain count of current pattern under \"Condition: For each pattern\".",
+						"translated-name": "CurPatternRemainCount"
+						},
+					"loop-index": {
+						"description": "Get loop index under \"Condition: For each pattern\".",
+						"translated-name": "LoopIndex"
+						}
+				}
+			}
+		}
+	}
+}

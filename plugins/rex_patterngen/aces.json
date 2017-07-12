@@ -1,0 +1,234 @@
+{
+	"mode": {
+		"conditions": [
+		],
+		"actions": [
+			{
+				"c2id": 1,
+				"id": "set-mode",
+				"scriptName": "SetMode",
+				"highlight": false,
+				"params": [
+					{"id":"mode3", "type":"combo", "items":["shuffle","random","shuffle without restart"]}
+				]
+			}
+		],
+		"expressions": [
+		]
+	},
+	"pattern": {
+		"conditions": [
+		],
+		"actions": [
+			{
+				"c2id": 2,
+				"id": "set-pattern",
+				"scriptName": "SetPattern",
+				"highlight": false,
+				"params": [
+					{"id":"pattern0", "type":"string", "initialValue":"\"\""},
+					{"id":"count1", "type":"number", "initialValue":"1"}
+				]
+			},
+			{
+				"c2id": 3,
+				"id": "remove-pattern",
+				"scriptName": "RemovePattern",
+				"highlight": false,
+				"params": [
+					{"id":"pattern0", "type":"string", "initialValue":"\"\""}
+				]
+			},
+			{
+				"c2id": 4,
+				"id": "remove-all-patterns",
+				"scriptName": "RemoveAllPatterns",
+				"highlight": false
+			},			
+			{
+				"c2id": 7,
+				"id": "add-to-pattern",
+				"scriptName": "AddPattern",
+				"highlight": false,
+				"params": [
+					{"id":"pattern0", "type":"string", "initialValue":"\"\""},
+					{"id":"count1", "type":"number", "initialValue":"1"}
+				]
+			},
+			{
+				"c2id": 8,
+				"id": "put-pattern-back",
+				"scriptName": "PutPatternBack",
+				"highlight": false,
+				"params": [
+					{"id":"pattern0", "type":"string", "initialValue":"\"\""},
+					{"id":"count1", "type":"number", "initialValue":"1"}
+				]
+			}
+		],
+		"expressions": [
+			{
+				"c2id": 3,
+				"id": "total-count",
+				"expressionName": "TotalCount",
+				"scriptName": "TotalCount",
+				"highlight": false,
+				"returnType": "number",
+				"params": [
+					{"id":"pattern0", "type":"string", "initialValue":"\"\""}
+				]
+			},
+			{
+				"c2id": 6,
+				"id": "remain-count",
+				"expressionName": "RemainCount",
+				"scriptName": "RemainCount",
+				"highlight": false,
+				"returnType": "number",
+				"params": [
+					{"id":"pattern0", "type":"string", "initialValue":"\"\""}
+				]
+			}
+		]
+	},
+	"generator": {
+		"conditions": [
+		],
+		"actions": [
+			{
+				"c2id": 5,
+				"id": "start-generator",
+				"scriptName": "StartGenerator",
+				"highlight": false
+			},
+			{
+				"c2id": 6,
+				"id": "generate",
+				"scriptName": "Generate",
+				"highlight": false
+			}
+		],
+		"expressions": [
+			{
+				"c2id": 2,
+				"id": "pattern",
+				"expressionName": "Pattern",
+				"scriptName": "Pattern",
+				"highlight": false,
+				"returnType": "string"
+			},
+			{
+				"c2id": 4,
+				"id": "manual-pick",
+				"expressionName": "ManualPick",
+				"scriptName": "ManualPick",
+				"highlight": false,
+				"returnType": "number",
+				"params": [
+					{"id":"pattern0", "type":"string", "initialValue":"\"\""}
+				]
+			},
+			{
+				"c2id": 5,
+				"id": "last-pattern",
+				"expressionName": "LastPattern",
+				"scriptName": "LastPattern",
+				"highlight": false,
+				"returnType": "string"
+			}
+		]
+	},
+	"json": {
+		"conditions": [
+		],
+		"actions": [
+			{
+				"c2id": 11,
+				"id": "json-load",
+				"scriptName": "JSONLoad",
+				"highlight": false,
+				"params": [
+					{"id":"json0", "type":"string"}
+				]
+			}
+		],
+		"expressions": [
+			{
+				"c2id": 11,
+				"id": "as-json",
+				"expressionName": "AsJSON",
+				"scriptName": "AsJSON",
+				"highlight": false,
+				"returnType": "string"
+			}
+		]
+	},
+	"setup": {
+		"conditions": [
+		],
+		"actions": [
+			{
+				"c2id": 20,
+				"id": "set-random-generator",
+				"scriptName": "SetRandomGenerator",
+				"highlight": false,
+				"params": [
+					{"id":"random_generator0", "type":"object"}
+				]
+			}
+		],
+		"expressions": [
+		]
+	},
+	"for-each-pattern": {
+		"conditions": [
+			{
+				"c2id": 11,
+				"id": "for-each-pattern",
+				"scriptName": "ForEachPattern",
+				"isLooping": "true",
+				"isInvertible": "false",
+				"highlight": false,
+				"params": [
+					{"id":"order4", "type":"combo", "items":["pattern count in ascending order","pattern count in descending order","pattern name in ascending order","pattern name in descending order"]}
+				]
+			}
+		],
+		"actions": [
+		],
+		"expressions": [
+			{
+				"c2id": 21,
+				"id": "current-pattern-name",
+				"expressionName": "CurPatternName",
+				"scriptName": "CurPatternName",
+				"highlight": false,
+				"returnType": "string"
+			},
+			{
+				"c2id": 22,
+				"id": "current-pattern-total-count",
+				"expressionName": "CurPatternTotalCount",
+				"scriptName": "CurPatternTotalCount",
+				"highlight": false,
+				"returnType": "number"
+			},
+			{
+				"c2id": 23,
+				"id": "current-pattern-remain-count",
+				"expressionName": "CurPatternRemainCount",
+				"scriptName": "CurPatternRemainCount",
+				"highlight": false,
+				"returnType": "number"
+			},
+			{
+				"c2id": 24,
+				"id": "loop-index",
+				"expressionName": "LoopIndex",
+				"scriptName": "LoopIndex",
+				"highlight": false,
+				"returnType": "number"
+			}
+		]
+	}
+}
