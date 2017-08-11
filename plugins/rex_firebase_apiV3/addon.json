@@ -5,8 +5,8 @@
 	"id": "Rex_FirebaseAPIV3",
 	"version": "3.3.0.0",
 	"author": "Rex.Rainbow",
-	"website": "http://c2rexplugins.weebly.com/rex_firebaseapiv3.html",
-	"documentation": "http://c2rexplugins.weebly.com/rex_firebaseapiv3.html",
+	"website": "https://rexrainbow.github.io/C3RexDoc/plugins.md/index.html",
+	"documentation": "https://rexrainbow.github.io/C3RexDoc/plugins.md/rex_firebaseapiv3.html",
 	"description": "3.x API of real time database-as-a-service. https://firebase.google.com/",
 	"editor-scripts": [
 						"plugin.js",

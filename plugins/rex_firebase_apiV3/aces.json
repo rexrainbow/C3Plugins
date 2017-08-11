@@ -5,7 +5,7 @@
 		"actions": [
 			{
 				"c2id": 1,
-				"id": "initializeapp1",
+				"id": "initialize-app",
 				"scriptName": "initializeApp",
 				"highlight": false,
 				"params": [

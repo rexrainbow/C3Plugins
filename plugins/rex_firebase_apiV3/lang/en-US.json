@@ -39,7 +39,7 @@
 				"conditions": {
 				},
 				"actions": {
-					"initializeapp1": {
+					"initialize-app": {
 						"list-name": "Initialize",
 						"display-text": "Initialize with Api key: [i]{0}[/i], Auth domain: [i]{1}[/i], Database URL: [i]{2}[/i], Storage bucket: [i]{3}[/i]",
 						"description": "Initialize connection.",
