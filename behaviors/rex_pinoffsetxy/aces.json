@@ -1,0 +1,50 @@
+{
+	"pin": {
+		"conditions": [
+			{
+				"c2id": 0,
+				"id": "is-pinned",
+				"scriptName": "IsPinned",
+				"highlight": false
+			}			
+		],
+		"actions": [
+			{
+				"c2id": 0,
+				"id": "pin-to-object-w-offset",
+				"scriptName": "Pin",
+				"highlight": false,
+				"params": [
+					{"id":"pin_to0", "type":"object"},
+					{"id":"offset_x1", "type":"number", "initialValue":"0"},
+					{"id":"offset_y2", "type":"number", "initialValue":"0"}
+				]
+			},
+			{
+				"c2id": 1,
+				"id": "pin-to-object",
+				"scriptName": "Pin",
+				"highlight": false,
+				"params": [
+					{"id":"pin_to0", "type":"object"}
+				]
+			},
+			{
+				"c2id": 10,
+				"id": "unpin",
+				"scriptName": "Unpin",
+				"highlight": false
+			}			
+		],
+		"expressions": [
+			{
+				"c2id": 0,
+				"id": "pinned-uid",
+				"expressionName": "PinnedUID",
+				"scriptName": "PinnedUID",
+				"highlight": false,
+				"returnType": "number"
+			}			
+		]
+	}
+}

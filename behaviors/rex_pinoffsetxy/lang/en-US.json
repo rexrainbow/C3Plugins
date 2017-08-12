@@ -1,0 +1,56 @@
+{
+	"languageTag": "en-US",
+	"fileDescription": "Strings for Pin offsetXY.",
+	"text": {
+		"behaviors": {
+			"rex_pinoffsetxy": {
+				"name": "Pin offsetXY",
+				"description": "Stick to another object maintaining a relative offsetXY.",
+				"help-url": "https://rexrainbow.github.io/C2RexDoc/c2rexpluginsACE/behavior_rex_pinxyoffset.html",
+				"properties": {
+				},
+				"aceCategories": {
+					"pin": "Pin"
+				},
+				"conditions": {
+					"is-pinned": {
+						"list-name": "Is pinned",
+						"display-text": "{my} is pinned",
+						"description": "Object is currently pinned to another object."
+						}
+				},
+				"actions": {
+					"pin-to-object-w-offset": {
+						"list-name": "Pin to object with offset",
+						"display-text": "{my} Pin to {0} with offset ([b]{1}[/b], [b]{2}[/b])",
+						"description": "Pin the object to another object with offset.",
+						"params": {
+							"pin_to0": { "name":"Pin to", "desc":"Choose the object to pin to."},
+							"offset_x1": { "name":"Offset x", "desc":"Offset x in pixel"},
+							"offset_y2": { "name":"Offset y", "desc":"Offset y in pixel"}
+						}
+					},
+					"pin-to-object": {
+						"list-name": "Pin to object",
+						"display-text": "{my} Pin to {0}",
+						"description": "Pin the object to another object with current offset.",
+						"params": {
+							"pin_to0": { "name":"Pin to", "desc":"Choose the object to pin to."}
+						}
+					},
+					"unpin": {
+						"list-name": "Unpin",
+						"display-text": "{my} Unpin",
+						"description": "Unpin the object."
+					}
+				},
+				"expressions": {
+					"pinned-uid": {
+						"description": "Get the UID of the object pinned to, or -1 if not pinned.",
+						"translated-name": "PinnedUID"
+						}
+				}
+			}
+		}
+	}
+}
