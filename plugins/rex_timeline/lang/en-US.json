@@ -46,7 +46,7 @@
 							"time0": { "name":"Time", "desc":"Delta-time in seconds"}
 						}
 					},
-					"setup_deprecated1": {
+					"setup-deprecated1": {
 						"list-name": "Setup timer",
 						"display-text": "Set timer's callback to [b]{0}[/b]",
 						"description": "Setup timer.",
@@ -54,7 +54,7 @@
 							"function0": { "name":"Function", "desc":"Function object for timer's callback"}
 						}
 					},
-					"createtimer_deprecated2": {
+					"createtimer-deprecated": {
 						"list-name": "Create timer",
 						"display-text": "Create timer [b]{0}[/b] with callback [b]{1}[/b]",
 						"description": "Create timer.",
@@ -118,7 +118,7 @@
 							"name0": { "name":"Name", "desc":"Timer's name."}
 						}
 					},
-					"settimerparameter10": {
+					"set-timer-parameter": {
 						"list-name": "Set a parameter",
 						"display-text": "Set timer [b]{0}[/b] 's parameter[[b]{1}[/b]] to [b]{2}[/b]",
 						"description": "Set a parameter pass into callback.",
@@ -144,7 +144,8 @@
 						"description": "Create timer.",
 						"params": {
 							"timer0": { "name":"Timer", "desc":"Timer's name"},
-							"name1": { "name":"Name", "desc":"The name of the callback."}
+							"name1": { "name":"Name", "desc":"The name of the callback."},
+							"parameter_{n}2": { "name":"Parameter {n}", "desc":"A parameter to pass for the callback, which can be accessed with Function.Param({n})."}
 						}
 					},
 					"set-timer-parameters": {
@@ -152,13 +153,17 @@
 						"display-text": "Set timer [b]{0}[/b] 's parameters to ([b]{...}[/b])",
 						"description": "Set parameters passed into callback.",
 						"params": {
-							"name0": { "name":"Name", "desc":"Timer's name."}
+							"name0": { "name":"Name", "desc":"Timer's name."},
+							"parameter_{n}1": { "name":"Parameter {n}", "desc":"A parameter to pass for the callback, which can be accessed with Function.Param({n})."}
 						}
 					},
 					"set-trigger-timer-parameters": {
 						"list-name": "Set parameters",
 						"display-text": "Set triggered timer's parameters to ([b]{...}[/b])",
-						"description": "Set triggered timer's parameters passed into callback."
+						"description": "Set triggered timer's parameters passed into callback.",
+						"params": {
+							"parameter_{n}0": { "name":"Parameter {n}", "desc":"A parameter to pass for the callback, which can be accessed with Function.Param({n})."}
+						}
 					},
 					"delete-trigger-timer": {
 						"list-name": "Delete triggered timer",
@@ -173,7 +178,7 @@
 							"time0": { "name":"Time", "desc":"Time in seconds"}
 						}
 					},
-					"setup-callback": {
+					"setup-callbac": {
 						"list-name": "Setup callback",
 						"display-text": "Set callback to [b]{0}[/b]",
 						"description": "Setup callback.",

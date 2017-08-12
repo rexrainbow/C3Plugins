@@ -31,7 +31,7 @@
 		"actions": [
 			{
 				"c2id": 1,
-				"id": "setup_deprecated1",
+				"id": "setup-deprecated1",
 				"scriptName": "Setup_deprecated",
 				"isDeprecated": "true",
 				"highlight": false,
@@ -41,7 +41,7 @@
 			},
 			{
 				"c2id": 2,
-				"id": "createtimer_deprecated2",
+				"id": "createtimer-deprecated",
 				"scriptName": "CreateTimer_deprecated",
 				"isDeprecated": "true",
 				"highlight": false,
@@ -52,7 +52,7 @@
 			},
 			{
 				"c2id": 10,
-				"id": "settimerparameter10",
+				"id": "set-timer-parameter",
 				"scriptName": "SetTimerParameter",
 				"isDeprecated": "true",
 				"highlight": false,
@@ -74,7 +74,7 @@
 				"c2id": 3,
 				"id": "start-timer",
 				"scriptName": "StartTimer",
-				"highlight": false,
+				"highlight": true,
 				"params": [
 					{"id":"name0", "type":"string", "initialValue":"\"\""},
 					{"id":"time1", "type":"number", "initialValue":"0"},
@@ -129,7 +129,10 @@
 				"c2id": 32,
 				"id": "set-trigger-timer-parameters",
 				"scriptName": "SetTrgTimerParameters",
-				"highlight": false
+				"highlight": false,
+				"params": [
+					{"id":"parameter_{n}0", "type":"variadic"}
+				]
 			},
 			{
 				"c2id": 33,
@@ -201,10 +204,11 @@
 				"c2id": 30,
 				"id": "create-timer",
 				"scriptName": "CreateTimer",
-				"highlight": false,
+				"highlight": true,
 				"params": [
 					{"id":"timer0", "type":"string", "initialValue":"\"\""},
-					{"id":"name1", "type":"string", "initialValue":"\"\""}
+					{"id":"name1", "type":"string", "initialValue":"\"\""},
+					{"id":"parameter_{n}2", "type":"variadic"}
 				]
 			},
 			{
@@ -213,7 +217,8 @@
 				"scriptName": "SetTimerParameters",
 				"highlight": false,
 				"params": [
-					{"id":"name0", "type":"string", "initialValue":"\"\""}
+					{"id":"name0", "type":"string", "initialValue":"\"\""},
+					{"id":"parameter_{n}1", "type":"variadic"}
 				]
 			}
 		],
@@ -294,7 +299,7 @@
 		"actions": [
 			{
 				"c2id": 101,
-				"id": "setup-callback",
+				"id": "setup-callbac",
 				"scriptName": "SetupCallback",
 				"highlight": false,
 				"params": [

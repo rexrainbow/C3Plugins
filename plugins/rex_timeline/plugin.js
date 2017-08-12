@@ -1,4 +1,4 @@
-//Converted with C2C3AddonConverter v1.0.0.6
+//Converted with C2C3AddonConverter v1.0.0.9
 "use strict";
 
 {
