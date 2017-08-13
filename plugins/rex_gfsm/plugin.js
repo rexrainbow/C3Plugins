@@ -28,6 +28,10 @@
 				new SDK.PluginProperty("combo", "activated", {initialValue:"yes", items:["no","yes"]}),
 				new SDK.PluginProperty("text", "initial-state", "Off")
 			]);
+			this._info.AddFileDependency({
+				filename: "c2runtime/fsm.js",
+				type: "inline-script"
+				});				
 			SDK.Lang.PopContext();		// .properties
 			SDK.Lang.PopContext();
 		}
