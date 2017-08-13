@@ -28,6 +28,14 @@
 				new SDK.PluginProperty("text", "delimiter", ","),
 				new SDK.PluginProperty("combo", "eval-mode", {initialValue:"no", items:["no","yes"]})
 			]);
+			this._info.AddFileDependency({
+				filename: "c2runtime/csv.js",
+				type: "inline-script"
+				});
+			this._info.AddFileDependency({
+				filename: "c2runtime/csvToArray.js",
+				type: "inline-script"
+				});		
 			SDK.Lang.PopContext();		// .properties
 			SDK.Lang.PopContext();
 		}

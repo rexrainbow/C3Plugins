@@ -15,6 +15,8 @@
 					],
 	"file-list": [
 		"c2runtime/runtime.js",
+		"c2runtime/csv.js",		
+		"c2runtime/csvToArray.js",			
 		"lang/en-US.json",
 		"aces.json",
 		"addon.json",
