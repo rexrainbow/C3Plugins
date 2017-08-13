@@ -27,6 +27,10 @@
 			this._info.SetProperties([
 				new SDK.PluginProperty("combo", "game-time", {initialValue:"yes", items:["no","yes","real-time"]})
 			]);
+			this._info.AddFileDependency({
+				filename: "c2runtime/timeline.js",
+				type: "inline-script"
+				});			
 			SDK.Lang.PopContext();		// .properties
 			SDK.Lang.PopContext();
 		}
