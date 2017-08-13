@@ -15,6 +15,10 @@
 					],
 	"file-list": [
 		"c2runtime/runtime.js",
+		"c2runtime/board.js",
+		"c2runtime/boardLXYZCache.js",	
+		"c2runtime/createObject.js",
+		"c2runtime/pickUIDs.js",
 		"lang/en-US.json",
 		"aces.json",
 		"addon.json",

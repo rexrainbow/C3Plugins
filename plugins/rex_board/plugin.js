@@ -30,6 +30,22 @@
 				new SDK.PluginProperty("combo", "wrap", {initialValue:"no", items:["no","yes"]}),
 				new SDK.PluginProperty("combo", "infinity", {initialValue:"no", items:["no","yes"]})
 			]);
+			this._info.AddFileDependency({
+				filename: "c2runtime/board.js",
+				type: "inline-script"
+				});		
+			this._info.AddFileDependency({
+				filename: "c2runtime/boardLXYZCache.js",
+				type: "inline-script"
+				});				
+			this._info.AddFileDependency({
+				filename: "c2runtime/createObject.js",
+				type: "inline-script"
+				});		
+			this._info.AddFileDependency({
+				filename: "c2runtime/pickUIDs.js",
+				type: "inline-script"
+				});							
 			SDK.Lang.PopContext();		// .properties
 			SDK.Lang.PopContext();
 		}
