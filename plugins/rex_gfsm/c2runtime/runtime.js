@@ -41,37 +41,80 @@ cr.plugins_.Rex_FSM = function(runtime)
 
 	instanceProto.onCreate = function()
 	{
+        this.checkState = null; 
+        this.checkState2 = null;
+        this.hasCalled = false;
+		this.nextState = null;
+				
         this.activated = (this.properties[0] == 1);
 		var previousState = "Off";		
 		var currentState = this.properties[1];		
         currentState = (currentState!="")? currentState:"Off";
         
-        if (!this.recycled)
-            this.fsm = new window.rexObjs.FSMKlass(this, previousState, currentState);
-        else
-            this.fsm.Reset(this, previousState, currentState);
-           
-        this.checkState = null; 
-        this.checkState2 = null;
-        this.isEcho = false;
-        this.nextState = null;
+		if (!this.recycled)
+	    {       	           
+	    	this.fsm = new window.rexObjs.FSMKlass();
+	
+	    	var self = this;
+	    	this.fsm.OnGetNextState = function ()
+	    	{
+	    		self.nextState = null;
+	    		var hasCalled = self.runTrigger(cr.plugins_.Rex_FSM.prototype.cnds.OnLogic);
+	    		if (!hasCalled)
+	    			self.runTrigger(cr.plugins_.Rex_FSM.prototype.cnds.OnDefaultLogic);
+	    		
+	    		return self.nextState;
+	    	};
+	
+	    	this.fsm.OnTransfer = function(preState, curState)
+	    	{
+	    		self.checkState = preState;
+	    		self.checkState2 = curState;
+	    		var hasCalled = self.runTrigger(cr.plugins_.Rex_FSM.prototype.cnds.OnTransfer);
+	    		self.checkState = null;
+	    		self.checkState2 = null; 
+	    		return hasCalled;
+	    	};
+	
+	    	this.fsm.OnExit = function (preState)
+	    	{
+	    		self.checkState = preState;
+	    		var hasCalled = self.runTrigger(cr.plugins_.Rex_FSM.prototype.cnds.OnExit);
+	    		self.checkState = null;
+	    		// no exit handle event, try to trigger default exit event
+	    		if (hasCalled)
+	    			return;
+	
+	    		self.runTrigger(cr.plugins_.Rex_FSM.prototype.cnds.OnDefaultExit);
+	    	};
+	
+	    	this.fsm.OnEnter = function (curState)
+	    	{
+	    		self.checkState = curState;
+	    		var hasCalled = self.runTrigger(cr.plugins_.Rex_FSM.prototype.cnds.OnEnter);
+	    		self.checkState = null;
+	    		// no enter handle event, try to trigger default enter event
+	    		if (hasCalled)
+	    			return;
+	
+	    		self.runTrigger(cr.plugins_.Rex_FSM.prototype.cnds.OnDefaultEnter);
+	    	};
+	
+	    	this.fsm.OnStateChanged = function ()
+	    	{ 
+	    		self.runTrigger(cr.plugins_.Rex_FSM.prototype.cnds.OnStateChanged);				
+	    	};
+	    }
+	    
+	    this.fsm.Init(previousState, currentState);               
 	};  
 	
-    instanceProto.run_trigger = function(trigger)
+    instanceProto.runTrigger = function(trigger)
     {
-        this.isEcho = false;
+        this.hasCalled = false;
         this.runtime.trigger(trigger, this);
-        return (this.isEcho);        
+        return this.hasCalled;        
     };
-	
-    instanceProto.get_next_state = function()
-    {
-        this.nextState = null;
-		var isEcho = this.run_trigger(cr.plugins_.Rex_FSM.prototype.cnds.OnLogic);
-		if (!isEcho)
-		    this.run_trigger(cr.plugins_.Rex_FSM.prototype.cnds.OnDefaultLogic);
-        return this.nextState;
-    }; 
 
 	instanceProto.saveToJSON = function ()
 	{    
@@ -104,9 +147,9 @@ cr.plugins_.Rex_FSM = function(runtime)
 
 	Cnds.prototype.OnEnter = function (name)
 	{
-	    var is_my_handler = (this.checkState == name);
-        this.isEcho |= is_my_handler;
-		return is_my_handler;
+	    var isMyHanlder = cr.equals_nocase(this.checkState, name);
+        this.hasCalled |= isMyHanlder;
+		return isMyHanlder;
 	};
 
 	Cnds.prototype.OnDefaultEnter = function ()
@@ -116,9 +159,9 @@ cr.plugins_.Rex_FSM = function(runtime)
 	
 	Cnds.prototype.OnExit = function (name)
 	{
-	    var is_my_handler = (this.checkState == name);
-        this.isEcho |= is_my_handler;
-		return is_my_handler;
+	    var isMyHanlder = cr.equals_nocase(this.checkState, name);
+        this.hasCalled |= isMyHanlder;
+		return isMyHanlder;
 	};	
     
 	Cnds.prototype.OnDefaultExit = function ()
@@ -128,9 +171,10 @@ cr.plugins_.Rex_FSM = function(runtime)
 
 	Cnds.prototype.OnTransfer = function (name_from, name_to)
 	{
-	    var is_my_handler = (this.checkState == name_from) && (this.checkState2 == name_to);
-        this.isEcho |= is_my_handler;
-		return is_my_handler;
+		var isMyHanlder = cr.equals_nocase(this.checkState, nameFrom) && 
+		cr.equals_nocase(this.checkState2, nameTo);
+        this.hasCalled |= isMyHanlder;
+        return isMyHanlder && this.isMyCall;
 	};	
 	
 	Cnds.prototype.OnStateChanged = function ()
@@ -139,19 +183,19 @@ cr.plugins_.Rex_FSM = function(runtime)
 	};     
 	Cnds.prototype.OnLogic = function (name)
 	{
-        var is_my_handler = (this.fsm.CurState == name);
-        this.isEcho |= is_my_handler;
-		return is_my_handler;
+	    var isMyHanlder = cr.equals_nocase(this.fsm.CurState, name);
+        this.hasCalled |= isMyHanlder;
+		return isMyHanlder;
 	}; 
 	
 	Cnds.prototype.IsCurState = function (name)
 	{
-		return (this.fsm.CurState == name);
+		return cr.equals_nocase(this.fsm.CurState, name);
 	};
 	   
 	Cnds.prototype.IsPreState = function (name)
 	{
-		return (this.fsm.PreState == name);
+		return cr.equals_nocase(this.fsm.PreState, name);
 	};   
 
 	Cnds.prototype.OnDefaultLogic = function ()

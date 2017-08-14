@@ -10,10 +10,8 @@
     {
         this.OnGetNextState = null;
         this.OnTransfer = null;
-        this.OnExit = null;
-        this.OnDefaultExit = null;        
+        this.OnExit = null;      
         this.OnEnter = null;
-        this.OnDefaultEnter = null;
         this.OnStateChanged = null;  
     };
     var FSMKlassProto = window.rexObjs.FSMKlass.prototype;
@@ -46,47 +44,20 @@
             this.OnStateChanged();
                         
         // try to run transfer_action
-        var hasCalled = this.runTransferAction(preState, curState);
+        var hasCalled;
+        if (this.OnTransfer)
+            hasCalled = this.OnTransfer(preState, curState);             
         if (hasCalled)
             return;
          
         // no transfer_action found
-        this.runExitAction(preState);
-        this.runEnterAction(curState);
-    };
-    
-    FSMKlassProto.runTransferAction = function(preState, curState)
-    {
-        var hasCalled;
-        if (this.OnTransfer)
-            hasCalled = this.OnTransfer(preState, curState);        
-        return hasCalled;
-    };    
-
-    FSMKlassProto.runExitAction = function(preState)
-    {
-        var hasCalled;
         if (this.OnExit)
-            hasCalled = this.OnExit(preState);
-		if (hasCalled)
-            return;              
+            this.OnExit(preState);
 
-        if (this.OnDefaultExit)
-            this.OnDefaultExit(preState);
-    };
-    
-    FSMKlassProto.runEnterAction = function(curState)
-    {
-        var hasCalled;
-        if (this.OnExit)
-            hasCalled = this.OnEnter(curState);
-		if (hasCalled)
-            return;              
-
-        if (this.OnDefaultEnter)
-            this.OnDefaultEnter(curState);  
+        if (this.OnEnter)
+            this.OnEnter(curState);
     };  
-	
+
 	FSMKlassProto.saveToJSON = function ()
 	{    
 		return { "ps": this.PreState,
