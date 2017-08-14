@@ -50,9 +50,9 @@ cr.behaviors.Rex_FSM = function(runtime)
         currentState = (currentState!="")? currentState:"Off";
         
         if (!this.recycled)               	           
-            this.fsm = new cr.behaviors.Rex_FSM.FSMKlass(this, previousState, currentState);         
-        else
-            this.fsm.Reset(this, previousState, currentState);
+            this.fsm = new window.rexObjs.FSMKlass();
+		
+		this.fsm.Init(previousState, currentState);
         
         this.checkState = null; 
         this.checkState2 = null;
