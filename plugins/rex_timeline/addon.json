@@ -15,7 +15,7 @@
 					],
 	"file-list": [
 		"c2runtime/runtime.js",
-		"c2runtime/timeline.js",
+		"c2runtime/rex_timeline.js",
 		"lang/en-US.json",
 		"aces.json",
 		"addon.json",

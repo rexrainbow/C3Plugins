@@ -27,7 +27,7 @@
 			this._info.SetProperties([
 			]);
 			this._info.AddFileDependency({
-				filename: "c2runtime/createObject.js",
+				filename: "c2runtime/rex_createObject.js",
 				type: "inline-script"
 				});			
 			SDK.Lang.PopContext();		// .properties

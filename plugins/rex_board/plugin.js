@@ -31,19 +31,19 @@
 				new SDK.PluginProperty("combo", "infinity", {initialValue:"no", items:["no","yes"]})
 			]);
 			this._info.AddFileDependency({
-				filename: "c2runtime/board.js",
+				filename: "c2runtime/rex_board.js",
 				type: "inline-script"
 				});		
 			this._info.AddFileDependency({
-				filename: "c2runtime/boardLXYZCache.js",
+				filename: "c2runtime/rex_boardLXYZCache.js",
 				type: "inline-script"
 				});				
 			this._info.AddFileDependency({
-				filename: "c2runtime/createObject.js",
+				filename: "c2runtime/rex_createObject.js",
 				type: "inline-script"
 				});		
 			this._info.AddFileDependency({
-				filename: "c2runtime/pickUIDs.js",
+				filename: "c2runtime/rex_pickUIDs.js",
 				type: "inline-script"
 				});							
 			SDK.Lang.PopContext();		// .properties

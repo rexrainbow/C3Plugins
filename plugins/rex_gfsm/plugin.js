@@ -29,7 +29,7 @@
 				new SDK.PluginProperty("text", "initial-state", "Off")
 			]);
 			this._info.AddFileDependency({
-				filename: "c2runtime/fsm.js",
+				filename: "c2runtime/rex_fsm.js",
 				type: "inline-script"
 				});				
 			SDK.Lang.PopContext();		// .properties

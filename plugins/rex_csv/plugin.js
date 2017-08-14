@@ -29,11 +29,11 @@
 				new SDK.PluginProperty("combo", "eval-mode", {initialValue:"no", items:["no","yes"]})
 			]);
 			this._info.AddFileDependency({
-				filename: "c2runtime/csv.js",
+				filename: "c2runtime/rex_csv.js",
 				type: "inline-script"
 				});
 			this._info.AddFileDependency({
-				filename: "c2runtime/csvToArray.js",
+				filename: "c2runtime/rex_csvToArray.js",
 				type: "inline-script"
 				});		
 			SDK.Lang.PopContext();		// .properties
