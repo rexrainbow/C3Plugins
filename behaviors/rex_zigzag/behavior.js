@@ -36,6 +36,10 @@
 				new SDK.PluginProperty("combo", "precise-mode", {initialValue:"no", items:["no","yes"]}),
 				new SDK.PluginProperty("combo", "continued-mode", {initialValue:"no", items:["no","yes"]})
 			]);
+			this._info.AddFileDependency({
+				filename: "c2runtime/rex_zigzag.js",
+				type: "inline-script"
+				});					
 			SDK.Lang.PopContext();		// .properties
 			SDK.Lang.PopContext();
 		}

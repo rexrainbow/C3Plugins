@@ -1,11 +1,20 @@
 (function ()
 {
+    if (!window.rexObjs)
+        window.rexObjs = {};
+    
+    if (window.rexObjs.zigzag)
+        return;
+    else
+        window.rexObjs.zigzag = {};
+    
+    
     // command queue    
-    var CmdQueue = function(repeatCount)
+    window.rexObjs.zigzag.CmdQueue = function(repeatCount)
     {
         this.Init(repeatCount);
     };
-    var CmdQueueProto = CmdQueue.prototype;
+    var CmdQueueProto = window.rexObjs.zigzag.CmdQueue.prototype;
 
     CmdQueueProto.Init = function(repeatCount)
 	{
@@ -81,7 +90,7 @@
 	};	    
      
     // move
-    var CmdMoveKlass = function(inst, 
+    window.rexObjs.zigzag.CmdMoveKlass = function(inst, 
                                 maxSpeed, acc, dec, 
                                 preciseMode, continuedMode)
     {
@@ -89,7 +98,7 @@
                   maxSpeed, acc, dec, 
                   preciseMode, continuedMode);
     };
-    var CmdMoveKlassProto = CmdMoveKlass.prototype;
+    var CmdMoveKlassProto = window.rexObjs.zigzag.CmdMoveKlass.prototype;
     
     CmdMoveKlassProto.Init = function(inst, 
                                     maxSpeed, acc, dec, 
@@ -183,7 +192,7 @@
 	};      
     
     // rotate
-    var CmdRotateKlass = function(inst, 
+    window.rexObjs.zigzag.CmdRotateKlass = function(inst, 
                                   rotatable, 
                                   maxSpeed, acc, dec, 
                                   preciseMode, continuedMode)
@@ -193,7 +202,7 @@
                   maxSpeed, acc, dec, 
                   preciseMode, continuedMode);
     };
-    var CmdRotateKlassProto = CmdRotateKlass.prototype;
+    var CmdRotateKlassProto = window.rexObjs.zigzag.CmdRotateKlass.prototype;
     
     CmdRotateKlassProto.Init = function(inst, 
                                          rotatable, 
@@ -376,11 +385,11 @@
     };    
     
     // wait
-    var CmdWaitKlass = function(continuedMode)
+    window.rexObjs.zigzag.CmdWaitKlass = function(continuedMode)
     {
         this.Init(continuedMode);
     };
-    var CmdWaitKlassProto = CmdWaitKlass.prototype;
+    var CmdWaitKlassProto = window.rexObjs.zigzag.CmdWaitKlass.prototype;
     
     CmdWaitKlassProto.Init = function(continuedMode)
     {
