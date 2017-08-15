@@ -1,0 +1,92 @@
+{
+	"languageTag": "en-US",
+	"fileDescription": "Strings for Authentication.",
+	"text": {
+		"plugins": {
+			"rex_ngio_authentication": {
+				"name": "Authentication",
+				"description": "Authentication which is provided by Newgrounds.io.",
+				"help-url": "https://rexrainbow.github.io/C2RexDoc/c2rexpluginsACE/plugin_rex_ngio_authentication.html",
+				"properties": {
+					"app-id": {
+						"name": "App id",
+						"desc": "App id."
+						},
+					"aes-key": {
+						"name": "AES Key",
+						"desc": "Aes encryption key."
+						},
+					"debug": {
+						"name": "Debug",
+						"desc": "Enable debug mode.",
+						"items": {
+							"no":"No",
+							"yes":"Yes"
+							}
+						}
+				},
+				"aceCategories": {
+					"login": "Login",
+					"logging-out": "Logging out",
+					"user": "User"
+				},
+				"conditions": {
+					"on-login-success": {
+						"list-name": "On login",
+						"display-text": "On login success",
+						"description": "Triggered when login success."
+						},
+					"on-login-error": {
+						"list-name": "On login error",
+						"display-text": "On login error",
+						"description": "Triggered when login error."
+						},
+					"on-login-cancel": {
+						"list-name": "On login cancel",
+						"display-text": "On login cancel",
+						"description": "Triggered when login cancel."
+						},
+					"is-login": {
+						"list-name": "Is login",
+						"display-text": "Is login",
+						"description": "Return true if login."
+						},
+					"on-logged-out": {
+						"list-name": "On logged out",
+						"display-text": "On logged out",
+						"description": "Triggered when logged ou."
+						}
+				},
+				"actions": {
+					"login": {
+						"list-name": "Login",
+						"display-text": "Login",
+						"description": "Logint."
+					},
+					"logging-out": {
+						"list-name": "Logging out",
+						"display-text": "Logging out",
+						"description": "Logging out."
+					}
+				},
+				"expressions": {
+					"user-name": {
+						"description": "Get user name of current session.",
+						"translated-name": "UserName"
+						},
+					"user-id": {
+						"description": "Get user id of current session.",
+						"translated-name": "UserID"
+						},
+					"user-icon-url": {
+						"description": "Get user icon URL of current session. Add 1st parameter to 0=small, 1=medium, 2=large",
+						"translated-name": "UserIconURL",
+						"params": {
+							"size0": { "name":"Size", "desc":"0=small, 1=medium, 2=large, or S,M,L."}
+						}
+						}
+				}
+			}
+		}
+	}
+}

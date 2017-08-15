@@ -1,0 +1,100 @@
+{
+	"login": {
+		"conditions": [
+			{
+				"c2id": 1,
+				"id": "on-login-success",
+				"scriptName": "OnLoginSuccess",
+				"isTrigger": "true",
+				"highlight": false
+			},
+			{
+				"c2id": 2,
+				"id": "on-login-error",
+				"scriptName": "OnLoginError",
+				"isTrigger": "true",
+				"highlight": false
+			},
+			{
+				"c2id": 3,
+				"id": "on-login-cancel",
+				"scriptName": "OnLoginCancel",
+				"isTrigger": "true",
+				"highlight": false
+			},
+			{
+				"c2id": 4,
+				"id": "is-login",
+				"scriptName": "IsLogin",
+				"highlight": false
+			}
+		],
+		"actions": [
+			{
+				"c2id": 1,
+				"id": "login",
+				"scriptName": "Login",
+				"highlight": false
+			}
+		],
+		"expressions": [
+		]
+	},
+	"logging-out": {
+		"conditions": [
+			{
+				"c2id": 5,
+				"id": "on-logged-out",
+				"scriptName": "OnLoggedOut",
+				"isTrigger": "true",
+				"highlight": false
+			}
+		],
+		"actions": [
+			{
+				"c2id": 2,
+				"id": "logging-out",
+				"scriptName": "LoggingOut",
+				"highlight": false
+			}			
+		],
+		"expressions": [
+		]
+	},
+	"user": {
+		"conditions": [
+		],
+		"actions": [
+		],
+		"expressions": [
+			{
+				"c2id": 1,
+				"id": "user-name",
+				"expressionName": "UserName",
+				"scriptName": "UserName",
+				"highlight": false,
+				"returnType": "string"
+			},
+			{
+				"c2id": 2,
+				"id": "user-id",
+				"expressionName": "UserID",
+				"scriptName": "UserID",
+				"highlight": false,
+				"returnType": "number"
+			},
+			{
+				"c2id": 3,
+				"id": "user-icon-url",
+				"expressionName": "UserIconURL",
+				"scriptName": "UserIconURL",
+				"highlight": false,
+				"returnType": "any",
+				"isVariadicParameters": true,
+				"params": [
+					{"id":"size0", "type":"any", "initialValue":"0"}
+				]
+			}
+		]
+	}
+}
