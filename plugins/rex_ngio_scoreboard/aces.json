@@ -1,0 +1,405 @@
+{
+	"configuration": {
+		"conditions": [
+		],
+		"actions": [
+			{
+				"c2id": 1,
+				"id": "set-board-id",
+				"scriptName": "SetBoardID",
+				"highlight": false,
+				"params": [
+					{"id":"id0", "type":"number", "initialValue":"0"}
+				]
+			},
+			{
+				"c2id": 2,
+				"id": "set-tag",
+				"scriptName": "SetTag",
+				"highlight": false,
+				"params": [
+					{"id":"tag0", "type":"string", "initialValue":"\"\""}
+				]
+			}			
+		],
+		"expressions": [
+			{
+				"c2id": 1,
+				"id": "board-id",
+				"expressionName": "BoardID",
+				"scriptName": "BoardID",
+				"highlight": false,
+				"returnType": "number"
+			},			
+			{
+				"c2id": 3,
+				"id": "tag",
+				"expressionName": "Tag",
+				"scriptName": "Tag",
+				"highlight": false,
+				"returnType": "string"
+			}
+		]
+	},
+	"get-scores": {
+		"conditions": [
+			{
+				"c2id": 41,
+				"id": "on-get-scores-success",
+				"scriptName": "OnGetScoresSuccess",
+				"isTrigger": "true",
+				"highlight": false
+			},
+			{
+				"c2id": 42,
+				"id": "on-get-scores-error",
+				"scriptName": "OnGetScoresError",
+				"isTrigger": "true",
+				"highlight": false
+			},
+			{
+				"c2id": 43,
+				"id": "for-each-score",
+				"scriptName": "ForEachScore",
+				"isLooping": "true",
+				"isInvertible": "false",
+				"highlight": false
+			},
+			{
+				"c2id": 44,
+				"id": "for-each-score-in-range",
+				"scriptName": "ForEachScore",
+				"isLooping": "true",
+				"isInvertible": "false",
+				"highlight": false,
+				"params": [
+					{"id":"start0", "type":"number", "initialValue":"0"},
+					{"id":"end1", "type":"number", "initialValue":"2"}
+				]
+			}
+		],
+		"actions": [
+			{
+				"c2id": 41,
+				"id": "get-scores-in-range",
+				"scriptName": "RequestInRange",
+				"highlight": false,
+				"params": [
+					{"id":"start0", "type":"number", "initialValue":"0"},
+					{"id":"lines1", "type":"number", "initialValue":"10"}
+				]
+			},
+			{
+				"c2id": 42,
+				"id": "get-scores-in-page",
+				"scriptName": "RequestTurnToPage",
+				"highlight": false,
+				"params": [
+					{"id":"index0", "type":"number", "initialValue":"0"}
+				]
+			},
+			{
+				"c2id": 43,
+				"id": "get-scores-in-current-page",
+				"scriptName": "RequestUpdateCurrentPage",
+				"highlight": false
+			},
+			{
+				"c2id": 44,
+				"id": "get-scores-in-next-page",
+				"scriptName": "RequestTurnToNextPage",
+				"highlight": false
+			},			
+			{
+				"c2id": 52,
+				"id": "show-user",
+				"scriptName": "ShowUser",
+				"highlight": false,
+				"params": [
+					{"id":"id_or_name0", "type":"any", "initialValue":"\"\""}
+				]
+			},			
+			{
+				"c2id": 31,
+				"id": "set-period",
+				"scriptName": "SetPeriod",
+				"highlight": false,
+				"params": [
+					{"id":"period5", "type":"combo", "items":["current day","current week","current month","current year","all-time"]}
+				]
+			},
+			{
+				"c2id": 32,
+				"id": "set-period-by-string",
+				"scriptName": "SetPeriod",
+				"highlight": false,
+				"params": [
+					{"id":"period0", "type":"string", "initialValue":"\"D\""}
+				]
+			}						
+		],
+		"expressions": [
+			{
+				"c2id": 31,
+				"id": "scores-as-json",
+				"expressionName": "ScoresAsJSON",
+				"scriptName": "ScoresAsJSON",
+				"highlight": false,
+				"returnType": "string"
+			},
+			{
+				"c2id": 32,
+				"id": "current-formatted-value",
+				"expressionName": "CurFormattedValue",
+				"scriptName": "CurFormattedValue",
+				"highlight": false,
+				"returnType": "string"
+			},
+			{
+				"c2id": 33,
+				"id": "current-user-name",
+				"expressionName": "CurUserName",
+				"scriptName": "CurUserName",
+				"highlight": false,
+				"returnType": "string"
+			},
+			{
+				"c2id": 34,
+				"id": "current-user-id",
+				"expressionName": "CurUserID",
+				"scriptName": "CurUserID",
+				"highlight": false,
+				"returnType": "number"
+			},
+			{
+				"c2id": 35,
+				"id": "current-value",
+				"expressionName": "CurValue",
+				"scriptName": "CurValue",
+				"highlight": false,
+				"returnType": "number"
+			},
+			{
+				"c2id": 52,
+				"id": "current-scores-count",
+				"expressionName": "CurScoresCount",
+				"scriptName": "CurScoresCount",
+				"isDeprecated": "true",
+				"highlight": false,
+				"returnType": "any"
+			},			
+			{
+				"c2id": 53,
+				"id": "scores-count",
+				"expressionName": "ScoresCount",
+				"scriptName": "ScoresCount",
+				"highlight": false,
+				"returnType": "number"
+			},
+			{
+				"c2id": 4,
+				"id": "page-index",
+				"expressionName": "PageIndex",
+				"scriptName": "PageIndex",
+				"highlight": false,
+				"returnType": "number"
+			},
+			{
+				"c2id": 41,
+				"id": "index-to-formatted-value",
+				"expressionName": "Index2FormattedValue",
+				"scriptName": "Index2FormattedValue",
+				"highlight": false,
+				"returnType": "string"
+			},
+			{
+				"c2id": 42,
+				"id": "index-to-user-name",
+				"expressionName": "Index2UserName",
+				"scriptName": "Index2UserName",
+				"highlight": false,
+				"returnType": "string"
+			},
+			{
+				"c2id": 43,
+				"id": "index-to-user-id",
+				"expressionName": "Index2UserID",
+				"scriptName": "Index2UserID",
+				"highlight": false,
+				"returnType": "number"
+			},
+			{
+				"c2id": 44,
+				"id": "index-to-value",
+				"expressionName": "Index2Value",
+				"scriptName": "Index2Value",
+				"highlight": false,
+				"returnType": "number"
+			},
+			{
+				"c2id": 51,
+				"id": "current-start-index",
+				"expressionName": "CurStartIndex",
+				"scriptName": "CurStartIndex",
+				"highlight": false,
+				"returnType": "number"
+			},
+			{
+				"c2id": 2,
+				"id": "period",
+				"expressionName": "Period",
+				"scriptName": "Period",
+				"highlight": false,
+				"returnType": "string"
+			}			
+		]
+	},
+	"get-boards": {
+		"conditions": [
+			{
+				"c2id": 11,
+				"id": "on-get-board-ssuccess",
+				"scriptName": "OnGetBoardsSuccess",
+				"isTrigger": "true",
+				"highlight": false
+			},
+			{
+				"c2id": 12,
+				"id": "on-get-boards-error",
+				"scriptName": "OnGetBoardsError",
+				"isTrigger": "true",
+				"highlight": false
+			},
+			{
+				"c2id": 13,
+				"id": "for-each-board",
+				"scriptName": "ForEachBoard",
+				"isLooping": "true",
+				"isInvertible": "false",
+				"highlight": false
+			}
+		],
+		"actions": [
+			{
+				"c2id": 11,
+				"id": "get-boards",
+				"scriptName": "GetBoards",
+				"highlight": false
+			}			
+		],
+		"expressions": [
+			{
+				"c2id": 11,
+				"id": "boards-as-json",
+				"expressionName": "BoardsAsJSON",
+				"scriptName": "BoardsAsJSON",
+				"highlight": false,
+				"returnType": "string"
+			},			
+			{
+				"c2id": 12,
+				"id": "current-board-id",
+				"expressionName": "CurBoardID",
+				"scriptName": "CurBoardID",
+				"highlight": false,
+				"returnType": "number"
+			},
+			{
+				"c2id": 13,
+				"id": "current-board-name",
+				"expressionName": "CurBoardName",
+				"scriptName": "CurBoardName",
+				"highlight": false,
+				"returnType": "string"
+			},
+			{
+				"c2id": 29,
+				"id": "boards-count",
+				"expressionName": "BoardsCount",
+				"scriptName": "BoardsCount",
+				"highlight": false,
+				"returnType": "number"
+			},
+			{
+				"c2id": 21,
+				"id": "index-to-board-id",
+				"expressionName": "Index2BoardID",
+				"scriptName": "Index2BoardID",
+				"highlight": false,
+				"returnType": "number"
+			},
+			{
+				"c2id": 22,
+				"id": "index-to-board-name",
+				"expressionName": "Index2BoardName",
+				"scriptName": "Index2BoardName",
+				"highlight": false,
+				"returnType": "string"
+			}			
+		]
+	},
+	"post-score": {
+		"conditions": [
+			{
+				"c2id": 21,
+				"id": "on-post-score-success",
+				"scriptName": "OnPostScoreSuccess",
+				"isTrigger": "true",
+				"highlight": false
+			},
+			{
+				"c2id": 22,
+				"id": "on-post-score-error",
+				"scriptName": "OnPostScoreError",
+				"isTrigger": "true",
+				"highlight": false
+			}
+		],
+		"actions": [
+			{
+				"c2id": 21,
+				"id": "post-score",
+				"scriptName": "PostScore",
+				"highlight": false,
+				"params": [
+					{"id":"value0", "type":"number", "initialValue":"0"},
+					{"id":"tag1", "type":"string", "initialValue":"\"\""}
+				]
+			}			
+		],
+		"expressions": [
+		]
+	},
+	"error-message": {
+		"conditions": [
+		],
+		"actions": [
+		],
+		"expressions": [
+			{
+				"c2id": 0,
+				"id": "error-message",
+				"expressionName": "ErrorMessage",
+				"scriptName": "ErrorMessage",
+				"highlight": false,
+				"returnType": "string"
+			}
+		]
+	},
+	"for-each-index": {
+		"conditions": [
+		],
+		"actions": [
+		],
+		"expressions": [
+			{
+				"c2id": 10,
+				"id": "loop-index",
+				"expressionName": "LoopIndex",
+				"scriptName": "LoopIndex",
+				"highlight": false,
+				"returnType": "number"
+			}
+		]
+	}
+}

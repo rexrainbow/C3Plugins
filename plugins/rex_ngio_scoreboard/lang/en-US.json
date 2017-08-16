@@ -1,0 +1,278 @@
+{
+	"languageTag": "en-US",
+	"fileDescription": "Strings for Scoreboard.",
+	"text": {
+		"plugins": {
+			"rex_ngio_scoreboard": {
+				"name": "Scoreboard",
+				"description": "Handles loading and posting of high scores and scoreboards.",
+				"help-url": "https://rexrainbow.github.io/C2RexDoc/c2rexpluginsACE/plugin_rex_ngio_scoreboard.html",
+				"properties": {
+					"id": {
+						"name": "ID",
+						"desc": "The numeric ID of the scoreboard."
+						},
+					"lines": {
+						"name": "Lines",
+						"desc": "Line count of each page for loading scores."
+						},
+					"period": {
+						"name": "Period",
+						"desc": "The time-frame to pull scores from.",
+						"items": {
+							"current day":"Current day",
+							"current week":"Current week",
+							"current month":"Current month",
+							"current year":"Current year",
+							"all-time":"All-time"
+							}
+						},
+					"tag": {
+						"name": "Tag",
+						"desc": "A tag that can be used to filter scores. Set \"\" to ignore this feature."
+						}
+				},
+				"aceCategories": {
+					"configuration": "Configuration",
+					"get-scores": "Get scores",
+					"get-boards": "Get boards",
+					"post-score": "Post score",
+					"error-message": "Error message",
+					"for-each-index": "For each - index"
+				},
+				"conditions": {
+					"on-get-board-ssuccess": {
+						"list-name": "On get boards",
+						"display-text": "On get boards success",
+						"description": "Triggered when get boards success."
+						},
+					"on-get-boards-error": {
+						"list-name": "On get boards error",
+						"display-text": "On get boards error",
+						"description": "Triggered when get boards error."
+						},
+					"for-each-board": {
+						"list-name": "For each board",
+						"display-text": "For each board",
+						"description": "Repeat the event for each board."
+						},
+					"on-post-score-success": {
+						"list-name": "On post score",
+						"display-text": "On post score success",
+						"description": "Triggered when post score success."
+						},
+					"on-post-score-error": {
+						"list-name": "On post score error",
+						"display-text": "On post score error",
+						"description": "Triggered when post score error."
+						},
+					"on-get-scores-success": {
+						"list-name": "On get scores",
+						"display-text": "On get scores success",
+						"description": "Triggered when get scores success."
+						},
+					"on-get-scores-error": {
+						"list-name": "On get scores error",
+						"display-text": "On get scores error",
+						"description": "Triggered when get scores error."
+						},
+					"for-each-score": {
+						"list-name": "For each score",
+						"display-text": "For each score",
+						"description": "Repeat the event for each score."
+						},
+					"for-each-score-in-range": {
+						"list-name": "For each score in range",
+						"display-text": "For each score from index [b]{0}[/b] to [b]{1}[/b]",
+						"description": "Repeat the event for each score in a range.",
+						"params": {
+							"start0": { "name":"Start", "desc":"Start from rank index (0-based)."},
+							"end1": { "name":"End", "desc":"End to rank index (0-based). This value should larger than Start."}
+						}
+						}
+				},
+				"actions": {
+					"set-board-id": {
+						"list-name": "Set board ID",
+						"display-text": "Set board ID to [b]{0}[/b]",
+						"description": "Set board ID and clean all.",
+						"params": {
+							"id0": { "name":"ID", "desc":"The numeric ID of the scoreboard."}
+						}
+					},
+					"set-tag": {
+						"list-name": "Set tag",
+						"display-text": "Set tag to [b]{0}[/b]",
+						"description": "Set filter tag.",
+						"params": {
+							"tag0": { "name":"Tag", "desc":"A tag that can be used to filter scores. Set \"\" to ignore this feature."}
+						}
+					},
+					"get-boards": {
+						"list-name": "Get boards",
+						"display-text": "Get boards",
+						"description": "Returns a list of available scoreboards."
+					},
+					"post-score": {
+						"list-name": "Post score",
+						"display-text": "Post score [b]{0}[/b] ([b]{1}[/b])",
+						"description": "Posts a score to the specified scoreboard.",
+						"params": {
+							"value0": { "name":"Value", "desc":"The int value of the score."},
+							"tag1": { "name":"Tag", "desc":"A tag that can be used to filter scores. Set \"\" to ignore this feature."}
+						}
+					},
+					"set-period": {
+						"list-name": "Set period",
+						"display-text": "Set period to [b]{0}[/b]",
+						"description": "Set period.",
+						"params": {
+							"period5": { "name":"Period", "desc":"The time-frame to pull scores from.", "items":{"current day":"Current day","current week":"Current week","current month":"Current month","current year":"Current year","all-time":"All-time"}}
+						}
+					},
+					"set-period-by-string": {
+						"list-name": "Set period by code",
+						"display-text": "Set period to [b]{0}[/b]",
+						"description": "Set period.",
+						"params": {
+							"period0": { "name":"Period", "desc":"The time-frame to pull scores from. D=current day, W=current week , M=current month, Y=current year, A=all-time"}
+						}
+					},
+					"get-scores-in-range": {
+						"list-name": "Request in a range",
+						"display-text": "Get scores started from [b]{0}[/b] with [b]{1}[/b] lines",
+						"description": "Get scores in a range.",
+						"params": {
+							"start0": { "name":"Start", "desc":"Start index, 0-based."},
+							"lines1": { "name":"Lines", "desc":"Count of lines"}
+						}
+					},
+					"get-scores-in-page": {
+						"list-name": "Turn to page",
+						"display-text": "Get scores - turn to page [b]{0}[/b]",
+						"description": "Turn to scores page.",
+						"params": {
+							"index0": { "name":"Index", "desc":"Page index, 0-based."}
+						}
+					},
+					"get-scores-in-current-page": {
+						"list-name": "Update current page",
+						"display-text": "Get scores - update current page",
+						"description": "Update current scores page."
+					},
+					"get-scores-in-next-page": {
+						"list-name": "Turn to next page",
+						"display-text": "Get scores - turn to next page",
+						"description": "Update turn to next scores page."
+					},
+					"show-user": {
+						"list-name": "Set user",
+						"display-text": "Show scores of user [b]{0}[/b] and their friends",
+						"description": "Show scores of user and their friends.",
+						"params": {
+							"id_or_name0": { "name":"ID or name", "desc":"User ID (number) or user name (string)."}
+						}
+					}
+				},
+				"expressions": {
+					"error-message": {
+						"description": "Get last error message from last error-message.",
+						"translated-name": "ErrorMessage"
+						},
+					"board-id": {
+						"description": "Get board ID.",
+						"translated-name": "BoardID"
+						},
+					"period": {
+						"description": "Get period. D=current day, W=current week , M=current month, Y=current year, A=all-time",
+						"translated-name": "Period"
+						},
+					"tag": {
+						"description": "Get tag.",
+						"translated-name": "Tag"
+						},
+					"page-index": {
+						"description": "Get page index.",
+						"translated-name": "PageIndex"
+						},
+					"loop-index": {
+						"description": "Get loop index in for each loop.",
+						"translated-name": "LoopIndex"
+						},
+					"boards-as-json": {
+						"description": "Get received boards as JSON.",
+						"translated-name": "BoardsAsJSON"
+						},
+					"current-board-id": {
+						"description": "The numeric ID of the scoreboard in a For Each loop.",
+						"translated-name": "CurBoardID"
+						},
+					"current-board-name": {
+						"description": "The name of the scoreboard in a For Each loop.",
+						"translated-name": "CurBoardName"
+						},
+					"index-to-board-id": {
+						"description": "The numeric ID of the scoreboard by index.",
+						"translated-name": "Index2BoardID"
+						},
+					"index-to-board-name": {
+						"description": "The name of the scoreboard by index.",
+						"translated-name": "Index2BoardName"
+						},
+					"boards-count": {
+						"description": "Get amount of boards.",
+						"translated-name": "BoardsCount"
+						},
+					"scores-as-json": {
+						"description": "Get received scores as JSON.",
+						"translated-name": "ScoresAsJSON"
+						},
+					"current-formatted-value": {
+						"description": "Current formatted value of a score in for each loop.",
+						"translated-name": "CurFormattedValue"
+						},
+					"current-user-name": {
+						"description": "Current user name of a score in for each loop.",
+						"translated-name": "CurUserName"
+						},
+					"current-user-id": {
+						"description": "Current user ID of a score in for each loop.",
+						"translated-name": "CurUserID"
+						},
+					"current-value": {
+						"description": "Current integer value of the score in for each loop.",
+						"translated-name": "CurValue"
+						},
+					"index-to-formatted-value": {
+						"description": "Formatted value of a score by array index.",
+						"translated-name": "Index2FormattedValue"
+						},
+					"index-to-user-name": {
+						"description": "User name of a score by array index.",
+						"translated-name": "Index2UserName"
+						},
+					"index-to-user-id": {
+						"description": "User ID of a score by array index.",
+						"translated-name": "Index2UserID"
+						},
+					"index-to-value": {
+						"description": "User ID of a score by array index.",
+						"translated-name": "Index2Value"
+						},
+					"current-start-index": {
+						"description": "Get start index in current received scores.",
+						"translated-name": "StartIndex"
+						},
+					"current-scores-count": {
+						"description": "Get ranking count in current received scores.",
+						"translated-name": "CurScoresCount"
+						},
+					"scores-count": {
+						"description": "Get ranking count in current received scores.",
+						"translated-name": "ScoresCount"
+						}
+				}
+			}
+		}
+	}
+}
