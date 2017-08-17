@@ -1,0 +1,88 @@
+{
+	"languageTag": "en-US",
+	"fileDescription": "Strings for Gateway.",
+	"text": {
+		"plugins": {
+			"rex_ngio_gateway": {
+				"name": "Gateway",
+				"description": "Provides information about the gateway server.",
+				"help-url": "https://rexrainbow.github.io/C2RexDoc/c2rexpluginsACE/plugin_rex_ngio_gateway.html",
+				"properties": {
+				},
+				"aceCategories": {
+					"get-date-time": "Get date time",
+					"get-version": "Get version",
+					"ping": "Ping",
+					"error-message": "Error message"
+				},
+				"conditions": {
+					"on-get-date-time-success": {
+						"list-name": "On get date time",
+						"display-text": "On get date time success",
+						"description": "Triggered when get date time success."
+						},
+					"on-get-date-time-error": {
+						"list-name": "On get date time error",
+						"display-text": "On get date time error",
+						"description": "Triggered when get date time error."
+						},
+					"on-get-version-success": {
+						"list-name": "On get version",
+						"display-text": "On get version success",
+						"description": "Triggered when get version success."
+						},
+					"on-get-version-error": {
+						"list-name": "On get version error",
+						"display-text": "On get version error",
+						"description": "Triggered when get version error."
+						},
+					"on-ping-success": {
+						"list-name": "On ping",
+						"display-text": "On ping success",
+						"description": "Triggered when pong success."
+						},
+					"on-ping-error": {
+						"list-name": "On ping error",
+						"display-text": "On ping error",
+						"description": "Triggered when ping error."
+						}
+				},
+				"actions": {
+					"get-date-time": {
+						"list-name": "Get date time",
+						"display-text": "Get date time",
+						"description": "Loads the current date and time from the Newgrounds.io server."
+					},
+					"get-version": {
+						"list-name": "Get version",
+						"display-text": "Get version",
+						"description": "Returns the current version of the Newgrounds.io gateway."
+					},
+					"ping": {
+						"list-name": "Ping",
+						"display-text": "Ping",
+						"description": "Pings the Newgrounds.io server."
+					}
+				},
+				"expressions": {
+					"error-message": {
+						"description": "Get last error message from last result.",
+						"translated-name": "ErrorMessage"
+						},
+					"date-time": {
+						"description": "Get server's date and time in ISO 8601 format from last result.",
+						"translated-name": "Datetime"
+						},
+					"version": {
+						"description": "The version number (in X.Y.Z format) from last result.",
+						"translated-name": "Version"
+						},
+					"pong": {
+						"description": "Will always return a value of 'pong' from last result.",
+						"translated-name": "Pong"
+						}
+				}
+			}
+		}
+	}
+}

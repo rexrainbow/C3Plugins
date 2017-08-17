@@ -1,20 +1,19 @@
 {
 	"is-c3-addon": true,
 	"type": "plugin",
-	"name": "Authentication",
-	"id": "Rex_NGIO_Authentication",
+	"name": "Gateway",
+	"id": "Rex_NGIO_Gateway",
 	"version": "0.1.0.0",
 	"author": "Rex.Rainbow",
 	"website": "https://rexrainbow.github.io/C3RexDoc/plugins.md/index.html",
-	"documentation": "https://rexrainbow.github.io/C3RexDoc/plugins.md/rex_ngio_authentication.html",
-	"description": "Authentication which is provided by Newgrounds.io.",
+	"documentation": "https://rexrainbow.github.io/C3RexDoc/plugins.md/rex_ngio_gateway.html",
+	"description": "Provides information about the gateway server.",
 	"editor-scripts": [
 						"plugin.js",
 						"type.js",
 						"instance.js"
 					],
 	"file-list": [
-		"newgroundsio.min.js",
 		"c2runtime/runtime.js",
 		"lang/en-US.json",
 		"aces.json",

@@ -1,0 +1,126 @@
+{
+	"get-date-time": {
+		"conditions": [
+			{
+				"c2id": 1,
+				"id": "on-get-date-time-success",
+				"scriptName": "OnGetDateTimeSuccess",
+				"isTrigger": "true",
+				"highlight": false
+			},
+			{
+				"c2id": 2,
+				"id": "on-get-date-time-error",
+				"scriptName": "OnGetDateTimeError",
+				"isTrigger": "true",
+				"highlight": false
+			}
+		],
+		"actions": [
+			{
+				"c2id": 1,
+				"id": "get-date-time",
+				"scriptName": "GetDatetime",
+				"highlight": false
+			}
+		],
+		"expressions": [
+			{
+				"c2id": 1,
+				"id": "date-time",
+				"expressionName": "Datetime",
+				"scriptName": "Datetime",
+				"highlight": false,
+				"returnType": "string"
+			}
+		]
+	},
+	"get-version": {
+		"conditions": [
+			{
+				"c2id": 3,
+				"id": "on-get-version-success",
+				"scriptName": "OnGetVersionSuccess",
+				"isTrigger": "true",
+				"highlight": false
+			},
+			{
+				"c2id": 4,
+				"id": "on-get-version-error",
+				"scriptName": "OnGetVersionError",
+				"isTrigger": "true",
+				"highlight": false
+			}
+		],
+		"actions": [
+			{
+				"c2id": 2,
+				"id": "get-version",
+				"scriptName": "GetVersion",
+				"highlight": false
+			}	
+		],
+		"expressions": [
+			{
+				"c2id": 2,
+				"id": "version",
+				"expressionName": "Version",
+				"scriptName": "Version",
+				"highlight": false,
+				"returnType": "string"
+			}
+		]
+	},
+	"ping": {
+		"conditions": [
+			{
+				"c2id": 5,
+				"id": "on-ping-success",
+				"scriptName": "OnPingSuccess",
+				"isTrigger": "true",
+				"highlight": false
+			},
+			{
+				"c2id": 6,
+				"id": "on-ping-error",
+				"scriptName": "OnPingError",
+				"isTrigger": "true",
+				"highlight": false
+			}
+		],
+		"actions": [
+			{
+				"c2id": 3,
+				"id": "ping",
+				"scriptName": "Ping",
+				"highlight": false
+			}			
+		],
+		"expressions": [
+			{
+				"c2id": 3,
+				"id": "pong",
+				"expressionName": "Pong",
+				"scriptName": "Pong",
+				"highlight": false,
+				"returnType": "string"
+			}
+		]
+	},
+	"error-message": {
+		"conditions": [
+		],
+		"actions": [
+		],
+		"expressions": [
+			{
+				"c2id": 0,
+				"id": "error-message",
+				"expressionName": "ErrorMessage",
+				"scriptName": "ErrorMessage",
+				"highlight": false,
+				"returnType": "string"
+			}
+		]
+	}
+}
