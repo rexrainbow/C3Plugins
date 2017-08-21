@@ -1,0 +1,66 @@
+{
+	"languageTag": "en-US",
+	"fileDescription": "Strings for Prompt wrap.",
+	"text": {
+		"plugins": {
+			"rex_promptwrap": {
+				"name": "Prompt wrap",
+				"description": "Prompt wrap for web and cocoonJS",
+				"help-url": "https://rexrainbow.github.io/C2RexDoc/c2rexpluginsACE/plugin_rex_inputwrap.html",
+				"properties": {
+					"enable-wrap": {
+						"name": "Enable wrap",
+						"desc": "Set No to popup prompt box by browser api.",
+						"items": {
+							"no":"No",
+							"yes":"Yes"
+							}
+						}
+				},
+				"aceCategories": {
+					"prompt": "Keyboard input"
+				},
+				"conditions": {
+					"on-cancell": {
+						"list-name": "On input cancelled",
+						"display-text": "On input cancelled (tag [i]{0}[/i])",
+						"description": "Triggered after opening a text input dialog which is then cancelled.",
+						"params": {
+							"tag0": { "name":"Tag", "desc":"A tag, which can be anything you like, to distinguish between different requests."}
+						}
+						},
+					"on-ok": {
+						"list-name": "On input OK",
+						"display-text": "On input OK (tag [i]{0}[/i])",
+						"description": "Triggered after opening a text input dialog which is then OK'd.",
+						"params": {
+							"tag0": { "name":"Tag", "desc":"A tag, which can be anything you like, to distinguish between different requests."}
+						}
+						}
+				},
+				"actions": {
+					"prompt": {
+						"list-name": "Prompt text input",
+						"display-text": "Prompt text input: title [i]{0}[/i], message [i]{1}[/i], initial text [i]{2}[/i], type [i]{3}[/i], cancel text [i]{4}[/i], OK text [i]{5}[/i] (tag [i]{6}[/i])",
+						"description": "Open a dialog where the user can enter some text via the on-screen keyboard.",
+						"params": {
+							"title0": { "name":"Title", "desc":"The title to appear on the dialog."},
+							"message1": { "name":"Message", "desc":"A message to appear on the dialog."},
+							"initial_text2": { "name":"Initial text", "desc":"The initial entered text to show on the dialog."},
+							"type8": { "name":"Type", "desc":"The type of text input to use.", "items":{"text":"Text","number":"Number","phone":"Phone","email":"Email","url":"URL"}},
+							"cancel_text9": { "name":"Cancel text", "desc":"The 'Cancel' button text."},
+							"ok_text10": { "name":"OK text", "desc":"The 'OK' button text."},
+							"tag11": { "name":"Tag", "desc":"A tag, which can be anything you like, to distinguish between different requests."}
+						}
+					}
+				},
+				"expressions": {
+					"input-text": {
+						"description": "In 'On input OK', get the text entered.",
+						"translated-name": "InputText"
+						}
+				}
+			}
+		}
+	}
+}

@@ -1,0 +1,53 @@
+{
+	"prompt": {
+		"conditions": [
+			{
+				"c2id": 11,
+				"id": "on-cancell",
+				"scriptName": "OnKeyboardCancelled",
+				"isTrigger": "true",
+				"highlight": false,
+				"params": [
+					{"id":"tag0", "type":"string", "initialValue":"\"\""}
+				]
+			},
+			{
+				"c2id": 12,
+				"id": "on-ok",
+				"scriptName": "OnKeyboardOK",
+				"isTrigger": "true",
+				"highlight": false,
+				"params": [
+					{"id":"tag0", "type":"string", "initialValue":"\"\""}
+				]
+			}
+		],
+		"actions": [
+			{
+				"c2id": 8,
+				"id": "prompt",
+				"scriptName": "PromptKeyboard",
+				"highlight": false,
+				"params": [
+					{"id":"title0", "type":"string"},
+					{"id":"message1", "type":"string"},
+					{"id":"initial_text2", "type":"string"},
+					{"id":"type8", "type":"combo", "items":["text","number","phone","email","url"]},
+					{"id":"cancel_text9", "type":"string", "initialValue":"\"Cancel\""},
+					{"id":"ok_text10", "type":"string", "initialValue":"\"OK\""},
+					{"id":"tag11", "type":"string", "initialValue":"\"\""}
+				]
+			}
+		],
+		"expressions": [
+			{
+				"c2id": 0,
+				"id": "input-text",
+				"expressionName": "InputText",
+				"scriptName": "InputText",
+				"highlight": false,
+				"returnType": "string"
+			}
+		]
+	}
+}
