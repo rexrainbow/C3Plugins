@@ -1,0 +1,217 @@
+{
+	"languageTag": "en-US",
+	"fileDescription": "Strings for Medal.",
+	"text": {
+		"plugins": {
+			"rex_ngio_medal": {
+				"name": "Medal",
+				"description": "Handles loading and unlocking of medals.",
+				"help-url": "https://rexrainbow.github.io/C2RexDoc/c2rexpluginsACE/plugin_rex_ngio_medal.html",
+				"properties": {
+				},
+				"aceCategories": {
+					"get-list": "Get list",
+					"unlock": "Unlock",
+					"error-message": "Error message"
+				},
+				"conditions": {
+					"on-get-medals-list-success": {
+						"list-name": "On get medals list",
+						"display-text": "On get medals list success",
+						"description": "Triggered when get medals list success."
+						},
+					"on-get-medals-list-error": {
+						"list-name": "On get medals list error",
+						"display-text": "On get medals list error",
+						"description": "Triggered when get medals list error."
+						},
+					"for-each-medal": {
+						"list-name": "For each medal",
+						"display-text": "For each medal",
+						"description": "Repeat the event for each medal."
+						},
+					"current-medal-is-secret": {
+						"list-name": "Is secret",
+						"display-text": "Current medal is secret",
+						"description": "Return true if current medal is secret in a For Each loop."
+						},
+					"current-medal-is-unlocked": {
+						"list-name": "Is unlocked",
+						"display-text": "Current medal is unlocked",
+						"description": "Return true if current medal is unlocked in a For Each loop."
+						},
+					"compare-current-medal-difficulty": {
+						"list-name": "Compare difficulty",
+						"display-text": "Current medal difficulty [b]{0}[/b] [b]{1}[/b]",
+						"description": "Compare difficulty of current medal in a For Each loop.",
+						"params": {
+							"comparison0": { "name":"Comparison", "desc":"Choose the way to compare difficulty."},
+							"difficulty_types6": { "name":"Difficulty types", "desc":"Difficulty types.", "items":{"easy":"Easy","moderate":"Moderate","challenging":"Challenging","difficult":"Difficult","brutal":"Brutal"}}
+						}
+						},
+					"index-to-medal-is-secret": {
+						"list-name": "Is secret",
+						"display-text": "Medal [b]{0}[/b] is secret",
+						"description": "Return true if medal is secret by index.",
+						"params": {
+							"index0": { "name":"Index", "desc":"Local line index, 0-based."}
+						}
+						},
+					"index-to-medal-is-unlocked": {
+						"list-name": "Is unlocked",
+						"display-text": "Medal [b]{0}[/b] is unlocked",
+						"description": "Return true if current medal is unlocked by index.",
+						"params": {
+							"index0": { "name":"Index", "desc":"Local line index, 0-based."}
+						}
+						},
+					"compare-index-to-medal-difficulty": {
+						"list-name": "Compare difficulty",
+						"display-text": "Medal [b]{0}[/b] difficulty [b]{1}[/b] [b]{2}[/b]",
+						"description": "Compare difficulty of medal by index.",
+						"params": {
+							"index0": { "name":"Index", "desc":"Local line index, 0-based."},
+							"comparison1": { "name":"Comparison", "desc":"Choose the way to compare difficulty."},
+							"difficulty_types7": { "name":"Difficulty types", "desc":"Difficulty types.", "items":{"easy":"Easy","moderate":"Moderate","challenging":"Challenging","difficult":"Difficult","brutal":"Brutal"}}
+						}
+						},
+					"on-unlock-medal-success": {
+						"list-name": "On unlock medal",
+						"display-text": "On unlock medal success",
+						"description": "Triggered when unlock medal success."
+						},
+					"on-unlock-medal-error": {
+						"list-name": "On unlock medal error",
+						"display-text": "On unlock medal error",
+						"description": "Triggered when unlock medal error."
+						}
+				},
+				"actions": {
+					"get-list": {
+						"list-name": "Get list",
+						"display-text": "Get medals list",
+						"description": "Loads a list of medal objects."
+					},
+					"unlock": {
+						"list-name": "Unlock",
+						"display-text": "Unlock medal ID: [b]{0}[/b]",
+						"description": "Unlock medal.",
+						"params": {
+							"id0": { "name":"ID", "desc":"The numeric ID of the medal to unlock."}
+						}
+					}
+				},
+				"expressions": {
+					"error-message": {
+						"description": "Get last error message from last result.",
+						"translated-name": "ErrorMessage"
+						},
+					"medals-as-json": {
+						"description": "Get received medals as JSON.",
+						"translated-name": "MedalsAsJSON"
+						},
+					"current-medal-description": {
+						"description": "A short description of the medal in a For Each loop.",
+						"translated-name": "CurMedalDescription"
+						},
+					"current-medal-difficulty": {
+						"description": "The difficulty id of the medal in a For Each loop.",
+						"translated-name": "CurMedalDifficulty"
+						},
+					"current-medal-icon": {
+						"description": "The URL for the medal's icon in a For Each loop.",
+						"translated-name": "CurMedalIcon"
+						},
+					"current-medal-id": {
+						"description": "The numeric ID of the medal in a For Each loop.",
+						"translated-name": "CurMedalID"
+						},
+					"current-medal-name": {
+						"description": "The name of the medal in a For Each loop.",
+						"translated-name": "CurMedalName"
+						},
+					"current-medal-value": {
+						"description": "The medal's point value in a For Each loop.",
+						"translated-name": "CurMedalValue"
+						},
+					"current-medal-is-secret": {
+						"description": "Get 1 if current medal is secret in a For Each loop.",
+						"translated-name": "CurMedalIsSecret"
+						},
+					"current-medal-is-unlocked": {
+						"description": "Get 1 if current medal is unlocked in a For Each loop.",
+						"translated-name": "CurMedalIsUnlocked"
+						},
+					"loop-index": {
+						"description": "Get loop index in for each loop.",
+						"translated-name": "LoopIndex"
+						},
+					"index-to-medal-description": {
+						"description": "A short description of the medal by index.",
+						"translated-name": "Index2MedalDescription",
+						"params": {
+							"index0": { "name":"Index", "desc":"Medal line index, 0-based."}
+						}
+						},
+					"index-to-medal-difficulty": {
+						"description": "The difficulty id of the medal by index.",
+						"translated-name": "Index2MedalDifficulty",
+						"params": {
+							"index0": { "name":"Index", "desc":"Medal index, 0-based."}
+						}
+						},
+					"index-to-medal-icon": {
+						"description": "The URL for the medal's icon by index.",
+						"translated-name": "Index2MedalIcon",
+						"params": {
+							"index0": { "name":"Index", "desc":"Medal index, 0-based."}
+						}
+						},
+					"index-to-medal-id": {
+						"description": "The numeric ID of the medal by index.",
+						"translated-name": "Index2MedalID",
+						"params": {
+							"index0": { "name":"Index", "desc":"Medal index, 0-based."}
+						}
+						},
+					"index-to-medal-name": {
+						"description": "The name of the medal by index.",
+						"translated-name": "Index2MedalName",
+						"params": {
+							"index0": { "name":"Index", "desc":"Medal index, 0-based."}
+						}
+						},
+					"index-to-medal-value": {
+						"description": "The medal's point value by index.",
+						"translated-name": "Index2MedalValue",
+						"params": {
+							"index0": { "name":"Index", "desc":"Medal index, 0-based."}
+						}
+						},
+					"index-to-medal-is-secret": {
+						"description": "Get 1 if current medal is secret by index.",
+						"translated-name": "Index2MedalIsSecret",
+						"params": {
+							"index0": { "name":"Index", "desc":"Medal index, 0-based."}
+						}
+						},
+					"index-to-medal-is-unlocked": {
+						"description": "Get 1 if current medal is unlocked by index.",
+						"translated-name": "Index2MedalIsUnlocked",
+						"params": {
+							"index0": { "name":"Index", "desc":"Medal index, 0-based."}
+						}
+						},
+					"medals-count": {
+						"description": "Get amount of medals.",
+						"translated-name": "MedalsCount"
+						},
+					"last-unlocked-medal-id": {
+						"description": "Get last unlocked medal ID.",
+						"translated-name": "LastUnlockedMedalID"
+						}
+				}
+			}
+		}
+	}
+}

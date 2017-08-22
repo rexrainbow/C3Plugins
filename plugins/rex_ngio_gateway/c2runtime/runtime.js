@@ -66,7 +66,7 @@ cr.plugins_.Rex_NGIO_Gateway = function(runtime)
                 return this.ngio;
             }            
         }
-        assert2(this.ngio, "Gateway: Can not find NGIO Authentication oject.");
+        assert2(this.ngio, "NGIO.Gateway: Can not find NGIO Authentication oject.");
         return null; 
 	};    
       
