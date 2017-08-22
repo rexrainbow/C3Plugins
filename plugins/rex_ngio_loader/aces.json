@@ -1,0 +1,118 @@
+{
+	"newgrounds": {
+		"conditions": [
+		],
+		"actions": [
+			{
+				"c2id": 1,
+				"id": "load-newgrounds",
+				"scriptName": "LoadNewgrounds",
+				"highlight": false,
+				"params": [
+					{"id":"operation2", "type":"combo", "items":["get url of","open"]}
+				]
+			},
+			{
+				"c2id": 2,
+				"id": "load-more-games",
+				"scriptName": "LoadMoreGames",
+				"highlight": false,
+				"params": [
+					{"id":"operation2", "type":"combo", "items":["get url of","open"]}
+				]
+			}
+		],
+		"expressions": [
+		]
+	},
+	"official-urls": {
+		"conditions": [
+		],
+		"actions": [
+			{
+				"c2id": 11,
+				"id": "load-author-url",
+				"scriptName": "LoadAuthorUrl",
+				"highlight": false,
+				"params": [
+					{"id":"operation2", "type":"combo", "items":["get url of","open"]}
+				]
+			},
+			{
+				"c2id": 12,
+				"id": "load-official-url",
+				"scriptName": "LoadOfficialUrl",
+				"highlight": false,
+				"params": [
+					{"id":"operation2", "type":"combo", "items":["get url of","open"]}
+				]
+			}
+		],
+		"expressions": [
+		]
+	},
+	"referral": {
+		"conditions": [
+		],
+		"actions": [
+			{
+				"c2id": 21,
+				"id": "load-referral",
+				"scriptName": "LoadReferral",
+				"highlight": false,
+				"params": [
+					{"id":"operation2", "type":"combo", "items":["get url of","open"]},
+					{"id":"referral3", "type":"string", "initialValue":"\"\""}
+				]
+			}
+		],
+		"expressions": [
+		]
+	},
+	"get-url": {
+		"conditions": [
+			{
+				"c2id": 101,
+				"id": "on-get-url-success",
+				"scriptName": "OnGetURLSuccess",
+				"isTrigger": "true",
+				"highlight": false
+			},
+			{
+				"c2id": 102,
+				"id": "on-get-url-error",
+				"scriptName": "OnGetURLError",
+				"isTrigger": "true",
+				"highlight": false
+			}
+		],
+		"actions": [
+		],
+		"expressions": [
+			{
+				"c2id": 1,
+				"id": "last-url",
+				"expressionName": "LastURL",
+				"scriptName": "LastURL",
+				"highlight": false,
+				"returnType": "string"
+			}			
+		]
+	},
+	"error-message": {
+		"conditions": [
+		],
+		"actions": [
+		],
+		"expressions": [
+			{
+				"c2id": 0,
+				"id": "error-message",
+				"expressionName": "ErrorMessage",
+				"scriptName": "ErrorMessage",
+				"highlight": false,
+				"returnType": "string"
+			}
+		]
+	}
+}

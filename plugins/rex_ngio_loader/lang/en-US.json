@@ -1,0 +1,91 @@
+{
+	"languageTag": "en-US",
+	"fileDescription": "Strings for Loader.",
+	"text": {
+		"plugins": {
+			"rex_ngio_loader": {
+				"name": "Loader",
+				"description": "Handles loading various URLs and tracking referral stats.",
+				"help-url": "https://rexrainbow.github.io/C2RexDoc/c2rexpluginsACE/plugin_rex_ngio_medal.html",
+				"properties": {
+					"host": {
+						"name": "Host",
+						"desc": "The domain hosting your app."
+						}
+				},
+				"aceCategories": {
+					"newgrounds": "Newgrounds",
+					"official-urls": "Official URLs",
+					"referral": "Referral",
+					"get-url": "Get URL",
+					"error-message": "Result"
+				},
+				"conditions": {
+					"on-get-url-success": {
+						"list-name": "On get url",
+						"display-text": "On get url success",
+						"description": "Triggered when get url success."
+						},
+					"on-get-url-error": {
+						"list-name": "On get url error",
+						"display-text": "On get url error",
+						"description": "Triggered when get url error."
+						}
+				},
+				"actions": {
+					"load-newgrounds": {
+						"list-name": "Load Newground page",
+						"display-text": "[b]{0}[/b] newground page",
+						"description": "Loads Newgrounds, and logs the referral to your API stats.",
+						"params": {
+							"operation2": { "name":"Operation", "desc":"Operation.", "items":{"get url of":"Get url of","open":"Open"}}
+						}
+					},
+					"load-more-games": {
+						"list-name": "Load more game",
+						"display-text": "[b]{0}[/b] more game page",
+						"description": "Loads the Newgrounds game portal, and logs the referral to your API stats.",
+						"params": {
+							"operation2": { "name":"Operation", "desc":"Operation.", "items":{"get url of":"Get url of","open":"Open"}}
+						}
+					},
+					"load-author-url": {
+						"list-name": "Load author page",
+						"display-text": "[b]{0}[/b] author page",
+						"description": "Loads the official URL of the app\"s author (as defined in your \"Official URLs\" settings), and logs a referral to your API stats.",
+						"params": {
+							"operation2": { "name":"Operation", "desc":"Operation.", "items":{"get url of":"Get url of","open":"Open"}}
+						}
+					},
+					"load-official-url": {
+						"list-name": "Load official page",
+						"display-text": "[b]{0}[/b]> official page",
+						"description": "Loads the official URL where the latest version of your app can be found (as defined in your \"Official URLs\" settings), and logs a referral to your API stats.",
+						"params": {
+							"operation2": { "name":"Operation", "desc":"Operation.", "items":{"get url of":"Get url of","open":"Open"}}
+						}
+					},
+					"load-referral": {
+						"list-name": "Load referral",
+						"display-text": "[b]{0}[/b] referral [b]{1}[/b]",
+						"description": "Loads a custom referral URL (as defined in your \"Referrals & Events\" settings), and logs the referral to your API stats.",
+						"params": {
+							"operation2": { "name":"Operation", "desc":"Operation.", "items":{"get url of":"Get url of","open":"Open"}},
+							"referral3": { "name":"Referral", "desc":"The name of the referral (as defined in your 'Referrals & Events' settings)."}
+						}
+					}
+				},
+				"expressions": {
+					"error-message": {
+						"description": "Get last error message from last result.",
+						"translated-name": "ErrorMessage"
+						},
+					"last-url": {
+						"description": "Get url from last result.",
+						"translated-name": "LastURL"
+						}
+				}
+			}
+		}
+	}
+}
