@@ -1,0 +1,52 @@
+{
+	"languageTag": "en-US",
+	"fileDescription": "Strings for Event.",
+	"text": {
+		"plugins": {
+			"rex_ngio_event": {
+				"name": "Event",
+				"description": "Handles logging of custom events.",
+				"help-url": "https://rexrainbow.github.io/C2RexDoc/c2rexpluginsACE/plugin_rex_ngio_event.html",
+				"properties": {
+				},
+				"aceCategories": {
+					"log": "Log",
+					"error-message": "Error message"
+				},
+				"conditions": {
+					"on-log-event-success": {
+						"list-name": "On log event",
+						"display-text": "On log event success",
+						"description": "Triggered when log event success."
+						},
+					"on-log-event-error": {
+						"list-name": "On log event error",
+						"display-text": "On log event error",
+						"description": "Triggered when log event error."
+						}
+				},
+				"actions": {
+					"log-event": {
+						"list-name": "Log event",
+						"display-text": "Log event [b]{0}[/b] ( host: [b]{1}[/b] )",
+						"description": "Logs a custom event to your API stats.",
+						"params": {
+							"event_name0": { "name":"Event name", "desc":"The name of your custom event as defined in your Referrals & Events settings."},
+							"host1": { "name":"Host", "desc":"The domain hosting your app. Example: \"newgrounds.com\", \"localHost\""}
+						}
+					}
+				},
+				"expressions": {
+					"error-message": {
+						"description": "Get last error message from last result.",
+						"translated-name": "ErrorMessage"
+						},
+					"event-name": {
+						"description": "Get logged event name from last result.",
+						"translated-name": "EventName"
+						}
+				}
+			}
+		}
+	}
+}

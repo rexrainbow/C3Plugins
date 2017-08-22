@@ -1,0 +1,58 @@
+{
+	"log": {
+		"conditions": [
+			{
+				"c2id": 1,
+				"id": "on-log-event-success",
+				"scriptName": "OnLogEventSuccess",
+				"isTrigger": "true",
+				"highlight": false
+			},
+			{
+				"c2id": 2,
+				"id": "on-log-event-error",
+				"scriptName": "OnLogEventError",
+				"isTrigger": "true",
+				"highlight": false
+			}
+		],
+		"actions": [
+			{
+				"c2id": 1,
+				"id": "log-event",
+				"scriptName": "LogEvent",
+				"highlight": false,
+				"params": [
+					{"id":"event_name0", "type":"string", "initialValue":"\"\""},
+					{"id":"host1", "type":"string", "initialValue":"\"localHost\""}
+				]
+			}			
+		],
+		"expressions": [
+			{
+				"c2id": 1,
+				"id": "event-name",
+				"expressionName": "EventName",
+				"scriptName": "EventName",
+				"highlight": false,
+				"returnType": "string"
+			}
+		]
+	},
+	"error-message": {
+		"conditions": [
+		],
+		"actions": [
+		],
+		"expressions": [
+			{
+				"c2id": 0,
+				"id": "error-message",
+				"expressionName": "ErrorMessage",
+				"scriptName": "ErrorMessage",
+				"highlight": false,
+				"returnType": "string"
+			}
+		]
+	}
+}
