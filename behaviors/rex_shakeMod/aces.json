@@ -1,0 +1,135 @@
+{
+	"enable": {
+		"conditions": [
+		],
+		"actions": [
+			{
+				"c2id": 0,
+				"id": "set-activated",
+				"scriptName": "SetActivated",
+				"highlight": false,
+				"params": [
+					{"id":"activated2", "type":"combo", "items":["no","yes"]}
+				]
+			}
+		],
+		"expressions": [
+		]
+	},
+	"shake": {
+		"conditions": [
+			{
+				"c2id": 0,
+				"id": "on-shacking-end",
+				"scriptName": "OnShackingEnd",
+				"isTrigger": "true",
+				"highlight": false
+			},
+			{
+				"c2id": 3,
+				"id": "is-shaking",
+				"scriptName": "IsShaking",
+				"highlight": false
+			}
+		],
+		"actions": [
+			{
+				"c2id": 1,
+				"id": "start",
+				"scriptName": "Start",
+				"highlight": false
+			},
+			{
+				"c2id": 2,
+				"id": "stop",
+				"scriptName": "Stop",
+				"highlight": false
+			}
+		],
+		"expressions": [
+		]
+	},
+	"duration": {
+		"conditions": [
+		],
+		"actions": [
+			{
+				"c2id": 11,
+				"id": "set-duration",
+				"scriptName": "SetDuration",
+				"highlight": false,
+				"params": [
+					{"id":"duration0", "type":"number", "initialValue":"0.5"}
+				]
+			}
+		],
+		"expressions": [
+			{
+				"c2id": 11,
+				"id": "duration",
+				"expressionName": "Duration",
+				"scriptName": "Duration",
+				"highlight": false,
+				"returnType": "number"
+			},
+			{
+				"c2id": 12,
+				"id": "remainder",
+				"expressionName": "Remainder",
+				"scriptName": "Remainder",
+				"highlight": false,
+				"returnType": "number"
+			}
+		]
+	},
+	"magnitude": {
+		"conditions": [
+		],
+		"actions": [
+			{
+				"c2id": 12,
+				"id": "set-magnitude",
+				"scriptName": "SetMagnitude",
+				"highlight": false,
+				"params": [
+					{"id":"magnitude0", "type":"number", "initialValue":"10"}
+				]
+			},
+			{
+				"c2id": 13,
+				"id": "set-magnitude-mode",
+				"scriptName": "SetMagnitudeMode",
+				"highlight": false,
+				"params": [
+					{"id":"mode2", "type":"combo", "items":["decay","constant"]}
+				]
+			}
+		],
+		"expressions": [
+		]
+	},
+	"origin": {
+		"conditions": [
+		],
+		"actions": [
+		],
+		"expressions": [
+			{
+				"c2id": 1,
+				"id": "ox",
+				"expressionName": "OX",
+				"scriptName": "OX",
+				"highlight": false,
+				"returnType": "number"
+			},
+			{
+				"c2id": 2,
+				"id": "oy",
+				"expressionName": "OY",
+				"scriptName": "OY",
+				"highlight": false,
+				"returnType": "number"
+			}
+		]
+	}
+}
