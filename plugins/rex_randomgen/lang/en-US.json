@@ -1,0 +1,41 @@
+{
+	"languageTag": "en-US",
+	"fileDescription": "Strings for Random gen.",
+	"text": {
+		"plugins": {
+			"rex_random": {
+				"name": "Random gen",
+				"description": "Generate random number with a seed.",
+				"help-url": "https://rexrainbow.github.io/C2RexDoc/c2rexpluginsACE/rex_randomgen.html",
+				"properties": {
+				},
+				"aceCategories": {
+					"seed": "Seed",
+					"random": "Random"
+				},
+				"conditions": {
+				},
+				"actions": {
+					"set-seed": {
+						"list-name": "Set seed",
+						"display-text": "Set seed to [b]{0}[/b]",
+						"description": "Set seed.",
+						"params": {
+							"seed0": { "name":"Seed", "desc":"Seed."}
+						}
+					}
+				},
+				"expressions": {
+					"seed": {
+						"description": "Get seed.",
+						"translated-name": "Seed"
+						},
+					"random": {
+						"description": "Get random value from random generator.",
+						"translated-name": "random"
+						}
+				}
+			}
+		}
+	}
+}

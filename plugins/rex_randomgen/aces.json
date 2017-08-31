@@ -1,0 +1,43 @@
+{
+	"seed": {
+		"conditions": [
+		],
+		"actions": [
+			{
+				"c2id": 2,
+				"id": "set-seed",
+				"scriptName": "SetSeed",
+				"highlight": false,
+				"params": [
+					{"id":"seed0", "type":"number", "initialValue":"0"}
+				]
+			}
+		],
+		"expressions": [
+			{
+				"c2id": 1,
+				"id": "seed",
+				"expressionName": "Seed",
+				"scriptName": "Seed",
+				"highlight": false,
+				"returnType": "number"
+			}
+		]
+	},
+	"random": {
+		"conditions": [
+		],
+		"actions": [
+		],
+		"expressions": [
+			{
+				"c2id": 2,
+				"id": "random",
+				"expressionName": "random",
+				"scriptName": "random",
+				"highlight": true,
+				"returnType": "number"
+			}
+		]
+	}
+}

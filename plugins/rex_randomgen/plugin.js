@@ -1,14 +1,14 @@
-//Converted with C2C3AddonConverter v1.0.0.6
+//Converted with C2C3AddonConverter v1.0.0.8
 "use strict";
 
 {
-	const PLUGIN_ID = "Rex_CSV";
-	const PLUGIN_VERSION = "1.0.0.0";
-	const PLUGIN_CATEGORY = "data-and-storage";
+	const PLUGIN_ID = "Rex_Random";
+	const PLUGIN_VERSION = "0.1.0.0";
+	const PLUGIN_CATEGORY = "general";
 
 	let app = null;
 
-	const PLUGIN_CLASS = SDK.Plugins.Rex_CSV = class Rex_CSV extends SDK.IPluginBase
+	const PLUGIN_CLASS = SDK.Plugins.Rex_Random = class Rex_Random extends SDK.IPluginBase
 	{
 		constructor()
 		{
@@ -25,17 +25,11 @@
 			this._info.SetIsDeprecated(false);
 			SDK.Lang.PushContext(".properties");
 			this._info.SetProperties([
-				new SDK.PluginProperty("text", "delimiter", ","),
-				new SDK.PluginProperty("combo", "eval-mode", {initialValue:"no", items:["no","yes"]})
 			]);
 			this._info.AddFileDependency({
-				filename: "c2runtime/rex_csv.js",
+				filename: "c2runtime/rex_mersenneTwister.js",
 				type: "inline-script"
-			});
-			this._info.AddFileDependency({
-				filename: "c2runtime/rex_csvToArray.js",
-				type: "inline-script"
-			});		
+			});			
 			SDK.Lang.PopContext();		// .properties
 			SDK.Lang.PopContext();
 		}
