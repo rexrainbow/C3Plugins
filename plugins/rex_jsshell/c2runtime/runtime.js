@@ -82,7 +82,7 @@ cr.plugins_.Rex_jsshell = function(runtime)
 	{
 	};   
 
-    instanceProto.LoadAPI = function(src, onload_, onerror_)
+    instanceProto.LoadAPI = function(src, onloadCb, onerrorCb)
 	{
 	    var scripts=document.getElementsByTagName("script");
 	    var exist=false;
@@ -105,13 +105,13 @@ cr.plugins_.Rex_jsshell = function(runtime)
             var onLoad = function()
             {
                 self.isLoaded = true;
-                if (onload_)
-                    onload_();
+                if (onloadCb)
+                    onloadCb();
             };
             var onError = function()
             {
-                if (onerror_)
-                    onerror_();
+                if (onerrorCb)
+                    onerrorCb();
             };        
             newScriptTag["onload"] = onLoad;
             newScriptTag["onerror"] = onError;            
@@ -133,8 +133,6 @@ cr.plugins_.Rex_jsshell = function(runtime)
         return this.c2FnType;
 	};   
 
-     // [fnName, param0, param1, ….]
-    var gC2FnParms = [];
     instanceProto.callC2Fn = function (c2FnName, params)
     {
         var c2FnGlobalName = this.getC2FnType();
@@ -142,14 +140,11 @@ cr.plugins_.Rex_jsshell = function(runtime)
             return 0;
         
         var i, cnt=params.length;
-        gC2FnParms.length = 0;        
         for(i=0; i<cnt; i++)
         {
-            gC2FnParms.push( din(params[i]) );
+            params[i] = din(params[i]);
         }
-        var retValue = window[c2FnGlobalName](c2FnName, gC2FnParms);
-        gC2FnParms.length = 0;
-        
+        var retValue = window[c2FnGlobalName](c2FnName, params);        
         return retValue;
     };		
 
@@ -259,11 +254,6 @@ cr.plugins_.Rex_jsshell = function(runtime)
 
     Acts.prototype.LoadAPI = function (src, successTag, errorTag)
 	{
-        // load api in local file
-        if (!this.runtime.isAbsoluteUrl(src))
-        {
-            src = this.runtime.getProjectFileUrl(src);
-        }
 		this.LoadAPI(src, this.getCallback(successTag), this.getCallback(errorTag));   
 	};
 	//////////////////////////////////////
