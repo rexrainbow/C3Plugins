@@ -51,10 +51,9 @@ cr.behaviors.Rex_bHash = function (runtime) {
         this.exp_CurValue = 0;
         this.exp_Loopindex = 0;
     };
-    
-	behinstProto.tick = function ()
-	{
-	};    
+
+    behinstProto.tick = function () {
+    };
 
     var din = window.rexObjs.Din;
     var getValue = window.rexObjs.Keys2Value;
