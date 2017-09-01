@@ -2,6 +2,14 @@
     if (!window.rexObjs)
         window.rexObjs = {};
 
+    var isInValidKey = function (keys) {
+        return (keys == null) || (keys === "") || (keys.length === 0);
+    };
+
+    var isArray = function (o) {
+        return (o instanceof Array);
+    }
+        
     var getValue = function (obj, keys) {
         // keys: string with dot notation, or an array
 
@@ -11,7 +19,7 @@
         }
 
         // invalid key           
-        else if ((keys == null) || (keys === "") || (keys.length === 0)) {
+        else if (isInValidKey(keys)) {
             return obj;
         }
 
@@ -36,7 +44,7 @@
         }
     };
 
-    var din = function (d, defaultValue) {
+    var din = function (d, defaultValue, space) {
         if (d === true)
             return 1;
         else if (d === false)
@@ -48,7 +56,7 @@
                 return 0;
         }
         else if (typeof (d) == "object")
-            return JSON.stringify(d);
+            return JSON.stringify(d, null, space);
         else
             return d;
     };
@@ -59,7 +67,7 @@
             return;
 
         // invalid key
-        else if ((keys === "") || (keys.length === 0)) {
+        else if (isInValidKey(keys)) {
             // don't erase obj
             if (value == null)
                 return;
@@ -80,7 +88,7 @@
 
     var getEntry = function (obj, keys, defaultEntry) {
         var entry = obj;
-        if ((keys === "") || (keys.length === 0)) {
+        if (isInValidKey(keys)) {
             //entry = root;
         }
         else {
@@ -109,15 +117,48 @@
         return entry;
     };
 
+    var removeKey = function (obj, keys) {
+        if (isInValidKey(keys)) {
+            // clean all keys
+            for (var k in obj)
+                delete obj[k];
+        }
+        else {
+            if (typeof (keys) === "string")
+                keys = keys.split(".");
+
+            if (getValue(obj, keys) === undefined)
+                return;
+
+            var lastKey = keys.pop();
+            var entry = getEntry(obj, keys);
+
+            if (!isArray(entry)) {
+                delete entry[lastKey];
+            }
+            else {
+                if ((lastKey < 0) || (lastKey >= entry.length))
+                    return;
+                else if (lastKey === (entry.length - 1))
+                    entry.pop();
+                else if (lastKey === 0)
+                    entry.shift();
+                else
+                    entry.splice(lastKey, 1);
+            }
+        }
+    };
+
 
 
     window.rexObjs.Din = din;
-    window.rexObjs.keys2Value = getValue;
-    window.rexObjs.Keys2CV = function (o, k, defaultValue) {
-        return din(getValue(o, k), defaultValue);
+    window.rexObjs.Keys2Value = getValue;
+    window.rexObjs.Keys2CV = function (o, k, defaultValue, space) {
+        return din(getValue(o, k), defaultValue, space);
     };
 
     window.rexObjs.SetValueByKeys = setValue;
     window.rexObjs.Keys2Entry = getEntry;
+    window.rexObjs.RemoveByKeys = removeKey;
 
 }());     

@@ -68,6 +68,10 @@ cr.plugins_.Rex_jsshell = function (runtime) {
         };
     };
 
+    var din = window.rexObjs.Din;
+    var getCV = window.rexObjs.Keys2CV;
+    var setValue = window.rexObjs.SetValueByKeys;
+
     instanceProto.onDestroy = function () {
     };
 
@@ -121,7 +125,7 @@ cr.plugins_.Rex_jsshell = function (runtime) {
 
         var i, cnt = params.length;
         for (i = 0; i < cnt; i++) {
-            params[i] = window.rexObjs.Din(params[i]);
+            params[i] = din(params[i]);
         }
         var retValue = window[c2FnGlobalName](c2FnName, params);
         return retValue;
@@ -163,7 +167,7 @@ cr.plugins_.Rex_jsshell = function (runtime) {
         this.functionParams = [];
         this.returnValue = invokeFunction(this.functionName, params);
         if (varName !== "") {
-            window.rexObjs.SetValueByKeys(window, varName, this.returnValue);
+            setValue(window, varName, this.returnValue);
         }
     };
 
@@ -176,7 +180,7 @@ cr.plugins_.Rex_jsshell = function (runtime) {
         var params = this.functionParams;
         this.functionParams = [];
         var o = invokeFunction(this.functionName, params, true);
-        window.rexObjs.SetValueByKeys(window, varName, o);
+        setValue(window, varName, o);
     };
 
     Acts.prototype.SetFunctionName = function (name) {
@@ -212,7 +216,7 @@ cr.plugins_.Rex_jsshell = function (runtime) {
     };
 
     Acts.prototype.SetProp = function (varName, value) {
-        window.rexObjs.SetValueByKeys(window, varName, value);
+        setValue(window, varName, value);
     };
 
     Acts.prototype.LoadAPI = function (src, successTag, errorTag) {
@@ -228,7 +232,7 @@ cr.plugins_.Rex_jsshell = function (runtime) {
         if (typeof (keys) === "number") {
             keys = [keys];
         }
-        ret.set_any(window.rexObjs.Keys2CV(val, keys, defaultValue));
+        ret.set_any(getCV(val, keys, defaultValue));
     };
 
     Exps.prototype.ParamCount = function (ret) {
@@ -236,11 +240,11 @@ cr.plugins_.Rex_jsshell = function (runtime) {
     };
 
     Exps.prototype.ReturnValue = function (ret, keys, defaultValue) {
-        ret.set_any(window.rexObjs.Keys2CV(this.returnValue, keys, defaultValue));
+        ret.set_any(getCV(this.returnValue, keys, defaultValue));
     };
 
     Exps.prototype.Prop = function (ret, keys, defaultValue) {
-        ret.set_any(window.rexObjs.Keys2CV(window, keys, defaultValue));
+        ret.set_any(getCV(window, keys, defaultValue));
     };
 
     var PARAMTYPE_VALUE = 0;
@@ -269,7 +273,7 @@ cr.plugins_.Rex_jsshell = function (runtime) {
             params.push(param);
         }
         var retValue = invokeFunction(functionName, params);
-        ret.set_any(window.rexObjs.Din(retValue));
+        ret.set_any(din(retValue));
     };
 
     Exps.prototype.ValueParam = function (ret, value) {
