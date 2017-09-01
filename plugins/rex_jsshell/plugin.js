@@ -26,6 +26,10 @@
 			SDK.Lang.PushContext(".properties");
 			this._info.SetProperties([
 			]);
+			this._info.AddFileDependency({
+				filename: "c2runtime/rex_keys2Value.js",
+				type: "inline-script"
+				});					
 			SDK.Lang.PopContext();		// .properties
 			SDK.Lang.PopContext();
 		}
