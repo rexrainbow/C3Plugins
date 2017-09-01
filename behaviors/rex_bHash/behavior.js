@@ -24,6 +24,14 @@
 				new SDK.PluginProperty("text", "initial-data", ""),
 				new SDK.PluginProperty("text", "indent", "-1")
 			]);
+			this._info.AddFileDependency({
+				filename: "c2runtime/rex_keys2Value.js",
+				type: "inline-script"
+			});
+			this._info.AddFileDependency({
+				filename: "c2runtime/rex_shuffleArr.js",
+				type: "inline-script"
+			});			
 			SDK.Lang.PopContext();		// .properties
 			SDK.Lang.PopContext();
 		}
