@@ -18,7 +18,7 @@ def getPaths(targetFileName):
 def output(f2plugins):
     myPath = op.dirname(op.realpath(__file__))
     mdF = open(op.join(myPath, "index.md"), "w")    
-    mdF.write("# Reference  \n")
+    mdF.write("# References  \n")
     for (src, plugins) in f2plugins:
         mdF.write("- {src}  \n".format(src=src))
         for p in plugins:
