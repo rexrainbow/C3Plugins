@@ -390,7 +390,12 @@
 				"scriptName": "EmailPassword_OnSendVerificationEmailError",
 				"isTrigger": "true",
 				"highlight": false
-			}
+			},
+			{
+				"id": "email-password-is-email-verified",
+				"scriptName": "EmailPassword_IsEmailVerified",
+				"highlight": false
+			}			
 		],
 		"actions": [
 			{

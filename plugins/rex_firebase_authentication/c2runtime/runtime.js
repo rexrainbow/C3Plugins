@@ -38,7 +38,6 @@ cr.plugins_.Rex_Firebase_Authentication = function (runtime) {
         this.isMyLoginCall = false;
         this.isMyLogOutCall = false;
         this.lastError = null;
-        this.lastAuthData = null;
         this.lastLoginResult = null;
 
         var self = this;
@@ -62,7 +61,6 @@ cr.plugins_.Rex_Firebase_Authentication = function (runtime) {
 
                 var isMyLoginCall = self.isMyLoginCall && !self.isMyLogOutCall;
                 self.lastError = null;
-                self.lastAuthData = authData;
 
                 if (!isMyLoginCall)
                     self.runtime.trigger(conds.OnLoginByOther, self);
@@ -75,7 +73,6 @@ cr.plugins_.Rex_Firebase_Authentication = function (runtime) {
             else {
                 var isMyLogOutCall = self.isMyLogOutCall;
                 self.isMyLogOutCall = false;
-                self.lastAuthData = null;
                 self.lastLoginResult = null;
 
                 // user is logged out                
@@ -200,6 +197,13 @@ cr.plugins_.Rex_Firebase_Authentication = function (runtime) {
         return true;
     };
 
+    Cnds.prototype.EmailPassword_IsEmailVerified = function () {
+        var user = getAuthObj()["currentUser"];
+        if (user)
+            return user["emailVerified"];
+        else
+            return false;
+    };
 
     Cnds.prototype.IsAnonymous = function () {
         var user = getAuthObj()["currentUser"];
@@ -247,18 +251,22 @@ cr.plugins_.Rex_Firebase_Authentication = function (runtime) {
     function Acts() { };
     pluginProto.acts = new Acts();
 
-    var addHandler = function (self, authObj, successTrig, errorTrig) {
+    var addHandler = function (self, authObj, successTrig, errorTrig, reloadCurrentUser) {
         var onSuccess = function (result) {
-            self.lastError = null;
-            self.lastAuthData = result;
-            if (successTrig)
+            if (reloadCurrentUser) {
+                addHandler(self, getAuthObj()["currentUser"]["reload"](),
+                    successTrig,
+                    errorTrig
+                );
+            }
+            else {
+                self.lastError = null;
                 self.runtime.trigger(successTrig, self);
+            }
         };
         var onError = function (error) {
             self.lastError = error;
-            self.lastAuthData = null;
-            if (errorTrig)
-                self.runtime.trigger(errorTrig, self);
+            self.runtime.trigger(errorTrig, self);
         };
         authObj["then"](onSuccess)["catch"](onError);
     };
@@ -278,50 +286,54 @@ cr.plugins_.Rex_Firebase_Authentication = function (runtime) {
     }
 
     Acts.prototype.EmailPassword_CreateAccount = function (email, password) {
-        var authObj = getAuthObj()["createUserWithEmailAndPassword"](email, password);
-        addHandler(this, authObj,
+        addHandler(this, getAuthObj()["createUserWithEmailAndPassword"](email, password),
             conds.EmailPassword_OnCreateAccountSuccessful,
             conds.EmailPassword_OnCreateAccountError
         );
     };
 
     Acts.prototype.EmailPassword_Login = function (email, password) {
-        var authObj = getAuthObj();
-        addLoginHandler(this, authObj["signInWithEmailAndPassword"](email, password));
+        addLoginHandler(this, getAuthObj()["signInWithEmailAndPassword"](email, password));
     };
 
-    Acts.prototype.EmailPassword_ChangePassword = function (newPassword_) {
-        var authObj = getAuthObj()["currentUser"]["updatePassword"](newPassword_);
-        addHandler(this, authObj,
+    Acts.prototype.EmailPassword_ChangePassword = function (newPassword) {
+        var user = getAuthObj()["currentUser"];
+        if (user == null) {
+            return;
+        }
+
+        addHandler(this, user["updatePassword"](newPassword),
             conds.EmailPassword_OnChangingPasswordSuccessful,
             conds.EmailPassword_OnChangingPasswordError
         );
     };
 
     Acts.prototype.EmailPassword_SendPasswordResetEmail = function (email) {
-        var authObj = getAuthObj()["sendPasswordResetEmail"](email);
-        addHandler(this, authObj,
+        addHandler(this, getAuthObj()["sendPasswordResetEmail"](email),
             conds.EmailPassword_OnSendPasswordResetEmailSuccessful,
             conds.EmailPassword_OnSendPasswordResetEmailError
         );
     };
 
     Acts.prototype.EmailPassword_DeleteUser = function () {
-        var authObj = getAuthObj()["currentUser"]["delete"]();
-        addHandler(this, authObj,
+        var user = getAuthObj()["currentUser"];
+        if (user == null) {
+            return;
+        }
+
+        addHandler(this, user["delete"](),
             conds.EmailPassword_OnDeleteUserSuccessful,
-            conds.EmailPassword_OnDeleteUserError
+            conds.EmailPassword_OnDeleteUserError,
+            true
         );
     };
 
     Acts.prototype.Anonymous_Login = function () {
-        var authObj = getAuthObj();
-        addLoginHandler(this, authObj["signInAnonymously"]());
+        addLoginHandler(this, getAuthObj()["signInAnonymously"]());
     };
 
     Acts.prototype.AuthenticationToken_Login = function (token_) {
-        var authObj = getAuthObj();
-        addLoginHandler(this, authObj["signInWithCustomToken"](token_));
+        addLoginHandler(this, getAuthObj()["signInWithCustomToken"](token_));
     };
 
     var PROVIDER_TYPE = ["facebook", "twitter", "github", "google"];
@@ -337,15 +349,16 @@ cr.plugins_.Rex_Firebase_Authentication = function (runtime) {
         if (scope_ != "")
             providerObj["addScope"](scope_);
 
-        var authObj = getAuthObj();
         if (type_ === 0)    // signInWithPopup
         {
-            addLoginHandler(this, authObj["signInWithPopup"](providerObj));
+            addLoginHandler(this, getAuthObj()["signInWithPopup"](providerObj));
         }
         else    // signInWithRedirect
         {
-            authObj["signInWithRedirect"](providerObj);
-            addLoginHandler(this, authObj["getRedirectResult"]());
+            var self = this;
+            getAuthObj()["signInWithRedirect"](providerObj)["then"](function () {
+                addLoginHandler(self, getAuthObj()["getRedirectResult"]());
+            });
         }
     };
 
@@ -362,8 +375,7 @@ cr.plugins_.Rex_Firebase_Authentication = function (runtime) {
         }
 
         var credential = window["firebase"]["auth"]["FacebookAuthProvider"]["credential"](accessToken);
-        var authObj = getAuthObj();
-        addLoginHandler(this, authObj["signInWithCredential"](credential));
+        addLoginHandler(this, getAuthObj()["signInWithCredential"](credential));
     };
 
     Acts.prototype.LoggingOut = function () {
@@ -397,10 +409,10 @@ cr.plugins_.Rex_Firebase_Authentication = function (runtime) {
         }
 
         var credential = window["firebase"]["auth"]["FacebookAuthProvider"]["credential"](accessToken);
-        var authObj = user["link"](credential);
-        addHandler(this, authObj,
+        addHandler(this, user["link"](credential),
             conds.OnLinkSuccessful,
-            conds.OnLinkError
+            conds.OnLinkError,
+            true
         );
     };
 
@@ -411,10 +423,10 @@ cr.plugins_.Rex_Firebase_Authentication = function (runtime) {
         }
 
         var credential = window["firebase"]["auth"]["GoogleAuthProvider"]["credential"](id_token);
-        var authObj = user["link"](credential);
-        addHandler(this, authObj,
+        addHandler(this, user["link"](credential),
             conds.OnLinkSuccessful,
-            conds.OnLinkError
+            conds.OnLinkError,
+            true
         );
     };
 
@@ -425,51 +437,53 @@ cr.plugins_.Rex_Firebase_Authentication = function (runtime) {
         }
 
         var credential = window["firebase"]["auth"]["EmailAuthProvider"]["credential"](email, password);
-        var authObj = user["link"](credential);
-        addHandler(this, authObj,
+        addHandler(this, user["link"](credential),
             conds.OnLinkSuccessful,
-            conds.OnLinkError
+            conds.OnLinkError,
+            true
         );
     };
 
     Acts.prototype.UpdateProfile = function (displayName, photoURL) {
-        var self = this;
         var user = getAuthObj()["currentUser"];
+        if (user == null) {
+            return;
+        }
+
         var data = {
             "displayName": displayName,
             "photoURL": photoURL,
         }
-        var onSuccess = function () {
-            self.runtime.trigger(conds.EmailPassword_OnUpdatingProfileSuccessful, self);
-        };
-        var onError = function () {
-            self.runtime.trigger(conds.EmailPassword_OnUpdatingProfileError, self);
-        };
-        user["updateProfile"](data)["then"](onSuccess)["catch"](onError);
+        addHandler(this, user["updateProfile"](data),
+            conds.EmailPassword_OnUpdatingProfileSuccessful,
+            conds.EmailPassword_OnUpdatingProfileError,
+            true
+        );
     };
 
     Acts.prototype.UpdateEmail = function (email) {
-        var self = this;
         var user = getAuthObj()["currentUser"];
-        var onSuccess = function () {
-            self.runtime.trigger(conds.EmailPassword_OnUpdatingEmailSuccessful, self);
-        };
-        var onError = function () {
-            self.runtime.trigger(conds.EmailPassword_OnUpdatingEmailError, self);
-        };
-        user["updateEmail"](email)["then"](onSuccess)["catch"](onError);
+        if (user == null) {
+            return;
+        }
+
+        addHandler(this, user["updateEmail"](email),
+            conds.EmailPassword_OnUpdatingEmailSuccessful,
+            conds.EmailPassword_OnUpdatingEmailError,
+            true
+        );
     };
 
-    Acts.prototype.SendEmailVerification = function (email) {
-        var self = this;
+    Acts.prototype.SendEmailVerification = function () {
         var user = getAuthObj()["currentUser"];
-        var onSuccess = function () {
-            self.runtime.trigger(conds.EmailPassword_OnSendVerificationEmailSuccessful, self);
-        };
-        var onError = function () {
-            self.runtime.trigger(conds.EmailPassword_OnSendVerificationEmailError, self);
-        };
-        user["sendEmailVerification"]()["then"](onSuccess)["catch"](onError);
+        if (user == null) {
+            return;
+        }
+
+        addHandler(this, user["sendEmailVerification"](),
+            conds.EmailPassword_OnSendVerificationEmailSuccessful,
+            conds.EmailPassword_OnSendVerificationEmailError
+        );
     };
 
     //////////////////////////////////////
@@ -525,7 +539,7 @@ cr.plugins_.Rex_Firebase_Authentication = function (runtime) {
     Exps.prototype.UserName = function (ret) {
         ret.set_string(getUserProperty("displayName") || "");
     };
-    Exps.prototype.ErrorDetail = function (ret) {      
+    Exps.prototype.ErrorDetail = function (ret) {
         var val = (!this.lastError) ? "" : this.lastError["detail"];
         if (val == null)
             val = "";

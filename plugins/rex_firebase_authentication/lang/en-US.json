@@ -7,11 +7,10 @@
 				"name": "Authentication",
 				"description": "Authentication which is provided by firebase. https://www.firebase.com/",
 				"help-url": "http://c2rexplugins.weebly.com/rex_firebase_authentication.html",
-				"properties": {
-				},
+				"properties": {},
 				"aceCategories": {
 					"login": "Login",
-					"logging-out": "Logging out",					
+					"logging-out": "Logging out",
 					"email-password-create-account": "Email & Password - create account",
 					"email-password-change-password": "Email & Password - change password",
 					"email-password-send-password-reset-email": "Email & Password - send password reset email",
@@ -21,124 +20,129 @@
 					"email-password-send-verification-email": "Email & Password - send verification email",
 					"link-multiple-auth-providers": "Link multiple auth providers",
 					"error": "Error",
-					"online": "Online"					
+					"online": "Online"
 				},
 				"conditions": {
 					"email-password-on-create-account-successful": {
 						"list-name": "On created account",
 						"display-text": "On created account success",
 						"description": "Triggered when created account success."
-						},
+					},
 					"email-password-on-create-account-error": {
 						"list-name": "On created account error",
 						"display-text": "On create account error",
 						"description": "Triggered when created account error."
-						},
+					},
 					"email-password-on-changing-password-successful": {
 						"list-name": "On changed password",
 						"display-text": "On changed password success",
 						"description": "Triggered when changed password success."
-						},
+					},
 					"email-password-on-changing-password-error": {
 						"list-name": "On changed password error",
 						"display-text": "On changed password error",
 						"description": "Triggered when changed password error."
-						},
+					},
 					"email-password-on-send-password-reset-email-successful": {
 						"list-name": "On sent password reset email",
 						"display-text": "On sent password reset email success",
 						"description": "Triggered when sent password reset email success."
-						},
+					},
 					"email-password-on-send-password-reset-email-error": {
 						"list-name": "On sent password reset email error",
 						"display-text": "On sent password reset email error",
 						"description": "Triggered when sent password reset email error."
-						},
+					},
 					"email-password-on-delete-user-successful": {
 						"list-name": "On deleted user",
 						"display-text": "On deleted user",
 						"description": "Triggered when deleted user success."
-						},
+					},
 					"email-password-on-delete-user-error": {
 						"list-name": "On deleted user error",
 						"display-text": "On deleted user error",
 						"description": "Triggered when deleted user error."
-						},
+					},
 					"email-password-on-updating-profile-successful": {
 						"list-name": "On updated profile",
 						"display-text": "On update profile success",
 						"description": "Triggered when updated profile success."
-						},
+					},
 					"email-password-on-updating-profile-error": {
 						"list-name": "On updated profile error",
 						"display-text": "On update profile error",
 						"description": "Triggered when updated profile error."
-						},
+					},
 					"email-password-on-updating-email-successful": {
 						"list-name": "On updated email",
 						"display-text": "On update email success",
 						"description": "Triggered when updated email success."
-						},
+					},
 					"email-password-on-updating-email-error": {
 						"list-name": "On updated email error",
 						"display-text": "On update email error",
 						"description": "Triggered when updated email error."
-						},
+					},
 					"email-password-on-send-verification-email-successful": {
 						"list-name": "On send verification email",
 						"display-text": "On send verification email success",
 						"description": "Triggered when send verification email success."
-						},
+					},
 					"email-password-on-send-verification-email-error": {
 						"list-name": "On send verification email error",
 						"display-text": "On send verification email error",
 						"description": "Triggered when send verification email error."
-						},
+					},
+					"email-password-is-email-verified": {
+						"list-name": "Is email verified",
+						"display-text": "Is email verified",
+						"description": "Return true if email is verified."
+					},
 					"is-anonymous": {
 						"list-name": "Is anonymous",
 						"display-text": "Is anonymous login",
 						"description": "Return true if current user is anonymous."
-						},
+					},
 					"on-login-successful": {
 						"list-name": "On login",
 						"display-text": "On login success",
 						"description": "Triggered when login success."
-						},
+					},
 					"on-login-error": {
 						"list-name": "On login error",
 						"display-text": "On login error",
 						"description": "Triggered when login error."
-						},
+					},
 					"on-logged-out": {
 						"list-name": "On logged out",
 						"display-text": "On logged out",
 						"description": "Triggered when logged out."
-						},
+					},
 					"is-login": {
 						"list-name": "Is login",
 						"display-text": "Is login",
 						"description": "Return true if logging now."
-						},
+					},
 					"on-login-by-other": {
 						"list-name": "On login by other app",
 						"display-text": "On login by other app",
 						"description": "Triggered when login by other app."
-						},
+					},
 					"on-logged-out-by-other": {
 						"list-name": "On logged out by other app",
 						"display-text": "On logged out by other app",
 						"description": "Triggered when logged out by other app."
-						},
+					},
 					"on-link-successful": {
 						"list-name": "On link",
 						"display-text": "On link success",
 						"description": "Triggered when link success."
-						},
+					},
 					"on-link-error": {
 						"list-name": "On link error",
 						"display-text": "On link error",
 						"description": "Triggered when link error."
-						}
+					}
 				},
 				"actions": {
 					"email-password-create-account": {
@@ -146,8 +150,14 @@
 						"display-text": "Create account with email: [b]{0}[/b], password: [b]{1}[/b]",
 						"description": "Create account with email & password.",
 						"params": {
-							"email0": { "name":"Email", "desc":"User email"},
-							"password1": { "name":"Password", "desc":"User password"}
+							"email0": {
+								"name": "Email",
+								"desc": "User email"
+							},
+							"password1": {
+								"name": "Password",
+								"desc": "User password"
+							}
 						}
 					},
 					"login-with-email": {
@@ -155,8 +165,14 @@
 						"display-text": "Login with email: [b]{0}[/b], password: [b]{1}[/b]",
 						"description": "Login with email & password.",
 						"params": {
-							"email0": { "name":"Email", "desc":"User email"},
-							"password1": { "name":"Password", "desc":"User password"}
+							"email0": {
+								"name": "Email",
+								"desc": "User email"
+							},
+							"password1": {
+								"name": "Password",
+								"desc": "User password"
+							}
 						}
 					},
 					"email-password-change-password": {
@@ -164,7 +180,10 @@
 						"display-text": "Change password to [b]{0}[/b]",
 						"description": "Change password of current user.",
 						"params": {
-							"new_password0": { "name":"New password", "desc":"New password"}
+							"new_password0": {
+								"name": "New password",
+								"desc": "New password"
+							}
 						}
 					},
 					"email-password-send-password-reset-email": {
@@ -172,7 +191,10 @@
 						"display-text": "Send password reset email: [b]{0}[/b]",
 						"description": "Send password reset email",
 						"params": {
-							"email0": { "name":"Email", "desc":"User email"}
+							"email0": {
+								"name": "Email",
+								"desc": "User email"
+							}
 						}
 					},
 					"email-password-delete-user": {
@@ -190,7 +212,10 @@
 						"display-text": "Login with token [b]{0}[/b]",
 						"description": "Login with authentication token.",
 						"params": {
-							"token0": { "name":"Token", "desc":"Token"}
+							"token0": {
+								"name": "Token",
+								"desc": "Token"
+							}
 						}
 					},
 					"login-with-3rd-provider-comb": {
@@ -198,9 +223,28 @@
 						"display-text": "Login by [b]{0}[/b] with [b]{1}[/b], scope to [b]{2}[/b]",
 						"description": "Login by authentication provider.",
 						"params": {
-							"provider4": { "name":"Provider", "desc":"Authentication provider", "items":{"facebook":"Facebook","twitter":"Twitter","github":"Github","google":"Google"}},
-							"type7": { "name":"Type", "desc":"Type of login window", "items":{"popup":"popup","redirect":"redirect"}},
-							"scope12": { "name":"scope", "desc":"A comma-delimited list of requested extended permissions"}
+							"provider4": {
+								"name": "Provider",
+								"desc": "Authentication provider",
+								"items": {
+									"facebook": "Facebook",
+									"twitter": "Twitter",
+									"github": "Github",
+									"google": "Google"
+								}
+							},
+							"type7": {
+								"name": "Type",
+								"desc": "Type of login window",
+								"items": {
+									"popup": "popup",
+									"redirect": "redirect"
+								}
+							},
+							"scope12": {
+								"name": "scope",
+								"desc": "A comma-delimited list of requested extended permissions"
+							}
 						}
 					},
 					"login-with-fb-token": {
@@ -208,7 +252,10 @@
 						"display-text": "Authentication with Facebook access token [b]{0}[/b]",
 						"description": "Authentication with Facebook access token, call it after facebook login.",
 						"params": {
-							"access_token0": { "name":"Access token", "desc":"Access token from other plugin. Set \"\" if using official facebook to login."}
+							"access_token0": {
+								"name": "Access token",
+								"desc": "Access token from other plugin. Set \"\" if using official facebook to login."
+							}
 						}
 					},
 					"login-with-3rd-provider-string": {
@@ -216,9 +263,22 @@
 						"display-text": "Login by [b]{0}[/b] with [b]{1}[/b], scope to [b]{2}[/b]",
 						"description": "Login by authentication provider.",
 						"params": {
-							"provider0": { "name":"Provider", "desc":"Code of authentication provider."},
-							"type3": { "name":"Type", "desc":"Type of login window", "items":{"popup":"popup","redirect":"redirect"}},
-							"scope8": { "name":"scope", "desc":"A comma-delimited list of requested extended permissions"}
+							"provider0": {
+								"name": "Provider",
+								"desc": "Code of authentication provider."
+							},
+							"type3": {
+								"name": "Type",
+								"desc": "Type of login window",
+								"items": {
+									"popup": "popup",
+									"redirect": "redirect"
+								}
+							},
+							"scope8": {
+								"name": "scope",
+								"desc": "A comma-delimited list of requested extended permissions"
+							}
 						}
 					},
 					"logging-out": {
@@ -241,7 +301,10 @@
 						"display-text": "Link to facebook account by access token: [b]{0}[/b]",
 						"description": "Link to facebook account by access token.",
 						"params": {
-							"access_token0": { "name":"Access token", "desc":"Access token from other plugin. Set \"\" if using official facebook to login."}
+							"access_token0": {
+								"name": "Access token",
+								"desc": "Access token from other plugin. Set \"\" if using official facebook to login."
+							}
 						}
 					},
 					"link-to-google": {
@@ -249,7 +312,10 @@
 						"display-text": "Link to google account by ID token: [b]{0}[/b]",
 						"description": "Link to google account by ID token.",
 						"params": {
-							"id_token0": { "name":"ID token", "desc":"ID token from other plugin."}
+							"id_token0": {
+								"name": "ID token",
+								"desc": "ID token from other plugin."
+							}
 						}
 					},
 					"link-to-email-password": {
@@ -257,8 +323,14 @@
 						"display-text": "Link to email: [b]{0}[/b], password: [b]{1}[/b]",
 						"description": "Link to email-password.",
 						"params": {
-							"email0": { "name":"Email", "desc":"User email"},
-							"password1": { "name":"Password", "desc":"User password"}
+							"email0": {
+								"name": "Email",
+								"desc": "User email"
+							},
+							"password1": {
+								"name": "Password",
+								"desc": "User password"
+							}
 						}
 					},
 					"email-password-update-profile": {
@@ -266,8 +338,14 @@
 						"display-text": "Update display name to [b]{0}[/b], photo URL to [b]{1}[/b]",
 						"description": "Update profile.",
 						"params": {
-							"display_name0": { "name":"Display name", "desc":"Display name of current user."},
-							"photo_url1": { "name":"Photo URL", "desc":"Photo URL of current user"}
+							"display_name0": {
+								"name": "Display name",
+								"desc": "Display name of current user."
+							},
+							"photo_url1": {
+								"name": "Photo URL",
+								"desc": "Photo URL of current user"
+							}
 						}
 					},
 					"email-password-update-email": {
@@ -275,7 +353,10 @@
 						"display-text": "Update email to [b]{0}[/b]",
 						"description": "Update email.",
 						"params": {
-							"email0": { "name":"Email", "desc":"User email"}
+							"email0": {
+								"name": "Email",
+								"desc": "User email"
+							}
 						}
 					},
 					"email-password-send-email-verification": {
@@ -288,47 +369,47 @@
 					"error-code": {
 						"description": "Error code.",
 						"translated-name": "ErrorCode"
-						},
+					},
 					"error-message": {
 						"description": "Error message.",
 						"translated-name": "ErrorMessage"
-						},
+					},
 					"userid": {
 						"description": "Unique user ID, intended as the user's unique key across all providers.",
 						"translated-name": "UserID"
-						},
+					},
 					"provider": {
 						"description": "The authentication method used.",
 						"translated-name": "Provider"
-						},
+					},
 					"display-name": {
 						"description": "Display name.",
 						"translated-name": "DisplayName"
-						},
+					},
 					"userid-from-provider": {
 						"description": "User ID from provider.",
 						"translated-name": "UserIDFromProvider"
-						},
+					},
 					"access-token": {
 						"description": "The FOAuth 2.0 access token granted by provider during user authentication.",
 						"translated-name": "AccessToken"
-						},
+					},
 					"email": {
 						"description": "The user's primary email address as listed on their profile. Returned only if a valid email address is available, and the email permission was granted by the user.",
 						"translated-name": "Email"
-						},
+					},
 					"user-name": {
 						"description": "The user's screen name, handle, or alias. Twitter screen names are unique, but subject to change. .",
 						"translated-name": "UserName"
-						},
+					},
 					"error-detail": {
 						"description": "Error detail.",
 						"translated-name": "ErrorDetail"
-						},
+					},
 					"photo-url": {
 						"description": "Photo URL.",
 						"translated-name": "PhotoURL"
-						}
+					}
 				}
 			}
 		}
