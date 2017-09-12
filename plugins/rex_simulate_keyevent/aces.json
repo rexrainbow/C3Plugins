@@ -1,0 +1,71 @@
+{
+	"keyboard": {
+		"conditions": [
+		],
+		"actions": [
+			{
+				"c2id": 1,
+				"id": "simulate-keyboard",
+				"scriptName": "SimulateKeyboard",
+				"highlight": false,
+				"params": [
+					{"id":"key0", "type":"keyb"},
+					{"id":"event_type3", "type":"combo", "items":["down","up"]}
+				]
+			},
+			{
+				"c2id": 2,
+				"id": "simulate-keyboard-by-key-code",
+				"scriptName": "SimulateKeyboard",
+				"highlight": false,
+				"params": [
+					{"id":"keycode0", "type":"number"},
+					{"id":"event_type3", "type":"combo", "items":["down","up"]}
+				]
+			}
+		],
+		"expressions": [
+		]
+	},
+	"touch": {
+		"conditions": [
+		],
+		"actions": [
+			{
+				"c2id": 11,
+				"id": "simulate-touch-start",
+				"scriptName": "SimulateTouchStart",
+				"highlight": false,
+				"params": [
+					{"id":"x0", "type":"number"},
+					{"id":"y1", "type":"number"},
+					{"id":"layer2", "type":"layer"},
+					{"id":"identifier3", "type":"number", "initialValue":"0"}
+				]
+			},
+			{
+				"c2id": 12,
+				"id": "simulate-touch-end",
+				"scriptName": "SimulateTouchEnd",
+				"highlight": false,
+				"params": [
+					{"id":"identifier0", "type":"number", "initialValue":"0"}
+				]
+			},
+			{
+				"c2id": 13,
+				"id": "simulate-touch-move",
+				"scriptName": "SimulateTouchMove",
+				"highlight": false,
+				"params": [
+					{"id":"x0", "type":"number"},
+					{"id":"y1", "type":"number"},
+					{"id":"layer2", "type":"layer"},
+					{"id":"identifier3", "type":"number", "initialValue":"0"}
+				]
+			}
+		],
+		"expressions": [
+		]
+	}
+}

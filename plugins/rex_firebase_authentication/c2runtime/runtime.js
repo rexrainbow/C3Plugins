@@ -47,7 +47,6 @@ cr.plugins_.Rex_Firebase_Authentication = function (runtime) {
         window.rexObjs.FirebaseObj.OnInit.AddHandler(setupFn);
     };
 
-    // 3.x	
     var getAuthObj = function () {
         return window["firebase"]["auth"]();
     };

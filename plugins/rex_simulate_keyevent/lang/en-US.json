@@ -1,0 +1,73 @@
+{
+	"languageTag": "en-US",
+	"fileDescription": "Strings for Simulate key event.",
+	"text": {
+		"plugins": {
+			"rex_simulateinput": {
+				"name": "Simulate key event",
+				"description": "Fire keyboard or touch events.",
+				"help-url": "https://rexrainbow.github.io/C2RexDoc/c2rexpluginsACE/plugin_rex_simulateinput.html",
+				"properties": {
+				},
+				"aceCategories": {
+					"keyboard": "Keyboard",
+					"touch": "Touch"
+				},
+				"conditions": {
+				},
+				"actions": {
+					"simulate-keyboard": {
+						"list-name": "Simulate keyboard event",
+						"display-text": "Simulate keyboard [b]{0}[/b] [b]{1}[/b]",
+						"description": "Simulate keyboard event.",
+						"params": {
+							"key0": { "name":"Key", "desc":"Choose a key.  Note that international users and users on different operating systems or devices may not have the same keys available."},
+							"event_type3": { "name":"Event type", "desc":"Event type.", "items":{"down":"down","up":"up"}}
+						}
+					},
+					"simulate-keyboard-by-key-code": {
+						"list-name": "Simulate keyboard event by keycode",
+						"display-text": "Simulate keyboard [b]{0}[/b] [b]{1}[/b]",
+						"description": "Simulate keyboard event.",
+						"params": {
+							"keycode0": { "name":"Keycode", "desc":"Choose a numeric key code to fire."},
+							"event_type3": { "name":"Event type", "desc":"Event type.", "items":{"down":"down","up":"up"}}
+						}
+					},
+					"simulate-touch-start": {
+						"list-name": "Simulate touch start",
+						"display-text": "Simulate touch: [b]{3}[/b] start at ([b]{0}[/b] , [b]{1}[/b]) on layer [b]{2}[/b]",
+						"description": "Simulate touch start.",
+						"params": {
+							"x0": { "name":"X", "desc":"Touch X position."},
+							"y1": { "name":"Y", "desc":"Touch Y position."},
+							"layer2": { "name":"Layer", "desc":"Position related on layer."},
+							"identifier3": { "name":"Identifier", "desc":"Identifier of this touch start event."}
+						}
+					},
+					"simulate-touch-end": {
+						"list-name": "Simulate touch end",
+						"display-text": "Simulate touch: [b]{0}[/b] end",
+						"description": "Simulate touch end.",
+						"params": {
+							"identifier0": { "name":"Identifier", "desc":"Identifier of this touch start event."}
+						}
+					},
+					"simulate-touch-move": {
+						"list-name": "Simulate touch move",
+						"display-text": "Simulate touch: [b]{3}[/b] move to ([b]{0}[/b] , [b]{1}[/b]) on layer [b]{2}[/b]",
+						"description": "Simulate touch move.",
+						"params": {
+							"x0": { "name":"X", "desc":"Touch X position."},
+							"y1": { "name":"Y", "desc":"Touch Y position."},
+							"layer2": { "name":"Layer", "desc":"Position related on layer."},
+							"identifier3": { "name":"Identifier", "desc":"Identifier of this touch start event."}
+						}
+					}
+				},
+				"expressions": {
+				}
+			}
+		}
+	}
+}
