@@ -2,7 +2,7 @@ import os
 import os.path as op
 
 rootDir = r"D:\Construct 3\my_data\C3Plugins"
-srcDir = r"D:\Construct 3\my_data\C3Plugins\utility"
+srcDir = r"D:\Construct 3\my_data\C3Plugins\utilities"
 def getPaths(targetFileName):
     p = []
     for (dirpath, dirnames, filenames) in os.walk(rootDir):

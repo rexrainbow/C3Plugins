@@ -1,4 +1,4 @@
-# Reference  
+# References  
 - rex_boardLXYZCache.js  
   - plugins: rex_board  
 - rex_createObject.js  
@@ -26,3 +26,5 @@
 - rex_shuffleArr.js  
   - behaviors: rex_bHash  
   - plugins: rex_hash  
+- rex_stack.js  
+  - plugins: rex_jsshell  
