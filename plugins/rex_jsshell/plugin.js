@@ -8,10 +8,8 @@
 
 	let app = null;
 
-	const PLUGIN_CLASS = SDK.Plugins.Rex_jsshell = class Rex_jsshell extends SDK.IPluginBase
-	{
-		constructor()
-		{
+	const PLUGIN_CLASS = SDK.Plugins.Rex_jsshell = class Rex_jsshell extends SDK.IPluginBase {
+		constructor() {
 			super(PLUGIN_ID);
 			SDK.Lang.PushContext("plugins." + PLUGIN_ID.toLowerCase());
 			this._info.SetIcon("icon.png", "image/png");
@@ -29,7 +27,11 @@
 			this._info.AddFileDependency({
 				filename: "c2runtime/rex_keys2Value.js",
 				type: "inline-script"
-				});					
+			});
+			this._info.AddFileDependency({
+				filename: "c2runtime/rex_stack.js",
+				type: "inline-script"
+			});
 			SDK.Lang.PopContext();		// .properties
 			SDK.Lang.PopContext();
 		}

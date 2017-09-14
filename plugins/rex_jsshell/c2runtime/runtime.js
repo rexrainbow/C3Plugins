@@ -34,25 +34,36 @@ cr.plugins_.Rex_jsshell = function (runtime) {
 
     var instanceProto = pluginProto.Instance.prototype;
 
+    var callItem = function () {
+        this.name = "";
+        this.retVal = 0;
+        this.params = [];
+    };
+    var callbackItem = function () {
+        this.params = [];
+    };
+
     instanceProto.onCreate = function () {
-        // function call
-        this.functionName = "";
-        this.functionParams = [];
-        this.returnValue = null;
+        this.callStack = new window.rexObjs.StackKlass(callItem);
+
+        // c2 function
         this.c2FnType = null;
 
         // callback
-        this.callbackTag = "";
-        this.callbackParams = [];   // callbackParams
+        this.callbackStack = new window.rexObjs.StackKlass(callbackItem);
         var self = this;
         this.getCallback = function (callbackTag) {
             if (callbackTag == null)
                 return null;
 
             var cb = function () {
+                self.callbackStack.push();
+                var lastCall = self.callbackStack.getCurrent();
+                cr.shallowAssignArray(lastCall.params, arguments);
                 self.callbackTag = callbackTag;
-                cr.shallowAssignArray(self.callbackParams, arguments);
                 self.runtime.trigger(cr.plugins_.Rex_jsshell.prototype.cnds.OnCallback, self);
+                lastCall.params.length = 0;
+                self.callbackStack.pop();
             }
             return cb;
         };
@@ -71,6 +82,7 @@ cr.plugins_.Rex_jsshell = function (runtime) {
     var din = window.rexObjs.Din;
     var getCV = window.rexObjs.Keys2CV;
     var setValue = window.rexObjs.SetValueByKeys;
+    var getVal = window.rexObjs.Keys2Value;
 
     instanceProto.onDestroy = function () {
     };
@@ -134,7 +146,7 @@ cr.plugins_.Rex_jsshell = function (runtime) {
     var invokeFunction = function (functionName, params, isNewObject) {
         var names = functionName.split(".");
         var fnName = names.pop();
-        var o = window.rexObjs.keys2Value(window, names);
+        var o = getVal(window, names);
 
         var retValue;
         if (isNewObject) {
@@ -160,63 +172,73 @@ cr.plugins_.Rex_jsshell = function (runtime) {
     pluginProto.acts = new Acts();
 
     Acts.prototype.InvokeFunction = function (varName) {
-        if (this.functionName === "")
-            return;
+        var lastCall = this.callStack.getCurrent();
+        this.callStack.pop();
 
-        var params = this.functionParams;
-        this.functionParams = [];
-        this.returnValue = invokeFunction(this.functionName, params);
+        var params = lastCall.params;
+        lastCall.params = [];
+        lastCall.retVal = invokeFunction(lastCall.name, params);
         if (varName !== "") {
-            setValue(window, varName, this.returnValue);
+            setValue(window, varName, lastCall.retVal);
         }
     };
 
     Acts.prototype.CreateInstance = function (varName) {
         if (varName === "")
             return;
-        if (this.functionName === "")
-            return;
+        var lastCall = this.callStack.getCurrent();
+        this.callStack.pop();
 
-        var params = this.functionParams;
-        this.functionParams = [];
-        var o = invokeFunction(this.functionName, params, true);
+        var params = lastCall.params;
+        lastCall.params = [];
+        var o = invokeFunction(lastCall.name, params, true);
         setValue(window, varName, o);
     };
 
     Acts.prototype.SetFunctionName = function (name) {
-        this.functionName = name;
+        this.callStack.push();
+        var lastCall = this.callStack.getCurrent();
+        lastCall.name = name;
+        lastCall.retVal = 0;
     };
 
     Acts.prototype.AddValue = function (v) {
-        this.functionParams.push(v);
+        var lastCall = this.callStack.getCurrent();
+        lastCall.params.push(v);
     };
 
     Acts.prototype.AddJSON = function (v) {
-        this.functionParams.push(JSON.parse(v));
+        var lastCall = this.callStack.getCurrent();
+        lastCall.params.push(JSON.parse(v));
     };
 
     Acts.prototype.AddBoolean = function (v) {
-        this.functionParams.push(v === 1);
+        var lastCall = this.callStack.getCurrent();
+        lastCall.params.push(v === 1);
     };
 
     Acts.prototype.AddCallback = function (callbackTag) {
-        this.functionParams.push(this.getCallback(callbackTag));
+        var lastCall = this.callStack.getCurrent();
+        lastCall.params.push(this.getCallback(callbackTag));
     };
 
     Acts.prototype.AddNull = function () {
-        this.functionParams.push(null);
+        var lastCall = this.callStack.getCurrent();
+        lastCall.params.push(null);
     };
 
     Acts.prototype.AddObject = function (varName) {
-        this.functionParams.push( window.rexObjs.keys2Value(window, varName) );
+        var lastCall = this.callStack.getCurrent();
+        lastCall.params.push(getValue(varName, window));
     };
 
     Acts.prototype.AddC2Callback = function (c2FnName) {
-        this.functionParams.push(this.getC2FnCallback(c2FnName));
+        var lastCall = this.callStack.getCurrent();
+        lastCall.params.push(this.getC2FnCallback(c2FnName));
     };
 
     Acts.prototype.SetProp = function (varName, value) {
-        setValue(window, varName, value);
+        setValue(varName, value, window);
     };
 
     Acts.prototype.LoadAPI = function (src, successTag, errorTag) {
@@ -228,7 +250,8 @@ cr.plugins_.Rex_jsshell = function (runtime) {
     pluginProto.exps = new Exps();
 
     Exps.prototype.Param = function (ret, index, keys, defaultValue) {
-        var val = this.callbackParams[index];
+        var params = this.callbackStack.getCurrent().params;
+        var val = params[index];
         if (typeof (keys) === "number") {
             keys = [keys];
         }
@@ -236,11 +259,13 @@ cr.plugins_.Rex_jsshell = function (runtime) {
     };
 
     Exps.prototype.ParamCount = function (ret) {
-        ret.set_int(this.callbackParams.length);
+        var params = this.callbackStack.getCurrent().params;
+        ret.set_int(params.length);
     };
 
     Exps.prototype.ReturnValue = function (ret, keys, defaultValue) {
-        ret.set_any(getCV(this.returnValue, keys, defaultValue));
+        var preCall = this.callStack.getOneAbove();
+        ret.set_any(getCV(preCall.retVal, keys, defaultValue));
     };
 
     Exps.prototype.Prop = function (ret, keys, defaultValue) {
@@ -254,6 +279,8 @@ cr.plugins_.Rex_jsshell = function (runtime) {
     var PARAMTYPE_C2FN = 4;
     var gExpPattern = /^@#@(\[.*\])@#@/;
     Exps.prototype.Call = function (ret, functionName) {
+        this.callStack.push();
+        var lastCall = this.callStack.getCurrent();
         var params = [];
         var i, cnt = arguments.length;
         for (i = 2; i < cnt; i++) {
@@ -265,15 +292,15 @@ cr.plugins_.Rex_jsshell = function (runtime) {
                     case PARAMTYPE_VALUE: param = param[1]; break;
                     case PARAMTYPE_JSON: param = param[1]; break;
                     case PARAMTYPE_CALLBACK: param = this.getCallback(param[1]); break;
-                    case PARAMTYPE_VAR: param = window.rexObjs.keys2Value(window, param[1]); break;
+                    case PARAMTYPE_VAR: param = getVal(window, param[1]); break;
                     case PARAMTYPE_C2FN: param = this.getC2FnCallback(param[1]); break;
                     default: param = null;
                 }
             }
             params.push(param);
         }
-        var retValue = invokeFunction(functionName, params);
-        ret.set_any(din(retValue));
+        lastCall.retVal = invokeFunction(functionName, params);
+        ret.set_any(din(lastCall.retVal));
     };
 
     Exps.prototype.ValueParam = function (ret, value) {

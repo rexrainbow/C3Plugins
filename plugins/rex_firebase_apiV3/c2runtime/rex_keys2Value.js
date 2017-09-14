@@ -2,6 +2,10 @@
     if (!window.rexObjs)
         window.rexObjs = {};
 
+    if (window.rexObjs.Keys2Value)
+        return;
+
+
     var isInValidKey = function (keys) {
         return (keys == null) || (keys === "") || (keys.length === 0);
     };
@@ -9,7 +13,7 @@
     var isArray = function (o) {
         return (o instanceof Array);
     }
-        
+
     var getValue = function (obj, keys) {
         // keys: string with dot notation, or an array
 
@@ -148,7 +152,6 @@
             }
         }
     };
-
 
 
     window.rexObjs.Din = din;

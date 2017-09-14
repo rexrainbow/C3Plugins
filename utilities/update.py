@@ -19,6 +19,9 @@ def main():
     for arg in sys.argv[1:]:
         paths = getPaths( os.path.split(arg)[1] )
         for p in paths:
+            if arg == p:
+                continue
+            
             print "copy {src} to {dist}".format(src=arg, dist = p)
             copyfile(arg, p)
 

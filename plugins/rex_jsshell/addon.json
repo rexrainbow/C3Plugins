@@ -16,6 +16,7 @@
 	"file-list": [
 		"c2runtime/runtime.js",
 		"c2runtime/rex_keys2Value.js",
+		"c2runtime/rex_stack.js",
 		"lang/en-US.json",
 		"aces.json",
 		"addon.json",
