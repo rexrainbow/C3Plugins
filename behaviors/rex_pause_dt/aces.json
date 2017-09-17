@@ -1,0 +1,77 @@
+{
+	"pause/resume": {
+		"conditions": [
+			{
+				"c2id": 0,
+				"id": "on-pause",
+				"scriptName": "OnPause",
+				"isTrigger": "true",
+				"highlight": false
+			},
+			{
+				"c2id": 1,
+				"id": "on-resume",
+				"scriptName": "OnResume",
+				"isTrigger": "true",
+				"highlight": false
+			},
+			{
+				"c2id": 2,
+				"id": "is-paused",
+				"scriptName": "IsPause",
+				"highlight": false
+			}						
+		],
+		"actions": [
+			{
+				"c2id": 0,
+				"id": "toogle",
+				"scriptName": "TooglePause",
+				"highlight": false
+			},
+			{
+				"c2id": 1,
+				"id": "set-state",
+				"scriptName": "SetState",
+				"highlight": false,
+				"params": [
+					{"id":"state2", "type":"combo", "items":["pause","run"]}
+				]
+			}
+		],
+		"expressions": [
+			{
+				"c2id": 0,
+				"id": "previous-timescale",
+				"expressionName": "PreTimescale",
+				"scriptName": "PreTimescale",
+				"highlight": false,
+				"returnType": "number"
+			}			
+		]
+	},
+	"sol": {
+		"conditions": [
+			{
+				"c2id": 3,
+				"id": "pick-paused-instances",
+				"scriptName": "PickPauseInstances",
+				"isStatic": "true",
+				"isInvertible": "false",
+				"highlight": false
+			},
+			{
+				"c2id": 4,
+				"id": "pick-activated-instances",
+				"scriptName": "PickActivatedInstances",
+				"isStatic": "true",
+				"isInvertible": "false",
+				"highlight": false
+			}
+		],
+		"actions": [
+		],
+		"expressions": [
+		]
+	}
+}

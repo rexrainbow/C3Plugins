@@ -1,0 +1,67 @@
+{
+	"languageTag": "en-US",
+	"fileDescription": "Strings for Pause.",
+	"text": {
+		"behaviors": {
+			"rex_pausedt": {
+				"name": "Pause",
+				"description": "Pause timescale of this instance",
+				"help-url": "https://rexrainbow.github.io/C2RexDoc/c2rexpluginsACE/behavior_rex_pause_dt.html",
+				"properties": {
+				},
+				"aceCategories": {
+					"pause/resume": "Pause/Resume",
+					"sol": "SOL"
+				},
+				"conditions": {
+					"on-pause": {
+						"list-name": "On pause",
+						"display-text": "On {my} pause",
+						"description": "Triggered when instance paused"
+						},
+					"on-resume": {
+						"list-name": "On resume",
+						"display-text": "On {my} resume",
+						"description": "Triggered when instance resumed"
+						},
+					"is-paused": {
+						"list-name": "Is pause",
+						"display-text": "Is {my} pause",
+						"description": "Return true if instance is paused"
+						},
+					"pick-paused-instances": {
+						"list-name": "Pick paused instances",
+						"display-text": "Pick {my} paused instances",
+						"description": "Pick paused instances"
+						},
+					"pick-activated-instances": {
+						"list-name": "Pick activated instances",
+						"display-text": "Pick {my} activated instances",
+						"description": "Pick activated instances"
+						}
+				},
+				"actions": {
+					"toogle": {
+						"list-name": "Toggle pause",
+						"display-text": "Toggle {my} pause",
+						"description": "Toggle pause."
+					},
+					"set-state": {
+						"list-name": "Set pause state",
+						"display-text": "Set {my} pause state to [b]{0}[/b]",
+						"description": "Set the puase state.",
+						"params": {
+							"state2": { "name":"State", "desc":"Set puase state to.", "items":{"pause":"Pause","run":"Run"}}
+						}
+					}
+				},
+				"expressions": {
+					"previous-timescale": {
+						"description": "Get previous timescale.",
+						"translated-name": "PreTimescale"
+						}
+				}
+			}
+		}
+	}
+}
