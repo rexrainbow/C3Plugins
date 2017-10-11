@@ -30,7 +30,7 @@
 				"id": "on-typing-completed",
 				"scriptName": "OnTypingCompleted",
 				"isTrigger": "true",
-				"highlight": false
+				"highlight": true
 			},
 			{
 				"c2id": 3,
@@ -44,7 +44,7 @@
 				"c2id": 3,
 				"id": "type-text",
 				"scriptName": "TypeText",
-				"highlight": false,
+				"highlight": true,
 				"params": [
 					{"id":"text0", "type":"any", "initialValue":"\"\""},
 					{"id":"speed1", "type":"number", "initialValue":"0.1"}
