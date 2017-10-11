@@ -1,0 +1,136 @@
+{
+	"timeline": {
+		"conditions": [
+		],
+		"actions": [
+			{
+				"c2id": 2,
+				"id": "setup-timeline",
+				"scriptName": "SetupTimer",
+				"highlight": false,
+				"params": [
+					{"id":"timeline0", "type":"object"}
+				]
+			}
+		],
+		"expressions": [
+		]
+	},
+	"typing": {
+		"conditions": [
+			{
+				"c2id": 1,
+				"id": "on-typing",
+				"scriptName": "OnTextTyping",
+				"isTrigger": "true",
+				"highlight": false
+			},
+			{
+				"c2id": 2,
+				"id": "on-typing-completed",
+				"scriptName": "OnTypingCompleted",
+				"isTrigger": "true",
+				"highlight": false
+			},
+			{
+				"c2id": 3,
+				"id": "is-typing",
+				"scriptName": "IsTextTyping",
+				"highlight": false
+			}
+		],
+		"actions": [
+			{
+				"c2id": 3,
+				"id": "type-text",
+				"scriptName": "TypeText",
+				"highlight": false,
+				"params": [
+					{"id":"text0", "type":"any", "initialValue":"\"\""},
+					{"id":"speed1", "type":"number", "initialValue":"0.1"}
+				]
+			},
+			{
+				"c2id": 4,
+				"id": "set-typing-speed",
+				"scriptName": "SetTypingSpeed",
+				"highlight": false,
+				"params": [
+					{"id":"speed0", "type":"number", "initialValue":"0.1"}
+				]
+			},
+			{
+				"c2id": 5,
+				"id": "stop-typing",
+				"scriptName": "StopTyping",
+				"highlight": false,
+				"params": [
+					{"id":"text_state2", "type":"combo", "items":["keep current text","show all text"]}
+				]
+			},
+			{
+				"c2id": 6,
+				"id": "append-text",
+				"scriptName": "AppendText",
+				"highlight": false,
+				"params": [
+					{"id":"text0", "type":"any", "initialValue":"\"\""}
+				]
+			},
+			{
+				"c2id": 11,
+				"id": "pause",
+				"scriptName": "Pause",
+				"highlight": false
+			},
+			{
+				"c2id": 12,
+				"id": "resume",
+				"scriptName": "Resume",
+				"highlight": false
+			}
+		],
+		"expressions": [
+			{
+				"c2id": 1,
+				"id": "typing-speed",
+				"expressionName": "TypingSpeed",
+				"scriptName": "TypingSpeed",
+				"highlight": false,
+				"returnType": "number"
+			},
+			{
+				"c2id": 2,
+				"id": "typing-index",
+				"expressionName": "TypingIndex",
+				"scriptName": "TypingIndex",
+				"highlight": false,
+				"returnType": "number"
+			},
+			{
+				"c2id": 12,
+				"id": "last-typing-character",
+				"expressionName": "LastTypingCharacter",
+				"scriptName": "LastTypingCharacter",
+				"highlight": false,
+				"returnType": "string"
+			}
+		]
+	},
+	"content": {
+		"conditions": [
+		],
+		"actions": [
+		],
+		"expressions": [
+			{
+				"c2id": 11,
+				"id": "content",
+				"expressionName": "Content",
+				"scriptName": "Content",
+				"highlight": false,
+				"returnType": "string"
+			}
+		]
+	}
+}

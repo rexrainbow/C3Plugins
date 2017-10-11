@@ -1,0 +1,116 @@
+{
+	"languageTag": "en-US",
+	"fileDescription": "Strings for Typing.",
+	"text": {
+		"behaviors": {
+			"rex_text_typing": {
+				"name": "Typing",
+				"description": "Typing text on text / sprite font object.",
+				"help-url": "https://rexrainbow.github.io/C2RexDoc/c2rexpluginsACE/rex_text_typing.html",
+				"properties": {
+					"line-break": {
+						"name": "Line break",
+						"desc": "Enable to add new line to split lines.",
+						"items": {
+							"no":"No",
+							"yes":"Yes"
+							}
+						}
+				},
+				"aceCategories": {
+					"timeline": "Timeline",
+					"typing": "Typing",
+					"content": "Content"
+				},
+				"conditions": {
+					"on-typing": {
+						"list-name": "On text typing",
+						"display-text": "{my} On typing",
+						"description": "Triggered when text typing."
+						},
+					"on-typing-completed": {
+						"list-name": "On typing completed",
+						"display-text": "{my} On typing completed",
+						"description": "Triggered when typing completed."
+						},
+					"is-typing": {
+						"list-name": "Is text typing",
+						"display-text": "{my} Is typing",
+						"description": "Is text typing."
+						}
+				},
+				"actions": {
+					"setup-timeline": {
+						"list-name": "Setup",
+						"display-text": "{my} Get timer from [b]{0}[/b] for text-typing",
+						"description": "Setup text-typing.",
+						"params": {
+							"timeline0": { "name":"Timeline", "desc":"Timeline object for getting timer"}
+						}
+					},
+					"type-text": {
+						"list-name": "Type text",
+						"display-text": "{my} Type [b]{0}[/b] at 1 letter per [b]{1}[/b] seconds",
+						"description": "Type text letter by letter.",
+						"params": {
+							"text0": { "name":"Text", "desc":"Enter the text to set the object's content to."},
+							"speed1": { "name":"Speed", "desc":"1 letter per seconds"}
+						}
+					},
+					"set-typing-speed": {
+						"list-name": "Set typing speed",
+						"display-text": "{my} Set typing speed to [b]{0}[/b] seconds",
+						"description": "Set typing speed.",
+						"params": {
+							"speed0": { "name":"Speed", "desc":"1 letter per seconds"}
+						}
+					},
+					"stop-typing": {
+						"list-name": "Stop typing",
+						"display-text": "{my} Stop typing, [b]{0}[/b]",
+						"description": "Stop typing.",
+						"params": {
+							"text_state2": { "name":"Text state", "desc":"Text state, to keep current text or show all", "items":{"keep current text":"Keep current text","show all text":"Show all text"}}
+						}
+					},
+					"append-text": {
+						"list-name": "Append text",
+						"display-text": "{my} append [b]{0}[/b]",
+						"description": "Type text letter by letter in the end of current content.",
+						"params": {
+							"text0": { "name":"Text", "desc":"Enter the text to set the object's content to."}
+						}
+					},
+					"pause": {
+						"list-name": "Pause typing",
+						"display-text": "{my} pause typing",
+						"description": "Pause typing."
+					},
+					"resume": {
+						"list-name": "Resume typing",
+						"display-text": "{my} resume typing",
+						"description": "Resume typing."
+					}
+				},
+				"expressions": {
+					"typing-speed": {
+						"description": "Get typing speed.",
+						"translated-name": "TypingSpeed"
+						},
+					"typing-index": {
+						"description": "Get current index of typing character.",
+						"translated-name": "TypingIndex"
+						},
+					"content": {
+						"description": "Get content.",
+						"translated-name": "Content"
+						},
+					"last-typing-character": {
+						"description": "Get last typing character.",
+						"translated-name": "LastTypingCharacter"
+						}
+				}
+			}
+		}
+	}
+}
