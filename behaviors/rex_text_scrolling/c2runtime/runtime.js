@@ -49,43 +49,50 @@ cr.behaviors.Rex_text_scrolling = function (runtime) {
 		this.lastheight = this.inst.height;
 
 		this.textObjType = this.getTextObjType();
-		this.SetTextFn = this.getSetTextFn();
+		this.FnSetText = this.getFnSetText();
 		this.initContentLines();
 	};
 
+	var TYPE_NONE = 0;
+	var TYPE_TEXT = 1;
+	var TYPE_SPRITEFONT2 = 2;
+	var TYPE_TEXTBOX = 3;
+	var TYPE_SPRITEFONTPLUS = 4;	
+	var TYPE_REX_TAGTEXT = 10;
+	var TYPE_REX_BBCODETEXT = 11;		
 	behinstProto.getTextObjType = function () {
 		var textObjType;
 		if (cr.plugins_.Text &&
 			(this.inst instanceof cr.plugins_.Text.prototype.Instance))
-			textObjType = "Text";
+			textObjType = TYPE_TEXT;
 		else if (cr.plugins_.Spritefont2 &&
 			(this.inst instanceof cr.plugins_.Spritefont2.prototype.Instance))
-			textObjType = "Spritefont2";
+			textObjType = TYPE_SPRITEFONT2;
 		else if (cr.plugins_.rex_TagText &&
 			(this.inst instanceof cr.plugins_.rex_TagText.prototype.Instance))
-			textObjType = "rex_TagText";
+			textObjType = TYPE_REX_TAGTEXT;
 		else if (cr.plugins_.rex_bbcodeText &&
 			(this.inst instanceof cr.plugins_.rex_bbcodeText.prototype.Instance))
-			textObjType = "rex_bbcodeText";
+			textObjType = TYPE_REX_BBCODETEXT;
 		else if (cr.plugins_.SpriteFontPlus &&
 			(this.inst instanceof cr.plugins_.SpriteFontPlus.prototype.Instance))
-			textObjType = "SpriteFontPlus";
+			textObjType = TYPE_SPRITEFONTPLUS;
 		else
-			textObjType = "";
+			textObjType = TYPE_NONE;
 		return textObjType;
 	};
 
-	behinstProto.getSetTextFn = function () {
+	behinstProto.getFnSetText = function () {
 		var setTextFn;
-		if (this.textObjType === "Text")
+		if (this.textObjType === TYPE_TEXT)
 			setTextFn = cr.plugins_.Text.prototype.acts.SetText;
-		else if (this.textObjType === "Spritefont2")
+		else if (this.textObjType === TYPE_SPRITEFONT2)
 			setTextFn = cr.plugins_.Spritefont2.prototype.acts.SetText;
-		else if (this.textObjType === "rex_TagText")
+		else if (this.textObjType === TYPE_REX_TAGTEXT)
 			setTextFn = cr.plugins_.rex_TagText.prototype.acts.SetText;
-		else if (this.textObjType === "rex_bbcodeText")
+		else if (this.textObjType === TYPE_REX_BBCODETEXT)
 			setTextFn = cr.plugins_.rex_bbcodeText.prototype.acts.SetText;
-		else if (this.textObjType === "SpriteFontPlus")
+		else if (this.textObjType === TYPE_SPRITEFONTPLUS)
 			setTextFn = cr.plugins_.SpriteFontPlus.prototype.acts.SetText;
 		else
 			setTextFn = null;
@@ -94,9 +101,9 @@ cr.behaviors.Rex_text_scrolling = function (runtime) {
 
 	behinstProto.initContentLines = function () {
 		var setTextFn;
-		if ((this.textObjType === "Text") || (this.textObjType === "Spritefont2") || (this.textObjType === "SpriteFontPlus"))
+		if ((this.textObjType === TYPE_TEXT) || (this.textObjType === TYPE_SPRITEFONT2) || (this.textObjType === TYPE_SPRITEFONTPLUS))
 			this.contentLines = [];
-		else if ((this.textObjType === "rex_TagText") || (this.textObjType === "rex_bbcodeText"))
+		else if ((this.textObjType === TYPE_REX_TAGTEXT) || (this.textObjType === TYPE_REX_BBCODETEXT))
 			this.contentLines = null;
 		else
 			this.contentLines = [];
@@ -139,7 +146,7 @@ cr.behaviors.Rex_text_scrolling = function (runtime) {
 	};
 
 	behinstProto.copyContentLines = function () {
-		if ((this.textObjType === "Text") || (this.textObjType === "Spritefont2") || (this.textObjType === "SpriteFontPlus")) {
+		if ((this.textObjType === TYPE_TEXT) || (this.textObjType === TYPE_SPRITEFONT2) || (this.textObjType === TYPE_SPRITEFONTPLUS)) {
 			var lines = this.inst.lines;
 			this.contentLines.length = 0;
 			var i, line, line_cnt = lines.length;
@@ -147,7 +154,7 @@ cr.behaviors.Rex_text_scrolling = function (runtime) {
 				this.contentLines.push(lines[i].text);
 			}
 		}
-		else if ((this.textObjType === "rex_TagText") || (this.textObjType === "rex_bbcodeText")) {
+		else if ((this.textObjType === TYPE_REX_TAGTEXT) || (this.textObjType === TYPE_REX_BBCODETEXT)) {
 			this.contentLines = this.inst.copyPensMgr(this.contentLines);
 		}
 		return this.contentLines;
@@ -167,7 +174,7 @@ cr.behaviors.Rex_text_scrolling = function (runtime) {
 			return "";
 
 		var txt;
-		if ((this.textObjType === "Text") || (this.textObjType === "Spritefont2") || (this.textObjType === "SpriteFontPlus")) {
+		if ((this.textObjType === TYPE_TEXT) || (this.textObjType === TYPE_SPRITEFONT2) || (this.textObjType === TYPE_SPRITEFONTPLUS)) {
 			txt = "";
 			end -= 1;
 			for (var i = start; i <= end; i++) {
@@ -176,7 +183,7 @@ cr.behaviors.Rex_text_scrolling = function (runtime) {
 					txt += "\n";
 			}
 		}
-		else if ((this.textObjType === "rex_TagText") || (this.textObjType === "rex_bbcodeText")) {
+		else if ((this.textObjType === TYPE_REX_TAGTEXT) || (this.textObjType === TYPE_REX_BBCODETEXT)) {
 			// get start chart index     
 			var si = this.contentLines.getLineStartChartIndex(start);
 			// get end chart index
@@ -189,10 +196,10 @@ cr.behaviors.Rex_text_scrolling = function (runtime) {
 
 	behinstProto.getTotalLinesCount = function () {
 		var cnt;
-		if ((this.textObjType === "Text") || (this.textObjType === "Spritefont2") || (this.textObjType === "SpriteFontPlus")) {
+		if ((this.textObjType === TYPE_TEXT) || (this.textObjType === TYPE_SPRITEFONT2) || (this.textObjType === TYPE_SPRITEFONTPLUS)) {
 			cnt = this.contentLines.length;
 		}
-		else if ((this.textObjType === "rex_TagText") || (this.textObjType === "rex_bbcodeText")) {
+		else if ((this.textObjType === TYPE_REX_TAGTEXT) || (this.textObjType === TYPE_REX_BBCODETEXT)) {
 			cnt = this.contentLines.getLines().length;
 		}
 		return cnt;
@@ -224,11 +231,11 @@ cr.behaviors.Rex_text_scrolling = function (runtime) {
 
 	behinstProto.getLineHeight = function () {
 		var lineHeight, inst = this.inst;
-		if (this.textObjType == "Text")
+		if (this.textObjType == TYPE_TEXT)
 			lineHeight = inst.pxHeight;
-		else if ((this.textObjType === "rex_TagText") || (this.textObjType === "rex_bbcodeText"))
+		else if ((this.textObjType === TYPE_REX_TAGTEXT) || (this.textObjType === TYPE_REX_BBCODETEXT))
 			lineHeight = inst.pxHeight;
-		else if ((this.textObjType == "Spritefont2") || (this.textObjType === "SpriteFontPlus"))
+		else if ((this.textObjType == TYPE_SPRITEFONT2) || (this.textObjType === TYPE_SPRITEFONTPLUS))
 			lineHeight = (inst.characterHeight * inst.characterScale) + inst.lineHeight;
 
 		assert2(lineHeight, "Text Scrolling behavior: the instance is not a text object, neither a sprite font object.");
@@ -237,17 +244,17 @@ cr.behaviors.Rex_text_scrolling = function (runtime) {
 
 
 	behinstProto.setText = function (content) {
-		if (this.SetTextFn == null)
+		if (this.FnSetText == null)
 			return;
 
-		if ((this.textObjType === "rex_TagText") || (this.textObjType === "rex_bbcodeText")) {
+		if ((this.textObjType === TYPE_REX_TAGTEXT) || (this.textObjType === TYPE_REX_BBCODETEXT)) {
 			var isForceRenderSave = this.inst.isForceRender;
 			this.inst.isForceRender = false;
 		}
 
-		this.SetTextFn.call(this.inst, content); // set text
+		this.FnSetText.call(this.inst, content); // set text
 
-		if ((this.textObjType === "rex_TagText") || (this.textObjType === "rex_bbcodeText")) {
+		if ((this.textObjType === TYPE_REX_TAGTEXT) || (this.textObjType === TYPE_REX_BBCODETEXT)) {
 			this.inst.isForceRender = isForceRenderSave;
 		}
 	};
