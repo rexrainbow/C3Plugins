@@ -126,6 +126,7 @@ cr.behaviors.Rex_MoveTo = function (runtime) {
 
 			this.getMovingAngle();
 			this.setCurrentSpeed(0);
+			this.remainDistance = 0;			
 		}
 		else {
 			var angle = this.target["a"];
