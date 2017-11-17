@@ -147,6 +147,10 @@ cr.plugins_.Rex_jsshell = function (runtime) {
         var names = functionName.split(".");
         var fnName = names.pop();
         var o = getVal(window, names);
+        if (!o) {
+            log("JSSH: Can not get function " + functionName);
+            return;
+        }      
 
         var retValue;
         if (isNewObject) {
@@ -264,6 +268,9 @@ cr.plugins_.Rex_jsshell = function (runtime) {
     };
 
     Exps.prototype.ReturnValue = function (ret, keys, defaultValue) {
+        if (typeof (keys) === "number") {
+            keys = [keys];
+        }         
         var preCall = this.callStack.getOneAbove();
         ret.set_any(getCV(preCall.retVal, keys, defaultValue));
     };

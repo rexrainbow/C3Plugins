@@ -158,8 +158,7 @@
 
     // Timer
     window.rexObjs.TimerKlass = function (timeline) {
-        this.timeline = timeline;
-        this.Reset();
+        this.Reset(timeline);
         this.extra = {};
         // state: 
         // - idle: (!this._isAlive) && (!this._isActive)
@@ -168,7 +167,8 @@
     };
     var TimerProto = window.rexObjs.TimerKlass.prototype;
 
-    TimerProto.Reset = function () {
+    TimerProto.Reset = function (timeline) {
+        this.timeline = timeline;        
         this.delayTime = 0; //delayTime
         this._remainderTime = 0;
         this.absTime = 0;

@@ -39,10 +39,11 @@
             var v = obj;
             for (i = 0; i < cnt; i++) {
                 key = keys[i];
-                if (v.hasOwnProperty(key))
-                    v = v[key];
-                else
+                if ((v == null) || (typeof v !== 'object')) {
+                    log("Can not find property " + keys);
                     return undefined;
+                }
+                v = v[key];
             }
             return v;
         }

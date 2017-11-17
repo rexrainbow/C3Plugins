@@ -21,7 +21,7 @@ cr.plugins_.Rex_TimeLine = function (runtime) {
         var timer;
         if (this.lines.length > 0) {
             timer = this.lines.pop();
-            timer.Reset();
+            timeline.LinkTimer(timer);
         }
         else {
             timer = timeline.CreateTimer(on_timeout);
@@ -127,6 +127,11 @@ cr.plugins_.Rex_TimeLine = function (runtime) {
     instanceProto.CreateTimer = function (on_timeout) {
         var timer = new window.rexObjs.TimerKlass(this.timeline);
         timer.TimeoutHandlerSet(on_timeout);  // hang OnTimeout function
+        return timer;
+    };
+
+    instanceProto.LinkTimer = function (timer) {
+        timer.Reset(this.timeline)
         return timer;
     };
 
