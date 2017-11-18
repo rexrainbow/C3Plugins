@@ -39,11 +39,13 @@
             var v = obj;
             for (i = 0; i < cnt; i++) {
                 key = keys[i];
-                if ((v == null) || (typeof v !== 'object')) {
+
+                if (key in v) {
+                    v = v[key];
+                } else {
                     log("Can not find property " + keys);
-                    return undefined;
+                    return;
                 }
-                v = v[key];
             }
             return v;
         }
