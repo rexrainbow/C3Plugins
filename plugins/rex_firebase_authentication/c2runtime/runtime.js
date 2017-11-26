@@ -545,7 +545,7 @@ cr.plugins_.Rex_Firebase_Authentication = function (runtime) {
         ret.set_string(val);
     };
     Exps.prototype.PhotoURL = function (ret) {
-        ret.set_string(getUserProperty("photoURL") || "");
+        ret.set_string(getProviderProperty("photoURL") || "");
     };
 
     var exps = cr.plugins_.Rex_Firebase_Authentication.prototype.exps;
