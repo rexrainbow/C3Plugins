@@ -1,0 +1,118 @@
+{
+	"default-sorting": {
+		"conditions": [
+		],
+		"actions": [
+			{
+				"c2id": 0,
+				"id": "sort-objects-by-y",
+				"scriptName": "SortObjsLayerByY",
+				"highlight": false,
+				"params": [
+					{"id":"layer0", "type":"layer"}
+				]
+			},
+			{
+				"c2id": 1,
+				"id": "set-x-order",
+				"scriptName": "SetXorder",
+				"highlight": false,
+				"params": [
+					{"id":"x_order2", "type":"combo", "items":["increasing","decreasing"]}
+				]
+			},
+			{
+				"c2id": 5,
+				"id": "set-y-order",
+				"scriptName": "SetYorder",
+				"highlight": false,
+				"params": [
+					{"id":"y_order2", "type":"combo", "items":["increasing","decreasing"]}
+				]
+			}
+		],
+		"expressions": [
+		]
+	},
+	"custom-sorting": {
+		"conditions": [
+			{
+				"c2id": 1,
+				"id": "on-sorting-fn",
+				"scriptName": "OnSortingFn",
+				"isTrigger": "true",
+				"highlight": false,
+				"params": [
+					{"id":"name0", "type":"string", "initialValue":"\"\""}
+				]
+			}			
+		],
+		"actions": [
+			{
+				"c2id": 2,
+				"id": "sort-by-fn",
+				"scriptName": "SortByFn",
+				"highlight": false,
+				"params": [
+					{"id":"layer0", "type":"layer"},
+					{"id":"sorting_function1", "type":"string", "initialValue":"\"\""}
+				]
+			},			
+			{
+				"c2id": 3,
+				"id": "set-compared-result-by-number",
+				"scriptName": "SetCmpResultDirectly",
+				"highlight": false,
+				"params": [
+					{"id":"result0", "type":"number", "initialValue":"0"}
+				]
+			},
+			{
+				"c2id": 4,
+				"id": "set-cmpared-result-by-combo",
+				"scriptName": "SetCmpResultCombo",
+				"highlight": false,
+				"params": [
+					{"id":"result3", "type":"combo", "items":["<","=",">"]}
+				]
+			}			
+		],
+		"expressions": [
+			{
+				"c2id": 1,
+				"id": "cmp-uida",
+				"expressionName": "CmpUIDA",
+				"scriptName": "CmpUIDA",
+				"highlight": false,
+				"returnType": "number"
+			},
+			{
+				"c2id": 2,
+				"id": "cmp-uidb",
+				"expressionName": "CmpUIDB",
+				"scriptName": "CmpUIDB",
+				"highlight": false,
+				"returnType": "number"
+			}			
+		]
+	},
+	"z-order": {
+		"conditions": [
+		],
+		"actions": [
+			{
+				"c2id": 11,
+				"id": "z-move-to-object",
+				"scriptName": "ZMoveToObject",
+				"highlight": false,
+				"params": [
+					{"id":"uid_a0", "type":"number", "initialValue":"0"},
+					{"id":"place3", "type":"combo", "items":["in front","behind"]},
+					{"id":"uid_b4", "type":"number", "initialValue":"0"}
+				]
+			}
+		],
+		"expressions": [
+		]
+	}
+}

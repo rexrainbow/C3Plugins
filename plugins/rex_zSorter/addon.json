@@ -1,0 +1,26 @@
+{
+	"is-c3-addon": true,
+	"type": "plugin",
+	"name": "Z Sorter",
+	"id": "Rex_ZSorter",
+	"version": "1.0.0.0",
+	"author": "Juan Pablo Tarquino",
+	"website": "https://rexrainbow.github.io/C3RexDoc/plugins.md/index.html",
+	"documentation": "https://rexrainbow.github.io/C3RexDoc/plugins.md/rex_zSorter.html",
+	"description": "Sorts Objects in Layer By Y",
+	"editor-scripts": [
+						"plugin.js",
+						"type.js",
+						"instance.js"
+					],
+	"file-list": [
+		"c2runtime/runtime.js",
+		"lang/en-US.json",
+		"aces.json",
+		"addon.json",
+		"icon.png",
+		"plugin.js",
+		"type.js",
+		"instance.js"
+	]
+}
