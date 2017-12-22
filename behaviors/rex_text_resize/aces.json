@@ -1,0 +1,68 @@
+{
+	"resize": {
+		"conditions": [
+			{
+				"c2id": 1,
+				"id": "on-size-changed",
+				"scriptName": "OnSizeChanged",
+				"isTrigger": "true",
+				"highlight": false
+			}
+		],
+		"actions": [
+			{
+				"c2id": 1,
+				"id": "resize",
+				"scriptName": "Resize",
+				"highlight": false
+			},
+			{
+				"c2id": 2,
+				"id": "set-max-width",
+				"scriptName": "SetMaxWidth",
+				"highlight": false,
+				"params": [
+					{"id":"width0", "type":"number"}
+				]
+			},
+			{
+				"c2id": 3,
+				"id": "set-min-width",
+				"scriptName": "SetMinWidth",
+				"highlight": false,
+				"params": [
+					{"id":"width0", "type":"number"}
+				]
+			},
+			{
+				"c2id": 4,
+				"id": "set-min-height",
+				"scriptName": "SetMinHeight",
+				"highlight": false,
+				"params": [
+					{"id":"height0", "type":"number"}
+				]
+			}
+		],
+		"expressions": [
+		]
+	},
+	"background": {
+		"conditions": [
+		],
+		"actions": [
+			{
+				"c2id": 11,
+				"id": "add-background",
+				"scriptName": "AddBackground",
+				"highlight": false,
+				"params": [
+					{"id":"baclground0", "type":"object"},
+					{"id":"resize3", "type":"combo", "items":["width and height","heigh only"]}
+				]
+			}
+		],
+		"expressions": [
+		]
+	}
+}

@@ -1,0 +1,84 @@
+{
+	"languageTag": "en-US",
+	"fileDescription": "Strings for Text resize.",
+	"text": {
+		"behaviors": {
+			"rex_text_resize": {
+				"name": "Text resize",
+				"description": "Resize text object and background to show all lines.",
+				"help-url": "https://rexrainbow.github.io/C2RexDoc/c2rexpluginsACE/behavior_rex_text_resize.html",
+				"properties": {
+					"auto-resize": {
+						"name": "Auto resize",
+						"desc": "Enable to resize object automatically.",
+						"items": {
+							"no":"No",
+							"yes":"Yes"
+							}
+						},
+					"min-width": {
+						"name": "Min width",
+						"desc": "Minimum text width, in pixels."
+						},
+					"min-height": {
+						"name": "Min height",
+						"desc": "Minimum text height, in pixels."
+						}
+				},
+				"aceCategories": {
+					"resize": "Resize",
+					"background": "Background"
+				},
+				"conditions": {
+					"on-size-changed": {
+						"list-name": "On size changed",
+						"display-text": "On {my} size changed",
+						"description": "Triggered when size changed."
+						}
+				},
+				"actions": {
+					"resize": {
+						"list-name": "Resize",
+						"display-text": "{my} resize",
+						"description": "Resize text object to show all text with minimal height."
+					},
+					"set-max-width": {
+						"list-name": "Set max width",
+						"display-text": "{my} set max width to [b]{0}[/b]",
+						"description": "Set maximum width of this object.",
+						"params": {
+							"width0": { "name":"Width", "desc":"Width in pixels."}
+						}
+					},
+					"set-min-width": {
+						"list-name": "Set min width",
+						"display-text": "{my} set min width to [b]{0}[/b]",
+						"description": "Set minimum width of this object.",
+						"params": {
+							"width0": { "name":"Width", "desc":"Width in pixels."}
+						}
+					},
+					"set-min-height": {
+						"list-name": "Set min height",
+						"display-text": "{my} set min height to [b]{0}[/b]",
+						"description": "Set minimum height of this object.",
+						"params": {
+							"height0": { "name":"Height", "desc":"Height in pixels."}
+						}
+					},
+					"add-background": {
+						"list-name": "Add background",
+						"display-text": "{my} add background {0}, resize [b]{1}[/b]",
+						"description": "Add background object.",
+						"params": {
+							"baclground0": { "name":"Baclground", "desc":"Baclground object."},
+							"resize3": { "name":"Resize", "desc":"Resize mode", "items":{"width and height":"width and height","heigh only":"heigh only"}}
+						}
+					}
+				},
+				"expressions": {
+				}
+			}
+		}
+	}
+}
