@@ -1,0 +1,278 @@
+{
+	"languageTag": "en-US",
+	"fileDescription": "Strings for Scenario.",
+	"text": {
+		"plugins": {
+			"rex_scenario": {
+				"name": "Scenario",
+				"description": "Executing function from a csv table while time-out",
+				"help-url": "https://rexrainbow.github.io/C2RexDoc/c2rexpluginsACE/rex_scenario.html",
+				"properties": {
+					"debug-mode": {
+						"name": "Debug mode",
+						"desc": "Enable to show log.",
+						"items": {
+							"no":"No",
+							"yes":"Yes"
+							}
+						},
+					"time-stamp": {
+						"name": "Time stamp",
+						"desc": "Time stamp type.",
+						"items": {
+							"accumulation":"Accumulation",
+							"differential":"Differential"
+							}
+						},
+					"eval-mode": {
+						"name": "Eval mode",
+						"desc": "Enable \"Eval mode\" for parameters. \"Mem\" feature only could be used in eval mode.",
+						"items": {
+							"no":"No",
+							"yes":"Yes"
+							}
+						},
+					"sync-timescale": {
+						"name": "Sync timescale",
+						"desc": "Sync to object's timescale.",
+						"items": {
+							"no":"No",
+							"yes":"Yes"
+							}
+						},
+					"mustache": {
+						"name": "Mustache",
+						"desc": "Enable to process string by Mustache templating engine.",
+						"items": {
+							"no":"No",
+							"yes":"Yes"
+							}
+						},
+					"left-delimiter": {
+						"name": "Left delimiter",
+						"desc": "Left delimiter. Set \"\" to use default delimiter \"{{\""
+						},
+					"right-delimiter": {
+						"name": "Right delimiter",
+						"desc": "Right delimiter. Set \"\" to use default delimiter \"}}\""
+						}
+				},
+				"aceCategories": {
+					"load-commands": "0: Load",
+					"control": "Control",
+					"wait": "Wait",
+					"memory": "Memory",
+					"setup": "Setup",
+					"mustache": "Mustache",
+					"tag": "Tag",
+					"z-deprecated": "Z: Deprecated"										
+				},
+				"conditions": {
+					"on-completed": {
+						"list-name": "On execution completed",
+						"display-text": "On completed",
+						"description": "Triggered when scenario executed completed."
+						},
+					"is-running": {
+						"list-name": "Is running",
+						"display-text": "Is running",
+						"description": "Is scenario running."
+						},
+					"on-tag-changed": {
+						"list-name": "On tag changed",
+						"display-text": "On tag changed",
+						"description": "Triggered when tag changed."
+						},
+					"is-tag-existed": {
+						"list-name": "Is tag existed",
+						"display-text": "Is tag [b]{0}[/b] existed",
+						"description": "Return true if tag is existed.",
+						"params": {
+							"tag0": { "name":"Tag", "desc":"Tag in csv table. \"\" is start from 1st command."}
+						}
+						},
+					"is-waiting": {
+						"list-name": "Is waiting any",
+						"display-text": "Is waiting",
+						"description": "Is scenario waiting for any signal."
+						},
+					"is-waiting-key": {
+						"list-name": "Is waiting",
+						"display-text": "Is waiting {0}",
+						"description": "Is scenario waiting for signal.",
+						"params": {
+							"key0": { "name":"Key", "desc":"Key of locked-wait command"}
+						}
+						},
+					"on-waiting-start": {
+						"list-name": "On waiting any start",
+						"display-text": "On waiting start",
+						"description": "Triggered when On waiting (for signal) start."
+						},
+					"on-waiting-start-key": {
+						"list-name": "On waiting start",
+						"display-text": "On waiting [b]{0}[/b] start",
+						"description": "Triggered when On waiting (for signal) start.",
+						"params": {
+							"key0": { "name":"Key", "desc":"Key of locked-wait command"}
+						}
+						}
+				},
+				"actions": {
+					"setup1": {
+						"list-name": "Setup",
+						"display-text": "Get timer from [b]{0}[/b], callback to [b]{1}[/b]",
+						"description": "Setup.",
+						"params": {
+							"timeline0": { "name":"Timeline", "desc":"Timeline object to get timer"},
+							"function1": { "name":"Function", "desc":"Function object for callback"}
+						}
+					},
+					"load-commands": {
+						"list-name": "Load commands",
+						"display-text": "Load commands [b]{0}[/b] ([b]{1}[/b])",
+						"description": "Load commands in csv or json format.",
+						"params": {
+							"commands0": { "name":"Commands", "desc":"Commands string"},
+							"format3": { "name":"Format", "desc":"String format.", "items":{"csv":"csv","json":"JSON"}}
+						}
+					},
+					"start": {
+						"list-name": "Start scenario",
+						"display-text": "Start scenario with offset to [b]{0}[/b], tag to [b]{1}[/b]",
+						"description": "Start scenario.",
+						"params": {
+							"offset0": { "name":"Offset", "desc":"Time offset at start"},
+							"tag1": { "name":"Tag", "desc":"Tag in csv table. \"\" is start from 1st command."}
+						}
+					},
+					"pause": {
+						"list-name": "Pause scenario",
+						"display-text": "Pause scenario",
+						"description": "Pause scenario."
+					},
+					"resume": {
+						"list-name": "Resume scenario",
+						"display-text": "Resume scenario",
+						"description": "Resume scenario."
+					},
+					"stop": {
+						"list-name": "Stop scenario",
+						"display-text": "Stop scenario",
+						"description": "Stop scenario."
+					},
+					"set-offset": {
+						"list-name": "Set time offset",
+						"display-text": "Set offset to [b][/b] {0}",
+						"description": "Set time offset.",
+						"params": {
+							"offset0": { "name":"Offset", "desc":"Time offset at start"}
+						}
+					},
+					"clean-commands": {
+						"list-name": "Clean commands",
+						"display-text": "Clean all commands",
+						"description": "Clean all commands."
+					},
+					"append-commands": {
+						"list-name": "Append commands",
+						"display-text": "Append commands [b]{0}[/b] ([b]{1}[/b])",
+						"description": "Append commands in csv or json format.",
+						"params": {
+							"commands0": { "name":"Commands", "desc":"Commands string"},
+							"format3": { "name":"Format", "desc":"String format.", "items":{"csv":"csv","json":"JSON"}}
+						}
+					},
+					"continue": {
+						"list-name": "Continue all",
+						"display-text": "Continue scenario (response of wait command)",
+						"description": "Continue scenario, response of wait command."
+					},
+					"goto-tag": {
+						"list-name": "Goto tag",
+						"display-text": "Goto tag [b]{0}[/b]",
+						"description": "Set current table index to tag.",
+						"params": {
+							"tag0": { "name":"Tag", "desc":"Tag in csv table"}
+						}
+					},
+					"set-memory": {
+						"list-name": "Set value",
+						"display-text": "Set MEM[[b]{0}[/b]] to [b]{1}[/b]",
+						"description": "Set the value stored in memory.",
+						"params": {
+							"index0": { "name":"Index", "desc":"Index of memory, can be number of string"},
+							"value1": { "name":"Value", "desc":"Value of memory"}
+						}
+					},
+					"string-to-memory": {
+						"list-name": "Load from JSON",
+						"display-text": "Load MEM form JSON string to [b]{0}[/b]",
+						"description": "Load memory from JSON string.",
+						"params": {
+							"json_string0": { "name":"JSON string", "desc":"JSON string."}
+						}
+					},
+					"continue-key": {
+						"list-name": "Continue with key",
+						"display-text": "Continue scenario (response of wait [b]{0}[/b] command)",
+						"description": "Continue scenario, response of locked-wait command.",
+						"params": {
+							"key0": { "name":"Key", "desc":"Key of locked-wait command"}
+						}
+					},
+					"assign-timeline": {
+						"list-name": "Setup timeline",
+						"display-text": "Get timer from [b]{0}[/b]",
+						"description": "Setup timeline.",
+						"params": {
+							"timeline0": { "name":"Timeline", "desc":"Timeline object to get timer"}
+						}
+					},
+					"assign-callback": {
+						"list-name": "Setup callback",
+						"display-text": "Set callback to [b]{0}[/b]",
+						"description": "Setup callback.",
+						"params": {
+							"callback2": { "name":"Callback", "desc":"Callback object.", "items":{"official function":"Official function","rex function2":"Rex function2"}}
+						}
+					},
+					"set-delimiters": {
+						"list-name": "Set delimiters",
+						"display-text": "Set delimiters to [b]{0}[/b] [b]{1}[/b]",
+						"description": "Set delimiters .",
+						"params": {
+							"left_delimiter0": { "name":"Left delimiter", "desc":"Left delimiter. Set \"\" to use default delimiter \"{{\""},
+							"right_delimiter1": { "name":"Right delimiter", "desc":"Right delimiter. Set \"\" to use default delimiter \"}}\""}
+						}
+					}
+				},
+				"expressions": {
+					"last-tag": {
+						"description": "Get last tag.",
+						"translated-name": "LastTag"
+						},
+					"memory": {
+						"description": "Get the value from memory by index.",
+						"translated-name": "Mem",
+						"params": {
+							"index0": { "name":"Index", "desc":"Index of memory, can be number of string"}
+						}
+						},
+					"memory-to-string": {
+						"description": "Transfer memory to JSON string.",
+						"translated-name": "MEMToString"
+						},
+					"previous-tag": {
+						"description": "Get previous tag.",
+						"translated-name": "PreviousTag"
+						},
+					"current-tag": {
+						"description": "Get current(last) tag.",
+						"translated-name": "CurrentTag"
+						}
+				}
+			}
+		}
+	}
+}

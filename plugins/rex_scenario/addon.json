@@ -1,0 +1,29 @@
+{
+	"is-c3-addon": true,
+	"type": "plugin",
+	"name": "Scenario",
+	"id": "Rex_Scenario",
+	"version": "0.1.0.0",
+	"author": "Rex.Rainbow",
+	"website": "https://rexrainbow.github.io/C2RexDoc/c2rexpluginsACE/rex_scenario.html",
+	"documentation": "https://rexrainbow.github.io/C2RexDoc/c2rexpluginsACE/rex_scenario.html",
+	"description": "Executing function from a csv table while time-out",
+	"editor-scripts": [
+						"plugin.js",
+						"type.js",
+						"instance.js"
+					],
+	"file-list": [
+		"mustache.min.js",
+		"c2runtime/runtime.js",
+		"c2runtime/rex_scenario.js",
+		"c2runtime/rex_csvToArray.js",
+		"lang/en-US.json",
+		"aces.json",
+		"addon.json",
+		"icon.png",
+		"plugin.js",
+		"type.js",
+		"instance.js"
+	]
+}

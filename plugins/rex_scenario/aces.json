@@ -1,0 +1,316 @@
+{
+	"load-commands": {
+		"conditions": [
+		],
+		"actions": [
+			{
+				"c2id": 2,
+				"id": "load-commands",
+				"scriptName": "LoadCmds",
+				"highlight": true,
+				"params": [
+					{"id":"commands0", "type":"string", "initialValue":"\"\""},
+					{"id":"format3", "type":"combo", "items":["csv","json"]}
+				]
+			},
+			{
+				"c2id": 8,
+				"id": "clean-commands",
+				"scriptName": "CleanCmds",
+				"highlight": false
+			},
+			{
+				"c2id": 9,
+				"id": "append-commands",
+				"scriptName": "AppendCmds",
+				"highlight": false,
+				"params": [
+					{"id":"commands0", "type":"string", "initialValue":"\"\""},
+					{"id":"format3", "type":"combo", "items":["csv","json"]}
+				]
+			}
+		],
+		"expressions": [
+		]
+	},
+	"control": {
+		"conditions": [
+			{
+				"c2id": 0,
+				"id": "on-completed",
+				"scriptName": "OnCompleted",
+				"isTrigger": "true",
+				"highlight": true
+			},
+			{
+				"c2id": 1,
+				"id": "is-running",
+				"scriptName": "IsRunning",
+				"highlight": false
+			}			
+		],
+		"actions": [
+			{
+				"c2id": 3,
+				"id": "start",
+				"scriptName": "Start",
+				"highlight": true,
+				"params": [
+					{"id":"offset0", "type":"number", "initialValue":"0"},
+					{"id":"tag1", "type":"string", "initialValue":""}
+				]
+			},
+			{
+				"c2id": 21,
+				"id": "goto-tag",
+				"scriptName": "GoToTag",
+				"isDeprecated": "true",
+				"highlight": false,
+				"params": [
+					{"id":"tag0", "type":"string", "initialValue":""}
+				]
+			},
+			{
+				"c2id": 4,
+				"id": "pause",
+				"scriptName": "Pause",
+				"highlight": false
+			},
+			{
+				"c2id": 5,
+				"id": "resume",
+				"scriptName": "Resume",
+				"highlight": false
+			},
+			{
+				"c2id": 6,
+				"id": "stop",
+				"scriptName": "Stop",
+				"highlight": false
+			},
+			{
+				"c2id": 7,
+				"id": "set-offset",
+				"scriptName": "SetOffset",
+				"highlight": false,
+				"params": [
+					{"id":"offset0", "type":"number", "initialValue":"0"}
+				]
+			}			
+		],
+		"expressions": [
+		]
+	},
+	"wait": {
+		"conditions": [
+			{
+				"c2id": 11,
+				"id": "is-waiting",
+				"scriptName": "IsWaiting",
+				"highlight": false
+			},
+			{
+				"c2id": 12,
+				"id": "is-waiting-key",
+				"scriptName": "IsWaiting",
+				"highlight": false,
+				"params": [
+					{"id":"key0", "type":"any", "initialValue":"\"\""}
+				]
+			},
+			{
+				"c2id": 13,
+				"id": "on-waiting-start",
+				"scriptName": "OnWaitingStart",
+				"isTrigger": "true",
+				"highlight": false
+			},
+			{
+				"c2id": 14,
+				"id": "on-waiting-start-key",
+				"scriptName": "OnWaitingStart",
+				"isTrigger": "true",
+				"highlight": false,
+				"params": [
+					{"id":"key0", "type":"any", "initialValue":"\"\""}
+				]
+			}			
+		],
+		"actions": [
+			{
+				"c2id": 20,
+				"id": "continue",
+				"scriptName": "Continue",
+				"highlight": false
+			},
+			{
+				"c2id": 33,
+				"id": "continue-key",
+				"scriptName": "Continue",
+				"highlight": false,
+				"params": [
+					{"id":"key0", "type":"any", "initialValue":""}
+				]
+			}
+		],
+		"expressions": [
+		]
+	},
+	"memory": {
+		"conditions": [
+		],
+		"actions": [
+			{
+				"c2id": 31,
+				"id": "set-memory",
+				"scriptName": "SetMemory",
+				"highlight": false,
+				"params": [
+					{"id":"index0", "type":"any", "initialValue":"0"},
+					{"id":"value1", "type":"any", "initialValue":"0"}
+				]
+			},
+			{
+				"c2id": 32,
+				"id": "string-to-memory",
+				"scriptName": "StringToMEM",
+				"highlight": false,
+				"params": [
+					{"id":"json_string0", "type":"string", "initialValue":"\"\""}
+				]
+			}
+		],
+		"expressions": [
+			{
+				"c2id": 3,
+				"id": "memory",
+				"expressionName": "Mem",
+				"scriptName": "Mem",
+				"highlight": false,
+				"returnType": "any",
+				"params": [
+					{"id":"index0", "type":"any", "initialValue":"0"}
+				]
+			},
+			{
+				"c2id": 4,
+				"id": "memory-to-string",
+				"expressionName": "MEMToString",
+				"scriptName": "MEMToString",
+				"highlight": false,
+				"returnType": "string"
+			}
+		]
+	},
+	"setup": {
+		"conditions": [
+		],
+		"actions": [
+			{
+				"c2id": 41,
+				"id": "assign-timeline",
+				"scriptName": "SetupTimeline",
+				"highlight": false,
+				"params": [
+					{"id":"timeline0", "type":"object"}
+				]
+			},
+			{
+				"c2id": 42,
+				"id": "assign-callback",
+				"scriptName": "SetupCallback",
+				"highlight": false,
+				"params": [
+					{"id":"callback2", "type":"combo", "items":["official function","rex function2"]}
+				]
+			}
+		],
+		"expressions": [
+		]
+	},
+	"mustache": {
+		"conditions": [
+		],
+		"actions": [
+			{
+				"c2id": 101,
+				"id": "set-delimiters",
+				"scriptName": "SetDelimiters",
+				"highlight": false,
+				"params": [
+					{"id":"left_delimiter0", "type":"string", "initialValue":"\"{{\""},
+					{"id":"right_delimiter1", "type":"string", "initialValue":"\"}}\""}
+				]
+			}
+		],
+		"expressions": [
+		]
+	},
+	"tag": {
+		"conditions": [
+			{
+				"c2id": 2,
+				"id": "on-tag-changed",
+				"scriptName": "OnTagChanged",
+				"isTrigger": "true",
+				"highlight": false
+			},
+			{
+				"c2id": 3,
+				"id": "is-tag-existed",
+				"scriptName": "IsTagExisted",
+				"highlight": false,
+				"params": [
+					{"id":"tag0", "type":"string", "initialValue":""}
+				]
+			}
+		],
+		"actions": [
+		],
+		"expressions": [
+			{
+				"c2id": 2,
+				"id": "last-tag",
+				"expressionName": "LastTag",
+				"scriptName": "LastTag",
+				"highlight": false,
+				"returnType": "string"
+			},
+			{
+				"c2id": 5,
+				"id": "previous-tag",
+				"expressionName": "PreviousTag",
+				"scriptName": "PreviousTag",
+				"highlight": false,
+				"returnType": "string"
+			},
+			{
+				"c2id": 6,
+				"id": "current-tag",
+				"expressionName": "CurrentTag",
+				"scriptName": "CurrentTag",
+				"highlight": false,
+				"returnType": "string"
+			}
+		]
+	},
+	"z-deprecated": {
+		"conditions": [
+		],
+		"actions": [
+			{
+				"c2id": 1,
+				"id": "setup1",
+				"scriptName": "Setup",
+				"isDeprecated": "true",
+				"highlight": false,
+				"params": [
+					{"id":"timeline0", "type":"object"},
+					{"id":"function1", "type":"object"}
+				]
+			}
+		],
+		"expressions": [
+		]
+	}	
+}
