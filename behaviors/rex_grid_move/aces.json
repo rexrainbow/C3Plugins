@@ -40,7 +40,7 @@
 			{
 				"id": "move-to-neighbor-on-square-board",
 				"scriptName": "MoveToNeighbor",
-				"highlight": false,
+				"highlight": true,
 				"params": [
 					{"id":"direction8", "type":"combo", "items":["right","down","left","up","right-down","left-down","left-up","right-up"]}
 				],
@@ -57,7 +57,7 @@
 			{
 				"id": "move-to-neighbor-on-hexagon-left-right-board",
 				"scriptName": "MoveToNeighbor",
-				"highlight": false,
+				"highlight": true,
 				"params": [
 					{"id":"direction6", "type":"combo", "items":["right","down-right","down-left","left","up-left","up-right"]}
 				],
@@ -74,7 +74,7 @@
 			{
 				"id": "move-to-neighbor-on-hexagon-up-down-board",
 				"scriptName": "MoveToNeighbor",
-				"highlight": false,
+				"highlight": true,
 				"params": [
 					{"id":"direction6", "type":"combo", "items":["down-right","down","down-left","up-left","up","up-right"]}
 				],
@@ -156,7 +156,7 @@
 			{
 				"id": "move-to-target-chess-by-uid",
 				"scriptName": "MoveToTargetChess",
-				"highlight": false,
+				"highlight": true,
 				"params": [
 					{"id":"uid0", "type":"any", "initialValue":"0"}
 				],
