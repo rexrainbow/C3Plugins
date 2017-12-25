@@ -31,6 +31,10 @@
 				new SDK.PluginProperty("combo", "moveto", {initialValue:"yes", items:["no","yes"]}),
 				new SDK.PluginProperty("combo", "continued-mode", {initialValue:"no", items:["no","yes"]})
 			]);
+			this._info.AddFileDependency({
+				filename: "c2runtime/rex_cmdMoveTo.js",
+				type: "inline-script"
+			});				
 			SDK.Lang.PopContext();		// .properties
 			SDK.Lang.PopContext();
 		}

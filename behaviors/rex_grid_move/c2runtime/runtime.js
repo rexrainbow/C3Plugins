@@ -56,7 +56,7 @@ cr.behaviors.Rex_GridMove = function (runtime) {
 
     var behinstProto = behaviorProto.Instance.prototype;
 
-    var _get_uid = function (objs) {
+    var getUID = function (objs) {
         var uid;
         if (objs == null)
             uid = null;
@@ -73,12 +73,12 @@ cr.behaviors.Rex_GridMove = function (runtime) {
     behinstProto.onCreate = function () {
         this.board = null;
         if (!this.recycled) {
-            this._cmd_move_to = new cr.behaviors.Rex_GridMove.CmdMoveTo(this);
+            this.cmdMoveTo = new window.rexObjs.GridMove.CmdMoveTo(this);
         }
-        this._cmd_move_to.Reset(this);
+        this.cmdMoveTo.Reset(this);
 
-        this.is_moving_request_accepted = false;
-        this.is_my_call = false;
+        this.isMovingRequestAccepted = false;
+        this.isMyCall = false;
         this.exp_BlockerUID = (-1);
         this.exp_Direction = (-1);
         this.exp_SourceLX = (-1);
@@ -89,17 +89,17 @@ cr.behaviors.Rex_GridMove = function (runtime) {
         this.exp_DestinationLZ = (-1);
         this.exp_TargetPX = 0;
         this.exp_TargetPY = 0;
-        this.is_customSolid = null;
+        this.isCustomSolid = null;
 
         if (!this.recycled) {
-            this._wander = {
+            this.wanderInfo = {
                 "rx": 0,
                 "ry": 0,
                 "o": { "x": 0, "y": 0, "z": 0 }
             };
         }
-        this._wander["rx"] = this.properties[4];
-        this._wander["ry"] = this.properties[5];
+        this.wanderInfo["rx"] = this.properties[4];
+        this.wanderInfo["ry"] = this.properties[5];
 
         this.force_move = (this.properties[6] === 1);
         this.enable_moveTo = (this.properties[7] === 1);
@@ -121,7 +121,7 @@ cr.behaviors.Rex_GridMove = function (runtime) {
     };
 
     behinstProto.tick = function () {
-        this._cmd_move_to.tick();
+        this.cmdMoveTo.tick();
     };
 
     var _dir_sequence_init = function (arr, dir_count) {
@@ -150,9 +150,9 @@ cr.behaviors.Rex_GridMove = function (runtime) {
                 if (xyz != null) {
                     this.board = inst;
                     _dir_sequence_init(this._dir_sequence, inst.GetLayout().GetDirCount());
-                    this._wander["o"]["x"] = xyz.x;
-                    this._wander["o"]["y"] = xyz.y;
-                    this._wander["o"]["z"] = xyz.z;
+                    this.wanderInfo["o"]["x"] = xyz.x;
+                    this.wanderInfo["o"]["y"] = xyz.y;
+                    this.wanderInfo["o"]["z"] = xyz.z;
                     return this.board;
                 }
             }
@@ -199,12 +199,12 @@ cr.behaviors.Rex_GridMove = function (runtime) {
     };
 
     behinstProto._custom_can_move_to_get = function () {
-        this.is_customSolid = null;
+        this.isCustomSolid = null;
         this.runtime.trigger(cr.behaviors.Rex_GridMove.prototype.cnds.OnGetSolid, this.inst);
         var can_move_to;
-        if (this.is_customSolid == null)
+        if (this.isCustomSolid == null)
             can_move_to = null;
-        else if (this.is_customSolid)
+        else if (this.isCustomSolid)
             can_move_to = (-1);
         else
             can_move_to = 1;
@@ -307,7 +307,7 @@ cr.behaviors.Rex_GridMove = function (runtime) {
             this.on_moving_request_success(false);
         }
         else {
-            this.is_moving_request_accepted = false;
+            this.isMovingRequestAccepted = false;
         }
         return (can_move == 1);
     };
@@ -321,11 +321,11 @@ cr.behaviors.Rex_GridMove = function (runtime) {
         if (!this.enable_moveTo)
             return;
 
-        var MoveSegmentKlass = cr.behaviors.Rex_GridMove.MoveSegment;
+        var MoveSegmentKlass = window.rexObjs.GridMove.MoveSegment;
         if ((!board.isWrapMode) || (dir == null)) {
             // not wrap mode, or not neighbor : move to target directly
             var seg = new MoveSegmentKlass(this.inst.x, this.inst.y, this.exp_TargetPX, this.exp_TargetPY);
-            this._cmd_move_to.move_start(seg);
+            this.cmdMoveTo.movingStart(seg);
         }
         else // board.isWrapMode
         {
@@ -336,7 +336,7 @@ cr.behaviors.Rex_GridMove = function (runtime) {
             if ((relay_lx == lx) && (relay_ly == ly)) {
                 // non-wrapped neighbor : move to target directly
                 var seg = new MoveSegmentKlass(this.inst.x, this.inst.y, this.exp_TargetPX, this.exp_TargetPY);
-                this._cmd_move_to.move_start(seg);
+                this.cmdMoveTo.movingStart(seg);
             }
             else {
                 // wrap neighbor : move to relay point
@@ -352,19 +352,19 @@ cr.behaviors.Rex_GridMove = function (runtime) {
                 relay_px = layout.LXYZ2PX(relay_lx, relay_ly, 0);
                 relay_py = layout.LXYZ2PY(relay_lx, relay_ly, 0);
                 var seg1 = new MoveSegmentKlass(relay_px, relay_py, this.exp_TargetPX, this.exp_TargetPY);
-                this._cmd_move_to.move_start(seg0, seg1);
+                this.cmdMoveTo.movingStart(seg0, seg1);
             }
         }
 
     };
 
     behinstProto.on_moving_request_success = function (can_move) {
-        this.is_moving_request_accepted = can_move;
-        this.is_my_call = true;
+        this.isMovingRequestAccepted = can_move;
+        this.isMyCall = true;
         var trig = (can_move) ? cr.behaviors.Rex_GridMove.prototype.cnds.OnMovingRequestAccepted :
             cr.behaviors.Rex_GridMove.prototype.cnds.OnMovingRequestRejected;
         this.runtime.trigger(trig, this.inst);
-        this.is_my_call = false;
+        this.isMyCall = false;
     };
 
     var _shuffle = function (arr, random_gen) {
@@ -462,9 +462,9 @@ cr.behaviors.Rex_GridMove = function (runtime) {
     behinstProto.saveToJSON = function () {
         var randomGenUid = (this.type.randomGen != null) ? this.type.randomGen.uid : (-1);
         return {
-            "mrq": this.is_moving_request_accepted,
-            "mt": this._cmd_move_to.saveToJSON(),
-            "wander": this._wander,
+            "mrq": this.isMovingRequestAccepted,
+            "mt": this.cmdMoveTo.saveToJSON(),
+            "wander": this.wanderInfo,
             "z": this._z_saved,
             "e_buid": this.exp_BlockerUID,
             "e_dir": this.exp_Direction,
@@ -481,9 +481,9 @@ cr.behaviors.Rex_GridMove = function (runtime) {
     };
 
     behinstProto.loadFromJSON = function (o) {
-        this.is_moving_request_accepted = o["mrq"];
-        this._cmd_move_to.loadFromJSON(o["mt"]);
-        this._wander = o["wander"];
+        this.isMovingRequestAccepted = o["mrq"];
+        this.cmdMoveTo.loadFromJSON(o["mt"]);
+        this.wanderInfo = o["wander"];
         this._z_saved = o["z"];
         this.exp_BlockerUID = o["e_buid"];
         this.exp_Direction = o["e_dir"];
@@ -515,25 +515,21 @@ cr.behaviors.Rex_GridMove = function (runtime) {
     behaviorProto.cnds = new Cnds();
 
     Cnds.prototype.OnHitTarget = function () {
-        return (this._cmd_move_to.is_my_call);
-    };
-
-    Cnds.prototype.OnMoving = function () {
-        return false;
+        return (this.cmdMoveTo.isMyCall);
     };
 
     Cnds.prototype.IsMoving = function () {
-        return (this._cmd_move_to.is_moving);
+        return (this.cmdMoveTo.isMoving);
     };
 
     Cnds.prototype.OnMovingRequestAccepted = function () {
-        return (this.is_my_call);
+        return (this.isMyCall);
     };
     Cnds.prototype.OnMovingRequestRejected = function () {
-        return (this.is_my_call);
+        return (this.isMyCall);
     };
     Cnds.prototype.IsMovingRequestAccepted = function () {
-        return this.is_moving_request_accepted;
+        return this.isMovingRequestAccepted;
     };
     Cnds.prototype.TestMoveToOffset = function (dx, dy) {
         var xyz = this.chess_xyz_get();
@@ -575,29 +571,29 @@ cr.behaviors.Rex_GridMove = function (runtime) {
     behaviorProto.acts = new Acts();
 
     Acts.prototype.SetActivated = function (s) {
-        this._cmd_move_to.activated = (s == 1);
+        this.cmdMoveTo.activated = (s == 1);
     };
 
     Acts.prototype.SetMaxSpeed = function (s) {
-        this._cmd_move_to.move_params["max"] = s;
-        this._cmd_move_to._set_current_speed(null);
+        this.cmdMoveTo.moveParams["max"] = s;
+        this.cmdMoveTo.setcurrentSpeed(null);
     };
 
     Acts.prototype.SetAcceleration = function (a) {
-        this._cmd_move_to.move_params["acc"] = a;
-        this._cmd_move_to._set_current_speed(null);
+        this.cmdMoveTo.moveParams["acc"] = a;
+        this.cmdMoveTo.setcurrentSpeed(null);
     };
 
     Acts.prototype.SetDeceleration = function (a) {
-        this._cmd_move_to.move_params["dec"] = a;
+        this.cmdMoveTo.moveParams["dec"] = a;
     };
 
     Acts.prototype.SetCurrentSpeed = function (s) {
-        this._cmd_move_to._set_current_speed(s);
+        this.cmdMoveTo.setcurrentSpeed(s);
     };
 
     Acts.prototype.MoveToNeighbor = function (dir) {
-        if (!this._cmd_move_to.activated)
+        if (!this.cmdMoveTo.activated)
             return;
 
         var xyz = this.chess_xyz_get();
@@ -613,7 +609,7 @@ cr.behaviors.Rex_GridMove = function (runtime) {
     };
 
     Acts.prototype.MoveToLXY = function (lx, ly) {
-        if (!this._cmd_move_to.activated)
+        if (!this.cmdMoveTo.activated)
             return;
 
         var xyz = this.chess_xyz_get();
@@ -629,7 +625,7 @@ cr.behaviors.Rex_GridMove = function (runtime) {
     };
 
     Acts.prototype.MoveToOffset = function (dx, dy) {
-        if (!this._cmd_move_to.activated)
+        if (!this.cmdMoveTo.activated)
             return;
 
         var xyz = this.chess_xyz_get();
@@ -646,9 +642,9 @@ cr.behaviors.Rex_GridMove = function (runtime) {
     };
 
     Acts.prototype.MoveToTargetChess = function (objtype) {
-        if (!this._cmd_move_to.activated)
+        if (!this.cmdMoveTo.activated)
             return;
-        var uid = _get_uid(objtype);
+        var uid = getUID(objtype);
         if (uid == null)
             return;
         var target_xyz = this.chess_xyz_get(uid);
@@ -705,7 +701,7 @@ cr.behaviors.Rex_GridMove = function (runtime) {
         chessB_binst.on_moving_request_success(true);
     };
     Acts.prototype.Wander = function () {
-        if (!this._cmd_move_to.activated)
+        if (!this.cmdMoveTo.activated)
             return;
 
         var xyz = this.chess_xyz_get();
@@ -714,10 +710,10 @@ cr.behaviors.Rex_GridMove = function (runtime) {
 
         var board = this.GetBoard();
         var layout = this.GetBoard().layout;
-        var init_lx = this._wander["o"]["x"];
-        var init_ly = this._wander["o"]["y"];
-        var range_x = this._wander["rx"];
-        var range_y = this._wander["ry"];
+        var init_lx = this.wanderInfo["o"]["x"];
+        var init_ly = this.wanderInfo["o"]["y"];
+        var rangeX = this.wanderInfo["rx"];
+        var rangeY = this.wanderInfo["ry"];
         _shuffle(this._dir_sequence, this.type.randomGen);
         var i, dir, dir_count = this._dir_sequence.length;
         var tx, ty, tz = xyz.z, can_move;
@@ -725,8 +721,8 @@ cr.behaviors.Rex_GridMove = function (runtime) {
             dir = this._dir_sequence[i];
             tx = board.GetNeighborLX(xyz.x, xyz.y, dir);
             ty = board.GetNeighborLY(xyz.x, xyz.y, dir);
-            if ((Math.abs(tx - init_lx) > range_x) ||
-                (Math.abs(ty - init_ly) > range_y))
+            if ((Math.abs(tx - init_lx) > rangeX) ||
+                (Math.abs(ty - init_ly) > rangeY))
                 continue;
             can_move = this.move_to_target(tx, ty, tz, dir);
             if (can_move)
@@ -734,16 +730,16 @@ cr.behaviors.Rex_GridMove = function (runtime) {
         }
     };
 
-    Acts.prototype.SetWanderRangeX = function (range_x) {
-        if (range_x < 0)
-            range_x = 0;
-        this._wander["rx"] = range_x;
+    Acts.prototype.SetWanderRangeX = function (rangeX) {
+        if (rangeX < 0)
+            rangeX = 0;
+        this.wanderInfo["rx"] = rangeX;
     };
 
-    Acts.prototype.SetWanderRangeY = function (range_y) {
-        if (range_y < 0)
-            range_y = 0;
-        this._wander["ry"] = range_y;
+    Acts.prototype.SetWanderRangeY = function (rangeY) {
+        if (rangeY < 0)
+            rangeY = 0;
+        this.wanderInfo["ry"] = rangeY;
     };
 
     Acts.prototype.SetRandomGenerator = function (random_gen_objs) {
@@ -758,17 +754,17 @@ cr.behaviors.Rex_GridMove = function (runtime) {
         var xyz = this.chess_xyz_get();
         if (xyz == null)
             return;
-        this._wander["o"]["x"] = xyz.x;
-        this._wander["o"]["y"] = xyz.y;
-        this._wander["o"]["z"] = xyz.z;
+        this.wanderInfo["o"]["x"] = xyz.x;
+        this.wanderInfo["o"]["y"] = xyz.y;
+        this.wanderInfo["o"]["z"] = xyz.z;
     };
 
     Acts.prototype.SetDestinationSolid = function (is_solid) {
-        this.is_customSolid = (is_solid > 0);
+        this.isCustomSolid = (is_solid > 0);
     };
 
     Acts.prototype.SetDestinationMoveable = function (is_moveable) {
-        this.is_customSolid = (!(is_moveable > 0));
+        this.isCustomSolid = (!(is_moveable > 0));
     };
 
     Acts.prototype.SetInstanceGroup = function (group_objs) {
@@ -800,7 +796,7 @@ cr.behaviors.Rex_GridMove = function (runtime) {
         return (pA.d < pB.d) ? -1 : (pA.d > pB.d) ? 1 : 0;
     };
     Acts.prototype.ApproachOrDepart = function (chess_objs, is_depart) {
-        if (!this._cmd_move_to.activated)
+        if (!this.cmdMoveTo.activated)
             return;
         var xyz = this.chess_xyz_get();
         if (xyz == null)
@@ -893,7 +889,7 @@ cr.behaviors.Rex_GridMove = function (runtime) {
     // AI - Approach / Depart
 
     Acts.prototype.Stop = function () {
-        this._cmd_move_to.is_moving = false;
+        this.cmdMoveTo.isMoving = false;
     };
 
     Acts.prototype.SetForceMoving = function (e) {
@@ -907,23 +903,23 @@ cr.behaviors.Rex_GridMove = function (runtime) {
     behaviorProto.exps = new Exps();
 
     Exps.prototype.Activated = function (ret) {
-        ret.set_int((this._cmd_move_to.activated) ? 1 : 0);
+        ret.set_int((this.cmdMoveTo.activated) ? 1 : 0);
     };
 
     Exps.prototype.Speed = function (ret) {
-        ret.set_float(this._cmd_move_to.current_speed);
+        ret.set_float(this.cmdMoveTo.currentSpeed);
     };
 
     Exps.prototype.MaxSpeed = function (ret) {
-        ret.set_float(this._cmd_move_to.move_params["max"]);
+        ret.set_float(this.cmdMoveTo.moveParams["max"]);
     };
 
     Exps.prototype.Acc = function (ret) {
-        ret.set_float(this._cmd_move_to.move_params["acc"]);
+        ret.set_float(this.cmdMoveTo.moveParams["acc"]);
     };
 
     Exps.prototype.Dec = function (ret) {
-        ret.set_float(this._cmd_move_to.move_params["dec"]);
+        ret.set_float(this.cmdMoveTo.moveParams["dec"]);
     };
 
     Exps.prototype.TargetX = function (ret) {
@@ -968,218 +964,3 @@ cr.behaviors.Rex_GridMove = function (runtime) {
 
 
 }());
-
-(function () {
-    var MoveSegment = function (x0, y0, x1, y1) {
-        if (arguments.length > 0)
-            this.Reset(x0, y0, x1, y1);
-        else
-            this.Reset(0, 0, 0, 0);
-    }
-    var MoveSegmentProto = MoveSegment.prototype;
-
-    MoveSegmentProto.Reset = function (x0, y0, x1, y1) {
-        this.x0 = x0;
-        this.y0 = y0;
-        this.x1 = x1;
-        this.y1 = y1;
-        this.angle = cr.angleTo(x0, y0, x1, y1);
-        this.remain_distance = cr.distanceTo(this.x0, this.y0, this.x1, this.y1);
-    };
-
-    MoveSegmentProto.GetRemainDistance = function (d) {
-        this.remain_distance -= d;
-        return this.remain_distance;
-    };
-    MoveSegmentProto.saveToJSON = function () {
-        return {
-            "x0": this.x0,
-            "y0": this.y0,
-            "x1": this.x1,
-            "y1": this.y1,
-            "a": this.angle,
-            "rd": this.remain_distance
-        };
-    };
-
-    MoveSegmentProto.loadFromJSON = function (o) {
-        this.x0 = o["x0"];
-        this.y0 = o["y0"];
-        this.x1 = o["x1"];
-        this.y1 = o["y1"];
-        this.angle = o["a"];
-        this.remain_distance = o["rd"];
-    };
-
-    cr.behaviors.Rex_GridMove.MoveSegment = MoveSegment;
-
-
-    var CmdMoveTo = function (plugin) {
-        this.move_params = {
-            "max": 0,
-            "acc": 0,
-            "dec": 0
-        };
-        this.segments = [];
-    };
-    var CmdMoveToProto = CmdMoveTo.prototype;
-
-    CmdMoveToProto.Reset = function (plugin) {
-        this.activated = plugin.properties[0];
-        this.move_params["max"] = plugin.properties[1];
-        this.move_params["acc"] = plugin.properties[2];
-        this.move_params["dec"] = plugin.properties[3];
-        this.is_continue_mode = (plugin.properties[8] == 1);
-        this.segments.length = 0;
-        this.is_moving = false;
-        this.current_speed = 0;
-        this.remain_distance = 0;  // used to control the moving speed
-        this.remain_dt = 0;
-        this.is_my_call = false;
-
-        this.inst = plugin.inst;
-        this.runtime = plugin.runtime;
-    };
-
-    CmdMoveToProto.tick = function () {
-        this.remain_dt = 0;
-        if ((!this.activated) || (!this.is_moving))
-            return;
-
-        var dt = this.runtime.getDt(this.inst);
-        this.move(dt);
-    };
-
-    CmdMoveToProto.move = function (dt) {
-        if (dt == 0)    // can not move if dt == 0
-            return;
-
-        // assign speed
-        var is_slow_down = false;
-        if (this.move_params["dec"] != 0) {
-            // is time to deceleration?                
-            var _speed = this.current_speed;
-            var d = (_speed * _speed) / (2 * this.move_params["dec"]); // (v*v)/(2*a)
-            is_slow_down = (d >= this.remain_distance);
-        }
-        var acc = (is_slow_down) ? (-this.move_params["dec"]) : this.move_params["acc"];
-        if (acc != 0) {
-            this._set_current_speed(this.current_speed + (acc * dt));
-        }
-
-        // Apply movement to the object     
-        var distance = this.current_speed * dt;
-        this.remain_distance -= distance;
-        var cur_seg = this.segments[0];
-        var seg_remain_distance = cur_seg.GetRemainDistance(distance);
-
-        var is_hit_target = false;
-        // is hit to target of current segment?
-        if ((seg_remain_distance <= 0) || (this.current_speed <= 0)) {
-            if (this.segments.length == 1) {
-                is_hit_target = true;        // trigger on hit target
-                this.inst.x = cur_seg.x1;
-                this.inst.y = cur_seg.y1;
-                this.segments.length = 0;
-
-                // remain dt
-                if (this.current_speed > 0)  // not stop
-                    this.remain_dt = (-seg_remain_distance) / this.current_speed;
-
-                this._set_current_speed(0);
-            }
-            else {
-                this.segments.shift();
-                this.set_star_pos(seg_remain_distance);
-            }
-        }
-        else {
-            var angle = cur_seg.angle;
-            this.inst.x += (distance * Math.cos(angle));
-            this.inst.y += (distance * Math.sin(angle));
-        }
-        this.inst.set_bbox_changed();
-
-        if (is_hit_target) {
-            this.is_moving = false;
-            this.is_my_call = true;
-            this.runtime.trigger(cr.behaviors.Rex_GridMove.prototype.cnds.OnHitTarget, this.inst);
-            this.is_my_call = false;
-        }
-    };
-
-    CmdMoveToProto._set_current_speed = function (speed) {
-        if (speed != null) {
-            this.current_speed = (speed > this.move_params["max"]) ?
-                this.move_params["max"] : speed;
-        }
-        else if (this.move_params["acc"] == 0) {
-            this.current_speed = this.move_params["max"];
-        }
-    };
-
-    CmdMoveToProto.move_start = function () {
-        this.segments.length = 0;
-        this.remain_distance = 0;
-        var i, cnt = arguments.length, seg;
-        for (i = 0; i < cnt; i++) {
-            seg = arguments[i];
-            this.segments.push(seg);
-            this.remain_distance += seg.remain_distance;
-        }
-
-        this._set_current_speed(null);
-        this.is_moving = true;
-        this.set_star_pos();
-
-        if (this.is_continue_mode)
-            this.move(this.remain_dt);
-    };
-
-    CmdMoveToProto.set_star_pos = function (offset_distance) {
-        var cur_seg = this.segments[0];
-        var offx = 0, offy = 0;
-        if ((offset_distance != null) && (offset_distance != 0)) {
-            offx = offset_distance * Math.cos(cur_seg.angle);
-            offy = offset_distance * Math.sin(cur_seg.angle);
-            cur_seg.GetRemainDistance(offset_distance)
-        }
-        this.inst.x = cur_seg.x0 + offx;
-        this.inst.y = cur_seg.y0 + offy;
-        this.inst.set_bbox_changed();
-    };
-
-    CmdMoveToProto.saveToJSON = function () {
-        var i, cnt = this.segments.length;
-        var seg_save = [];
-        for (i = 0; i < cnt; i++) {
-            seg_save.push(this.segments[i].saveToJSON());
-        }
-        return {
-            "en": this.activated,
-            "v": this.move_params,
-            "is_m": this.is_moving,
-            "c_spd": this.current_speed,
-            "rd": this.remain_distance,
-            "seg": seg_save
-        };
-    };
-
-    CmdMoveToProto.loadFromJSON = function (o) {
-        this.activated = o["en"];
-        this.move_params = o["v"];
-        this.is_moving = o["is_m"];
-        this.current_speed = o["c_spd"];
-        this.remain_distance = o["rd"];
-
-        var seg_save = o["seg"];
-        var i, cnt = seg_save.length;
-        for (i = 0; i < cnt; i++) {
-            var seg = new MoveSegment();
-            seg.loadFromJSON(seg_save[i]);
-            this.segments.push(seg);
-        }
-    };
-
-    cr.behaviors.Rex_GridMove.CmdMoveTo = CmdMoveTo;
-}());  
