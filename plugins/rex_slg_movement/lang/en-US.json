@@ -1,0 +1,245 @@
+{
+	"languageTag": "en-US",
+	"fileDescription": "Strings for SLG movement.",
+	"text": {
+		"plugins": {
+			"rex_slgmovement": {
+				"name": "SLG movement",
+				"description": "Movement on the chess board of strategy game.",
+				"help-url": "https://rexrainbow.github.io/C2RexDoc/c2rexpluginsACE/plugin_rex_slg_movement.html",
+				"properties": {
+					"path-mode": {
+						"name": "Path mode",
+						"desc": "Geometry of moving path.",
+						"items": {
+							"random":"Random",
+							"diagonal":"Diagonal",
+							"straight":"Straight",
+							"a*":"A*",
+							"line":"Line",
+							"a* -line":"A* -line",
+							"a* -random":"A* -random"
+							}
+						},
+					"cache-cost": {
+						"name": "Cache cost",
+						"desc": "Cache the cost of each tile in a request.",
+						"items": {
+							"no":"No",
+							"yes":"Yes"
+							}
+						},
+					"shuffle-neighbors": {
+						"name": "Shuffle neighbors",
+						"desc": "Shuffle the order of checking neighbors.",
+						"items": {
+							"no":"No",
+							"yes":"Yes"
+							}
+						},
+					"weight": {
+						"name": "Weight",
+						"desc": "Weight of heuristic estimation for A*- path mode."
+						}
+				},
+				"aceCategories": {
+					"setup": "Setup",
+					"request:moveable-area": "Request: Moveable area",
+					"request:moving-path": "Request: Moving path",
+					"cost": "Cost",					
+					"request": "Request",
+					"filter": "Filter",
+					"result": "Result"
+				},
+				"conditions": {
+					"on-cost-function": {
+						"list-name": "On cost",
+						"display-text": "On cost function [i]{0}[/i]",
+						"description": "Cost function to get cost of each tile.",
+						"params": {
+							"name0": { "name":"Name", "desc":"Cost function name."}
+						}
+						},
+					"on-filter-function": {
+						"list-name": "On filter",
+						"display-text": "On filter function [i]{0}[/i]",
+						"description": "Filter function to re-assign target instances.",
+						"params": {
+							"name0": { "name":"Name", "desc":"Filter function name."}
+						}
+						}
+				},
+				"actions": {
+					"setup": {
+						"list-name": "Setup",
+						"display-text": "Set board object to [i]{0}[/i], instance group object to [i]{1}[/i]",
+						"description": "Set board object and instance group object.",
+						"params": {
+							"board0": { "name":"Board", "desc":"Board object"},
+							"group1": { "name":"Group", "desc":"Instance group object"}
+						}
+					},
+					"set-cost": {
+						"list-name": "Set cost",
+						"display-text": "Set cost to [i]{0}[/i]",
+						"description": "Set cost.",
+						"params": {
+							"cost0": { "name":"Cost", "desc":"Cost"}
+						}
+					},
+					"get-moveable-area": {
+						"list-name": "Get moveable area",
+						"display-text": "Get moveable area of chess [i]{0}[/i] by moving points to [i]{1}[/i] and cost to [i]{2}[/i], filter to [i]{3}[/i]. Then put result to group [i]{4}[/i]",
+						"description": "Get moveable area.",
+						"params": {
+							"chess0": { "name":"Chess", "desc":"Chess object."},
+							"moving_points1": { "name":"Moving points", "desc":"Moving points."},
+							"moving_cost2": { "name":"Moving cost", "desc":"A number or a function name to get moving cost for each tile."},
+							"filter3": { "name":"Filter", "desc":"Filter function name to get avaiable uid, \"\" is passing default."},
+							"group4": { "name":"Group", "desc":"Put result in this group"}
+						}
+					},
+					"get-moveable-area-by-uid": {
+						"list-name": "Get moveable area by UID",
+						"display-text": "Get moveable area of chess UID:[i]{0}[/i] by moving points to [i]{1}[/i] and cost to [i]{2}[/i], filter to [i]{3}[/i]. Then put result to group [i]{4}[/i]",
+						"description": "Get moveable area.",
+						"params": {
+							"uid0": { "name":"UID", "desc":"The UID of chess"},
+							"moving_points1": { "name":"Moving points", "desc":"Moving points."},
+							"moving_cost2": { "name":"Moving cost", "desc":"A number or a function name to get moving cost for each tile."},
+							"filter3": { "name":"Filter", "desc":"Filter function name to get avaiable uid, \"\" is passing default."},
+							"group4": { "name":"Group", "desc":"Put result in this group"}
+						}
+					},
+					"get-moving-path": {
+						"list-name": "Get moving path",
+						"display-text": "Get moving path start from chess [i]{0}[/i] to [i]{5}[/i] tile/chess [i]{1}[/i] with moving points to [i]{2}[/i] and cost to [i]{3}[/i], then put result to group [i]{4}[/i]",
+						"description": "Get moving path.",
+						"params": {
+							"chess0": { "name":"Chess", "desc":"Chess object."},
+							"tile/chess1": { "name":"Tile/Chess", "desc":"Tile/Chess object."},
+							"moving_points2": { "name":"Moving points", "desc":"Moving points."},
+							"moving_cost3": { "name":"Moving cost", "desc":"A number or a function name to get moving cost for each tile."},
+							"group4": { "name":"Group", "desc":"Put result in this group"},
+							"exact7": { "name":"Exact", "desc":"Exact or nearest.", "items":{"":"","nearest":"nearest"}}
+						}
+					},
+					"get-moving-path-by-uid": {
+						"list-name": "Get moving path by UID",
+						"display-text": "Get moving path start from chess UID:[i]{0}[/i] to [i]{5}[/i] tile/chess UID:[i]{1}[/i] with moving points to [i]{2}[/i] and cost to [i]{3}[/i], then put result to group [i]{4}[/i]",
+						"description": "Get moving path.",
+						"params": {
+							"chess_uid0": { "name":"Chess UID", "desc":"The UID of chess"},
+							"tile/chess_uid1": { "name":"Tile/Chess UID", "desc":"The UID of tile/chess"},
+							"moving_points2": { "name":"Moving points", "desc":"Moving points."},
+							"moving_cost3": { "name":"Moving cost", "desc":"A number or a function name to get moving cost for each tile."},
+							"group4": { "name":"Group", "desc":"Put result in this group"},
+							"exact7": { "name":"Exact", "desc":"Exact or nearest.", "items":{"":"","nearest":"nearest"}}
+						}
+					},
+					"append-to-filter": {
+						"list-name": "Append filter result",
+						"display-text": "Append filter result to UID:[i]{0}[/i]",
+						"description": "Append filter result in UID.",
+						"params": {
+							"uid0": { "name":"UID", "desc":"Filter result"}
+						}
+					},
+					"set-path-mode": {
+						"list-name": "Set path mode",
+						"display-text": "Set path mode to [i]{0}[/i]",
+						"description": "Set path mode.",
+						"params": {
+							"path_mode7": { "name":"Path mode", "desc":"Geometry of moving path.", "items":{"random":"Random","diagonal":"Diagonal","straight":"Straight","a*":"A*","line":"Line","a*-line":"A*-line","a*-random":"A*-random"}}
+						}
+					},
+					"set-random-generator": {
+						"list-name": "Set random generator",
+						"display-text": "Set random generator object to [i]{0}[/i]",
+						"description": "Set random generator object.",
+						"params": {
+							"random_generator0": { "name":"Random generator", "desc":"Random generator object"}
+						}
+					}
+				},
+				"expressions": {
+					"chess-uid": {
+						"description": "Get UID of selected chess.",
+						"translated-name": "ChessUID"
+						},
+					"tile-uid": {
+						"description": "Get UID of target tile.",
+						"translated-name": "TileUID"
+						},
+					"blocking": {
+						"description": "Blocking property used in cost function, used in action:\"Set cost\". The value is (-1)",
+						"translated-name": "BLOCKING"
+						},
+					"tile-x": {
+						"description": "Get logic X of target tile.",
+						"translated-name": "TileX"
+						},
+					"tile-y": {
+						"description": "Get logic Y of target tile.",
+						"translated-name": "TileY"
+						},
+					"infinity": {
+						"description": "Infinity property used in moving point, used in Moving point. The value is (-1)",
+						"translated-name": "INFINITY"
+						},
+					"uid-to-path-cost": {
+						"description": "Get path cost of chess/tile by UID. Retrun (-1) if unknown.",
+						"translated-name": "UID2PathCost",
+						"params": {
+							"uid0": { "name":"UID", "desc":"UID of tile"}
+						}
+						},
+					"nearest-tile-uid": {
+						"description": "Get UID of nearest tile to target.",
+						"translated-name": "NearestTileUID"
+						},
+					"start-tile-uid": {
+						"description": "Get UID of start tile.",
+						"translated-name": "StartTileUID"
+						},
+					"previous-tile-uid": {
+						"description": "Get UID of previos tile.",
+						"translated-name": "PreTileUID"
+						},
+					"previous-tile-x": {
+						"description": "Get logic X of previos tile.",
+						"translated-name": "PreTileX"
+						},
+					"previous-tile-y": {
+						"description": "Get logic Y of previos tile.",
+						"translated-name": "PreTileY"
+						},
+					"previous-tile-path-cost": {
+						"description": "Get path cost of previos tile.",
+						"translated-name": "PreTilePathCost"
+						},
+					"start-x": {
+						"description": "Get logic X of target position.",
+						"translated-name": "StartX"
+						},
+					"start-y": {
+						"description": "Get logic Y of start position.",
+						"translated-name": "StartY"
+						},
+					"end-tile-uid": {
+						"description": "Get UID of end tile.",
+						"translated-name": "EndTileUID"
+						},
+					"end-x": {
+						"description": "Get logic X of end tile.",
+						"translated-name": "EndX"
+						},
+					"end-y": {
+						"description": "Get logic Y of end tile.",
+						"translated-name": "EndY"
+						}
+				}
+			}
+		}
+	}
+}

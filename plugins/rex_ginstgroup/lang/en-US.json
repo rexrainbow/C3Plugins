@@ -10,6 +10,7 @@
 				"properties": {
 				},
 				"aceCategories": {
+					"setup": "Setup",					
 					"group": "Group",
 					"group:add-instances": "Group: Add instances",
 					"group:remove-instances": "Group: Remove instances",					
@@ -23,8 +24,7 @@
 					"mapping-function": "Mapping function",					
 					"sol": "SOL",					
 					"json": "JSON",
-					"private-group": "Private group",
-					"random-generator": "Random generator"					
+					"private-group": "Private group"		
 				},
 				"conditions": {
 					"on-mapping-function": {

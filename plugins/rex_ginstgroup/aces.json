@@ -1,4 +1,21 @@
 {
+	"setup": {
+		"conditions": [
+		],
+		"actions": [
+			{
+				"c2id": 23,
+				"id": "set-random-generator",
+				"scriptName": "SetRandomGenerator",
+				"highlight": false,
+				"params": [
+					{"id":"random_generator0", "type":"object"}
+				]
+			}
+		],
+		"expressions": [
+		]
+	},	
 	"group": {
 		"conditions": [
 			{
@@ -746,22 +763,5 @@
 				]
 			}
 		]
-	},
-	"random-generator": {
-		"conditions": [
-		],
-		"actions": [
-			{
-				"c2id": 23,
-				"id": "set-random-generator",
-				"scriptName": "SetRandomGenerator",
-				"highlight": false,
-				"params": [
-					{"id":"random_generator0", "type":"object"}
-				]
-			}
-		],
-		"expressions": [
-		]
-	}	
+	}
 }
