@@ -1,0 +1,561 @@
+{
+	"languageTag": "en-US",
+	"fileDescription": "Strings for Inst Group.",
+	"text": {
+		"plugins": {
+			"rex_ginstgroup": {
+				"name": "Inst Group",
+				"description": "A set/list to store instances by uid",
+				"help-url": "https://rexrainbow.github.io/C2RexDoc/c2rexpluginsACE/plugin_rex_ginstgroup.html",
+				"properties": {
+				},
+				"aceCategories": {
+					"group": "Group",
+					"group:add-instances": "Group: Add instances",
+					"group:remove-instances": "Group: Remove instances",					
+					"group:set-operation": "Group: Set operation",
+					"list": "List",
+					"list:for-each": "List: For each",					
+					"list:push-insert": "List: Push & Insert",
+					"list:pop": "List: Pop",										
+					"list:sort": "List: Sort",
+					"list:sort-by-function": "List: Sort function",
+					"mapping-function": "Mapping function",					
+					"sol": "SOL",					
+					"json": "JSON",
+					"private-group": "Private group",
+					"random-generator": "Random generator"					
+				},
+				"conditions": {
+					"on-mapping-function": {
+						"list-name": "On mapping",
+						"display-text": "On mapping function [b]{0}[/b]",
+						"description": "Triggered it to get mapping result.",
+						"params": {
+							"function0": { "name":"Function", "desc":"Mapping function name."}
+						}
+						},
+					"on-sorting-function": {
+						"list-name": "On sorting",
+						"display-text": "On sorting function [b]{0}[/b]",
+						"description": "Triggered when sorting by function.",
+						"params": {
+							"function0": { "name":"Function", "desc":"Sorting function name."}
+						}
+						},
+					"for-each-uid": {
+						"list-name": "For each UID",
+						"display-text": "For Item[b]{0}[/b] in group [b]{1}[/b]",
+						"description": "Repeat the event for each UID in a group.",
+						"params": {
+							"variable0": { "name":"Variable", "desc":"Variable name to store UID."},
+							"group1": { "name":"Group", "desc":"Group name."}
+						}
+						},
+					"group-to-instances": {
+						"list-name": "Pick instances",
+						"display-text": "Pick and [b]{2}[/b] [b]{1}[/b] from group [b]{0}[/b]",
+						"description": "Pick instances from group.",
+						"params": {
+							"group0": { "name":"Group", "desc":"Group name."},
+							"object1": { "name":"Object", "desc":"Object for picking"},
+							"operation4": { "name":"Operation", "desc":"Keep or pop", "items":{"keep":"Keep","pop":"Pop"}}
+						}
+						},
+					"is-in-group": {
+						"list-name": "UID in group",
+						"display-text": "Instance UID:[b]{0}[/b] in group [b]{1}[/b]",
+						"description": "Testing if UID is in a group.",
+						"params": {
+							"uid0": { "name":"UID", "desc":"The UID of instance to be tested."},
+							"group1": { "name":"Group", "desc":"Group name."}
+						}
+						},
+					"is-empty": {
+						"list-name": "Empty",
+						"display-text": "Group [b]{0}[/b] is empty",
+						"description": "Testing if group is empty.",
+						"params": {
+							"group0": { "name":"Group", "desc":"Group name."}
+						}
+						},
+					"pop-instance": {
+						"list-name": "Pop one instance",
+						"display-text": "[b]{3}[/b] one instance [b]{2}[/b] from group [b]{0}[/b][[b]{1}[/b]]",
+						"description": "Get or pop one instance from group.",
+						"params": {
+							"group0": { "name":"Group", "desc":"Group name."},
+							"index1": { "name":"Index", "desc":"Pop index."},
+							"object2": { "name":"Object", "desc":"Object for picking"},
+							"operation5": { "name":"Operation", "desc":"Get or pop", "items":{"get":"Get","pop":"Pop"}}
+						}
+						},
+					"is-subset": {
+						"list-name": "Is a subset",
+						"display-text": "[b]{0}[/b] is a subset of [b]{1}[/b]",
+						"description": "Test if group is a subset of another group.",
+						"params": {
+							"subset0": { "name":"Subset", "desc":"Group name."},
+							"main_set1": { "name":"Main set", "desc":"Group name."}
+						}
+						},
+					"random-pop-instance": {
+						"list-name": "Pop random instance",
+						"display-text": "[b]{2}[/b] random instance [b]{1}[/b] from group [b]{0}[/b]",
+						"description": "Get or pop one random instance from group.",
+						"params": {
+							"group0": { "name":"Group", "desc":"Group name."},
+							"object1": { "name":"Object", "desc":"Object for picking"},
+							"operation4": { "name":"Operation", "desc":"Get or pop", "items":{"get":"Get","pop":"Pop"}}
+						}
+						},
+					"pop-instance-by-mapping-function": {
+						"list-name": "Pop by mapping result",
+						"display-text": "[b]{2}[/b] [b]{1}[/b] from group [b]{0}[/b] by [b]{4}[/b] result of mapping function [b]{3}[/b]",
+						"description": "Get or pop one instance from group by the result of mapping function.",
+						"params": {
+							"group0": { "name":"Group", "desc":"Group name."},
+							"object1": { "name":"Object", "desc":"Object for picking"},
+							"operation4": { "name":"Operation", "desc":"Keep or pop", "items":{"keep":"Keep","pop":"Pop"}},
+							"mapping5": { "name":"Mapping", "desc":"Function name of mapping."},
+							"value_type8": { "name":"Value type", "desc":"Minimum or maximim", "items":{"minimum":"minimum","maximum":"maximum"}}
+						}
+						}
+				},
+				"actions": {
+					"destroy-all-groups": {
+						"list-name": "Destroy all",
+						"display-text": "Destroy all groups",
+						"description": "Destroy all groups."
+					},
+					"clean": {
+						"list-name": "Clean group",
+						"display-text": "Clean group [b]{0}[/b]",
+						"description": "Clean group to empty.",
+						"params": {
+							"group0": { "name":"Group", "desc":"Group name."}
+						}
+					},
+					"copy": {
+						"list-name": "Copy",
+						"display-text": "Copy group [b]{0}[/b] to group [b]{1}[/b]",
+						"description": "Copy group to another group.",
+						"params": {
+							"source0": { "name":"Source", "desc":"Group A."},
+							"target1": { "name":"Target", "desc":"Group result."}
+						}
+					},
+					"string-to-group": {
+						"list-name": "Load group",
+						"display-text": "Load group [b]{1}[/b] to JSON string [b]{0}[/b]",
+						"description": "Load group from JSON string.",
+						"params": {
+							"json_string0": { "name":"JSON string", "desc":"JSON string."},
+							"group1": { "name":"Group", "desc":"Group A."}
+						}
+					},
+					"string-to-all-groups": {
+						"list-name": "Load all",
+						"display-text": "Load all groups from JSON string [b][/b] {0}",
+						"description": "Load all groups from JSON string.",
+						"params": {
+							"json_string0": { "name":"JSON string", "desc":"JSON string."}
+						}
+					},
+					"destroy-group": {
+						"list-name": "Destroy group",
+						"display-text": "Destroy [b]{0}[/b]",
+						"description": "Destroy group.",
+						"params": {
+							"group0": { "name":"Group", "desc":"Group name."}
+						}
+					},
+					"add-instances": {
+						"list-name": "Add instances",
+						"display-text": "Add [b]{0}[/b] into group [b]{1}[/b]",
+						"description": "Add instances into group.",
+						"params": {
+							"instances0": { "name":"Instances", "desc":"Instances to be added into group."},
+							"group1": { "name":"Group", "desc":"Group name."}
+						}
+					},
+					"add-instance-by-uid": {
+						"list-name": "Add instances by UID",
+						"display-text": "Add instance UID:[b]{0}[/b] into group [b]{1}[/b]",
+						"description": "Add instances into group by UID.",
+						"params": {
+							"uid0": { "name":"UID", "desc":"The UID of instance to be added into group."},
+							"group1": { "name":"Group", "desc":"Group name."}
+						}
+					},
+					"remove-instances": {
+						"list-name": "Remove instances",
+						"display-text": "Remove [b]{0}[/b] from group [b]{1}[/b]",
+						"description": "Remove instances from group.",
+						"params": {
+							"instances0": { "name":"Instances", "desc":"Instances to be removed from group."},
+							"group1": { "name":"Group", "desc":"Group name."}
+						}
+					},
+					"remove-instance-by-uid": {
+						"list-name": "Remove instances by UID",
+						"display-text": "Remove instance UID:[b]{0}[/b] from group [b]{1}[/b]",
+						"description": "Remove instances from group by UID.",
+						"params": {
+							"uid0": { "name":"UID", "desc":"The UID of instance to be removed from group."},
+							"group1": { "name":"Group", "desc":"Group name."}
+						}
+					},
+					"union": {
+						"list-name": "A + B",
+						"display-text": "Set group [b]{2}[/b] to (group [b]{0}[/b] + group [b]{1}[/b])",
+						"description": "Set group by Union operation.",
+						"params": {
+							"a0": { "name":"A", "desc":"Group A."},
+							"b1": { "name":"B", "desc":"Group B."},
+							"result2": { "name":"Result", "desc":"Group result."}
+						}
+					},
+					"complement": {
+						"list-name": "A - B",
+						"display-text": "Set group [b]{2}[/b] to (group [b]{0}[/b] - group [b]{1}[/b])",
+						"description": "Set group by complement operation.",
+						"params": {
+							"a0": { "name":"A", "desc":"Group A."},
+							"b1": { "name":"B", "desc":"Group B."},
+							"result2": { "name":"Result", "desc":"Group result."}
+						}
+					},
+					"intersection": {
+						"list-name": "A AND B",
+						"display-text": "Set group [b]{2}[/b] to (group [b]{0}[/b] AND group [b]{1}[/b])",
+						"description": "Set group by intersection operation.",
+						"params": {
+							"a0": { "name":"A", "desc":"Group A."},
+							"b1": { "name":"B", "desc":"Group B."},
+							"result2": { "name":"Result", "desc":"Group result."}
+						}
+					},
+					"shuffle": {
+						"list-name": "Shuffle",
+						"display-text": "Shuffle group [b]{0}[/b]",
+						"description": "Shuffle group.",
+						"params": {
+							"group0": { "name":"Group", "desc":"Group name."}
+						}
+					},
+					"sort-by-function": {
+						"list-name": "Sort by function",
+						"display-text": "Sort group [b]{0}[/b] by function [b]{1}[/b]",
+						"description": "Sort group by function.",
+						"params": {
+							"group0": { "name":"Group", "desc":"Group name."},
+							"sorting_function1": { "name":"Sorting function", "desc":"Sorting function of group"}
+						}
+					},
+					"set-comparison-result-by-number": {
+						"list-name": "Set comparing result by number",
+						"display-text": "Set compare result to [b]{0}[/b]",
+						"description": "Set comparing result. Used in callback of \"Action: Sort group by function\"",
+						"params": {
+							"result0": { "name":"Result", "desc":"Comparing result. (-1) is (A < B), 0 is (A == B), 1 is (A > B)"}
+						}
+					},
+					"set-comparison-result-by-comb": {
+						"list-name": "Set comparing result",
+						"display-text": "Set compare result to CmpUIDA [b]{0}[/b] CmpUIDB",
+						"description": "Set comparing result. Used in callback of \"Action: Sort group by function\"",
+						"params": {
+							"result3": { "name":"Result", "desc":"Result", "items":{"<":"<","=":"=",">":">"}}
+						}
+					},
+					"group-to-instances": {
+						"list-name": "Pick instances",
+						"display-text": "Pick and [b]{2}[/b] [b]{1}[/b] from group [b]{0}[/b]",
+						"description": "Pick instances from group.",
+						"params": {
+							"group0": { "name":"Group", "desc":"Group name."},
+							"object1": { "name":"Object", "desc":"Object for picking"},
+							"operation4": { "name":"Operation", "desc":"Keep or pop UID", "items":{"keep":"Keep","pop":"Pop"}}
+						}
+					},
+					"sort-by-uid": {
+						"list-name": "Sort by UID",
+						"display-text": "Sort group [b]{0}[/b] by UID [b]{1}[/b]",
+						"description": "Sort group by UID.",
+						"params": {
+							"group0": { "name":"Group", "desc":"Group name."},
+							"order3": { "name":"Order", "desc":"Order of UID.", "items":{"descending":"descending","ascending":"ascending"}}
+						}
+					},
+					"sort-by-decreasing-uid": {
+						"list-name": "Sort by UID decreasement",
+						"display-text": "Sort group [b]{0}[/b] by UID decreasement",
+						"description": "Sort group by UID dec.",
+						"params": {
+							"group0": { "name":"Group", "desc":"Group name."}
+						}
+					},
+					"reverse": {
+						"list-name": "Reverse",
+						"display-text": "Reverse group [b]{0}[/b] order",
+						"description": "Reverse group order.",
+						"params": {
+							"group0": { "name":"Group", "desc":"Group name."}
+						}
+					},
+					"slice": {
+						"list-name": "Slice",
+						"display-text": "[b]{4}[/b] group [b]{0}[/b][[b]{1}[/b]:[b]{2}[/b]] to group [b]{3}[/b]",
+						"description": "Copy or pop group slice to another group.",
+						"params": {
+							"source0": { "name":"Source", "desc":"Group A."},
+							"start1": { "name":"Start", "desc":"Start index."},
+							"end2": { "name":"End", "desc":"End index."},
+							"target3": { "name":"Target", "desc":"Group result."},
+							"operation6": { "name":"Operation", "desc":"Copy or pop UID", "items":{"copy":"Copy","pop":"Pop"}}
+						}
+					},
+					"pop-instance": {
+						"list-name": "Pop one instance",
+						"display-text": "[b]{3}[/b] one instance [b]{2}[/b] from group [b]{0}[/b][[b]{1}[/b]]",
+						"description": "Get or pop one instance from group.",
+						"params": {
+							"group0": { "name":"Group", "desc":"Group name."},
+							"index1": { "name":"Index", "desc":"Pop index."},
+							"object2": { "name":"Object", "desc":"Object for picking"},
+							"operation5": { "name":"Operation", "desc":"Get or pop", "items":{"get":"Get","pop":"Pop"}}
+						}
+					},
+					"set-random-generator": {
+						"list-name": "Set random generator",
+						"display-text": "Set random generator object to [b]{0}[/b]",
+						"description": "Set random generator object.",
+						"params": {
+							"random_generator0": { "name":"Random generator", "desc":"Random generator object"}
+						}
+					},
+					"push-instances": {
+						"list-name": "Push instances",
+						"display-text": "Push [b]{0}[/b] [b]{1}[/b] into group [b]{2}[/b]",
+						"description": "Push instances into group.",
+						"params": {
+							"where2": { "name":"Where", "desc":"Whether to insert at the beginning or the end of the group.", "items":{"back":"back","front":"front"}},
+							"instances3": { "name":"Instances", "desc":"Instances to be added into group."},
+							"group4": { "name":"Group", "desc":"Group name."}
+						}
+					},
+					"push-instance-by-uid": {
+						"list-name": "Push instance by UID",
+						"display-text": "Push [b]{0}[/b] instance UID:[b]{1}[/b] into group [b]{2}[/b]",
+						"description": "Push instances into group.",
+						"params": {
+							"where2": { "name":"Where", "desc":"Whether to insert at the beginning or the end of the group.", "items":{"back":"back","front":"front"}},
+							"uid3": { "name":"UID", "desc":"The UID of instance to be added into group."},
+							"group4": { "name":"Group", "desc":"Group name."}
+						}
+					},
+					"insert-instances": {
+						"list-name": "Insert instances",
+						"display-text": "Insert [b]{0}[/b] into group [b]{1}[/b] at index [b]{2}[/b]",
+						"description": "Insert instances into group.",
+						"params": {
+							"instances0": { "name":"Instances", "desc":"Instances to be added into group."},
+							"group1": { "name":"Group", "desc":"Group name."},
+							"index2": { "name":"Index", "desc":"The zero-based index to insert to."}
+						}
+					},
+					"insert-instance-by-uid": {
+						"list-name": "Insert instance by UID",
+						"display-text": "Insert instance UID:[b]{0}[/b] into group [b]{1}[/b] at index [b]{2}[/b]",
+						"description": "Insert instances into group.",
+						"params": {
+							"uid0": { "name":"UID", "desc":"The UID of instance to be added into group."},
+							"group1": { "name":"Group", "desc":"Group name."},
+							"index2": { "name":"Index", "desc":"The zero-based index to insert to."}
+						}
+					},
+					"clean-then-add-instances": {
+						"list-name": "Clean & Add instances",
+						"display-text": "Clean and Add [b]{0}[/b] into group [b]{1}[/b]",
+						"description": "Clean and Add instances into group.",
+						"params": {
+							"instances0": { "name":"Instances", "desc":"Instances to be set into group."},
+							"group1": { "name":"Group", "desc":"Group name."}
+						}
+					},
+					"clean-then-add-instance-by-uid": {
+						"list-name": "Clean & Add instance by UID",
+						"display-text": "Clean and Add instance UID: [b]{0}[/b] into group [b]{1}[/b]",
+						"description": "Clean and Add instances into group.",
+						"params": {
+							"uid0": { "name":"UID", "desc":"The UID of instance to be added into group."},
+							"group1": { "name":"Group", "desc":"Group name."}
+						}
+					},
+					"random-pop-instance": {
+						"list-name": "Pop random instance",
+						"display-text": "[b]{2}[/b] random instance [b]{1}[/b] from group [b]{0}[/b]",
+						"description": "Get or pop one random instance from group.",
+						"params": {
+							"group0": { "name":"Group", "desc":"Group name."},
+							"object1": { "name":"Object", "desc":"Object for picking"},
+							"operation4": { "name":"Operation", "desc":"Get or pop", "items":{"get":"Get","pop":"Pop"}}
+						}
+					},
+					"set-mapping-result": {
+						"list-name": "Set mapping result",
+						"display-text": "Set mapping result to [b]{0}[/b]",
+						"description": "Set mapping result. Used under callback \"Condition:On mapping\"",
+						"params": {
+							"result0": { "name":"Result", "desc":"Mapping result."}
+						}
+					},
+					"pop-instance-by-mapping-function": {
+						"list-name": "Pop by mapping result",
+						"display-text": "[b]{2}[/b] [b]{1}[/b] from group [b]{0}[/b] by [b]{4}[/b] result of mapping function [b]{3}[/b]",
+						"description": "Get or pop one instance from group by the result of mapping function.",
+						"params": {
+							"group0": { "name":"Group", "desc":"Group name."},
+							"object1": { "name":"Object", "desc":"Object for picking"},
+							"operation4": { "name":"Operation", "desc":"Keep or pop", "items":{"keep":"Keep","pop":"Pop"}},
+							"mapping5": { "name":"Mapping", "desc":"Function name of mapping."},
+							"value_type8": { "name":"Value type", "desc":"Minimum or maximim", "items":{"minimum":"minimum","maximum":"maximum"}}
+						}
+					},
+					"sort-by-mapping-function": {
+						"list-name": "Sort by mapping",
+						"display-text": "Sort group [b]{0}[/b] by [b]{2}[/b] result of mapping function [b]{1}[/b]",
+						"description": "Sort group by the result of mapping function.",
+						"params": {
+							"group0": { "name":"Group", "desc":"Group name."},
+							"mapping1": { "name":"Mapping", "desc":"Function name of mapping."},
+							"order6": { "name":"Order", "desc":"Order of mapping result.", "items":{"descending":"descending","ascending":"ascending","logical descending":"logical descending","logical ascending":"logical ascending"}}
+						}
+					},
+					"destroy-instances": {
+						"list-name": "Destroy instances",
+						"display-text": "Destroy instances in [b]{0}[/b]",
+						"description": "Destroy instances in group.",
+						"params": {
+							"group0": { "name":"Group", "desc":"Group name."}
+						}
+					}
+				},
+				"expressions": {
+					"mapping-uid": {
+						"description": "Get Instance UID of mapping function. Used under callback \"Condition:On mapping\"",
+						"translated-name": "MapUID"
+						},
+					"cmp-uidA": {
+						"description": "Get Instance UID A of sorting function. Used in \"Action: Sort group by function\"",
+						"translated-name": "CmpUIDA"
+						},
+					"cmp-uidB": {
+						"description": "Get Instance UID B of sorting function. Used in \"Action: Sort group by function\"",
+						"translated-name": "CmpUIDB"
+						},
+					"instances-count": {
+						"description": "Get item count of group.",
+						"translated-name": "InstCnt",
+						"params": {
+							"group0": { "name":"Group", "desc":"Group name."}
+						}
+						},
+					"uid-to-index": {
+						"description": "Get index by UID. Return (-1) if this UID is not in the group.",
+						"translated-name": "UID2Index",
+						"params": {
+							"group0": { "name":"Group", "desc":"Group name."},
+							"uid1": { "name":"UID", "desc":"The UID of instance."}
+						}
+						},
+					"index-to-uid": {
+						"description": "Get UID by index. Return (-1) if index is not in the group.",
+						"translated-name": "Index2UID",
+						"params": {
+							"group0": { "name":"Group", "desc":"Group name."},
+							"index1": { "name":"Index", "desc":"The index of group."}
+						}
+						},
+					"item": {
+						"description": "Get UID in a group. Used in \"Condition:For each UID\".",
+						"translated-name": "Item",
+						"params": {
+							"variable0": { "name":"Variable", "desc":"Variable name to store UID."}
+						}
+						},
+					"index": {
+						"description": "Get index in a group. Used in \"Condition:For each UID\"",
+						"translated-name": "Index",
+						"params": {
+							"variable0": { "name":"Variable", "desc":"Variable name to store UID."}
+						}
+						},
+					"group-to-string": {
+						"description": "Transfer group to JSON string.",
+						"translated-name": "GroupToString",
+						"params": {
+							"group0": { "name":"Group", "desc":"Group name."}
+						}
+						},
+					"all-groups-to-string": {
+						"description": "Transfer all groups to JSON string.",
+						"translated-name": "AllToString"
+						},
+					"private-group-name": {
+						"description": "Get instance's private group name.",
+						"translated-name": "PrivateGroup",
+						"params": {
+							"uid0": { "name":"UID", "desc":"Group name."},
+							"group1": { "name":"Group", "desc":"Group name."}
+						}
+						},
+					"pop": {
+						"description": "Pop UID by index. Index=-1 is the last one.",
+						"translated-name": "Pop",
+						"params": {
+							"group0": { "name":"Group", "desc":"Group name."},
+							"index1": { "name":"Index", "desc":"Pop index."}
+						}
+						},
+					"first-uid": {
+						"description": "Get first UID in a group. Return (-1) group is empty.",
+						"translated-name": "FirstUID",
+						"params": {
+							"group0": { "name":"Group", "desc":"Group name."}
+						}
+						},
+					"last-uid": {
+						"description": "Get last UID in a group. Return (-1) group is empty.",
+						"translated-name": "LastUID",
+						"params": {
+							"group0": { "name":"Group", "desc":"Group name."}
+						}
+						},
+					"random-index": {
+						"description": "Get random item index of a group.",
+						"translated-name": "RandomIndex",
+						"params": {
+							"group0": { "name":"Group", "desc":"Group name."}
+						}
+						},
+					"random-index-to-uid": {
+						"description": "Get UID by random index. Return (-1) if index is not in the group.",
+						"translated-name": "RandomIndex2UID",
+						"params": {
+							"group0": { "name":"Group", "desc":"Group name."}
+						}
+						},
+					"random-pop": {
+						"description": "Pop UID by random index.",
+						"translated-name": "RandomPop",
+						"params": {
+							"group0": { "name":"Group", "desc":"Group name."}
+						}
+						}
+				}
+			}
+		}
+	}
+}

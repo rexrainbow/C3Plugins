@@ -1,0 +1,767 @@
+{
+	"group": {
+		"conditions": [
+			{
+				"c2id": 4,
+				"id": "is-in-group",
+				"scriptName": "IsInGroup",
+				"highlight": false,
+				"params": [
+					{"id":"uid0", "type":"any", "initialValue":"0"},
+					{"id":"group1", "type":"string", "initialValue":"\"\""}
+				]
+			},
+			{
+				"c2id": 5,
+				"id": "is-empty",
+				"scriptName": "IsEmpty",
+				"highlight": false,
+				"params": [
+					{"id":"group0", "type":"string", "initialValue":"\"\""}
+				]
+			}
+		],
+		"actions": [
+			{
+				"c2id": 0,
+				"id": "destroy-all-groups",
+				"scriptName": "DestroyAll",
+				"highlight": false
+			},
+			{
+				"c2id": 1,
+				"id": "clean",
+				"scriptName": "Clean",
+				"highlight": false,
+				"params": [
+					{"id":"group0", "type":"string", "initialValue":"\"\""}
+				]
+			},
+			{
+				"c2id": 2,
+				"id": "copy",
+				"scriptName": "Copy",
+				"highlight": false,
+				"params": [
+					{"id":"source0", "type":"string", "initialValue":"\"\""},
+					{"id":"target1", "type":"string", "initialValue":"\"\""}
+				]
+			},
+			{
+				"c2id": 5,
+				"id": "destroy-group",
+				"scriptName": "DestroyGroup",
+				"highlight": false,
+				"params": [
+					{"id":"group0", "type":"string", "initialValue":"\"\""}
+				]
+			}
+		],
+		"expressions": [
+			{
+				"c2id": 3,
+				"id": "instances-count",
+				"expressionName": "InstCnt",
+				"scriptName": "InstCnt",
+				"highlight": false,
+				"returnType": "number",
+				"params": [
+					{"id":"group0", "type":"string", "initialValue":"\"\""}
+				]
+			}
+		]
+	},
+	"group:add-instances": {
+		"conditions": [
+		],
+		"actions": [
+			{
+				"c2id": 6,
+				"id": "add-instances",
+				"scriptName": "AddInsts",
+				"highlight": false,
+				"params": [
+					{"id":"instances0", "type":"object"},
+					{"id":"group1", "type":"string", "initialValue":"\"\""}
+				]
+			},
+			{
+				"c2id": 7,
+				"id": "add-instance-by-uid",
+				"scriptName": "AddInstByUID",
+				"highlight": false,
+				"params": [
+					{"id":"uid0", "type":"any", "initialValue":"0"},
+					{"id":"group1", "type":"string", "initialValue":"\"\""}
+				]
+			},
+			{
+				"c2id": 28,
+				"id": "clean-then-add-instances",
+				"scriptName": "CleanAdddInsts",
+				"highlight": false,
+				"params": [
+					{"id":"instances0", "type":"object"},
+					{"id":"group1", "type":"string", "initialValue":"\"\""}
+				]
+			},
+			{
+				"c2id": 29,
+				"id": "clean-then-add-instance-by-uid",
+				"scriptName": "CleanAdddInstByUID",
+				"highlight": false,
+				"params": [
+					{"id":"uid0", "type":"any", "initialValue":"0"},
+					{"id":"group1", "type":"string", "initialValue":"\"\""}
+				]
+			}			
+		],
+		"expressions": [
+		]
+	},
+	"group:remove-instances": {
+		"conditions": [
+		],
+		"actions": [
+			{
+				"c2id": 8,
+				"id": "remove-instances",
+				"scriptName": "RemoveInsts",
+				"highlight": false,
+				"params": [
+					{"id":"instances0", "type":"object"},
+					{"id":"group1", "type":"string", "initialValue":"\"\""}
+				]
+			},
+			{
+				"c2id": 9,
+				"id": "remove-instance-by-uid",
+				"scriptName": "RemoveInst",
+				"highlight": false,
+				"params": [
+					{"id":"uid0", "type":"any", "initialValue":"0"},
+					{"id":"group1", "type":"string", "initialValue":"\"\""}
+				]
+			},
+			{
+				"c2id": 41,
+				"id": "destroy-instances",
+				"scriptName": "DestroyInstanceInGroup",
+				"highlight": false,
+				"params": [
+					{"id":"group0", "type":"string", "initialValue":"\"\""}
+				]
+			}				
+		],
+		"expressions": [
+		]
+	},	
+	"group:set-operation": {
+		"conditions": [
+			{
+				"c2id": 7,
+				"id": "is-subset",
+				"scriptName": "IsSubset",
+				"highlight": false,
+				"params": [
+					{"id":"subset0", "type":"string", "initialValue":"\"\""},
+					{"id":"main_set1", "type":"string", "initialValue":"\"\""}
+				]
+			}
+		],
+		"actions": [
+			{
+				"c2id": 10,
+				"id": "union",
+				"scriptName": "Union",
+				"highlight": false,
+				"params": [
+					{"id":"a0", "type":"string", "initialValue":"\"\""},
+					{"id":"b1", "type":"string", "initialValue":"\"\""},
+					{"id":"result2", "type":"string", "initialValue":"\"\""}
+				]
+			},
+			{
+				"c2id": 11,
+				"id": "complement",
+				"scriptName": "Complement",
+				"highlight": false,
+				"params": [
+					{"id":"a0", "type":"string", "initialValue":"\"\""},
+					{"id":"b1", "type":"string", "initialValue":"\"\""},
+					{"id":"result2", "type":"string", "initialValue":"\"\""}
+				]
+			},
+			{
+				"c2id": 12,
+				"id": "intersection",
+				"scriptName": "Intersection",
+				"highlight": false,
+				"params": [
+					{"id":"a0", "type":"string", "initialValue":"\"\""},
+					{"id":"b1", "type":"string", "initialValue":"\"\""},
+					{"id":"result2", "type":"string", "initialValue":"\"\""}
+				]
+			}
+		],
+		"expressions": [
+		]
+	},
+	"list": {
+		"conditions": [
+		],
+		"actions": [
+			{
+				"c2id": 21,
+				"id": "slice",
+				"scriptName": "Slice",
+				"highlight": false,
+				"params": [
+					{"id":"source0", "type":"string", "initialValue":"\"\""},
+					{"id":"start1", "type":"number", "initialValue":"0"},
+					{"id":"end2", "type":"number", "initialValue":"1"},
+					{"id":"target3", "type":"string", "initialValue":"\"\""},
+					{"id":"operation6", "type":"combo", "items":["copy","pop"]}
+				]
+			}
+		],
+		"expressions": [
+			{
+				"c2id": 4,
+				"id": "uid-to-index",
+				"expressionName": "UID2Index",
+				"scriptName": "UID2Index",
+				"highlight": false,
+				"returnType": "number",
+				"params": [
+					{"id":"group0", "type":"string", "initialValue":"\"\""},
+					{"id":"uid1", "type":"any", "initialValue":"0"}
+				]
+			},
+			{
+				"c2id": 5,
+				"id": "index-to-uid",
+				"expressionName": "Index2UID",
+				"scriptName": "Index2UID",
+				"highlight": false,
+				"returnType": "any",
+				"params": [
+					{"id":"group0", "type":"string", "initialValue":"\"\""},
+					{"id":"index1", "type":"number", "initialValue":"0"}
+				]
+			},
+			{
+				"c2id": 12,
+				"id": "first-uid",
+				"expressionName": "FirstUID",
+				"scriptName": "FirstUID",
+				"highlight": false,
+				"returnType": "any",
+				"params": [
+					{"id":"group0", "type":"string", "initialValue":"\"\""}
+				]
+			},
+			{
+				"c2id": 13,
+				"id": "last-uid",
+				"expressionName": "LastUID",
+				"scriptName": "LastUID",
+				"highlight": false,
+				"returnType": "any",
+				"params": [
+					{"id":"group0", "type":"string", "initialValue":"\"\""}
+				]
+			},			
+			{
+				"c2id": 14,
+				"id": "random-index",
+				"expressionName": "RandomIndex",
+				"scriptName": "RandomIndex",
+				"highlight": false,
+				"returnType": "number",
+				"params": [
+					{"id":"group0", "type":"string", "initialValue":"\"\""}
+				]
+			},	
+			{
+				"c2id": 15,
+				"id": "random-index-to-uid",
+				"expressionName": "RandomIndex2UID",
+				"scriptName": "RandomIndex2UID",
+				"highlight": false,
+				"returnType": "any",
+				"params": [
+					{"id":"group0", "type":"string", "initialValue":"\"\""}
+				]
+			}
+		]
+	},
+	"list:for-each": {
+		"conditions": [
+			{
+				"c2id": 2,
+				"id": "for-each-uid",
+				"scriptName": "ForEachUID",
+				"isLooping": "true",
+				"isInvertible": "false",
+				"highlight": false,
+				"params": [
+					{"id":"variable0", "type":"string", "initialValue":"\"\""},
+					{"id":"group1", "type":"string", "initialValue":"\"\""}
+				]
+			}			
+		],
+		"actions": [
+		],
+		"expressions": [
+			{
+				"c2id": 6,
+				"id": "item",
+				"expressionName": "Item",
+				"scriptName": "Item",
+				"highlight": false,
+				"returnType": "any",
+				"params": [
+					{"id":"variable0", "type":"string", "initialValue":"\"\""}
+				]
+			},
+			{
+				"c2id": 7,
+				"id": "index",
+				"expressionName": "Index",
+				"scriptName": "Index",
+				"highlight": false,
+				"returnType": "number",
+				"params": [
+					{"id":"variable0", "type":"string", "initialValue":"\"\""}
+				]
+			}
+		]
+	},	
+	"list:push-insert": {
+		"conditions": [
+		],
+		"actions": [
+			{
+				"c2id": 24,
+				"id": "push-instances",
+				"scriptName": "PushInsts",
+				"highlight": false,
+				"params": [
+					{"id":"where2", "type":"combo", "items":["back","front"]},
+					{"id":"instances3", "type":"object"},
+					{"id":"group4", "type":"string", "initialValue":"\"\""}
+				]
+			},
+			{
+				"c2id": 25,
+				"id": "push-instance-by-uid",
+				"scriptName": "PushInstByUID",
+				"highlight": false,
+				"params": [
+					{"id":"where2", "type":"combo", "items":["back","front"]},
+					{"id":"uid3", "type":"any", "initialValue":"0"},
+					{"id":"group4", "type":"string", "initialValue":"\"\""}
+				]
+			},
+			{
+				"c2id": 26,
+				"id": "insert-instances",
+				"scriptName": "InsertInsts",
+				"highlight": false,
+				"params": [
+					{"id":"instances0", "type":"object"},
+					{"id":"group1", "type":"string", "initialValue":"\"\""},
+					{"id":"index2", "type":"number"}
+				]
+			},
+			{
+				"c2id": 27,
+				"id": "insert-instance-by-uid",
+				"scriptName": "InsertInstByUID",
+				"highlight": false,
+				"params": [
+					{"id":"uid0", "type":"any", "initialValue":"0"},
+					{"id":"group1", "type":"string", "initialValue":"\"\""},
+					{"id":"index2", "type":"number"}
+				]
+			}
+		],
+		"expressions": [
+		]
+	},		
+	"list:pop": {
+		"conditions": [
+			{
+				"c2id": 6,
+				"id": "pop-instance",
+				"scriptName": "PopInst",
+				"isInvertible": "false",
+				"highlight": false,
+				"params": [
+					{"id":"group0", "type":"string", "initialValue":"\"\""},
+					{"id":"index1", "type":"number", "initialValue":"0"},
+					{"id":"object2", "type":"object"},
+					{"id":"operation5", "type":"combo", "items":["get","pop"]}
+				]
+			},
+			{
+				"c2id": 8,
+				"id": "random-pop-instance",
+				"scriptName": "RandomPopInstance",
+				"isInvertible": "false",
+				"highlight": false,
+				"params": [
+					{"id":"group0", "type":"string", "initialValue":"\"\""},
+					{"id":"object1", "type":"object"},
+					{"id":"operation4", "type":"combo", "items":["get","pop"]}
+				]
+			}
+		],
+		"actions": [
+			{
+				"c2id": 22,
+				"id": "pop-instance",
+				"scriptName": "PopInst",
+				"highlight": false,
+				"params": [
+					{"id":"group0", "type":"string", "initialValue":"\"\""},
+					{"id":"index1", "type":"number", "initialValue":"0"},
+					{"id":"object2", "type":"object"},
+					{"id":"operation5", "type":"combo", "items":["get","pop"]}
+				]
+			},
+			{
+				"c2id": 30,
+				"id": "random-pop-instance",
+				"scriptName": "RandomPopInstance",
+				"highlight": false,
+				"params": [
+					{"id":"group0", "type":"string", "initialValue":"\"\""},
+					{"id":"object1", "type":"object"},
+					{"id":"operation4", "type":"combo", "items":["get","pop"]}
+				]
+			}
+		],
+		"expressions": [
+			{
+				"c2id": 11,
+				"id": "pop",
+				"expressionName": "Pop",
+				"scriptName": "Pop",
+				"highlight": false,
+				"returnType": "any",
+				"params": [
+					{"id":"group0", "type":"string", "initialValue":"\"\""},
+					{"id":"index1", "type":"number", "initialValue":"0"}
+				]
+			},
+			{
+				"c2id": 16,
+				"id": "random-pop",
+				"expressionName": "RandomPop",
+				"scriptName": "RandomPop",
+				"highlight": false,
+				"returnType": "any",
+				"params": [
+					{"id":"group0", "type":"string", "initialValue":"\"\""}
+				]
+			}			
+		]
+	},	
+	"list:sort": {
+		"conditions": [
+		],
+		"actions": [
+			{
+				"c2id": 13,
+				"id": "shuffle",
+				"scriptName": "Shuffle",
+				"highlight": false,
+				"params": [
+					{"id":"group0", "type":"string", "initialValue":"\"\""}
+				]
+			},
+			{
+				"c2id": 18,
+				"id": "sort-by-uid",
+				"scriptName": "SortByUID",
+				"highlight": false,
+				"params": [
+					{"id":"group0", "type":"string", "initialValue":"\"\""},
+					{"id":"order3", "type":"combo", "items":["descending","ascending"]}
+				]
+			},
+			{
+				"c2id": 19,
+				"id": "sort-by-decreasing-uid",
+				"scriptName": "SortByUIDDec",
+				"isDeprecated": "true",
+				"highlight": false,
+				"params": [
+					{"id":"group0", "type":"string", "initialValue":"\"\""}
+				]
+			},
+			{
+				"c2id": 20,
+				"id": "reverse",
+				"scriptName": "Reverse",
+				"highlight": false,
+				"params": [
+					{"id":"group0", "type":"string", "initialValue":"\"\""}
+				]
+			}			
+		],
+		"expressions": [
+		]
+	},
+	"list:sort-by-function": {
+		"conditions": [
+			{
+				"c2id": 1,
+				"id": "on-sorting-function",
+				"scriptName": "OnSortingFn",
+				"isTrigger": "true",
+				"highlight": false,
+				"params": [
+					{"id":"function0", "type":"string", "initialValue":"\"\""}
+				]
+			}			
+		],
+		"actions": [
+			{
+				"c2id": 14,
+				"id": "sort-by-function",
+				"scriptName": "SortByFn",
+				"highlight": false,
+				"params": [
+					{"id":"group0", "type":"string", "initialValue":"\"\""},
+					{"id":"sorting_function1", "type":"string", "initialValue":"\"\""}
+				]
+			},			
+			{
+				"c2id": 15,
+				"id": "set-comparison-result-by-number",
+				"scriptName": "SetCmpResultDirectly",
+				"highlight": false,
+				"params": [
+					{"id":"result0", "type":"number", "initialValue":"0"}
+				]
+			},
+			{
+				"c2id": 16,
+				"id": "set-comparison-result-by-comb",
+				"scriptName": "SetCmpResultCombo",
+				"highlight": false,
+				"params": [
+					{"id":"result3", "type":"combo", "items":["<","=",">"]}
+				]
+			}
+		],
+		"expressions": [
+			{
+				"c2id": 1,
+				"id": "cmp-uidA",
+				"expressionName": "CmpUIDA",
+				"scriptName": "CmpUIDA",
+				"highlight": false,
+				"returnType": "any"
+			},
+			{
+				"c2id": 2,
+				"id": "cmp-uidB",
+				"expressionName": "CmpUIDB",
+				"scriptName": "CmpUIDB",
+				"highlight": false,
+				"returnType": "any"
+			}
+		]
+	},
+	"mapping-function": {
+		"conditions": [
+			{
+				"c2id": 0,
+				"id": "on-mapping-function",
+				"scriptName": "OnMappingFn",
+				"isTrigger": "true",
+				"highlight": false,
+				"params": [
+					{"id":"function0", "type":"string", "initialValue":"\"\""}
+				]
+			},
+			{
+				"c2id": 9,
+				"id": "pop-instance-by-mapping-function",
+				"scriptName": "PopInstByMappingFunction",
+				"isInvertible": "false",
+				"highlight": false,
+				"params": [
+					{"id":"group0", "type":"string", "initialValue":"\"\""},
+					{"id":"object1", "type":"object"},
+					{"id":"operation4", "type":"combo", "items":["keep","pop"]},
+					{"id":"mapping5", "type":"string", "initialValue":"\"\""},
+					{"id":"value_type8", "type":"combo", "items":["minimum","maximum"]}
+				]
+			}			
+		],
+		"actions": [
+			{
+				"c2id": 31,
+				"id": "set-mapping-result",
+				"scriptName": "SetMappingResult",
+				"highlight": false,
+				"params": [
+					{"id":"result0", "type":"any", "initialValue":"0"}
+				]
+			},
+			{
+				"c2id": 33,
+				"id": "sort-by-mapping-function",
+				"scriptName": "SortByMappingFunction",
+				"highlight": false,
+				"params": [
+					{"id":"group0", "type":"string", "initialValue":"\"\""},
+					{"id":"mapping1", "type":"string", "initialValue":"\"\""},
+					{"id":"order6", "type":"combo", "items":["descending","ascending","logical descending","logical ascending"]}
+				]
+			},
+			{
+				"c2id": 32,
+				"id": "pop-instance-by-mapping-function",
+				"scriptName": "PopInstByMappingFunction",
+				"highlight": false,
+				"params": [
+					{"id":"group0", "type":"string", "initialValue":"\"\""},
+					{"id":"object1", "type":"object"},
+					{"id":"operation4", "type":"combo", "items":["keep","pop"]},
+					{"id":"mapping5", "type":"string", "initialValue":"\"\""},
+					{"id":"value_type8", "type":"combo", "items":["minimum","maximum"]}
+				]
+			}					
+		],
+		"expressions": [
+			{
+				"c2id": 0,
+				"id": "mapping-uid",
+				"expressionName": "MapUID",
+				"scriptName": "MapUID",
+				"highlight": false,
+				"returnType": "any"
+			}
+		]
+	},	
+	"sol": {
+		"conditions": [
+			{
+				"c2id": 3,
+				"id": "group-to-instances",
+				"scriptName": "Group2Insts",
+				"isInvertible": "false",
+				"highlight": false,
+				"params": [
+					{"id":"group0", "type":"string", "initialValue":"\"\""},
+					{"id":"object1", "type":"object"},
+					{"id":"operation4", "type":"combo", "items":["keep","pop"]}
+				]
+			}
+		],
+		"actions": [
+			{
+				"c2id": 17,
+				"id": "group-to-instances",
+				"scriptName": "Group2Insts",
+				"highlight": false,
+				"params": [
+					{"id":"group0", "type":"string", "initialValue":"\"\""},
+					{"id":"object1", "type":"object"},
+					{"id":"operation4", "type":"combo", "items":["keep","pop"]}
+				]
+			}			
+		],
+		"expressions": [
+		]
+	},	
+	"json": {
+		"conditions": [
+		],
+		"actions": [
+			{
+				"c2id": 3,
+				"id": "string-to-group",
+				"scriptName": "String2Group",
+				"highlight": false,
+				"params": [
+					{"id":"json_string0", "type":"string", "initialValue":"\"\""},
+					{"id":"group1", "type":"string", "initialValue":"\"\""}
+				]
+			},
+			{
+				"c2id": 4,
+				"id": "string-to-all-groups",
+				"scriptName": "String2All",
+				"highlight": false,
+				"params": [
+					{"id":"json_string0", "type":"string", "initialValue":"\"\""}
+				]
+			}			
+		],
+		"expressions": [
+			{
+				"c2id": 8,
+				"id": "group-to-string",
+				"expressionName": "GroupToString",
+				"scriptName": "GroupToString",
+				"highlight": false,
+				"returnType": "string",
+				"params": [
+					{"id":"group0", "type":"string", "initialValue":"\"\""}
+				]
+			},
+			{
+				"c2id": 9,
+				"id": "all-groups-to-string",
+				"expressionName": "AllToString",
+				"scriptName": "AllToString",
+				"highlight": false,
+				"returnType": "string"
+			}
+		]
+	},
+	"private-group": {
+		"conditions": [
+		],
+		"actions": [
+		],
+		"expressions": [
+			{
+				"c2id": 10,
+				"id": "private-group-name",
+				"expressionName": "PrivateGroup",
+				"scriptName": "PrivateGroup",
+				"highlight": false,
+				"returnType": "string",
+				"params": [
+					{"id":"uid0", "type":"any", "initialValue":"\"\""},
+					{"id":"group1", "type":"string", "initialValue":"\"\""}
+				]
+			}
+		]
+	},
+	"random-generator": {
+		"conditions": [
+		],
+		"actions": [
+			{
+				"c2id": 23,
+				"id": "set-random-generator",
+				"scriptName": "SetRandomGenerator",
+				"highlight": false,
+				"params": [
+					{"id":"random_generator0", "type":"object"}
+				]
+			}
+		],
+		"expressions": [
+		]
+	}	
+}

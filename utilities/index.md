@@ -7,6 +7,7 @@
 - rex_csvToArray.js  
   - plugins: rex_csv  
   - plugins: rex_csv2array  
+  - plugins: rex_scenario  
 - rex_firebaseAddAfterInitializeHandler.js  
   - plugins: rex_firebase_apiV3  
 - rex_firebaseCallbackMapKlass.js  
@@ -16,6 +17,8 @@
 - rex_fsm.js  
   - behaviors: rex_fsm  
   - plugins: rex_gfsm  
+- rex_group.js  
+  - plugins: rex_ginstgroup  
 - rex_keys2Value.js  
   - behaviors: rex_bHash  
   - plugins: rex_firebase_apiV3  
@@ -23,8 +26,10 @@
   - plugins: rex_jsshell  
 - rex_pickUIDs.js  
   - plugins: rex_board  
+  - plugins: rex_ginstgroup  
 - rex_shuffleArr.js  
   - behaviors: rex_bHash  
+  - plugins: rex_ginstgroup  
   - plugins: rex_hash  
 - rex_stack.js  
   - plugins: rex_jsshell  
