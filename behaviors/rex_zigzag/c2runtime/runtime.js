@@ -91,7 +91,7 @@ cr.behaviors.Rex_Zigzag = function (runtime) {
 
     var parseCmdString = function (cmdString) {
         var ret_cmds = [];
-        var cmds = cmdString.split(";");
+        var cmds = cmdString.split(/;|\n/);
         var i;
         var cmd_length = cmds.length;
         var cmd, cmd_slices, cmd_name, cmd_param, cmd_parsed;
