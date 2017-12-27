@@ -1,0 +1,238 @@
+{
+	"languageTag": "en-US",
+	"fileDescription": "Strings for LJ potential.",
+	"text": {
+		"behaviors": {
+			"rex_lj_potential": {
+				"name": "LJ potential",
+				"description": "Lennard-Jones potential formula - ( (A/r^n)-(B/r^m) ) for attracting or rejecting objects.",
+				"help-url": "https://rexrainbow.github.io/C2RexDoc/c2rexpluginsACE/rex_lj_potential.html",
+				"properties": {
+					"source": {
+						"name": "Source",
+						"desc": "Source for attracting or rejecting.",
+						"items": {
+							"no":"No",
+							"yes":"Yes"
+							}
+						},
+					"source-tag": {
+						"name": "Source tag",
+						"desc": "Target will attract or reject to sources which have the same tag."
+						},
+					"a": {
+						"name": "A",
+						"desc": "Parameter A, for attracting magnitude. (A/r^n)-(B/r^m)"
+						},
+					"n": {
+						"name": "n",
+						"desc": "Parameter n, for attracting declined. (A/r^n)-(B/r^m)"
+						},
+					"b": {
+						"name": "B",
+						"desc": "Parameter B, for rejecting magnitude. (A/r^n)-(B/r^m)"
+						},
+					"m": {
+						"name": "m",
+						"desc": "Parameter m, for rejecting declined. (A/r^n)-(B/r^m)"
+						},
+					"sensitivity-range": {
+						"name": "Sensitivity range",
+						"desc": "Affecting when distance is less then this range. 0 is infinity. Source only."
+						},
+					"target": {
+						"name": "Target",
+						"desc": "Attract or reject to source.",
+						"items": {
+							"no":"No",
+							"yes":"Yes"
+							}
+						},
+					"target-tag": {
+						"name": "Target tag",
+						"desc": "Target will attract or reject to sources which have the same tag."
+						}
+				},
+				"aceCategories": {
+					"activated": "Activated",
+					"ljpotential": "LJ potential",
+					"sensitivity": "Sensitivity",					
+					"tag": "Tag",					
+					"update-w-tag": "Update w tag",
+					"update-wo-tag": "Update wo tag",
+					"target": "Target",
+					"source": "Source",
+					"output": "Output"
+				},
+				"conditions": {
+					"has-been-attracted": {
+						"list-name": "Has been attracted",
+						"display-text": "{my} has been attracted",
+						"description": "Return true if target has been attracted by source."
+						},
+					"begin-attracted": {
+						"list-name": "Begin attracted",
+						"display-text": "{my} Begin attracted",
+						"description": "Triggered when attracted beginning, to get attracted source uid."
+						},
+					"begin-attracting": {
+						"list-name": "Begin attracting",
+						"display-text": "{my} Begin attracting",
+						"description": "Triggered when attracting beginning, to get attracted target uid."
+						},
+					"end-attracted": {
+						"list-name": "End attracted",
+						"display-text": "{my} End attracted",
+						"description": "Triggered when attracted ending, to get attracted source uid."
+						},
+					"end-attracting": {
+						"list-name": "End attracting",
+						"display-text": "{my} End attracting",
+						"description": "Triggered when attracting end, to get attracted target uid."
+						},
+					"has-attracting": {
+						"list-name": "Has attracting",
+						"display-text": "{my} has attracting",
+						"description": "Return true if source has attracting target."
+						},
+					"has-force": {
+						"list-name": "Has force",
+						"display-text": "{my} has force",
+						"description": "Return true if force is not 0."
+						}
+				},
+				"actions": {
+					"set-source-activated": {
+						"list-name": "Set source enable",
+						"display-text": "Set {my} source enable to [b]{0}[/b]",
+						"description": "Enable to be a gravitation source.",
+						"params": {
+							"source2": { "name":"Source", "desc":"Enable to be source.", "items":{"no":"No","yes":"Yes"}}
+						}
+					},
+					"set-target-activated": {
+						"list-name": "Set target enable",
+						"display-text": "Set {my} target enable to [b]{0}[/b]",
+						"description": "Enable to be a gravitation target.",
+						"params": {
+							"target2": { "name":"Target", "desc":"Enable to be target.", "items":{"no":"No","yes":"Yes"}}
+						}
+					},
+					"set-range": {
+						"list-name": "Set sensitivity range",
+						"display-text": "Set {my} sensitivity range to [b]{0}[/b]",
+						"description": "Set sensitivity range for source.",
+						"params": {
+							"range0": { "name":"Range", "desc":"Sensitivity range."}
+						}
+					},
+					"set-source-tag": {
+						"list-name": "Set source tag",
+						"display-text": "Set {my} source tag to [b]{0}[/b]",
+						"description": "Set source tag.",
+						"params": {
+							"source_tag0": { "name":"Source tag", "desc":"Source tag."}
+						}
+					},
+					"set-target-tag": {
+						"list-name": "Set target tag",
+						"display-text": "Set {my} target tag to [b]{0}[/b]",
+						"description": "Set target tag.",
+						"params": {
+							"target_tag0": { "name":"Target tag", "desc":"Target tag."}
+						}
+					},
+					"set-param": {
+						"list-name": "Set parameter",
+						"display-text": "Set {my} LJ potential parameter [b]{0}[/b] to [b]{1}[/b]",
+						"description": "Set parameters of LJ potential.",
+						"params": {
+							"parameter4": { "name":"Parameter", "desc":"Parameter of LJ potential.", "items":{"a":"A","n":"n","b":"B","m":"m"}},
+							"value5": { "name":"Value", "desc":"Value of parameter."}
+						}
+					},
+					"update-force": {
+						"list-name": "Update",
+						"display-text": "Update {my} output force",
+						"description": "Update output force."
+					},
+					"clean-force": {
+						"list-name": "Clean",
+						"display-text": "Clean {my} output force to 0",
+						"description": "Clean output force to 0."
+					},
+					"attracted-by-source": {
+						"list-name": "Attracted by source",
+						"display-text": "Attracted {my} by source [b]{0}[/b]",
+						"description": "Attracted by source.",
+						"params": {
+							"source0": { "name":"Source", "desc":"Source for attracting or rejecting."}
+						}
+					}
+				},
+				"expressions": {
+					"is-source": {
+						"description": "1 is source.",
+						"translated-name": "IsSource"
+						},
+					"is-target": {
+						"description": "1 is target.",
+						"translated-name": "IsTarget"
+						},
+					"range": {
+						"description": "Get sensitivity range.",
+						"translated-name": "Range"
+						},
+					"source-uid": {
+						"description": "Get attracting source uid.",
+						"translated-name": "SourceUID"
+						},
+					"target-uid": {
+						"description": "Get attracted target uid.",
+						"translated-name": "TargetUID"
+						},
+					"source-tag": {
+						"description": "Get source tag.",
+						"translated-name": "SourceTag"
+						},
+					"target-tag": {
+						"description": "Get target tag.",
+						"translated-name": "TargetTag"
+						},
+					"force-angle": {
+						"description": "Get angle of total attracting force.",
+						"translated-name": "ForceAngle"
+						},
+					"force-magnitude": {
+						"description": "Get magnitude of total attracting force.",
+						"translated-name": "ForceMagnitude"
+						},
+					"forced-x": {
+						"description": "Get dx of total attracting force.",
+						"translated-name": "ForceDx"
+						},
+					"forced-y": {
+						"description": "Get dy of total attracting force.",
+						"translated-name": "ForceDy"
+						},
+					"a": {
+						"description": "Get param A (attracting force)",
+						"translated-name": "A"
+						},
+					"n": {
+						"description": "Get param n (attracting declined)",
+						"translated-name": "n"
+						},
+					"b": {
+						"description": "Get param B (rejecting force)",
+						"translated-name": "B"
+						},
+					"m": {
+						"description": "Get param m (rejecting declined)",
+						"translated-name": "m"
+						}
+				}
+			}
+		}
+	}
+}

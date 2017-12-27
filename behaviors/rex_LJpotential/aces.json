@@ -1,0 +1,316 @@
+{
+	"activated": {
+		"conditions": [
+		],
+		"actions": [
+			{
+				"c2id": 1,
+				"id": "set-source-activated",
+				"scriptName": "SetSourceActivated",
+				"highlight": false,
+				"params": [
+					{"id":"source2", "type":"combo", "items":["no","yes"]}
+				]
+			},
+			{
+				"c2id": 2,
+				"id": "set-target-activated",
+				"scriptName": "SetTargetActivated",
+				"highlight": false,
+				"params": [
+					{"id":"target2", "type":"combo", "items":["no","yes"]}
+				]
+			}
+		],
+		"expressions": [
+			{
+				"c2id": 1,
+				"id": "is-source",
+				"expressionName": "IsSource",
+				"scriptName": "IsSource",
+				"highlight": false,
+				"returnType": "number"
+			},
+			{
+				"c2id": 2,
+				"id": "is-target",
+				"expressionName": "IsTarget",
+				"scriptName": "IsTarget",
+				"highlight": false,
+				"returnType": "number"
+			}			
+		]
+	},
+	"ljpotential": {
+		"conditions": [
+		],
+		"actions": [
+			{
+				"c2id": 7,
+				"id": "set-param",
+				"scriptName": "SetLJParam",
+				"highlight": false,
+				"params": [
+					{"id":"parameter4", "type":"combo", "items":["a","n","b","m"]},
+					{"id":"value5", "type":"number"}
+				]
+			}
+		],
+		"expressions": [
+			{
+				"c2id": 15,
+				"id": "a",
+				"expressionName": "A",
+				"scriptName": "A",
+				"highlight": false,
+				"returnType": "number"
+			},
+			{
+				"c2id": 16,
+				"id": "n",
+				"expressionName": "n",
+				"scriptName": "n",
+				"highlight": false,
+				"returnType": "number"
+			},
+			{
+				"c2id": 17,
+				"id": "b",
+				"expressionName": "B",
+				"scriptName": "B",
+				"highlight": false,
+				"returnType": "number"
+			},
+			{
+				"c2id": 18,
+				"id": "m",
+				"expressionName": "m",
+				"scriptName": "m",
+				"highlight": false,
+				"returnType": "number"
+			}			
+		]
+	},
+	"sensitivity": {
+		"conditions": [
+		],
+		"actions": [
+			{
+				"c2id": 4,
+				"id": "set-range",
+				"scriptName": "SetRange",
+				"highlight": false,
+				"params": [
+					{"id":"range0", "type":"number"}
+				]
+			}
+		],
+		"expressions": [
+			{
+				"c2id": 4,
+				"id": "range",
+				"expressionName": "Range",
+				"scriptName": "Range",
+				"highlight": false,
+				"returnType": "number"
+			}
+		]
+	},	
+	"tag": {
+		"conditions": [
+		],
+		"actions": [
+			{
+				"c2id": 5,
+				"id": "set-source-tag",
+				"scriptName": "SetSourceTag",
+				"highlight": false,
+				"params": [
+					{"id":"source_tag0", "type":"string", "initialValue":"\"\""}
+				]
+			},
+			{
+				"c2id": 6,
+				"id": "set-target-tag",
+				"scriptName": "SetTargetTag",
+				"highlight": false,
+				"params": [
+					{"id":"target_tag0", "type":"string", "initialValue":"\"\""}
+				]
+			}
+		],
+		"expressions": [
+			{
+				"c2id": 7,
+				"id": "source-tag",
+				"expressionName": "SourceTag",
+				"scriptName": "SourceTag",
+				"highlight": false,
+				"returnType": "string"
+			},
+			{
+				"c2id": 8,
+				"id": "target-tag",
+				"expressionName": "TargetTag",
+				"scriptName": "TargetTag",
+				"highlight": false,
+				"returnType": "string"
+			}
+		]
+	},	
+	"update-w-tag": {
+		"conditions": [
+		],
+		"actions": [
+			{
+				"c2id": 11,
+				"id": "update-force",
+				"scriptName": "UpdateForce",
+				"highlight": false
+			}
+		],
+		"expressions": [
+		]
+	},
+	"update-wo-tag": {
+		"conditions": [
+		],
+		"actions": [
+			{
+				"c2id": 12,
+				"id": "clean-force",
+				"scriptName": "CleanForce",
+				"highlight": false
+			},
+			{
+				"c2id": 13,
+				"id": "attracted-by-source",
+				"scriptName": "AttractedBySource",
+				"highlight": false,
+				"params": [
+					{"id":"source0", "type":"object"}
+				]
+			}
+		],
+		"expressions": [
+		]
+	},
+	"target": {
+		"conditions": [
+			{
+				"c2id": 1,
+				"id": "has-been-attracted",
+				"scriptName": "HasBeenAttracted",
+				"highlight": false
+			},
+			{
+				"c2id": 2,
+				"id": "begin-attracted",
+				"scriptName": "BeginAttracted",
+				"isTrigger": "true",
+				"highlight": false
+			},
+			{
+				"c2id": 4,
+				"id": "end-attracted",
+				"scriptName": "EndAttracted",
+				"isTrigger": "true",
+				"highlight": false
+			}
+		],
+		"actions": [
+		],
+		"expressions": [
+			{
+				"c2id": 6,
+				"id": "target-uid",
+				"expressionName": "TargetUID",
+				"scriptName": "TargetUID",
+				"highlight": false,
+				"returnType": "number"
+			}
+		]
+	},
+	"source": {
+		"conditions": [
+			{
+				"c2id": 3,
+				"id": "begin-attracting",
+				"scriptName": "BeginAttracting",
+				"isTrigger": "true",
+				"highlight": false
+			},
+			{
+				"c2id": 5,
+				"id": "end-attracting",
+				"scriptName": "EndAttracting",
+				"isTrigger": "true",
+				"highlight": false
+			},
+			{
+				"c2id": 6,
+				"id": "has-attracting",
+				"scriptName": "HasAttracting",
+				"highlight": false
+			}
+		],
+		"actions": [
+		],
+		"expressions": [
+			{
+				"c2id": 5,
+				"id": "source-uid",
+				"expressionName": "SourceUID",
+				"scriptName": "SourceUID",
+				"highlight": false,
+				"returnType": "number"
+			}
+		]
+	},
+	"output": {
+		"conditions": [
+			{
+				"c2id": 11,
+				"id": "has-force",
+				"scriptName": "HasForce",
+				"highlight": false
+			}
+		],
+		"actions": [
+		],
+		"expressions": [
+			{
+				"c2id": 11,
+				"id": "force-angle",
+				"expressionName": "ForceAngle",
+				"scriptName": "ForceAngle",
+				"highlight": false,
+				"returnType": "number"
+			},
+			{
+				"c2id": 12,
+				"id": "force-magnitude",
+				"expressionName": "ForceMagnitude",
+				"scriptName": "ForceMagnitude",
+				"highlight": false,
+				"returnType": "number"
+			},
+			{
+				"c2id": 13,
+				"id": "forced-x",
+				"expressionName": "ForceDx",
+				"scriptName": "ForceDx",
+				"highlight": false,
+				"returnType": "number"
+			},
+			{
+				"c2id": 14,
+				"id": "forced-y",
+				"expressionName": "ForceDy",
+				"scriptName": "ForceDy",
+				"highlight": false,
+				"returnType": "number"
+			}
+		]
+	}
+}
