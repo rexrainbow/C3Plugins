@@ -23,7 +23,7 @@
 			this._info.SetIsDeprecated(false);
 			SDK.Lang.PushContext(".properties");
 			this._info.SetProperties([
-				new SDK.PluginProperty("text", "initial-data", ""),
+				new SDK.PluginProperty("longtext", "initial-data", ""),
 				new SDK.PluginProperty("text", "indent", "-1")
 			]);
 			this._info.AddFileDependency({

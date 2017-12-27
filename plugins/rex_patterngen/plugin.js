@@ -26,7 +26,7 @@
 			SDK.Lang.PushContext(".properties");
 			this._info.SetProperties([
 				new SDK.PluginProperty("combo", "mode", {initialValue:"shuffle", items:["shuffle","random","shuffle wo restart"]}),
-				new SDK.PluginProperty("text", "patterns", "")
+				new SDK.PluginProperty("longtext", "patterns", "")
 			]);
 			SDK.Lang.PopContext();		// .properties
 			SDK.Lang.PopContext();

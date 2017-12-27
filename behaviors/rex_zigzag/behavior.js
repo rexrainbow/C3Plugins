@@ -25,7 +25,7 @@
 				new SDK.PluginProperty("combo", "start", {initialValue:"yes", items:["no","yes"]}),
 				new SDK.PluginProperty("combo", "rotatable", {initialValue:"yes", items:["no","yes"]}),
 				new SDK.PluginProperty("integer", "repeat-count", 0),
-				new SDK.PluginProperty("text", "commands", ""),
+				new SDK.PluginProperty("longtext", "commands", ""),
 				new SDK.PluginProperty("float", "max-moving-speed", 400),
 				new SDK.PluginProperty("float", "moving-acceleration", 0),
 				new SDK.PluginProperty("float", "moving-deceleration", 0),
