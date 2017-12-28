@@ -1,0 +1,417 @@
+{
+	"languageTag": "en-US",
+	"fileDescription": "Strings for List control.",
+	"text": {
+		"plugins": {
+			"rex_listctrl": {
+				"name": "List control",
+				"description": "Manipulate instances of each line in a list.",
+				"help-url": "http://c2rexplugins.weebly.com/rex_listctrl.html",
+				"properties": {
+					"color": {
+						"name": "Color",
+						"desc": "Color for showing at editor."
+						},					
+					"line-height": {
+						"name": "Line height",
+						"desc": "Default line height, in pixels."
+						},
+					"total-lines": {
+						"name": "Total lines",
+						"desc": "Total lines count in this list."
+						},
+					"clamp-oy": {
+						"name": "Clamp OY",
+						"desc": "Clamp offset Y in vertical boundary.",
+						"items": {
+							"no":"NO",
+							"yes":"Yes"
+							}
+						},
+					"axis": {
+						"name": "Axis",
+						"desc": "Axis of scrolling.",
+						"items": {
+							"horizontal":"Horizontal",
+							"vertical":"Vertical"
+							}
+						},
+					"hotspot": {
+						"name": "Hotspot",
+						"desc": "Choose the location of the hot spot in the object.",
+						"items": {
+							"top-left":"Top-left",
+							"top":"Top",
+							"top-right":"Top-right",
+							"left":"Left",
+							"center":"Center",
+							"right":"Right",
+							"bottom-left":"Bottom-left",
+							"bottom":"Bottom",
+							"bottom-right":"Bottom-right"
+							}
+						}
+				},
+				"aceCategories": {
+					"oy": "OY",
+					"visible": "Visible",					
+					"instances": "Instances",				
+					"total-lines": "List",					
+					"custom-data": "Custom data",					
+					"insert": "Insert",
+					"remove": "Remove",	
+					"for-each-line": "For each line",								
+					"line-height": "Line height",
+					"line-offset-y": "Line - offset Y"					
+				},
+				"conditions": {
+					"on-line-visible": {
+						"list-name": "On line visible",
+						"display-text": "On line visible",
+						"description": "Triggered when a line is visible."
+						},
+					"on-line-invisible": {
+						"list-name": "On line invisible",
+						"display-text": "On line invisible",
+						"description": "Triggered when a line is invisible."
+						},
+					"for-each-line": {
+						"list-name": "For each line",
+						"display-text": "For each line",
+						"description": "Repeat the event for each line in list."
+						},
+					"for-each-line-in-range": {
+						"list-name": "For each line in a range",
+						"display-text": "For each line from [b]{0}[/b] to [b]{1}[/b]",
+						"description": "Repeat the event for each line in a range in list.",
+						"params": {
+							"start0": { "name":"Start", "desc":"Start line index."},
+							"end1": { "name":"End", "desc":"Start line index."}
+						}
+						},
+					"for-each-visible-line": {
+						"list-name": "For each visible line",
+						"display-text": "For each visible line",
+						"description": "Repeat the event for each visible line."
+						},
+					"for-each-matched-line": {
+						"list-name": "For each matched line",
+						"display-text": "For each line which custom data[[b]{0}[/b]] [b]{1}[/b] [b]{2}[/b]",
+						"description": "Repeat the event for each matched line.",
+						"params": {
+							"key0": { "name":"Key", "desc":"The key of custom data."},
+							"comparison1": { "name":"Comparison", "desc":"Choose the way to compare data."},
+							"value2": { "name":"Value", "desc":"The value to compare the data to."}
+						}
+						},
+					"is-oy-out-of-bound": {
+						"list-name": "Is OY out of bound",
+						"display-text": "Is OY out of [b]{0}[/b]",
+						"description": "Retrurn true if OY is out of bound.",
+						"params": {
+							"bound3": { "name":"Bound", "desc":"Bound types.", "items":{"top bound":"Top bound","bottom bound":"Bottom bound","top or bottom bounds":"Top or bottom bounds"}}
+						}
+						},
+					"on-oy-out-of-bound": {
+						"list-name": "On OY out of bound",
+						"display-text": "On OY out of [b]{0}[/b]",
+						"description": "Triggered when OY out of bound.",
+						"params": {
+							"bound3": { "name":"Bound", "desc":"Bound types.", "items":{"top bound":"Top bound","bottom bound":"Bottom bound","top or bottom bounds":"Top or bottom bounds"}}
+						}
+						},
+					"pick-instances-on-line": {
+						"list-name": "Pick instances",
+						"display-text": "Pick [b]{0}[/b] on line [b]{1}[/b]",
+						"description": "Pick instances on line.",
+						"params": {
+							"line_index0": { "name":"Line index", "desc":"Line index."},
+							"object1": { "name":"Object", "desc":"Object for picking"}
+						}
+						},
+					"pick-all-instances-on-line": {
+						"list-name": "Pick all instances",
+						"display-text": "Pick all instances on line [b]{0}[/b]",
+						"description": "Pick all instances on line.",
+						"params": {
+							"line_index0": { "name":"Line index", "desc":"Line index."}
+						}
+						}
+				},
+				"actions": {
+					"set-oy": {
+						"list-name": "Set",
+						"display-text": "Set offset Y to [b]{0}[/b]",
+						"description": "Set offset Y.",
+						"params": {
+							"oy0": { "name":"OY", "desc":"Offset Y of this list, in pixels. Start at 0."}
+						}
+					},
+					"add-oy": {
+						"list-name": "Add to",
+						"display-text": "Add [b]{0}[/b] to offset Y",
+						"description": "Add to Offset Y.",
+						"params": {
+							"value0": { "name":"Value", "desc":"Add value to Offset Y, in pixels"}
+						}
+					},
+					"pin-instance-to-line": {
+						"list-name": "Pin instance",
+						"display-text": "Pin [b]{0}[/b] to current visible line",
+						"description": "Pin instance to current visible line under \"Condition: On line visible\". It will be destroyed while line is invisible.",
+						"params": {
+							"instance0": { "name":"Instance", "desc":"Instance belong the line."}
+						}
+					},
+					"unpin-instance": {
+						"list-name": "Unpin instance",
+						"display-text": "Unpin [b]{0}[/b]",
+						"description": "Unpin instance from line.",
+						"params": {
+							"instance0": { "name":"Instance", "desc":"Instance belong the line."}
+						}
+					},
+					"set-amount-of-lines": {
+						"list-name": "Set total lines count",
+						"display-text": "Set total lines count to [b]{0}[/b]",
+						"description": "Set total lines count.",
+						"params": {
+							"total_lines_count0": { "name":"Total lines count", "desc":"Total lines count of this list."}
+						}
+					},
+					"set-oy-to-line-index": {
+						"list-name": "Scroll to index",
+						"display-text": "Scroll offset Y to line [b]{0}[/b]",
+						"description": "Scroll offset Y to line lindex.",
+						"params": {
+							"line_index0": { "name":"Line index", "desc":"Line index."}
+						}
+					},
+					"set-oy-by-percentage": {
+						"list-name": "Scroll by percentage",
+						"display-text": "Scroll offset Y by percentage to [b]{0}[/b]",
+						"description": "Scroll offset Y by percentage.",
+						"params": {
+							"percentage0": { "name":"Percentage", "desc":"Scroll list, 0 is top, 1 is bottom."}
+						}
+					},
+					"set-value": {
+						"list-name": "Set value",
+						"display-text": "Line [b]{0}[/b]: set key [b]{1}[/b] to [b]{2}[/b]",
+						"description": "Set custom data in a line.",
+						"params": {
+							"line_index0": { "name":"Line index", "desc":"Line index."},
+							"key1": { "name":"Key", "desc":"The key of custom data."},
+							"value2": { "name":"Value", "desc":"The value to store in the line."}
+						}
+					},
+					"clean-key-in-all-line": {
+						"list-name": "Clean key in all lines",
+						"display-text": "Clean key [b]{0}[/b] in all lines",
+						"description": "Clean key in all line.",
+						"params": {
+							"key0": { "name":"Key", "desc":"The key of custom data."}
+						}
+					},
+					"clean-all-keys-in-all-line": {
+						"list-name": "Clean all keys in all lines",
+						"display-text": "Clean all keys in all lines",
+						"description": "Clean all keys in all line."
+					},
+					"insert-new-lines": {
+						"list-name": "Insert new lines",
+						"display-text": "Line [b]{0}[/b]: insert [b]{1}[/b] new lines",
+						"description": "Insert new lines.",
+						"params": {
+							"insert_at0": { "name":"Insert at", "desc":"Line index for inserting."},
+							"line_number1": { "name":"Line number", "desc":"Line number for inserting."}
+						}
+					},
+					"remove-lines": {
+						"list-name": "Remove lines",
+						"display-text": "Remove [b]{1}[/b] lines from index [b]{0}[/b]",
+						"description": "Remove lines.",
+						"params": {
+							"remove_from0": { "name":"Remove from", "desc":"Line index for removing."},
+							"line_number1": { "name":"Line number", "desc":"Line number for removing."}
+						}
+					},
+					"insert-lines": {
+						"list-name": "Insert lines",
+						"display-text": "Line [b]{0}[/b]: insert lines with content [b]{1}[/b]",
+						"description": "Insert lines with content.",
+						"params": {
+							"insert_at0": { "name":"Insert at", "desc":"Line index for inserting."},
+							"content1": { "name":"Content", "desc":"Content of lines in JSON string."}
+						}
+					},
+					"push-new-lines": {
+						"list-name": "Push new lines",
+						"display-text": "Push [b]{0}[/b] [b]{1}[/b] new lines",
+						"description": "Push new lines.",
+						"params": {
+							"where2": { "name":"Where", "desc":"Whether to insert at the beginning or the end of the list.", "items":{"back":"back","front":"front"}},
+							"line_number3": { "name":"Line number", "desc":"Line number for inserting."}
+						}
+					},
+					"push-lines": {
+						"list-name": "Push lines",
+						"display-text": "Push [b]{0}[/b] with content [b]{1}[/b]",
+						"description": "Push lines with content.",
+						"params": {
+							"where2": { "name":"Where", "desc":"Whether to insert at the beginning or the end of the list.", "items":{"back":"back","front":"front"}},
+							"content3": { "name":"Content", "desc":"Content of lines in JSON string."}
+						}
+					},
+					"set-default-line-height": {
+						"list-name": "Set default line height",
+						"display-text": "Set default line height to [b]{0}[/b]",
+						"description": "Set default line height.",
+						"params": {
+							"line_height0": { "name":"Line height", "desc":"Line height, in pixels."}
+						}
+					},
+					"set-line-offset-y": {
+						"list-name": "Set",
+						"display-text": "Line [b]{0}[/b]: set additional offset Y to [b]{1}[/b]",
+						"description": "Set offset Y of line.",
+						"params": {
+							"line_index0": { "name":"Line index", "desc":"Line index."},
+							"oy1": { "name":"OY", "desc":"Offset Y of a line, in pixels."}
+						}
+					},
+					"set-line-height": {
+						"list-name": "Set line height",
+						"display-text": "Line [b]{0}[/b]: set height to [b]{1}[/b]",
+						"description": "Set line height.",
+						"params": {
+							"line_index0": { "name":"Line index", "desc":"Line index."},
+							"height1": { "name":"Height", "desc":"Line height, in pixels."}
+						}
+					},
+					"refresh-visible-lines": {
+						"list-name": "Refresh",
+						"display-text": "Refresh visible lines",
+						"description": "Refresh visible lines."
+					},
+					"pick-instances-on-line": {
+						"list-name": "Pick instances",
+						"display-text": "Line [b]{0}[/b]: pick [b]{1}[/b]",
+						"description": "Pick instances on line.",
+						"params": {
+							"line_index0": { "name":"Line index", "desc":"Line index."},
+							"object1": { "name":"Object", "desc":"Object for picking"}
+						}
+					},
+					"pick-all-instances-on-line": {
+						"list-name": "Pick all instances",
+						"display-text": "Line [b]{0}[/b]: pick all instances",
+						"description": "Pick all instances on line.",
+						"params": {
+							"line_index0": { "name":"Line index", "desc":"Line index."}
+						}
+					}
+				},
+				"expressions": {
+					"line-index": {
+						"description": "Get selected line index in \"Condition: On line visible\", or \"Condition: On line invisible\".",
+						"translated-name": "LineIndex"
+						},
+					"line-tlx": {
+						"description": "Get top-left position X of line in \"Condition: On line visible\", in pixels",
+						"translated-name": "LineTLX"
+						},
+					"line-tly": {
+						"description": "Get top-left position Y of line in \"Condition: On line visible\", in pixels",
+						"translated-name": "LineTLY"
+						},
+					"uid-to-line-index": {
+						"description": "Get line index of pinned instance by UID. (-1) is invalid.",
+						"translated-name": "UID2LineIndex",
+						"params": {
+							"uid0": { "name":"UID", "desc":"UID of pinned instance."}
+						}
+						},
+					"line-index-to-line-tly": {
+						"description": "Get top-left position Y by line index",
+						"translated-name": "LineIndex2LineTLY",
+						"params": {
+							"line_index0": { "name":"Line index", "desc":"Line index."}
+						}
+						},
+					"total-lines-number": {
+						"description": "Get total lines count.",
+						"translated-name": "TotalLinesCount"
+						},
+					"default-line-height": {
+						"description": "Get default line height.",
+						"translated-name": "DefaultLineHeight"
+						},
+					"line-height": {
+						"description": "Get line height.",
+						"translated-name": "LineHeight",
+						"params": {
+							"index0": { "name":"Index", "desc":"Index of line."}
+						}
+						},
+					"list-height": {
+						"description": "Get list height.",
+						"translated-name": "ListHeight"
+						},
+					"at": {
+						"description": "Get value by line index and key. Add 3rd parameter for default value if this key is not existed.",
+						"translated-name": "At",
+						"params": {
+							"index0": { "name":"Index", "desc":"Index of line."},
+							"key1": { "name":"Key", "desc":"The name of the key."}
+						}
+						},
+					"last-removed-lines": {
+						"description": "Get custom data of last removed lines in JSON string after \"Action: Remove lines\".",
+						"translated-name": "LastRemovedLines"
+						},
+					"custom-data-in-lines": {
+						"description": "Get custom data of lines.",
+						"translated-name": "CustomDataInLines",
+						"params": {
+							"start_index0": { "name":"Start index", "desc":"Start index of line."},
+							"line_number1": { "name":"Line number", "desc":"Line number."}
+						}
+						},
+					"oy": {
+						"description": "Get current OY.",
+						"translated-name": "OY"
+						},
+					"botom-oy": {
+						"description": "Get bottom OY for showing the last cell, i.e. Scrollable length of current grid table.",
+						"translated-name": "BotomOY"
+						},
+					"top-oy": {
+						"description": "Get top OY.",
+						"translated-name": "TopOY"
+						},
+					"last-bound-oy": {
+						"description": "Get last bound of OY under \"Condition:On OY out of top bound\", or \"Condition:On OY out of bottom bound\".",
+						"translated-name": "LastBoundOY"
+						},
+					"line-cx": {
+						"description": "Get center position X of line in \"Condition: On line visible\", in pixels",
+						"translated-name": "LineCX"
+						},
+					"current-line-index": {
+						"description": "Get current line index in \"Condition: For each line\", or \"Condition: For each visible line\".",
+						"translated-name": "CurLineIndex"
+						},
+					"first-visible-line-index": {
+						"description": "Get first visible line index.",
+						"translated-name": "FirstVisibleLineIndex"
+						},
+					"last-visible-line-index": {
+						"description": "Get last visible line index.",
+						"translated-name": "LastVisibleLineIndex"
+						}
+				}
+			}
+		}
+	}
+}
