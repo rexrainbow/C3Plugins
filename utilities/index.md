@@ -1,4 +1,6 @@
 # References  
+- localForage.js  
+  - plugins: rex_time_awayL  
 - rex_boardLXYZCache.js  
   - plugins: rex_board  
 - rex_createObject.js  
@@ -31,5 +33,6 @@
   - behaviors: rex_bHash  
   - plugins: rex_ginstgroup  
   - plugins: rex_hash  
+  - plugins: rex_slg_movement  
 - rex_stack.js  
   - plugins: rex_jsshell  
