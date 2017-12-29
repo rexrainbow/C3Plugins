@@ -1,0 +1,42 @@
+{
+	"encrypt": {
+		"conditions": [
+		],
+		"actions": [
+		],
+		"expressions": [
+			{
+				"c2id": 1,
+				"id": "encrypt",
+				"expressionName": "Encrypt",
+				"scriptName": "Encrypt",
+				"highlight": false,
+				"returnType": "string",
+				"params": [
+					{"id":"source0", "type":"string", "initialValue":"\"\""},
+					{"id":"password1", "type":"string", "initialValue":"\"\""}
+				]
+			}
+		]
+	},
+	"decrypt": {
+		"conditions": [
+		],
+		"actions": [
+		],
+		"expressions": [
+			{
+				"c2id": 2,
+				"id": "decrypt",
+				"expressionName": "Decrypt",
+				"scriptName": "Decrypt",
+				"highlight": false,
+				"returnType": "string",
+				"params": [
+					{"id":"result0", "type":"string", "initialValue":"\"\""},
+					{"id":"password1", "type":"string", "initialValue":"\"\""}
+				]
+			}
+		]
+	}
+}

@@ -1,0 +1,41 @@
+{
+	"languageTag": "en-US",
+	"fileDescription": "Strings for Simple XOR Encryption.",
+	"text": {
+		"plugins": {
+			"rex_simpleencdecxor": {
+				"name": "Simple XOR Encryption",
+				"description": "Encryption & Decryption by XOR Encryption algorithm.",
+				"help-url": "https://rexrainbow.github.io/C2RexDoc/c2rexpluginsACE/plugin_rex_simpleencdecxor.html",
+				"properties": {
+				},
+				"aceCategories": {
+					"encrypt": "Encrypt",
+					"decrypt": "Decrypt"
+				},
+				"conditions": {
+				},
+				"actions": {
+				},
+				"expressions": {
+					"encrypt": {
+						"description": "Encrypt source with a password.",
+						"translated-name": "Encrypt",
+						"params": {
+							"source0": { "name":"Source", "desc":"Source string to encrypt"},
+							"password1": { "name":"Password", "desc":"Password string"}
+						}
+						},
+					"decrypt": {
+						"description": "Decrypt result with a password.",
+						"translated-name": "Decrypt",
+						"params": {
+							"result0": { "name":"Result", "desc":"Result string to decrypt"},
+							"password1": { "name":"Password", "desc":"Password string"}
+						}
+						}
+				}
+			}
+		}
+	}
+}
