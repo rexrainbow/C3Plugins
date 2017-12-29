@@ -1,0 +1,347 @@
+{
+	"new-tween-task": {
+		"conditions": [
+			{
+				"c2id": 0,
+				"id": "on-function",
+				"scriptName": "OnFunction",
+				"isTrigger": "true",
+				"highlight": false,
+				"params": [
+					{"id":"name0", "type":"string", "initialValue":"\"\""}
+				]
+			}			
+		],
+		"actions": [
+			{
+				"c2id": 11,
+				"id": "new-tween-task",
+				"scriptName": "NewTweenTask",
+				"highlight": false,
+				"params": [
+					{"id":"task0", "type":"string", "initialValue":"\"task\""},
+					{"id":"function1", "type":"string", "initialValue":"\"\""},
+					{"id":"interval2", "type":"number", "initialValue":"1"},
+					{"id":"repeat3", "type":"number", "initialValue":"1"}
+				]
+			},
+			{
+				"c2id": 17,
+				"id": "new-inversed-tween-task",
+				"scriptName": "NewInversedTweenTask",
+				"highlight": false,
+				"params": [
+					{"id":"task0", "type":"string", "initialValue":"\"task\""},
+					{"id":"inverse_from1", "type":"string", "initialValue":"\"\""}
+				]
+			},
+			{
+				"c2id": 12,
+				"id": "set-function-parameter",
+				"scriptName": "SetFnParameter",
+				"highlight": false,
+				"params": [
+					{"id":"task0", "type":"string", "initialValue":"\"task\""},
+					{"id":"parameter1", "type":"string", "initialValue":"\"x\""},
+					{"id":"start2", "type":"number", "initialValue":"0"},
+					{"id":"end3", "type":"number", "initialValue":"1"},
+					{"id":"type29", "type":"combo", "items":["linear","easeinquad","easeoutquad","easeinoutquad","easeincubic","easeoutcubic","easeinoutcubic","easeinquart","easeoutquart","easeinoutquart","easeinquint","easeoutquint","easeinoutquint","easeincircle","easeoutcircle","easeinoutcircle","easeinback","easeoutback","easeinoutback","easeinelastic","easeoutelastic","easeinoutelastic","easeinbounce","easeoutbounce","easeinoutbounce"]}
+				]
+			},
+			{
+				"c2id": 1,
+				"id": "apply-easing",
+				"scriptName": "ApplyEasing",
+				"highlight": false,
+				"params": [
+					{"id":"parameter0", "type":"string", "initialValue":"\"x\""},
+					{"id":"type26", "type":"combo", "items":["linear","easeinquad","easeoutquad","easeinoutquad","easeincubic","easeoutcubic","easeinoutcubic","easeinquart","easeoutquart","easeinoutquart","easeinquint","easeoutquint","easeinoutquint","easeincircle","easeoutcircle","easeinoutcircle","easeinback","easeoutback","easeinoutback","easeinelastic","easeoutelastic","easeinoutelastic","easeinbounce","easeoutbounce","easeinoutbounce"]}
+				]
+			}					
+		],
+		"expressions": [
+			{
+				"c2id": 1,
+				"id": "function-param",
+				"expressionName": "FnParam",
+				"scriptName": "FnParam",
+				"highlight": false,
+				"returnType": "any",
+				"isVariadicParameters": true,
+				"params": [
+					{"id":"parameter0", "type":"string", "initialValue":"\"x\""}
+				]
+			}			
+		]
+	},	
+	"new-wait-task": {
+		"conditions": [
+		],
+		"actions": [
+			{
+				"c2id": 13,
+				"id": "new-wait-task",
+				"scriptName": "NewWaitTask",
+				"highlight": false,
+				"params": [
+					{"id":"task0", "type":"string", "initialValue":"\"task\""},
+					{"id":"interval1", "type":"number", "initialValue":"1"}
+				]
+			}		
+		],
+		"expressions": [
+		]
+	},
+	"new-wait-for-signal-task": {
+		"conditions": [
+		],
+		"actions": [			
+			{
+				"c2id": 18,
+				"id": "new-wait-for-signal-task",
+				"scriptName": "NewWaitForSignalTask",
+				"highlight": false,
+				"params": [
+					{"id":"task0", "type":"string", "initialValue":"\"task\""},
+					{"id":"signal1", "type":"string", "initialValue":"\"\""}
+				]
+			},			
+			{
+				"c2id": 41,
+				"id": "continue-task",
+				"scriptName": "ContinueTask",
+				"highlight": false,
+				"params": [
+					{"id":"task0", "type":"string", "initialValue":"\"task\""},
+					{"id":"signal1", "type":"string", "initialValue":"\"\""}
+				]
+			},
+			{
+				"c2id": 42,
+				"id": "continue-tasks-by-signal",
+				"scriptName": "ContinueTasksBySignal",
+				"highlight": false,
+				"params": [
+					{"id":"signal0", "type":"string", "initialValue":"\"\""}
+				]
+			}
+		],
+		"expressions": [
+		]
+	},	
+	"new-group-task": {
+		"conditions": [
+		],
+		"actions": [
+			{
+				"c2id": 14,
+				"id": "new-sequence-task",
+				"scriptName": "NewSequenceTask",
+				"highlight": false,
+				"params": [
+					{"id":"task0", "type":"string", "initialValue":"\"task\""},
+					{"id":"repeat1", "type":"number", "initialValue":"1"},
+					{"id":"task_n2", "type":"variadic"}
+				]
+			},
+			{
+				"c2id": 15,
+				"id": "new-parallel-task",
+				"scriptName": "NewParallelTask",
+				"highlight": false,
+				"params": [
+					{"id":"task0", "type":"string", "initialValue":"\"task\""},
+					{"id":"repeat1", "type":"number", "initialValue":"1"},
+					{"id":"child_task_n2", "type":"variadic"}
+				]
+			},
+			{
+				"c2id": 16,
+				"id": "add-child-task",
+				"scriptName": "AddChildTask",
+				"highlight": false,
+				"params": [
+					{"id":"task0", "type":"string", "initialValue":"\"task\""},
+					{"id":"child_task1", "type":"string", "initialValue":"\"sub\""}
+				]
+			}
+		],
+		"expressions": [
+			{
+				"c2id": 32,
+				"id": "child-task-name",
+				"expressionName": "ChildTaskName",
+				"scriptName": "ChildTaskName",
+				"highlight": false,
+				"returnType": "any",
+				"isVariadicParameters": true
+			},
+			{
+				"c2id": 33,
+				"id": "root-task-name",
+				"expressionName": "RootTaskName",
+				"scriptName": "RootTaskName",
+				"highlight": false,
+				"returnType": "any",
+				"isVariadicParameters": true
+			}					
+		]
+	},
+	"control": {
+		"conditions": [
+			{
+				"c2id": 31,
+				"id": "on-task-done",
+				"scriptName": "OnTaskDone",
+				"isTrigger": "true",
+				"highlight": false,
+				"params": [
+					{"id":"name0", "type":"string", "initialValue":"\"task\""}
+				]
+			},
+			{
+				"c2id": 32,
+				"id": "on-any-task-done",
+				"scriptName": "OnAnyTaskDone",
+				"isTrigger": "true",
+				"highlight": false
+			},
+			{
+				"c2id": 33,
+				"id": "on-any-task-start",
+				"scriptName": "OnAnyTaskStart",
+				"isTrigger": "true",
+				"highlight": false
+			},
+			{
+				"c2id": 34,
+				"id": "on-task-start",
+				"scriptName": "OnTaskStart",
+				"isTrigger": "true",
+				"highlight": false,
+				"params": [
+					{"id":"name0", "type":"string", "initialValue":"\"task\""}
+				]
+			},
+			{
+				"c2id": 51,
+				"id": "is-running",
+				"scriptName": "IsRunning",
+				"highlight": false,
+				"params": [
+					{"id":"name0", "type":"string", "initialValue":"\"task\""}
+				]
+			}			
+		],
+		"actions": [
+			{
+				"c2id": 31,
+				"id": "start-task",
+				"scriptName": "StartTask",
+				"highlight": false,
+				"params": [
+					{"id":"task0", "type":"string", "initialValue":"\"task\""},
+					{"id":"destroy3", "type":"combo", "items":["keep","destroy"]}
+				]
+			},
+			{
+				"c2id": 32,
+				"id": "pause-task",
+				"scriptName": "PauseTask",
+				"highlight": false,
+				"params": [
+					{"id":"task0", "type":"string", "initialValue":"\"task\""}
+				]
+			},
+			{
+				"c2id": 33,
+				"id": "resume-task",
+				"scriptName": "ResumeTask",
+				"highlight": false,
+				"params": [
+					{"id":"task0", "type":"string", "initialValue":"\"task\""}
+				]
+			},
+			{
+				"c2id": 34,
+				"id": "destroy-task",
+				"scriptName": "DestroyTask",
+				"highlight": false,
+				"params": [
+					{"id":"task0", "type":"string", "initialValue":"\"task\""}
+				]
+			}			
+		],
+		"expressions": [
+		]
+	},
+	"task-parameter": {
+		"conditions": [
+		],
+		"actions": [
+			{
+				"c2id": 21,
+				"id": "set-task-parameter",
+				"scriptName": "SetTaskParameter",
+				"highlight": false,
+				"params": [
+					{"id":"task0", "type":"string", "initialValue":"\"\""},
+					{"id":"parameter1", "type":"any", "initialValue":"\"\""},
+					{"id":"value2", "type":"any", "initialValue":"0"}
+				]
+			},
+			{
+				"c2id": 22,
+				"id": "bind-instance",
+				"scriptName": "BindInst",
+				"highlight": false,
+				"params": [
+					{"id":"task0", "type":"string", "initialValue":"\"\""},
+					{"id":"instance1", "type":"object"},
+					{"id":"destroy4", "type":"combo", "items":["keep","destroy"]}
+				]
+			},
+			{
+				"c2id": 23,
+				"id": "bind-instance-by-uid",
+				"scriptName": "BindInst",
+				"highlight": false,
+				"params": [
+					{"id":"task0", "type":"string", "initialValue":"\"\""},
+					{"id":"uid1", "type":"number", "initialValue":"0"},
+					{"id":"destroy4", "type":"combo", "items":["keep","destroy"]}
+				]
+			}
+		],
+		"expressions": [
+			{
+				"c2id": 21,
+				"id": "task-param",
+				"expressionName": "TaskParam",
+				"scriptName": "TaskParam",
+				"highlight": false,
+				"returnType": "any",
+				"params": [
+					{"id":"task0", "type":"string", "initialValue":"\"task\""},
+					{"id":"parameter1", "type":"string", "initialValue":"\"x\""}
+				]
+			},
+			{
+				"c2id": 31,
+				"id": "task-name",
+				"expressionName": "TaskName",
+				"scriptName": "TaskName",
+				"highlight": false,
+				"returnType": "string"
+			},
+			{
+				"c2id": 34,
+				"id": "bound-instance-uid",
+				"expressionName": "BoundInstUID",
+				"scriptName": "BoundInstUID",
+				"highlight": false,
+				"returnType": "number"
+			}			
+		]
+	}
+}

@@ -1,0 +1,27 @@
+{
+	"is-c3-addon": true,
+	"type": "plugin",
+	"name": "Tween tasks",
+	"id": "Rex_TweenTasks",
+	"version": "0.1.0.0",
+	"author": "Rex.Rainbow",
+	"website": "https://rexrainbow.github.io/C2RexDoc/c2rexpluginsACE/plugin_rex_tweentasks.html",
+	"documentation": "https://rexrainbow.github.io/C2RexDoc/c2rexpluginsACE/plugin_rex_tweentasks.html",
+	"description": "Run tasks of tween functions",
+	"editor-scripts": [
+						"plugin.js",
+						"type.js",
+						"instance.js"
+					],
+	"file-list": [
+		"c2runtime/runtime.js",
+		"c2runtime/rex_tweenTasks.js",		
+		"lang/en-US.json",
+		"aces.json",
+		"addon.json",
+		"icon.png",
+		"plugin.js",
+		"type.js",
+		"instance.js"
+	]
+}

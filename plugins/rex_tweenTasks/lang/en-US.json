@@ -1,0 +1,270 @@
+{
+	"languageTag": "en-US",
+	"fileDescription": "Strings for Tween tasks.",
+	"text": {
+		"plugins": {
+			"rex_tweentasks": {
+				"name": "Tween tasks",
+				"description": "Run tasks of tween functions",
+				"help-url": "https://rexrainbow.github.io/C2RexDoc/c2rexpluginsACE/plugin_rex_tweentasks.html",
+				"properties": {
+				},
+				"aceCategories": {					
+					"new-tween-task": "New - tween task",	
+					"new-wait-for-signal-task": "Wait for signal",					
+					"new-wait-task": "New - wait task",
+					"new-group-task": "New - group task",
+					"control": "Control",
+					"task-parameter": "Task parameter"
+				},
+				"conditions": {
+					"on-function": {
+						"list-name": "On function",
+						"display-text": "On [b]{0}[/b]",
+						"description": "Triggered when a function is called.",
+						"params": {
+							"name0": { "name":"Name", "desc":"The name of the function that is being called."}
+						}
+						},
+					"on-task-done": {
+						"list-name": "On task done",
+						"display-text": "On task [b]{0}[/b] done",
+						"description": "Triggered when a task is done.",
+						"params": {
+							"name0": { "name":"Name", "desc":"Name of task."}
+						}
+						},
+					"on-any-task-done": {
+						"list-name": "On any task done",
+						"display-text": "On any task done",
+						"description": "Triggered when any task is done."
+						},
+					"on-any-task-start": {
+						"list-name": "On any task start",
+						"display-text": "On any task started",
+						"description": "Triggered when any task is started."
+						},
+					"on-task-start": {
+						"list-name": "On task started",
+						"display-text": "On task [b]{0}[/b] started",
+						"description": "Triggered when a task is started.",
+						"params": {
+							"name0": { "name":"Name", "desc":"Name of task."}
+						}
+						},
+					"is-running": {
+						"list-name": "Is task running",
+						"display-text": "[b]{0}[/b] is running",
+						"description": "Return true if task is running.",
+						"params": {
+							"name0": { "name":"Name", "desc":"Name of task."}
+						}
+						}
+				},
+				"actions": {
+					"apply-easing": {
+						"list-name": "Apply easing",
+						"display-text": "Apply [b]{1}[/b] to function parameter [b]{0}[/b]",
+						"description": "Apply easing to function parameter, used under \"Condition: On function\"",
+						"params": {
+							"parameter0": { "name":"Parameter", "desc":"Name of parameter."},
+							"type26": { "name":"Type", "desc":"Function type of easing.", "items":{"linear":"Linear","easeinquad":"EaseInQuad","easeoutquad":"EaseOutQuad","easeinoutquad":"EaseInOutQuad","easeincubic":"EaseInCubic","easeoutcubic":"EaseOutCubic","easeinoutcubic":"EaseInOutCubic","easeinquart":"EaseInQuart","easeoutquart":"EaseOutQuart","easeinoutquart":"EaseInOutQuart","easeinquint":"EaseInQuint","easeoutquint":"EaseOutQuint","easeinoutquint":"EaseInOutQuint","easeincircle":"EaseInCircle","easeoutcircle":"EaseOutCircle","easeinoutcircle":"EaseInOutCircle","easeinback":"EaseInBack","easeoutback":"EaseOutBack","easeinoutback":"EaseInOutBack","easeinelastic":"EaseInElastic","easeoutelastic":"EaseOutElastic","easeinoutelastic":"EaseInOutElastic","easeinbounce":"EaseInBounce","easeoutbounce":"EaseOutBounce","easeinoutbounce":"EaseInOutBounce"}}
+						}
+					},
+					"new-tween-task": {
+						"list-name": "New function task",
+						"display-text": "Create new task [b]{0}[/b] to run function [b]{1}[/b] with interval to [b]{2}[/b], repeat count to [b]{3}[/b]",
+						"description": "Create a new task to run functuion.",
+						"params": {
+							"task0": { "name":"Task", "desc":"Name of task."},
+							"function1": { "name":"Function", "desc":"The name of the function that is being called."},
+							"interval2": { "name":"Interval", "desc":"Interval, in seconds."},
+							"repeat3": { "name":"Repeat", "desc":"Repeat count. 0 is infinty."}
+						}
+					},
+					"set-function-parameter": {
+						"list-name": "Set parameter",
+						"display-text": "Task [b]{0}[/b]: set function parameter [b]{1}[/b]: [b]{4}[/b] transform from [b]{2}[/b] to [b]{3}[/b]",
+						"description": "Assign start and end value of a function parameter.",
+						"params": {
+							"task0": { "name":"Task", "desc":"Name of task."},
+							"parameter1": { "name":"Parameter", "desc":"Name of parameter."},
+							"start2": { "name":"Start", "desc":"Start value."},
+							"end3": { "name":"End", "desc":"End value"},
+							"type29": { "name":"Type", "desc":"Function type of easing.", "items":{"linear":"Linear","easeinquad":"EaseInQuad","easeoutquad":"EaseOutQuad","easeinoutquad":"EaseInOutQuad","easeincubic":"EaseInCubic","easeoutcubic":"EaseOutCubic","easeinoutcubic":"EaseInOutCubic","easeinquart":"EaseInQuart","easeoutquart":"EaseOutQuart","easeinoutquart":"EaseInOutQuart","easeinquint":"EaseInQuint","easeoutquint":"EaseOutQuint","easeinoutquint":"EaseInOutQuint","easeincircle":"EaseInCircle","easeoutcircle":"EaseOutCircle","easeinoutcircle":"EaseInOutCircle","easeinback":"EaseInBack","easeoutback":"EaseOutBack","easeinoutback":"EaseInOutBack","easeinelastic":"EaseInElastic","easeoutelastic":"EaseOutElastic","easeinoutelastic":"EaseInOutElastic","easeinbounce":"EaseInBounce","easeoutbounce":"EaseOutBounce","easeinoutbounce":"EaseInOutBounce"}}
+						}
+					},
+					"new-wait-task": {
+						"list-name": "New wait task",
+						"display-text": "Create new wait task [b]{0}[/b] with interval to [b]{1}[/b]",
+						"description": "Create a new wait task.",
+						"params": {
+							"task0": { "name":"Task", "desc":"Name of task."},
+							"interval1": { "name":"Interval", "desc":"Wait interval, in seconds."}
+						}
+					},
+					"new-sequence-task": {
+						"list-name": "New sequence task",
+						"display-text": "Create new task [b]{0}[/b] to run children tasks ([b]{...}[/b]) sequentially, repeat count to [b]{1}[/b]",
+						"description": "Create a new task to run tasks in sequence or parallel.",
+						"params": {
+							"task0": { "name":"Task", "desc":"Name of task."},
+							"repeat1": { "name":"Repeat", "desc":"Repeat count. 0 is infinty."},
+							"task_n2": { "name":"Task {n}", "desc":"Tasks in sequence."}
+						}
+					},
+					"new-parallel-task": {
+						"list-name": "New parallel task",
+						"display-text": "Create new task [b]{0}[/b] to run children tasks ([b]{...}[/b]) parallel, repeat count to [b]{1}[/b]",
+						"description": "Create a new task to run tasks in parallel.",
+						"params": {
+							"task0": { "name":"Task", "desc":"Name of task."},
+							"repeat1": { "name":"Repeat", "desc":"Repeat count. 0 is infinty."},
+							"child_task_n2": { "name":"Child task {n}", "desc":"Tasks in parallel."}
+						}
+					},
+					"add-child-task": {
+						"list-name": "Add child task",
+						"display-text": "Add child task [b]{1}[/b] into group task [b]{0}[/b]",
+						"description": "Add child task into group task.",
+						"params": {
+							"task0": { "name":"Task", "desc":"Name of task."},
+							"child_task1": { "name":"child task", "desc":"Name of child task."}
+						}
+					},
+					"new-inversed-tween-task": {
+						"list-name": "New inversed task",
+						"display-text": "Create new task [b]{0}[/b] inversed from task [b]{1}[/b]",
+						"description": "Create a new task inversed from function task.",
+						"params": {
+							"task0": { "name":"Task", "desc":"Name of task."},
+							"inverse_from1": { "name":"Inverse from", "desc":"Name of inversed task."}
+						}
+					},
+					"new-wait-for-signal-task": {
+						"list-name": "New wait for signal task",
+						"display-text": "Create new wait for signal task [b]{0}[/b], wait for signal [b]{1}[/b]",
+						"description": "Create a new wait task.",
+						"params": {
+							"task0": { "name":"Task", "desc":"Name of task."},
+							"signal1": { "name":"Signal", "desc":"Name of waited signal."}
+						}
+					},
+					"set-task-parameter": {
+						"list-name": "Set parameter",
+						"display-text": "task [b]{0}[/b]: set parameter [b]{1}[/b] to [b]{2}[/b]",
+						"description": "Set a parameter of task.",
+						"params": {
+							"task0": { "name":"Task", "desc":"Name of task."},
+							"parameter1": { "name":"Parameter", "desc":"Name of parameter"},
+							"value2": { "name":"Value", "desc":"Value"}
+						}
+					},
+					"bind-instance": {
+						"list-name": "Bind instance",
+						"display-text": "Task [b]{0}[/b]: bind instance {1}, [b]{2}[/b] instance after task done",
+						"description": "Bind instance to task.",
+						"params": {
+							"task0": { "name":"Task", "desc":"Name of task."},
+							"instance1": { "name":"Instance", "desc":"Bound instance."},
+							"destroy4": { "name":"Destroy", "desc":"Destroy bound instance after task done.", "items":{"keep":"Keep","destroy":"Destroy"}}
+						}
+					},
+					"bind-instance-by-uid": {
+						"list-name": "Bind instance by UID",
+						"display-text": "Task [b]{0}[/b]: bind instance UID: [b]{1}[/b], [b]{2}[/b] instance after task done",
+						"description": "Bind instance to task.",
+						"params": {
+							"task0": { "name":"Task", "desc":"Name of task."},
+							"uid1": { "name":"UID", "desc":"Instance UID."},
+							"destroy4": { "name":"Destroy", "desc":"Destroy bound instance after task done.", "items":{"keep":"Keep","destroy":"Destroy"}}
+						}
+					},
+					"start-task": {
+						"list-name": "Start",
+						"display-text": "Task [b]{0}[/b]: start, [b]{1}[/b] after task done",
+						"description": "Start task.",
+						"params": {
+							"task0": { "name":"Task", "desc":"Name of task."},
+							"destroy3": { "name":"Destroy", "desc":"Destroy task after task done.", "items":{"keep":"Keep","destroy":"Destroy"}}
+						}
+					},
+					"pause-task": {
+						"list-name": "Pause",
+						"display-text": "Task [b]{0}[/b]: pause",
+						"description": "Pause task.",
+						"params": {
+							"task0": { "name":"Task", "desc":"Name of task."}
+						}
+					},
+					"resume-task": {
+						"list-name": "Resume",
+						"display-text": "Task [b]{0}[/b]: resume",
+						"description": "Resume task.",
+						"params": {
+							"task0": { "name":"Task", "desc":"Name of task."}
+						}
+					},
+					"destroy-task": {
+						"list-name": "Destroy task",
+						"display-text": "Task [b]{0}[/b]: destroy",
+						"description": "Destroy task.",
+						"params": {
+							"task0": { "name":"Task", "desc":"Name of task."}
+						}
+					},
+					"continue-task": {
+						"list-name": "Continue task",
+						"display-text": "Task [b]{0}[/b]: continue  with signal [b]{1}[/b]",
+						"description": "Continue task.",
+						"params": {
+							"task0": { "name":"Task", "desc":"Name of task."},
+							"signal1": { "name":"Signal", "desc":"Name of waited signal."}
+						}
+					},
+					"continue-tasks-by-signal": {
+						"list-name": "Continue by signal",
+						"display-text": "All tasks: continue  with signal [b]{0}[/b]",
+						"description": "Continue task.",
+						"params": {
+							"signal0": { "name":"Signal", "desc":"Name of waited signal."}
+						}
+					}
+				},
+				"expressions": {
+					"function-param": {
+						"description": "Get tween value of parameter under \"Condition:On function\". Add \"start\", \"end\", or \"delta\" to 2nd parameter to get start or end or delta value.",
+						"translated-name": "FnParam",
+						"params": {
+							"parameter0": { "name":"Parameter", "desc":"Name of parameter."}
+						}
+						},
+					"task-param": {
+						"description": "Get value of task parameter.",
+						"translated-name": "TaskParam",
+						"params": {
+							"task0": { "name":"Task", "desc":"Name of task."},
+							"parameter1": { "name":"Parameter", "desc":"Parameter's name"}
+						}
+						},
+					"task-name": {
+						"description": "Get task name.",
+						"translated-name": "TaskName"
+						},
+					"child-task-name": {
+						"description": "Get current child task name in sequence task. Return \"\" if not avaiable.  Add 2nd parameter to child task name.",
+						"translated-name": "ChildTaskName"
+						},
+					"root-task-name": {
+						"description": "Get root task name. Add 2nd parameter to child task name.",
+						"translated-name": "RootTaskName"
+						},
+					"bound-instance-uid": {
+						"description": "Get bound instance UID.",
+						"translated-name": "BoundInstUID"
+						}
+				}
+			}
+		}
+	}
+}
