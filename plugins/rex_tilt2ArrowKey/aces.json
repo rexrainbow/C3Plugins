@@ -1,0 +1,196 @@
+{
+	"calibration": {
+		"conditions": [
+		],
+		"actions": [
+			{
+				"c2id": 2,
+				"id": "calibration",
+				"scriptName": "Calibration",
+				"highlight": false,
+				"params": [
+					{"id":"zero_angle2", "type":"combo", "items":["0","current angle"]},
+					{"id":"zero_angle5", "type":"combo", "items":["0","current angle"]}
+				]
+			}
+		],
+		"expressions": [
+			{
+				"c2id": 1,
+				"id": "zero-ud",
+				"expressionName": "ZEROUD",
+				"scriptName": "ZEROUD",
+				"highlight": false,
+				"returnType": "number"
+			},
+			{
+				"c2id": 2,
+				"id": "zero-lr",
+				"expressionName": "ZEROLR",
+				"scriptName": "ZEROLR",
+				"highlight": false,
+				"returnType": "number"
+			}			
+		]
+	},
+	"sensitivity": {
+		"conditions": [
+		],
+		"actions": [
+			{
+				"c2id": 3,
+				"id": "set-sensitivity",
+				"scriptName": "SetSensitivity",
+				"highlight": false,
+				"params": [
+					{"id":"sensitivity_angle0", "type":"number"}
+				]
+			}
+		],
+		"expressions": [
+			{
+				"c2id": 5,
+				"id": "sensitivity-angle",
+				"expressionName": "SensitivityAngle",
+				"scriptName": "SensitivityAngle",
+				"highlight": false,
+				"returnType": "number"
+			}			
+		]
+	},
+	"pressd": {
+		"conditions": [
+			{
+				"c2id": 1,
+				"id": "on-up-pressed",
+				"scriptName": "OnUPPressed",
+				"isTrigger": "true",
+				"highlight": false
+			},
+			{
+				"c2id": 2,
+				"id": "on-down-pressed",
+				"scriptName": "OnDOWNPressed",
+				"isTrigger": "true",
+				"highlight": false
+			},
+			{
+				"c2id": 3,
+				"id": "on-left-pressed",
+				"scriptName": "OnLEFTPressed",
+				"isTrigger": "true",
+				"highlight": false
+			},
+			{
+				"c2id": 4,
+				"id": "on-right-pressed",
+				"scriptName": "OnRIGHTPressed",
+				"isTrigger": "true",
+				"highlight": false
+			},
+			{
+				"c2id": 5,
+				"id": "on-any-pressed",
+				"scriptName": "OnAnyPressed",
+				"isTrigger": "true",
+				"highlight": false
+			}
+		],
+		"actions": [
+		],
+		"expressions": [
+		]
+	},
+	"is-down": {
+		"conditions": [
+			{
+				"c2id": 11,
+				"id": "is-up-down",
+				"scriptName": "IsUPDown",
+				"highlight": false
+			},
+			{
+				"c2id": 12,
+				"id": "is-down-down",
+				"scriptName": "IsDOWNDown",
+				"highlight": false
+			},
+			{
+				"c2id": 13,
+				"id": "is-left-down",
+				"scriptName": "IsLEFTDown",
+				"highlight": false
+			},
+			{
+				"c2id": 14,
+				"id": "is-right-down",
+				"scriptName": "IsRIGHTDown",
+				"highlight": false
+			}
+		],
+		"actions": [
+		],
+		"expressions": [
+		]
+	},
+	"released": {
+		"conditions": [
+			{
+				"c2id": 21,
+				"id": "on-up-released",
+				"scriptName": "OnUPReleased",
+				"isTrigger": "true",
+				"highlight": false
+			},
+			{
+				"c2id": 22,
+				"id": "on-down-released",
+				"scriptName": "OnDOWNReleased",
+				"isTrigger": "true",
+				"highlight": false
+			},
+			{
+				"c2id": 23,
+				"id": "on-left-released",
+				"scriptName": "OnLEFTReleased",
+				"isTrigger": "true",
+				"highlight": false
+			},
+			{
+				"c2id": 24,
+				"id": "on-right-released",
+				"scriptName": "OnRIGHTReleased",
+				"isTrigger": "true",
+				"highlight": false
+			}
+		],
+		"actions": [
+		],
+		"expressions": [
+		]
+	},
+	"angle": {
+		"conditions": [
+		],
+		"actions": [
+		],
+		"expressions": [
+			{
+				"c2id": 3,
+				"id": "rotate-ud",
+				"expressionName": "RotateUD",
+				"scriptName": "RotateUD",
+				"highlight": false,
+				"returnType": "number"
+			},
+			{
+				"c2id": 4,
+				"id": "rotate-lr",
+				"expressionName": "RotateLR",
+				"scriptName": "RotateLR",
+				"highlight": false,
+				"returnType": "number"
+			}
+		]
+	}
+}

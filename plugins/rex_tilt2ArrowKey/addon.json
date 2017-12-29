@@ -1,0 +1,26 @@
+{
+	"is-c3-addon": true,
+	"type": "plugin",
+	"name": "Tilt to arrow key",
+	"id": "Rex_Tilt2ArrowKey",
+	"version": "0.1.0.0",
+	"author": "Rex.Rainbow",
+	"website": "https://rexrainbow.github.io/C2RexDoc/c2rexpluginsACE/plugin_rex_tilt2ArrowKey.html",
+	"documentation": "https://rexrainbow.github.io/C2RexDoc/c2rexpluginsACE/plugin_rex_tilt2ArrowKey.html",
+	"description": "Get arrow key event from tilt's beta and gamma input.",
+	"editor-scripts": [
+						"plugin.js",
+						"type.js",
+						"instance.js"
+					],
+	"file-list": [
+		"c2runtime/runtime.js",
+		"lang/en-US.json",
+		"aces.json",
+		"addon.json",
+		"icon.png",
+		"plugin.js",
+		"type.js",
+		"instance.js"
+	]
+}

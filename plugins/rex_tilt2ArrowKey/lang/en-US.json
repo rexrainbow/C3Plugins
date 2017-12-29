@@ -1,0 +1,153 @@
+{
+	"languageTag": "en-US",
+	"fileDescription": "Strings for Tilt to arrow key.",
+	"text": {
+		"plugins": {
+			"rex_tilt2arrowkey": {
+				"name": "Tilt to arrow key",
+				"description": "Get arrow key event from tilt's beta and gamma input.",
+				"help-url": "https://rexrainbow.github.io/C2RexDoc/c2rexpluginsACE/plugin_rex_tilt2ArrowKey.html",
+				"properties": {
+					"calibration": {
+						"name": "Calibration",
+						"desc": "Calibration zero angle.",
+						"items": {
+							"0":"0",
+							"current angle":"Current angle"
+							}
+						},
+					"directions": {
+						"name": "Directions",
+						"desc": "The number of directions of movement available.",
+						"items": {
+							"up & down":"Up & down",
+							"left & right":"Left & right",
+							"4 directions":"4 directions",
+							"8 directions":"8 directions"
+							}
+						},
+					"sensitivity": {
+						"name": "Sensitivity",
+						"desc": "Sensitivity of tilt angle, in degree."
+						}
+				},
+				"aceCategories": {
+					"calibration": "calibration",
+					"sensitivity": "Sensitivity",
+					"pressd": "Pressd",
+					"is-down": "Is down",
+					"released": "Released",
+					"angle": "Angle"
+				},
+				"conditions": {
+					"on-up-pressed": {
+						"list-name": "On Up arrow pressed",
+						"display-text": "On Up arrow pressed",
+						"description": "Triggered when Up arrow is pressed."
+						},
+					"on-down-pressed": {
+						"list-name": "On Down arrow pressed",
+						"display-text": "On Down arrow pressed",
+						"description": "Triggered when Down arrow is pressed."
+						},
+					"on-left-pressed": {
+						"list-name": "On Left arrow pressed",
+						"display-text": "On Left arrow pressed",
+						"description": "Triggered when Left arrow is pressed."
+						},
+					"on-right-pressed": {
+						"list-name": "On Right arrow pressed",
+						"display-text": "On Right arrow pressed",
+						"description": "Triggered when Right arrow is pressed."
+						},
+					"on-any-pressed": {
+						"list-name": "On any arrow pressed",
+						"display-text": "On any arrow pressed",
+						"description": "Triggered when any arrow is pressed."
+						},
+					"is-up-down": {
+						"list-name": "Up arrow is down",
+						"display-text": "Up arrow is down",
+						"description": "Return true if Up arrow is currently held down."
+						},
+					"is-down-down": {
+						"list-name": "Down arrow is down",
+						"display-text": "Down arrow is down",
+						"description": "Return true if Down arrow is currently held down."
+						},
+					"is-left-down": {
+						"list-name": "Left arrow is down",
+						"display-text": "Left arrow is down",
+						"description": "Return true if Left arrow is currently held down."
+						},
+					"is-right-down": {
+						"list-name": "Right arrow is down",
+						"display-text": "Right arrow is down",
+						"description": "Return true if Right arrow is currently held down."
+						},
+					"on-up-released": {
+						"list-name": "On Up arrow released",
+						"display-text": "On Up arrow released",
+						"description": "Triggered when Up arrow is released."
+						},
+					"on-down-released": {
+						"list-name": "On Down arrow released",
+						"display-text": "On Down arrow released",
+						"description": "Triggered when Down arrow is released."
+						},
+					"on-left-released": {
+						"list-name": "On Left arrow released",
+						"display-text": "On Left arrow released",
+						"description": "Triggered when Left arrow is released."
+						},
+					"on-right-released": {
+						"list-name": "On Right arrow released",
+						"display-text": "On Right arrow released",
+						"description": "Triggered when Right arrow is released."
+						}
+				},
+				"actions": {
+					"calibration": {
+						"list-name": "Calibration",
+						"display-text": "Calibration zero angle of Up-Bottom to [b]{0}[/b], zero angle of Left-Right to [b]{1}[/b]",
+						"description": "Calibration zero angle.",
+						"params": {
+							"zero_angle2": { "name":"ZERO angle", "desc":"ZERO angle of Up-Bottom direction.", "items":{"0":"0","current angle":"current angle"}},
+							"zero_angle5": { "name":"ZERO angle", "desc":"ZERO angle of Left-Right direction.", "items":{"0":"0","current angle":"current angle"}}
+						}
+					},
+					"set-sensitivity": {
+						"list-name": "Set sensitivity angle",
+						"display-text": "Set sensitivity angle to [b]{0}[/b]",
+						"description": "Set sensitivity angle of turning direction detection.",
+						"params": {
+							"sensitivity_angle0": { "name":"Sensitivity angle", "desc":"Sensitivity angle."}
+						}
+					}
+				},
+				"expressions": {
+					"zero-ud": {
+						"description": "Get zero of Up-Bottom.",
+						"translated-name": "ZEROUD"
+						},
+					"zero-lr": {
+						"description": "Get zero of Left-Right.",
+						"translated-name": "ZEROLR"
+						},
+					"rotate-ud": {
+						"description": "Get rotate angle of Up-Bottom.",
+						"translated-name": "RotateUD"
+						},
+					"rotate-lr": {
+						"description": "Get rotate angle of Left-Right.",
+						"translated-name": "RotateLR"
+						},
+					"sensitivity-angle": {
+						"description": "Get sensitivity angle of turning direction detection.",
+						"translated-name": "SensitivityAngle"
+						}
+				}
+			}
+		}
+	}
+}
