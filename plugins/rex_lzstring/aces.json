@@ -1,0 +1,57 @@
+{
+	"encoding": {
+		"conditions": [
+		],
+		"actions": [
+			{
+				"c2id": 1,
+				"id": "set-encoding-mode",
+				"scriptName": "SetEncodingMode",
+				"highlight": false,
+				"params": [
+					{"id":"encoding4", "type":"combo", "items":["none","base64","utf16","uri"]}
+				]
+			}
+		],
+		"expressions": [
+		]
+	},
+	"compress": {
+		"conditions": [
+		],
+		"actions": [
+		],
+		"expressions": [
+			{
+				"c2id": 1,
+				"id": "compress",
+				"expressionName": "Compress",
+				"scriptName": "Compress",
+				"highlight": false,
+				"returnType": "string",
+				"params": [
+					{"id":"source0", "type":"string", "initialValue":"\"\""}
+				]
+			}
+		]
+	},
+	"decompress": {
+		"conditions": [
+		],
+		"actions": [
+		],
+		"expressions": [
+			{
+				"c2id": 2,
+				"id": "decompress",
+				"expressionName": "Decompress",
+				"scriptName": "Decompress",
+				"highlight": false,
+				"returnType": "string",
+				"params": [
+					{"id":"result0", "type":"string", "initialValue":"\"\""}
+				]
+			}
+		]
+	}
+}

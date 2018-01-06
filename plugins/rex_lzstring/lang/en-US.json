@@ -1,0 +1,58 @@
+{
+	"languageTag": "en-US",
+	"fileDescription": "Strings for Lz-string.",
+	"text": {
+		"plugins": {
+			"rex_lzstring": {
+				"name": "Lz-string",
+				"description": "Compress string using LZ-based compression algorithm. Reference - https://github.com/pieroxy/lz-string",
+				"help-url": "https://rexrainbow.github.io/C2RexDoc/c2rexpluginsACE/plugin_rex_lzstring.html",
+				"properties": {
+					"encoding": {
+						"name": "Encoding",
+						"desc": "Encoding of compression result.",
+						"items": {
+							"none":"None",
+							"base64":"Base64",
+							"utf16":"UTF16",
+							"uri":"URI"
+							}
+						}
+				},
+				"aceCategories": {
+					"encoding": "Encoding",
+					"compress": "Compress",
+					"decompress": "Decompress"
+				},
+				"conditions": {
+				},
+				"actions": {
+					"set-encoding-mode": {
+						"list-name": "Set encoding mode",
+						"display-text": "Set encoding mode to [b]{0}[/b]",
+						"description": "Set encoding mode.",
+						"params": {
+							"encoding4": { "name":"Encoding", "desc":"Encoding mode.", "items":{"none":"None","base64":"Base64","utf16":"UTF16","uri":"URI"}}
+						}
+					}
+				},
+				"expressions": {
+					"compress": {
+						"description": "Compress source string.",
+						"translated-name": "Compress",
+						"params": {
+							"source0": { "name":"Source", "desc":"Source string to compress"}
+						}
+						},
+					"decompress": {
+						"description": "Decompress result string.",
+						"translated-name": "Decompress",
+						"params": {
+							"result0": { "name":"Result", "desc":"Result string to decompress"}
+						}
+						}
+				}
+			}
+		}
+	}
+}
