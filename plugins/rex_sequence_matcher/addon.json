@@ -1,0 +1,27 @@
+{
+	"is-c3-addon": true,
+	"type": "plugin",
+	"name": "Sequence matcher",
+	"id": "Rex_SequenceMatcher",
+	"version": "0.1.0.0",
+	"author": "Rex.Rainbow",
+	"website": "https://rexrainbow.github.io/C2RexDoc/c2rexpluginsACE/rex_sequence_matcher.html",
+	"documentation": "https://rexrainbow.github.io/C2RexDoc/c2rexpluginsACE/rex_sequence_matcher.html",
+	"description": "To find sequence pattern.",
+	"editor-scripts": [
+						"plugin.js",
+						"type.js",
+						"instance.js"
+					],
+	"file-list": [
+		"c2runtime/runtime.js",
+		"c2runtime/rex_seqnenceMatcher.js",		
+		"lang/en-US.json",
+		"aces.json",
+		"addon.json",
+		"icon.png",
+		"plugin.js",
+		"type.js",
+		"instance.js"
+	]
+}

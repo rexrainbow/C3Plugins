@@ -1,0 +1,68 @@
+{
+	"symbol-buffer": {
+		"conditions": [
+		],
+		"actions": [
+			{
+				"c2id": 1,
+				"id": "clean-symbol-buffer",
+				"scriptName": "CleanSymbolBuffer",
+				"highlight": false
+			},
+			{
+				"c2id": 2,
+				"id": "set-symbol-buffer-length",
+				"scriptName": "SetSymbolBufferLength",
+				"highlight": false,
+				"params": [
+					{"id":"length0", "type":"number", "initialValue":"10"}
+				]
+			}
+		],
+		"expressions": [
+		]
+	},
+	"matching": {
+		"conditions": [
+			{
+				"c2id": 2,
+				"id": "on-match-pattern",
+				"scriptName": "OnMatchPattern",
+				"isTrigger": "true",
+				"highlight": false,
+				"params": [
+					{"id":"pattern0", "type":"string", "initialValue":"\"\""}
+				]
+			},
+			{
+				"c2id": 3,
+				"id": "on-no-match-pattern",
+				"scriptName": "OnNoMatchPattern",
+				"isTrigger": "true",
+				"highlight": false
+			},
+			{
+				"c2id": 4,
+				"id": "is-match-pattern",
+				"scriptName": "IsMatchPattern",
+				"highlight": false,
+				"params": [
+					{"id":"pattern0", "type":"string", "initialValue":"\"\""}
+				]
+			}					
+		],
+		"actions": [
+			{
+				"c2id": 5,
+				"id": "push-symbol",
+				"scriptName": "PushSymbol",
+				"highlight": false,
+				"params": [
+					{"id":"symbol0", "type":"string", "initialValue":"\"\""}
+				]
+			}
+		],
+		"expressions": [
+		]
+	}
+}

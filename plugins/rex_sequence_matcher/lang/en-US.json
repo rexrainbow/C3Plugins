@@ -1,0 +1,71 @@
+{
+	"languageTag": "en-US",
+	"fileDescription": "Strings for Sequence matcher.",
+	"text": {
+		"plugins": {
+			"rex_sequencematcher": {
+				"name": "Sequence matcher",
+				"description": "To find sequence pattern.",
+				"help-url": "https://rexrainbow.github.io/C2RexDoc/c2rexpluginsACE/rex_sequence_matcher.html",
+				"properties": {
+					"buffer-length": {
+						"name": "Buffer length",
+						"desc": "Buffer length of saved symbols."
+						}
+				},
+				"aceCategories": {
+					"symbol-buffer": "Symbol buffer",
+					"matching": "Matching"
+				},
+				"conditions": {
+					"on-match-pattern": {
+						"list-name": "On matching",
+						"display-text": "On matching [i]{0}[/i]",
+						"description": "Trigger by \"Action:Put symbol\" when matching pattern.",
+						"params": {
+							"pattern0": { "name":"Pattern", "desc":"Pattern."}
+						}
+						},
+					"on-no-match-pattern": {
+						"list-name": "On no matching pattern",
+						"display-text": "On no matching pattern",
+						"description": "Trigger by \"Action:Put symbol\" when matching pattern."
+						},
+					"is-match-pattern": {
+						"list-name": "Is matching",
+						"display-text": "Is matching [i]{0}[/i]",
+						"description": "Return true if pattern matched.",
+						"params": {
+							"pattern0": { "name":"Pattern", "desc":"Pattern."}
+						}
+						}
+				},
+				"actions": {
+					"clean-symbol-buffer": {
+						"list-name": "Clean buffer",
+						"display-text": "Clean symbol buffer",
+						"description": "Clean symbol buffer."
+					},
+					"set-symbol-buffer-length": {
+						"list-name": "Set buffer length",
+						"display-text": "Set symbol buffer length to [i]{0}[/i]",
+						"description": "Set symbol buffer length.",
+						"params": {
+							"length0": { "name":"Length", "desc":"length of symbol buffer"}
+						}
+					},
+					"push-symbol": {
+						"list-name": "Push symbol",
+						"display-text": "Push symbol: [i]{0}[/i]",
+						"description": "Push symbol into buffer then do matching.",
+						"params": {
+							"symbol0": { "name":"Symbol", "desc":"Symbol to push"}
+						}
+					}
+				},
+				"expressions": {
+				}
+			}
+		}
+	}
+}
