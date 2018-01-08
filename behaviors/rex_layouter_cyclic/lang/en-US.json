@@ -1,0 +1,103 @@
+{
+	"languageTag": "en-US",
+	"fileDescription": "Strings for Cyclic layout.",
+	"text": {
+		"behaviors": {
+			"rex_layouter_cyclic": {
+				"name": "Cyclic layout",
+				"description": "Put instances cyclic on layouter.",
+				"help-url": "https://rexrainbow.github.io/C2RexDoc/c2rexpluginsACE/rex_layouter_cyclic.html",
+				"properties": {
+					"shape": {
+						"name": "Shape",
+						"desc": "Shape of this circle.",
+						"items": {
+							"circle":"Circle",
+							"ellipse":"Ellipse"
+							}
+						},
+					"mode": {
+						"name": "Mode",
+						"desc": "Average mode: layout instances in range averagely, Fix mode: layout instances with fix angle.",
+						"items": {
+							"average":"Average",
+							"fix":"Fix"
+							}
+						},
+					"start-angle": {
+						"name": "Start angle",
+						"desc": "Start angle of first instance, in degree."
+						},
+					"range-angle": {
+						"name": "Range angle",
+						"desc": "Range angle, in degree. Negative is anti-clockwise. Used in average mode."
+						},
+					"delta-angle": {
+						"name": "Delta angle",
+						"desc": "Delta angle, in degree. Negative is anti-clockwise. Used in fix mode."
+						},
+					"angle-offset": {
+						"name": "Angle offset",
+						"desc": "Angle offset of each sprite, in degree."
+						}
+				},
+				"aceCategories": {
+					"mode": "Mode",
+					"angle": "Angle",
+					"average-mode": "Average mode",
+					"fix-mode": "Fix mode"
+				},
+				"conditions": {
+				},
+				"actions": {
+					"set-mode": {
+						"list-name": "Set mode",
+						"display-text": "Set {my} mode to [b]{0}[/b]",
+						"description": "Set mode of layout.",
+						"params": {
+							"mode2": { "name":"Mode", "desc":"Mode of layout.", "items":{"average":"Average","fix":"Fix"}}
+						}
+					},
+					"set-start-angle": {
+						"list-name": "Set start angle",
+						"display-text": "Set {my} start angle to [b]{0}[/b]",
+						"description": "Set the start angle.",
+						"params": {
+							"start0": { "name":"Start", "desc":"Start angle, in degree."}
+						}
+					},
+					"set-range-angle": {
+						"list-name": "Set range angle",
+						"display-text": "Set {my} range angle to [b]{0}[/b]",
+						"description": "Set amount of range angle clockwise from start, in degrees. Negative is anti-clockwise.",
+						"params": {
+							"range_angle0": { "name":"Range angle", "desc":"Amount of Range angle clockwise from start, in degrees."}
+						}
+					},
+					"set-delta-angle": {
+						"list-name": "Set delta angle",
+						"display-text": "Set {my} delta angle to [b]{0}[/b]",
+						"description": "Set amount of delta angle clockwise from start, in degrees. Negative is anti-clockwise.",
+						"params": {
+							"delta_angle0": { "name":"Delta angle", "desc":"Amount of dleta angle clockwise from start, in degrees."}
+						}
+					},
+					"add-to-start-angle": {
+						"list-name": "Add to start angle",
+						"display-text": "Add  [b]{0}[/b] to {my} start angle",
+						"description": "Add value to start angle.",
+						"params": {
+							"delta0": { "name":"Delta", "desc":"Delta angle, in degree."}
+						}
+					}
+				},
+				"expressions": {
+					"start-angle": {
+						"description": "Get start angle, in degrees.",
+						"translated-name": "StartAngle"
+						}
+				}
+			}
+		}
+	}
+}

@@ -1,0 +1,198 @@
+{
+	"add-remove": {
+		"conditions": [
+		],
+		"actions": [
+			{
+				"c2id": 3,
+				"id": "add-instances",
+				"scriptName": "AddInsts",
+				"highlight": true,
+				"params": [
+					{"id":"instances0", "type":"object"}
+				]
+			},
+			{
+				"c2id": 4,
+				"id": "create-instances",
+				"scriptName": "CreateInsts",
+				"highlight": false,
+				"params": [
+					{"id":"instances0", "type":"object"},
+					{"id":"x1", "type":"number", "initialValue":"0"},
+					{"id":"y2", "type":"number", "initialValue":"0"},
+					{"id":"layer3", "type":"layer"}
+				]
+			},
+			{
+				"c2id": 5,
+				"id": "remove-instances",
+				"scriptName": "RemoveInsts",
+				"highlight": false,
+				"params": [
+					{"id":"instances0", "type":"object"}
+				]
+			},
+			{
+				"c2id": 7,
+				"id": "remove-all-instances",
+				"scriptName": "RemoveAllInsts",
+				"highlight": false
+			}
+		],
+		"expressions": [
+		]
+	},
+	"layout": {
+		"conditions": [
+			{
+				"c2id": 1,
+				"id": "on-layout-instance",
+				"scriptName": "OnLayoutInst",
+				"isTrigger": "true",
+				"highlight": true
+			}
+		],
+		"actions": [
+			{
+				"c2id": 6,
+				"id": "force-layout",
+				"scriptName": "ForceLayout",
+				"highlight": false
+			}			
+		],
+		"expressions": [
+			{
+				"c2id": 1,
+				"id": "instance-uid",
+				"expressionName": "InstUID",
+				"scriptName": "InstUID",
+				"highlight": false,
+				"returnType": "number"
+			},
+			{
+				"c2id": 2,
+				"id": "instance-x",
+				"expressionName": "InstX",
+				"scriptName": "InstX",
+				"highlight": true,
+				"returnType": "number"
+			},
+			{
+				"c2id": 3,
+				"id": "instance-y",
+				"expressionName": "InstY",
+				"scriptName": "InstY",
+				"highlight": true,
+				"returnType": "number"
+			},
+			{
+				"c2id": 4,
+				"id": "instance-angle",
+				"expressionName": "InstAngle",
+				"scriptName": "InstAngle",
+				"highlight": false,
+				"returnType": "number"
+			},
+			{
+				"c2id": 5,
+				"id": "instance-width",
+				"expressionName": "InstWidth",
+				"scriptName": "InstWidth",
+				"highlight": false,
+				"returnType": "number"
+			},
+			{
+				"c2id": 6,
+				"id": "instance-height",
+				"expressionName": "InstHeight",
+				"scriptName": "InstHeight",
+				"highlight": false,
+				"returnType": "number"
+			},
+			{
+				"c2id": 7,
+				"id": "instance-opacity",
+				"expressionName": "InstOpacity",
+				"scriptName": "InstOpacity",
+				"highlight": false,
+				"returnType": "number"
+			},
+			{
+				"c2id": 8,
+				"id": "instance-visible",
+				"expressionName": "InstVisible",
+				"scriptName": "InstVisible",
+				"highlight": false,
+				"returnType": "number"
+			}
+		]
+	},	
+	"sol": {
+		"conditions": [
+			{
+				"c2id": 10,
+				"id": "pick-instances",
+				"scriptName": "PickInsts",
+				"isInvertible": "false",
+				"highlight": false,
+				"params": [
+					{"id":"object0", "type":"object"}
+				]
+			},
+			{
+				"c2id": 11,
+				"id": "pick-all-instances",
+				"scriptName": "PickAllInsts",
+				"isInvertible": "false",
+				"highlight": false
+			},
+			{
+				"c2id": 21,
+				"id": "pick-layouter",
+				"scriptName": "PickLayouter",
+				"isStatic": "true",
+				"isInvertible": "false",
+				"highlight": false,
+				"params": [
+					{"id":"instance0", "type":"object"}
+				]
+			}			
+		],
+		"actions": [
+			{
+				"c2id": 10,
+				"id": "pick-instances",
+				"scriptName": "PickInsts",
+				"highlight": false,
+				"params": [
+					{"id":"object0", "type":"object"}
+				]
+			},
+			{
+				"c2id": 11,
+				"id": "pick-all-instances",
+				"scriptName": "PickAllInsts",
+				"highlight": false
+			}
+		],
+		"expressions": [
+		]
+	},
+	"sprite": {
+		"conditions": [
+		],
+		"actions": [
+		],
+		"expressions": [
+			{
+				"c2id": 21,
+				"id": "sprites-count",
+				"expressionName": "SpritesCnt",
+				"scriptName": "SpritesCnt",
+				"highlight": false,
+				"returnType": "number"
+			}
+		]
+	}
+}

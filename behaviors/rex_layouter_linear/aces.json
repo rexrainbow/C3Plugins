@@ -1,0 +1,54 @@
+{
+	"mode": {
+		"conditions": [
+		],
+		"actions": [
+			{
+				"c2id": 0,
+				"id": "set-mode",
+				"scriptName": "SetMode",
+				"highlight": false,
+				"params": [
+					{"id":"mode2", "type":"combo", "items":["average","fix"]}
+				]
+			},
+			{
+				"c2id": 1,
+				"id": "set-direction",
+				"scriptName": "SetDirection",
+				"highlight": false,
+				"params": [
+					{"id":"direction4", "type":"combo", "items":["left to right","right to left","top to bottom","bottom to top"]}
+				]
+			},
+			{
+				"c2id": 2,
+				"id": "set-alignment",
+				"scriptName": "SetAlignment",
+				"highlight": false,
+				"params": [
+					{"id":"alignment3", "type":"combo", "items":["start","center","end"]}
+				]
+			}
+		],
+		"expressions": [
+		]
+	},
+	"fix-mode": {
+		"conditions": [
+		],
+		"actions": [
+			{
+				"c2id": 3,
+				"id": "set-delta-distance",
+				"scriptName": "SetDeltaDist",
+				"highlight": false,
+				"params": [
+					{"id":"spacing0", "type":"number", "initialValue":"40"}
+				]
+			}
+		],
+		"expressions": [
+		]
+	}
+}

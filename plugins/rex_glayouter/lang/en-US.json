@@ -1,0 +1,164 @@
+{
+	"languageTag": "en-US",
+	"fileDescription": "Strings for Layouter.",
+	"text": {
+		"plugins": {
+			"rex_layouter": {
+				"name": "Layouter",
+				"description": "Layout instances to get position and angle.",
+				"help-url": "https://rexrainbow.github.io/C2RexDoc/c2rexpluginsACE/rex_glayouter.html",
+				"properties": {
+					"pin-mode": {
+						"name": "Pin mode",
+						"desc": "Moving instances like pin behavior.",
+						"items": {
+							"none":"None",
+							"position & angle":"Position & angle",
+							"position only":"Position only",
+							"angle only":"Angle only"
+							}
+						},
+					"hotspot": {
+						"name": "Hotspot",
+						"desc": "Choose the location of the hot spot in the object.",
+						"items": {
+							"top-left":"Top-left",
+							"top":"Top",
+							"top-right":"Top-right",
+							"left":"Left",
+							"center":"Center",
+							"right":"Right",
+							"bottom-left":"Bottom-left",
+							"bottom":"Bottom",
+							"bottom-right":"Bottom-right"
+							}
+						}
+				},
+				"aceCategories": {
+					"add-remove": "Add/Remove",
+					"layout": "Layout",					
+					"sol": "SOL",
+					"sprite": "Sprite"
+				},
+				"conditions": {
+					"on-layout-instance": {
+						"list-name": "On layout instance",
+						"display-text": "On layout instance",
+						"description": "Trigger by \"Action:Add instances\" or \"Action:Create&Add instances\" to layout instance."
+						},
+					"pick-instances": {
+						"list-name": "Pick instances",
+						"display-text": "Pick [b]{0}[/b]",
+						"description": "Pick instances.",
+						"params": {
+							"object0": { "name":"Object", "desc":"Object for picking"}
+						}
+						},
+					"pick-all-instances": {
+						"list-name": "Pick all instances",
+						"display-text": "Pick all instances in this layouter",
+						"description": "Pick all instances in this layouter."
+						},
+					"pick-layouter": {
+						"list-name": "Pick layouter",
+						"display-text": "Pick layouter by [b]{0}[/b]",
+						"description": "Pick layouter by instance.",
+						"params": {
+							"instance0": { "name":"Instance", "desc":"Instance under layouter"}
+						}
+						}
+				},
+				"actions": {
+					"add-instances": {
+						"list-name": "Add instances",
+						"display-text": "Add instances [b]{0}[/b]",
+						"description": "Add instances.",
+						"params": {
+							"instances0": { "name":"Instances", "desc":"Add instances into layouter."}
+						}
+					},
+					"create-instances": {
+						"list-name": "Create&Add instances",
+						"display-text": "Create and add [b]{0}[/b] at ([b]{1}[/b],[b]{2}[/b]) on layer [b]{3}[/b]",
+						"description": "Create and Add instances.",
+						"params": {
+							"instances0": { "name":"Instances", "desc":"Add instances into layouter."},
+							"x1": { "name":"X", "desc":"X co-ordinate."},
+							"y2": { "name":"Y", "desc":"Y co-ordinate."},
+							"layer3": { "name":"Layer", "desc":"Layer name of number."}
+						}
+					},
+					"remove-instances": {
+						"list-name": "Remove instances",
+						"display-text": "Remove instances [b]{0}[/b]",
+						"description": "Remove instances.",
+						"params": {
+							"instances0": { "name":"Instances", "desc":"Remove instances from layouter."}
+						}
+					},
+					"force-layout": {
+						"list-name": "Force layout",
+						"display-text": "Force layout instances",
+						"description": "Force layout instances."
+					},
+					"remove-all-instances": {
+						"list-name": "Remove all",
+						"display-text": "Remove all instances",
+						"description": "Remove all instances."
+					},
+					"pick-instances": {
+						"list-name": "Pick instances",
+						"display-text": "Pick [b]{0}[/b]",
+						"description": "Pick instances.",
+						"params": {
+							"object0": { "name":"Object", "desc":"Object for picking"}
+						}
+					},
+					"pick-all-instances": {
+						"list-name": "Pick all instances",
+						"display-text": "Pick all instances in this container",
+						"description": "Pick all instances in this layouter."
+					}
+				},
+				"expressions": {
+					"instance-uid": {
+						"description": "Get UID of layouted instance.",
+						"translated-name": "InstUID"
+						},
+					"instance-x": {
+						"description": "Get X co-ordinate of layouted instance.",
+						"translated-name": "InstX"
+						},
+					"instance-y": {
+						"description": "Get Y co-ordinate of layouted instance.",
+						"translated-name": "InstY"
+						},
+					"instance-angle": {
+						"description": "Get angle of layouted instance.",
+						"translated-name": "InstAngle"
+						},
+					"instance-width": {
+						"description": "Get width of layouted instance.",
+						"translated-name": "InstWidth"
+						},
+					"instance-height": {
+						"description": "Get height of layouted instance.",
+						"translated-name": "InstHeight"
+						},
+					"instance-opacity": {
+						"description": "Get opacity of layouted instance.",
+						"translated-name": "InstOpacity"
+						},
+					"instance-visible": {
+						"description": "Get visible of layouted instance.",
+						"translated-name": "InstVisible"
+						},
+					"sprites-count": {
+						"description": "Get sprites count.",
+						"translated-name": "SpritesCnt"
+						}
+				}
+			}
+		}
+	}
+}

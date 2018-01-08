@@ -1,0 +1,87 @@
+{
+	"mode": {
+		"conditions": [
+		],
+		"actions": [
+			{
+				"c2id": 0,
+				"id": "set-mode",
+				"scriptName": "SetMode",
+				"highlight": false,
+				"params": [
+					{"id":"mode2", "type":"combo", "items":["average","fix"]}
+				]
+			}
+		],
+		"expressions": [
+		]
+	},
+	"angle": {
+		"conditions": [
+		],
+		"actions": [
+			{
+				"c2id": 2,
+				"id": "set-start-angle",
+				"scriptName": "SetStartAngle",
+				"highlight": false,
+				"params": [
+					{"id":"start0", "type":"number"}
+				]
+			},
+			{
+				"c2id": 5,
+				"id": "add-to-start-angle",
+				"scriptName": "AddToStartAngle",
+				"highlight": false,
+				"params": [
+					{"id":"delta0", "type":"number"}
+				]
+			}
+		],
+		"expressions": [
+			{
+				"c2id": 1,
+				"id": "start-angle",
+				"expressionName": "StartAngle",
+				"scriptName": "StartAngle",
+				"highlight": false,
+				"returnType": "number"
+			}
+		]
+	},
+	"average-mode": {
+		"conditions": [
+		],
+		"actions": [
+			{
+				"c2id": 3,
+				"id": "set-range-angle",
+				"scriptName": "SetRangeAngle",
+				"highlight": false,
+				"params": [
+					{"id":"range_angle0", "type":"number"}
+				]
+			}
+		],
+		"expressions": [
+		]
+	},
+	"fix-mode": {
+		"conditions": [
+		],
+		"actions": [
+			{
+				"c2id": 4,
+				"id": "set-delta-angle",
+				"scriptName": "SetDeltaAngle",
+				"highlight": false,
+				"params": [
+					{"id":"delta_angle0", "type":"number"}
+				]
+			}
+		],
+		"expressions": [
+		]
+	}
+}

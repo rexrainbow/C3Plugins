@@ -1,0 +1,88 @@
+{
+	"languageTag": "en-US",
+	"fileDescription": "Strings for Linear layout.",
+	"text": {
+		"behaviors": {
+			"rex_layouter_linear": {
+				"name": "Linear layout",
+				"description": "Put instances linear on layouter.",
+				"help-url": "https://rexrainbow.github.io/C2RexDoc/c2rexpluginsACE/rex_layouter_linear.html",
+				"properties": {
+					"mode": {
+						"name": "Mode",
+						"desc": "Average mode: layout instances in range averagely, Fix mode: layout instances with fix distance.",
+						"items": {
+							"average":"Average",
+							"fix":"Fix"
+							}
+						},
+					"direction": {
+						"name": "Direction",
+						"desc": "Direction from start to end.",
+						"items": {
+							"left to right":"Left to right",
+							"right to left":"Right to left",
+							"top to bottom":"Top to bottom",
+							"bottom to top":"Bottom to top"
+							}
+						},
+					"alignment": {
+						"name": "Alignment",
+						"desc": "Alignment. It only uses in Fix mode.",
+						"items": {
+							"start":"Start",
+							"center":"Center",
+							"end":"End"
+							}
+						},
+					"spacing": {
+						"name": "Spacing",
+						"desc": "Spacing (delta distance) of each instance, in pixels. It only uses in Fix mode."
+						}
+				},
+				"aceCategories": {
+					"mode": "Mode",
+					"fix-mode": "Fix mode"
+				},
+				"conditions": {
+				},
+				"actions": {
+					"set-mode": {
+						"list-name": "Set mode",
+						"display-text": "Set {my} mode to [b]{0}[/b]",
+						"description": "Ser mode of layout.",
+						"params": {
+							"mode2": { "name":"Mode", "desc":"Mode of layout.", "items":{"average":"Average","fix":"Fix"}}
+						}
+					},
+					"set-direction": {
+						"list-name": "Set direction",
+						"display-text": "Set {my} direction to [b]{0}[/b]",
+						"description": "Set direction of layout instances.",
+						"params": {
+							"direction4": { "name":"Direction", "desc":"Direction of layout instances.", "items":{"left to right":"Left to right","right to left":"Right to left","top to bottom":"Top to bottom","bottom to top":"Bottom to top"}}
+						}
+					},
+					"set-alignment": {
+						"list-name": "Set alignment",
+						"display-text": "Set {my} alignment to [b]{0}[/b]",
+						"description": "Set alignment of instances. It only uses in Fix mode.",
+						"params": {
+							"alignment3": { "name":"Alignment", "desc":"Alignment of layout instances.", "items":{"start":"Start","center":"Center","end":"End"}}
+						}
+					},
+					"set-delta-distance": {
+						"list-name": "Set spacing",
+						"display-text": "Set {my} spacing to [b]{0}[/b]",
+						"description": "Set spacing (delta distance) of each instance, in pixels. It only uses in Fix mode.",
+						"params": {
+							"spacing0": { "name":"Spacing", "desc":"Spacing (delta distance) of each instance, in pixels."}
+						}
+					}
+				},
+				"expressions": {
+				}
+			}
+		}
+	}
+}

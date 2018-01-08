@@ -2,13 +2,13 @@
 "use strict";
 
 {
-	const PLUGIN_ID = "Rex_ListCtrl";
+	const PLUGIN_ID = "Rex_Layouter";
 	const PLUGIN_VERSION = "0.1.0.0";
 	const PLUGIN_CATEGORY = "other";
 
 	let app = null;
 
-	const PLUGIN_CLASS = SDK.Plugins.Rex_ListCtrl = class Rex_ListCtrl extends SDK.IPluginBase
+	const PLUGIN_CLASS = SDK.Plugins.Rex_Layouter = class Rex_Layouter extends SDK.IPluginBase
 	{
 		constructor()
 		{
@@ -23,7 +23,7 @@
 			this._info.SetHelpUrl(lang(".help-url"));
 			this._info.SetPluginType("world");
 			this._info.SetIsResizable(true);
-			this._info.SetIsRotatable(false);
+			this._info.SetIsRotatable(true);
 			this._info.SetHasImage(false);
 			this._info.SetIsTiled(false);
 			this._info.SetIsSingleGlobal(false);
@@ -33,17 +33,18 @@
 			this._info.SetCanBeBundled(false);
 			this._info.AddCommonPositionACEs();
 			this._info.AddCommonSizeACEs();
+			this._info.AddCommonAngleACEs();
 			this._info.AddCommonAppearanceACEs();
 			this._info.AddCommonZOrderACEs();
 			SDK.Lang.PushContext(".properties");
 			this._info.SetProperties([
-				new SDK.PluginProperty("color", "color", [0, 0, 0]),				
-				new SDK.PluginProperty("float", "line-height", 30),
-				new SDK.PluginProperty("integer", "total-lines", 10),
-				new SDK.PluginProperty("combo", "clamp-oy", {initialValue:"yes", items:["no","yes"]}),
-				new SDK.PluginProperty("combo", "axis", {initialValue:"vertical", items:["horizontal","vertical"]}),
+				new SDK.PluginProperty("combo", "pin-mode", {initialValue:"none", items:["none","position & angle","position only","angle only"]}),
 				new SDK.PluginProperty("combo", "hotspot", {initialValue:"top-left", items:["top-left","top","top-right","left","center","right","bottom-left","bottom","bottom-right"]})
 			]);
+			this._info.AddFileDependency({
+				filename: "c2runtime/rex_createObject.js",
+				type: "inline-script"
+				});					
 			SDK.Lang.PopContext();		// .properties
 			SDK.Lang.PopContext();
 		}
