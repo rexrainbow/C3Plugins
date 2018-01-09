@@ -172,10 +172,10 @@ cr.behaviors.Rex_Button2 = function (runtime) {
     var INACTIVE_DISPLAY = 2;
     var ROLLINGIN_DISPLAY = 3;
     behinstProto.onCreate = function () {
-        this.initActivated = (this.properties[0] == 1);
+        this.initActivated = this.properties[0];
         this.clickMode = this.properties[1];
-        this.isAutoCLICK2ACTIVE = (this.properties[2] == 1);
-        this.isVisibleChecking = (this.properties[3] == 1);
+        this.isAutoCLICK2ACTIVE = this.properties[2];
+        this.isVisibleChecking = this.properties[3];
         this.touchSrc = null;
         this.buttonState = OFF_STATE;
         this.buttonPreState = null;

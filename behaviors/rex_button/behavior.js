@@ -21,10 +21,10 @@
 			this._info.SetIsOnlyOneAllowed(true);
 			SDK.Lang.PushContext(".properties");
 			this._info.SetProperties([
-				new SDK.PluginProperty("combo", "activated", {initialValue:"yes", items:["no","yes"]}),
+				new SDK.PluginProperty("check", "activated", true),
 				new SDK.PluginProperty("combo", "click-mode", {initialValue:"released", items:["released","pressed"]}),
-				new SDK.PluginProperty("combo", "activated-after-clicked", {initialValue:"yes", items:["no","yes"]}),
-				new SDK.PluginProperty("combo", "visible-checking", {initialValue:"yes", items:["no","yes"]})
+				new SDK.PluginProperty("check", "activated-after-clicked", true),
+				new SDK.PluginProperty("check", "visible-checking", true)
 			]);
 			SDK.Lang.PopContext();		// .properties
 			SDK.Lang.PopContext();
