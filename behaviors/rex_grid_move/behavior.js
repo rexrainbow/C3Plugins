@@ -21,20 +21,16 @@
 			this._info.SetIsOnlyOneAllowed(false);
 			SDK.Lang.PushContext(".properties");
 			this._info.SetProperties([
-				new SDK.PluginProperty("combo", "activated", {initialValue:"yes", items:["no","yes"]}),
+				new SDK.PluginProperty("check", "activated", true),
 				new SDK.PluginProperty("float", "max-speed", 400),
 				new SDK.PluginProperty("float", "acceleration", 0),
 				new SDK.PluginProperty("float", "deceleration", 0),
 				new SDK.PluginProperty("integer", "wander-range-x", 1),
 				new SDK.PluginProperty("integer", "wander-range-y", 1),
-				new SDK.PluginProperty("combo", "force-move", {initialValue:"no", items:["no","yes"]}),
-				new SDK.PluginProperty("combo", "moveto", {initialValue:"yes", items:["no","yes"]}),
-				new SDK.PluginProperty("combo", "continued-mode", {initialValue:"no", items:["no","yes"]})
-			]);
-			this._info.AddFileDependency({
-				filename: "c2runtime/rex_cmdMoveTo.js",
-				type: "inline-script"
-			});				
+				new SDK.PluginProperty("check", "force-move", false),
+				new SDK.PluginProperty("check", "moveto", true),
+				new SDK.PluginProperty("check", "continued-mode", false)
+			]);			
 			SDK.Lang.PopContext();		// .properties
 			SDK.Lang.PopContext();
 		}

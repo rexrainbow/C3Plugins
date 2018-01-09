@@ -15,7 +15,6 @@
 					],
 	"file-list": [
 		"c2runtime/runtime.js",
-		"c2runtime/rex_cmdMoveTo.js",
 		"lang/en-US.json",
 		"aces.json",
 		"addon.json",
