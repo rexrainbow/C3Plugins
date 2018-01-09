@@ -39,7 +39,7 @@ cr.behaviors.Rex_pushOutSolid = function (runtime) {
 	var behinstProto = behaviorProto.Instance.prototype;
 
 	behinstProto.onCreate = function () {
-		this.enabled = (this.properties[0] === 1);
+		this.enabled = this.properties[0];
 		this.obstacleMode = this.properties[1];		// 0 = solids, 1 = custom
 		this.maxDist = 100;
 	};

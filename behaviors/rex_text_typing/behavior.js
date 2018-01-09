@@ -21,7 +21,7 @@
 			this._info.SetIsOnlyOneAllowed(true);
 			SDK.Lang.PushContext(".properties");
 			this._info.SetProperties([
-				new SDK.PluginProperty("combo", "line-break", {initialValue:"no", items:["no","yes"]})
+				new SDK.PluginProperty("check", "line-break", false)
 			]);
 			SDK.Lang.PopContext();		// .properties
 			SDK.Lang.PopContext();

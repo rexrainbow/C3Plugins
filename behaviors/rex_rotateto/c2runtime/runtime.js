@@ -39,7 +39,7 @@ cr.behaviors.Rex_RotateTo = function (runtime) {
 	var behinstProto = behaviorProto.Instance.prototype;
 
 	behinstProto.onCreate = function () {
-		this.activated = (this.properties[0] == 1);
+		this.activated = this.properties[0];
 		this.move = {
 			"max": this.properties[1],
 			"acc": this.properties[2],

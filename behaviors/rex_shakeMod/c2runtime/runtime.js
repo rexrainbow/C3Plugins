@@ -38,7 +38,7 @@ cr.behaviors.Rex_ShakeMod = function (runtime) {
 	var behinstProto = behaviorProto.Instance.prototype;
 
 	behinstProto.onCreate = function () {
-		this.enabled = (this.properties[0] !== 0);
+		this.enabled = this.properties[0];
 		var mode = this.properties[1];
 		this.effectMode = (mode === 0);
 		this.behaviorMode = (mode === 1);

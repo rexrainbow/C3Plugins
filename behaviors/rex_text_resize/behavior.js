@@ -21,7 +21,7 @@
 			this._info.SetIsOnlyOneAllowed(true);
 			SDK.Lang.PushContext(".properties");
 			this._info.SetProperties([
-				new SDK.PluginProperty("combo", "auto-resize", {initialValue:"yes", items:["no","yes"]}),
+				new SDK.PluginProperty("check", "auto-resize", true),
 				new SDK.PluginProperty("float", "min-width", 0),
 				new SDK.PluginProperty("float", "min-height", 0)
 			]);

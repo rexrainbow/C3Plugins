@@ -21,7 +21,7 @@
 			this._info.SetIsOnlyOneAllowed(false);
 			SDK.Lang.PushContext(".properties");
 			this._info.SetProperties([
-				new SDK.PluginProperty("combo", "activated", {initialValue:"yes", items:["no","yes"]}),
+				new SDK.PluginProperty("check", "activated", true),
 				new SDK.PluginProperty("combo", "mode", {initialValue:"effect", items:["effect","behavior"]}),
 				new SDK.PluginProperty("float", "duration", 0.5),
 				new SDK.PluginProperty("float", "magnitude", 10),

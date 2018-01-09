@@ -21,9 +21,9 @@
 			this._info.SetIsOnlyOneAllowed(false);
 			SDK.Lang.PushContext(".properties");
 			this._info.SetProperties([
-				new SDK.PluginProperty("combo", "activated", {initialValue:"yes", items:["no","yes"]}),
-				new SDK.PluginProperty("combo", "start", {initialValue:"yes", items:["no","yes"]}),
-				new SDK.PluginProperty("combo", "rotatable", {initialValue:"yes", items:["no","yes"]}),
+				new SDK.PluginProperty("check", "activated", true),
+				new SDK.PluginProperty("check", "start", true),
+				new SDK.PluginProperty("check", "rotatable", true),
 				new SDK.PluginProperty("integer", "repeat-count", 0),
 				new SDK.PluginProperty("longtext", "commands", ""),
 				new SDK.PluginProperty("float", "max-moving-speed", 400),
@@ -33,8 +33,8 @@
 				new SDK.PluginProperty("float", "rotation-acceleration", 0),
 				new SDK.PluginProperty("float", "rotation-deceleration", 0),
 				new SDK.PluginProperty("float", "initial-angle", 0),
-				new SDK.PluginProperty("combo", "precise-mode", {initialValue:"no", items:["no","yes"]}),
-				new SDK.PluginProperty("combo", "continued-mode", {initialValue:"no", items:["no","yes"]})
+				new SDK.PluginProperty("check", "precise-mode", false),
+				new SDK.PluginProperty("check", "continued-mode", false)
 			]);
 			this._info.AddFileDependency({
 				filename: "c2runtime/rex_zigzag.js",

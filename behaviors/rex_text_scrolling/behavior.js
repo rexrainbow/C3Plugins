@@ -21,7 +21,7 @@
 			this._info.SetIsOnlyOneAllowed(true);
 			SDK.Lang.PushContext(".properties");
 			this._info.SetProperties([
-				new SDK.PluginProperty("combo", "auto-redraw", {initialValue:"yes", items:["no","yes"]})
+				new SDK.PluginProperty("check", "auto-redraw", true)
 			]);
 			SDK.Lang.PopContext();		// .properties
 			SDK.Lang.PopContext();
