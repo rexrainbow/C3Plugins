@@ -54,7 +54,7 @@ cr.behaviors.Rex_LJ_potential.uid2behaviorInst = {};
 		this.sourceTag = this.properties[1];
 		this.previousSourceTag = null;
 		this.targetTag = this.properties[8];
-		this.setSource((this.properties[0] == 1));
+		this.setSource(this.properties[0]);
 		if (!this.recycled) {
 			this.LJPotentialParams = {};
 		}
@@ -63,7 +63,7 @@ cr.behaviors.Rex_LJ_potential.uid2behaviorInst = {};
 		this.LJPotentialParams["B"] = this.properties[4];
 		this.LJPotentialParams["m"] = this.properties[5];
 
-		this.setTarget((this.properties[7] == 1));
+		this.setTarget(this.properties[7]);
 		this.setRange(this.properties[6]);
 
 		this.hasBeenAttracted = false;

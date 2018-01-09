@@ -21,12 +21,12 @@
 			this._info.SetIsOnlyOneAllowed(false);
 			SDK.Lang.PushContext(".properties");
 			this._info.SetProperties([
-				new SDK.PluginProperty("combo", "activated", {initialValue:"yes", items:["no","yes"]}),
+				new SDK.PluginProperty("check", "activated", true),
 				new SDK.PluginProperty("float", "max-speed", 400),
 				new SDK.PluginProperty("float", "acceleration", 0),
 				new SDK.PluginProperty("float", "deceleration", 0),
-				new SDK.PluginProperty("combo", "stop-by-solid", {initialValue:"no", items:["no","yes"]}),
-				new SDK.PluginProperty("combo", "continued-mode", {initialValue:"no", items:["no","yes"]})
+				new SDK.PluginProperty("check", "stop-by-solid", false),
+				new SDK.PluginProperty("check", "continued-mode", false)
 			]);
 			SDK.Lang.PopContext();		// .properties
 			SDK.Lang.PopContext();

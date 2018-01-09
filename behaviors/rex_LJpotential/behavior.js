@@ -21,14 +21,14 @@
 			this._info.SetIsOnlyOneAllowed(true);
 			SDK.Lang.PushContext(".properties");
 			this._info.SetProperties([
-				new SDK.PluginProperty("combo", "source", {initialValue:"yes", items:["no","yes"]}),
+				new SDK.PluginProperty("check", "source", true),
 				new SDK.PluginProperty("text", "source-tag", ""),
 				new SDK.PluginProperty("float", "a", 1),
 				new SDK.PluginProperty("float", "n", 1),
 				new SDK.PluginProperty("float", "b", 1),
 				new SDK.PluginProperty("float", "m", 1),
 				new SDK.PluginProperty("float", "sensitivity-range", 0),
-				new SDK.PluginProperty("combo", "target", {initialValue:"no", items:["no","yes"]}),
+				new SDK.PluginProperty("check", "target", false),
 				new SDK.PluginProperty("text", "target-tag", "")
 			]);
 			SDK.Lang.PopContext();		// .properties
