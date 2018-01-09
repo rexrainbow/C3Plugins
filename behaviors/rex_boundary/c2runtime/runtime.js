@@ -47,9 +47,9 @@ cr.behaviors.Rex_boundary = function (runtime) {
 	behinstProto.onCreate = function () {
 		this.mode = this.properties[0];
 		this.alignMode = this.properties[1];
-		this.horizontalEnable = (this.properties[2] == 1);
+		this.horizontalEnable = this.properties[2];
 		this.horizontalBoundary = [this.properties[3], this.properties[4]];
-		this.verticalEnable = (this.properties[5] == 1);
+		this.verticalEnable = this.properties[5];
 		this.verticalBoundary = [this.properties[6], this.properties[7]];
 
 

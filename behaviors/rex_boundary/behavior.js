@@ -23,10 +23,10 @@
 			this._info.SetProperties([
 				new SDK.PluginProperty("combo", "mode", {initialValue:"clamp", items:["clamp","wrap","mod wrap"]}),
 				new SDK.PluginProperty("combo", "align", {initialValue:"origin", items:["origin","boundaries"]}),
-				new SDK.PluginProperty("combo", "horizontal", {initialValue:"no", items:["no","yes"]}),
+				new SDK.PluginProperty("check", "horizontal", false),
 				new SDK.PluginProperty("float", "left", 0),
 				new SDK.PluginProperty("float", "right", 0),
-				new SDK.PluginProperty("combo", "vertical", {initialValue:"no", items:["no","yes"]}),
+				new SDK.PluginProperty("check", "vertical", false),
 				new SDK.PluginProperty("float", "top", 0),
 				new SDK.PluginProperty("float", "bottom", 0)
 			]);
