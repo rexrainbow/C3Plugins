@@ -57,7 +57,7 @@ cr.behaviors.Rex_text_typing = function (runtime) {
 	var behinstProto = behaviorProto.Instance.prototype;
 
 	behinstProto.onCreate = function () {
-		this.isLineBreak = (this.properties[0] === 1);
+		this.isLineBreak = this.properties[0];
 		this.typingTimer = null;
 		this.typingSpeed = 0;
 		this.typingIndex = 0;

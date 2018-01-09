@@ -125,10 +125,10 @@ cr.behaviors.Rex_Zigzag = function (runtime) {
 
     behinstProto.onCreate = function () {
         this.activated = this.properties[0];
-        this.isRun = (this.properties[1] == 1);
-        var isRotatable = (this.properties[2] == 1);
-        var preciseMode = (this.properties[12] == 1);
-        var continuedMode = (this.properties[13] == 1);
+        this.isRun = this.properties[1];
+        var isRotatable = this.properties[2];
+        var preciseMode = this.properties[12];
+        var continuedMode = this.properties[13];
         this.currentCmd = null;
         this.isMyCall = false;
 

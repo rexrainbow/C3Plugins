@@ -37,7 +37,7 @@ cr.behaviors.Rex_text_resize = function (runtime) {
 	var behinstProto = behaviorProto.Instance.prototype;
 
 	behinstProto.onCreate = function () {
-		this.isAutoResize = (this.properties[0] === 1);
+		this.isAutoResize = this.properties[0];
 		this.minWidth = this.properties[1];
 		this.minHeight = this.properties[2];
 
