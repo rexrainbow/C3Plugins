@@ -21,7 +21,7 @@
 			this._info.SetIsOnlyOneAllowed(false);
 			SDK.Lang.PushContext(".properties");
 			this._info.SetProperties([
-				new SDK.PluginProperty("combo", "activated", {initialValue:"yes", items:["no","yes"]}),
+				new SDK.PluginProperty("check", "activated", true),
 				new SDK.PluginProperty("text", "initial-state", "Off")
 			]);
 			this._info.AddFileDependency({

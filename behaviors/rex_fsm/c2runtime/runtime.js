@@ -44,7 +44,7 @@ cr.behaviors.Rex_FSM = function (runtime) {
 		this.hasCalled = false;
 		this.nextState = null;
 
-		this.activated = (this.properties[0] == 1);
+		this.activated = this.properties[0];
 		var previousState = "Off";
 		var currentState = this.properties[1];
 		currentState = (currentState != "") ? currentState : "Off";
