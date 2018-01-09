@@ -1,0 +1,430 @@
+{
+	"text": {
+		"conditions": [
+			{
+				"c2id": 0,
+				"id": "comparetext0",
+				"scriptName": "CompareText",
+				"highlight": false,
+				"params": [
+					{"id":"text_to_compare0", "type":"string", "initialValue":"\"\""},
+					{"id":"case_sensitivity3", "type":"combo", "items":["ignore case","case sensitive"]}
+				]
+			}
+		],
+		"actions": [
+			{
+				"c2id": 0,
+				"id": "settext0",
+				"scriptName": "SetText",
+				"highlight": false,
+				"params": [
+					{"id":"text0", "type":"any", "initialValue":"\"\""}
+				]
+			},
+			{
+				"c2id": 1,
+				"id": "appendtext1",
+				"scriptName": "AppendText",
+				"highlight": false,
+				"params": [
+					{"id":"text0", "type":"any", "initialValue":"\"\""}
+				]
+			}
+		],
+		"expressions": [
+			{
+				"c2id": 0,
+				"id": "text0",
+				"expressionName": "Text",
+				"scriptName": "Text",
+				"highlight": false,
+				"returnType": "any",
+				"isVariadicParameters": true
+			},
+			{
+				"c2id": 3,
+				"id": "textwidth3",
+				"expressionName": "TextWidth",
+				"scriptName": "TextWidth",
+				"highlight": false,
+				"returnType": "number"
+			},
+			{
+				"c2id": 4,
+				"id": "textheight4",
+				"expressionName": "TextHeight",
+				"scriptName": "TextHeight",
+				"highlight": false,
+				"returnType": "number"
+			},
+			{
+				"c2id": 5,
+				"id": "rawtext5",
+				"expressionName": "RawText",
+				"scriptName": "RawText",
+				"highlight": false,
+				"returnType": "string"
+			}
+		]
+	},
+	"appearance": {
+		"conditions": [
+		],
+		"actions": [
+			{
+				"c2id": 2,
+				"id": "setfontface2",
+				"scriptName": "SetFontFace",
+				"highlight": false,
+				"params": [
+					{"id":"font_face0", "type":"string", "initialValue":"\"Arial\""},
+					{"id":"style5", "type":"combo", "items":["normal","bold","italic","bold and italic"]}
+				]
+			},
+			{
+				"c2id": 3,
+				"id": "setfontsize3",
+				"scriptName": "SetFontSize",
+				"highlight": false,
+				"params": [
+					{"id":"size_(pt)0", "type":"number", "initialValue":"12"}
+				]
+			},
+			{
+				"c2id": 4,
+				"id": "setfontcolor4",
+				"scriptName": "SetFontColor",
+				"highlight": false,
+				"params": [
+					{"id":"color0", "type":"any", "initialValue":"\"rgb(0, 0, 0)\""}
+				]
+			},
+			{
+				"c2id": 5,
+				"id": "setwebfont5",
+				"scriptName": "SetWebFont",
+				"highlight": false,
+				"params": [
+					{"id":"family_name0", "type":"string"},
+					{"id":"css_url1", "type":"string", "initialValue":"\"http://\""}
+				]
+			},
+			{
+				"c2id": 6,
+				"id": "seteffect6",
+				"scriptName": "SetEffect",
+				"highlight": false,
+				"params": [
+					{"id":"blend_mode11", "type":"combo", "items":["normal","additive","xor","copy","destination over","source in","destination in","source out","destination out","source atop","destination atop"]}
+				]
+			},
+			{
+				"c2id": 50,
+				"id": "setfontstyle50",
+				"scriptName": "SetFontStyle",
+				"highlight": false,
+				"params": [
+					{"id":"style4", "type":"combo", "items":["normal","bold","italic","bold and italic"]}
+				]
+			},
+			{
+				"c2id": 51,
+				"id": "setfontface251",
+				"scriptName": "SetFontFace2",
+				"highlight": false,
+				"params": [
+					{"id":"font_face0", "type":"string", "initialValue":"\"Arial\""}
+				]
+			},
+			{
+				"c2id": 64,
+				"id": "setstroke64",
+				"scriptName": "SetStroke",
+				"highlight": false,
+				"params": [
+					{"id":"color0", "type":"any", "initialValue":"\"rgb(0, 0, 0)\""},
+					{"id":"line_width1", "type":"number", "initialValue":"1"},
+					{"id":"line_join5", "type":"combo", "items":["miter","round","bevel"]}
+				]
+			},
+			{
+				"c2id": 65,
+				"id": "insertimage65",
+				"scriptName": "InsertImage",
+				"highlight": false,
+				"params": [
+					{"id":"key0", "type":"string", "initialValue":"\"\""}
+				]
+			}
+		],
+		"expressions": [
+			{
+				"c2id": 1,
+				"id": "facename1",
+				"expressionName": "FaceName",
+				"scriptName": "FaceName",
+				"highlight": false,
+				"returnType": "string"
+			},
+			{
+				"c2id": 2,
+				"id": "facesize2",
+				"expressionName": "FaceSize",
+				"scriptName": "FaceSize",
+				"highlight": false,
+				"returnType": "number"
+			}
+		]
+	},
+	"properties": {
+		"conditions": [
+		],
+		"actions": [
+			{
+				"c2id": 52,
+				"id": "setlineheight52",
+				"scriptName": "SetLineHeight",
+				"highlight": false,
+				"params": [
+					{"id":"line_height0", "type":"number", "initialValue":"0"}
+				]
+			},
+			{
+				"c2id": 53,
+				"id": "sethorizontalalignment53",
+				"scriptName": "SetHorizontalAlignment",
+				"highlight": false,
+				"params": [
+					{"id":"horizontal_alignment3", "type":"combo", "items":["left","center","right"]}
+				]
+			},
+			{
+				"c2id": 54,
+				"id": "sethorizontalalignment54",
+				"scriptName": "SetHorizontalAlignment",
+				"highlight": false,
+				"params": [
+					{"id":"horizontal_alignment0", "type":"number", "initialValue":"0"}
+				]
+			},
+			{
+				"c2id": 55,
+				"id": "setverticalalignment55",
+				"scriptName": "SetVerticalAlignment",
+				"highlight": false,
+				"params": [
+					{"id":"vertical_alignment3", "type":"combo", "items":["top","center","bottom"]}
+				]
+			},
+			{
+				"c2id": 56,
+				"id": "setverticalalignment56",
+				"scriptName": "SetVerticalAlignment",
+				"highlight": false,
+				"params": [
+					{"id":"vertical_alignment0", "type":"number", "initialValue":"0"}
+				]
+			},
+			{
+				"c2id": 57,
+				"id": "setwrapping57",
+				"scriptName": "SetWrapping",
+				"highlight": false,
+				"params": [
+					{"id":"wrapping2", "type":"combo", "items":["word","character"]}
+				]
+			},
+			{
+				"c2id": 58,
+				"id": "setwrapping58",
+				"scriptName": "SetWrapping",
+				"highlight": false,
+				"params": [
+					{"id":"wrapping0", "type":"number", "initialValue":"0"}
+				]
+			},
+			{
+				"c2id": 60,
+				"id": "setcustomproperty60",
+				"scriptName": "SetCustomProperty",
+				"highlight": false,
+				"params": [
+					{"id":"name0", "type":"string", "initialValue":"\"\""},
+					{"id":"value1", "type":"any", "initialValue":"0"}
+				]
+			}
+		],
+		"expressions": [
+		]
+	},
+	"shadow": {
+		"conditions": [
+		],
+		"actions": [
+			{
+				"c2id": 61,
+				"id": "setshadow61",
+				"scriptName": "SetShadow",
+				"highlight": false,
+				"params": [
+					{"id":"offset_x0", "type":"number", "initialValue":"10"},
+					{"id":"offset_y1", "type":"number", "initialValue":"10"},
+					{"id":"blur2", "type":"number", "initialValue":"20"},
+					{"id":"color3", "type":"any", "initialValue":"\"rgb(0, 0, 0)\""}
+				]
+			}
+		],
+		"expressions": [
+		]
+	},
+	"tag": {
+		"conditions": [
+		],
+		"actions": [
+			{
+				"c2id": 62,
+				"id": "addcsstags62",
+				"scriptName": "AddCSSTags",
+				"highlight": false,
+				"params": [
+					{"id":"tag0", "type":"string", "initialValue":"\"\""}
+				]
+			}
+		],
+		"expressions": [
+		]
+	},
+	"underline": {
+		"conditions": [
+		],
+		"actions": [
+			{
+				"c2id": 63,
+				"id": "setunderline63",
+				"scriptName": "SetUnderline",
+				"highlight": false,
+				"params": [
+					{"id":"color0", "type":"any", "initialValue":"\"rgb(0, 0, 0)\""},
+					{"id":"thickness1", "type":"number", "initialValue":"1"},
+					{"id":"offset2", "type":"number", "initialValue":"0"}
+				]
+			}
+		],
+		"expressions": [
+		]
+	},
+	"background": {
+		"conditions": [
+		],
+		"actions": [
+			{
+				"c2id": 91,
+				"id": "setbackgroundcolor91",
+				"scriptName": "SetBackgroundColor",
+				"highlight": false,
+				"params": [
+					{"id":"color0", "type":"any", "initialValue":"\"\""}
+				]
+			}
+		],
+		"expressions": [
+		]
+	},
+	"canvas": {
+		"conditions": [
+		],
+		"actions": [
+			{
+				"c2id": 101,
+				"id": "lockcanvassize101",
+				"scriptName": "LockCanvasSize",
+				"highlight": false,
+				"params": [
+					{"id":"width0", "type":"number", "initialValue":"0"},
+					{"id":"height1", "type":"number", "initialValue":"0"}
+				]
+			},
+			{
+				"c2id": 102,
+				"id": "unlockcanvassize102",
+				"scriptName": "UnLockCanvasSize",
+				"highlight": false
+			}
+		],
+		"expressions": [
+		]
+	},
+	"image_bank": {
+		"conditions": [
+		],
+		"actions": [
+			{
+				"c2id": 111,
+				"id": "addimage111",
+				"scriptName": "AddImage",
+				"highlight": false,
+				"params": [
+					{"id":"key0", "type":"string", "initialValue":"\"\""},
+					{"id":"image1", "type":"object"},
+					{"id":"y_offset2", "type":"number", "initialValue":"0"}
+				]
+			},
+			{
+				"c2id": 112,
+				"id": "removeimage112",
+				"scriptName": "RemoveImage",
+				"highlight": false,
+				"params": [
+					{"id":"key0", "type":"string", "initialValue":"\"\""}
+				]
+			},
+			{
+				"c2id": 113,
+				"id": "removeall113",
+				"scriptName": "RemoveAll",
+				"highlight": false
+			}
+		],
+		"expressions": [
+		]
+	},
+	"tag_(class)": {
+		"conditions": [
+			{
+				"c2id": 1,
+				"id": "defineclass1",
+				"scriptName": "DefineClass",
+				"isInvertible": "false",
+				"highlight": false,
+				"params": [
+					{"id":"name0", "type":"string", "initialValue":"\"\""}
+				]
+			}
+		],
+		"actions": [
+		],
+		"expressions": [
+		]
+	},
+	"class": {
+		"conditions": [
+		],
+		"actions": [
+		],
+		"expressions": [
+			{
+				"c2id": 21,
+				"id": "lastclasspropvalue21",
+				"expressionName": "LastClassPropValue",
+				"scriptName": "LastClassPropValue",
+				"highlight": false,
+				"returnType": "any",
+				"isVariadicParameters": true,
+				"params": [
+					{"id":"name0", "type":"string", "initialValue":"\"\""}
+				]
+			}
+		]
+	}
+}
