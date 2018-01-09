@@ -40,7 +40,7 @@ cr.behaviors.Rex_Platform_MoveTo = function (runtime) {
 
 	behinstProto.onCreate = function () {
 		this.platformBehaviorInst = null;
-		this.activated = (this.properties[0] == 1);
+		this.activated = this.properties[0];
 		this.isMoving = false;
 		this.target = {
 			"m": 0,       // 0: x mode , 1: distance mode

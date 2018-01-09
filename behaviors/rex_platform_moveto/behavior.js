@@ -21,7 +21,7 @@
 			this._info.SetIsOnlyOneAllowed(false);
 			SDK.Lang.PushContext(".properties");
 			this._info.SetProperties([
-				new SDK.PluginProperty("combo", "activated", {initialValue:"yes", items:["no","yes"]})
+				new SDK.PluginProperty("check", "activated", true),
 			]);
 			SDK.Lang.PopContext();		// .properties
 			SDK.Lang.PopContext();
