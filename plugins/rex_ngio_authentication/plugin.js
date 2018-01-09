@@ -27,7 +27,7 @@
 			this._info.SetProperties([
 				new SDK.PluginProperty("text", "app-id", "39685:NJ1KkPGb"),
 				new SDK.PluginProperty("text", "aes-key", "qsqKxz5dJouIkUNe3NBppQ=="),
-				new SDK.PluginProperty("combo", "debug", {initialValue:"no", items:["no","yes"]})
+				new SDK.PluginProperty("check", "debug", false)
 			]);
 			this._info.AddFileDependency({
 				filename: "newgroundsio.min.js",

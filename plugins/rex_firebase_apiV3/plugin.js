@@ -27,7 +27,7 @@
 				new SDK.PluginProperty("text", "auth-domain", ""),
 				new SDK.PluginProperty("text", "database-url", ""),
 				new SDK.PluginProperty("text", "storage-bucket", ""),
-				new SDK.PluginProperty("combo", "log", { initialValue: "no", items: ["no", "yes"] })
+				new SDK.PluginProperty("check", "log", false)
 			]);
 			this._info.AddFileDependency({
 				filename: "firebase.js",

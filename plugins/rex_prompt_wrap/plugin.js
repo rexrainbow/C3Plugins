@@ -25,7 +25,7 @@
 			this._info.SetIsDeprecated(false);
 			SDK.Lang.PushContext(".properties");
 			this._info.SetProperties([
-				new SDK.PluginProperty("combo", "enable-wrap", {initialValue:"yes", items:["no","yes"]})
+				new SDK.PluginProperty("check", "enable-wrap", true)
 			]);
 			SDK.Lang.PopContext();		// .properties
 			SDK.Lang.PopContext();

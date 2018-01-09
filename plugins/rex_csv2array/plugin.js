@@ -26,7 +26,7 @@
 			SDK.Lang.PushContext(".properties");
 			this._info.SetProperties([
 				new SDK.PluginProperty("text", "delimiter", ","),
-				new SDK.PluginProperty("combo", "eval-mode", {initialValue:"no", items:["no","yes"]})
+				new SDK.PluginProperty("check", "eval-mode", false)
 			]);
 			this._info.AddFileDependency({
 				filename: "c2runtime/rex_csvToArray.js",

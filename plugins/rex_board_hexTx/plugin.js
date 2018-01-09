@@ -29,7 +29,7 @@
 				new SDK.PluginProperty("float", "width", 32),
 				new SDK.PluginProperty("float", "height", 32),
 				new SDK.PluginProperty("combo", "axis", {initialValue:"left-right", items:["left-right","up-down"]}),
-				new SDK.PluginProperty("combo", "indent", {initialValue:"no", items:["no","yes"]})
+				new SDK.PluginProperty("check", "indent", false)
 			]);
 			SDK.Lang.PopContext();		// .properties
 			SDK.Lang.PopContext();

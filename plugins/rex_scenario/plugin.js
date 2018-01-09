@@ -28,11 +28,11 @@
 			this._info.SetCanBeBundled(false);
 			SDK.Lang.PushContext(".properties");
 			this._info.SetProperties([
-				new SDK.PluginProperty("combo", "debug-mode", {initialValue:"no", items:["no","yes"]}),
+				new SDK.PluginProperty("check", "debug-mode", false),
 				new SDK.PluginProperty("combo", "time-stamp", {initialValue:"differential", items:["accumulation","differential"]}),
-				new SDK.PluginProperty("combo", "eval-mode", {initialValue:"yes", items:["no","yes"]}),
-				new SDK.PluginProperty("combo", "sync-timescale", {initialValue:"yes", items:["no","yes"]}),
-				new SDK.PluginProperty("combo", "mustache", {initialValue:"yes", items:["no","yes"]}),
+				new SDK.PluginProperty("check", "eval-mode", true),
+				new SDK.PluginProperty("check", "sync-timescale", true),
+				new SDK.PluginProperty("check", "mustache", true),
 				new SDK.PluginProperty("text", "left-delimiter", "{{"),
 				new SDK.PluginProperty("text", "right-delimiter", "}}")
 			]);

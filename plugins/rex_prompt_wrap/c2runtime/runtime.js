@@ -36,7 +36,7 @@ cr.plugins_.Rex_PromptWrap = function (runtime) {
 	var instanceProto = pluginProto.Instance.prototype;
 
 	instanceProto.onCreate = function () {
-		this.enableWrapper = (this.properties[0] === 1);
+		this.enableWrapper = this.properties[0];
 		this.curTag = "";
 
 		if (this.isCocoonJs()) {

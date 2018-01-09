@@ -29,8 +29,8 @@
 			SDK.Lang.PushContext(".properties");
 			this._info.SetProperties([
 				new SDK.PluginProperty("combo", "path-mode", {initialValue:"random", items:["random","diagonal","straight","a*","line","a* -line","a* -random"]}),
-				new SDK.PluginProperty("combo", "cache-cost", {initialValue:"yes", items:["no","yes"]}),
-				new SDK.PluginProperty("combo", "shuffle-neighbors", {initialValue:"no", items:["no","yes"]}),
+				new SDK.PluginProperty("check", "cache-cost", true),
+				new SDK.PluginProperty("check", "shuffle-neighbors", false),
 				new SDK.PluginProperty("float", "weight", 10)
 			]);
 			this._info.AddFileDependency({

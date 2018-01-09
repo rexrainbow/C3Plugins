@@ -40,7 +40,7 @@
 				new SDK.PluginProperty("color", "color", [0, 0, 0]),				
 				new SDK.PluginProperty("float", "line-height", 30),
 				new SDK.PluginProperty("integer", "total-lines", 10),
-				new SDK.PluginProperty("combo", "clamp-oy", {initialValue:"yes", items:["no","yes"]}),
+				new SDK.PluginProperty("check", "clamp-oy", true),
 				new SDK.PluginProperty("combo", "axis", {initialValue:"vertical", items:["horizontal","vertical"]}),
 				new SDK.PluginProperty("combo", "hotspot", {initialValue:"top-left", items:["top-left","top","top-right","left","center","right","bottom-left","bottom","bottom-right"]})
 			]);

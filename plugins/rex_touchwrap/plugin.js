@@ -25,8 +25,8 @@
 			this._info.SetIsDeprecated(false);
 			SDK.Lang.PushContext(".properties");
 			this._info.SetProperties([
-				new SDK.PluginProperty("combo", "use-mouse-input", {initialValue:"yes", items:["no","yes"]}),
-				new SDK.PluginProperty("combo", "enable", {initialValue:"yes", items:["no","yes"]})
+				new SDK.PluginProperty("check", "use-mouse-input", true),
+				new SDK.PluginProperty("check", "enable", true)
 			]);
 			SDK.Lang.PopContext();		// .properties
 			SDK.Lang.PopContext();

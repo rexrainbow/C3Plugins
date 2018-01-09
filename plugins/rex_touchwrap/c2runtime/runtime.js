@@ -276,7 +276,7 @@ cr.plugins_.rex_TouchWrap = function(runtime)
 		// For returning correct position for TouchX and TouchY expressions in a trigger
 		this.getTouchIndex = 0;
 		
-		this.useMouseInput = (this.properties[0] !== 0);
+		this.useMouseInput = this.properties[0];
 		
 		// Use document touch input for PhoneGap or fullscreen mode
 		var elem = (this.runtime.fullscreen_mode > 0) ? document : this.runtime.canvas;
@@ -525,7 +525,7 @@ cr.plugins_.rex_TouchWrap = function(runtime)
 		
 		this.runtime.tick2Me(this);
 		
-		this.enable = (this.properties[1] == 1);
+		this.enable = this.properties[1];
 		this.lastTouchX = null;
 		this.lastTouchY = null;		
 	};

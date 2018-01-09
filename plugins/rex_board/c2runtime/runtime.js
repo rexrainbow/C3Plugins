@@ -40,8 +40,8 @@ cr.plugins_.Rex_SLGBoard = function (runtime) {
     instanceProto.onCreate = function () {
         this.check_name = "BOARD";
         this.board = new window.rexObjs.BoardKlass();
-        this.infinityMode = (this.properties[3] === 1);
-        this.isWrapMode = (this.properties[2] === 1);
+        this.infinityMode = this.properties[3];
+        this.isWrapMode = this.properties[2];
         this.ResetBoard(this.properties[0] - 1, this.properties[1] - 1);
 
         this.layout = null;

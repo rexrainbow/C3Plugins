@@ -37,8 +37,8 @@ cr.plugins_.Rex_SLGMovement = function (runtime) {
     var GLOBOL_NODES = {};
     instanceProto.onCreate = function () {
         this.pathMode = this.properties[0];
-        this.cacheCostMode = (this.properties[1] === 1);
-        this.shuffleNeighborsMode = (this.properties[2] === 1);
+        this.cacheCostMode = this.properties[1];
+        this.shuffleNeighborsMode = this.properties[2];
         this.weightHeuristic = this.properties[3];
 
         this.board = null;

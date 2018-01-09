@@ -43,7 +43,7 @@ cr.plugins_.Rex_CSV = function(runtime)
 	{   
 	    this.isInPreview = (typeof cr_is_preview !== "undefined");  
         this.strDelimiter = this.properties[0];
-        this.isEvalMode = (this.properties[1] == 1);
+        this.isEvalMode = this.properties[1];
         this.tables = {};
         this.currentPageName = null;
         this.currentTable = null;

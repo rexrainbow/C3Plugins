@@ -27,8 +27,8 @@
 			this._info.SetProperties([
 				new SDK.PluginProperty("integer", "width", 64),
 				new SDK.PluginProperty("integer", "height", 64),
-				new SDK.PluginProperty("combo", "wrap", {initialValue:"no", items:["no","yes"]}),
-				new SDK.PluginProperty("combo", "infinity", {initialValue:"no", items:["no","yes"]})
+				new SDK.PluginProperty("check", "wrap", false),
+				new SDK.PluginProperty("check", "infinity", false)
 			]);
 			this._info.AddFileDependency({
 				filename: "c2runtime/rex_board.js",

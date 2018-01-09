@@ -41,10 +41,10 @@ cr.plugins_.Rex_Scenario = function (runtime) {
         }
 
 
-        this._scenario.isDebugMode = (typeof (log) !== "undefined") && (this.properties[0] === 1);
+        this._scenario.isDebugMode = (typeof (log) !== "undefined") && this.properties[0];
         this._scenario.isAccMode = (this.properties[1] === 0);
-        this._scenario.isEvalMode = (this.properties[2] === 1);
-        this._scenario.isMustacheMode = (this.properties[4] === 1);
+        this._scenario.isEvalMode = this.properties[2];
+        this._scenario.isMustacheMode = this.properties[4];
         this.delimiterCfg = null;
         this.setDelimiter(this.properties[5], this.properties[6]);
 
@@ -57,7 +57,7 @@ cr.plugins_.Rex_Scenario = function (runtime) {
         // sync timescale
         this.my_timescale = -1.0;
         this.runtime.tickMe(this);
-        this.isSyncTimescaleMode = (this.properties[3] === 1);
+        this.isSyncTimescaleMode = this.properties[3];
         this.preTimescale = 1;
     };
 

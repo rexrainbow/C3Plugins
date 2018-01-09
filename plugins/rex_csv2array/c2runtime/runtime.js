@@ -42,7 +42,7 @@ cr.plugins_.Rex_CSV2Array = function(runtime)
 	instanceProto.onCreate = function()
 	{
         this.strDelimiter = this.properties[0];
-        this.isEvalMode = (this.properties[1] == 1);
+        this.isEvalMode = this.properties[1];
 	    this.exp_CurX = 0;
 	    this.exp_CurY = 0;
 	    this.exp_CurValue = "";

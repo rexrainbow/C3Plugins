@@ -52,7 +52,7 @@ cr.plugins_.Rex_SLGHexTx = function(runtime)
         this.SetWidth(this.properties[2]);
         this.SetHeight(this.properties[3]);
         
-        var is_up2down = (this.properties[4]===1);
+        var is_up2down = this.properties[4];
         var is_even = (this.properties[5]===1);
         this.SetOrientation(is_up2down, is_even);                                              
 	};
