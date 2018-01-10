@@ -10,15 +10,15 @@
 				"properties": {
 					"text": {
 						"name": "Text",
-						"desc": "Text to display."
+						"desc": "The initial text to display."
 						},
 					"font": {
 						"name": "Font",
-						"desc": "Choose the font to display.  This applies to all instances of this type."
+						"desc": "The name of the font to display the text with."
 						},	
 					"font-size": {
 						"name": "Size",
-						"desc": "Choose the font to display.  This applies to all instances of this type."
+						"desc": "The size of text to display, in points (pt)."
 						},
 					"line-height": {
 						"name": "Line height",
@@ -26,19 +26,19 @@
 						},	
 					"bold": {
 						"name": "Bold",
-						"desc": "Choose the font to display.  This applies to all instances of this type."
+						"desc": "Display the font in a bold weight."
 						},	
 					"italic": {
 						"name": "Italic",
-						"desc": "Choose the font to display.  This applies to all instances of this type."
+						"desc": "Display the font in a slanted italic style."
 						},	
 					"color": {
 						"name": "Color",
-						"desc": "Color of the text."
+						"desc": "The color of the text to display."
 						},
 					"horizontal-alignment": {
 						"name": "Horizontal alignment",
-						"desc": "Horizontal alignment of the text.",
+						"desc": "Horizontal alignment of the text inside its bounding box.",
 						"items": {
 							"left":"Left",
 							"center":"Center",
@@ -47,7 +47,7 @@
 						},
 					"vertical-alignment": {
 						"name": "Vertical alignment",
-						"desc": "Vertical alignment of the text.",
+						"desc": "Vertical alignment of the text inside its bounding box.",
 						"items": {
 							"top":"Top",
 							"center":"Center",
@@ -99,7 +99,7 @@
 						},
 					"force-render": {
 						"name": "Force render",
-						"desc": "Force rendering immediately after any property setting.",
+						"desc": "Force rendering immediately after any property setting."
 						},
 					"lock-canvas-size": {
 						"name": "Lock canvas size",
