@@ -157,5 +157,5 @@
         return __wordsCache;
     };
 
-    window.rexObjs.text2Lines = wrapText;
+    window.rexObjs.text2Lines = wordWrap;
 }());

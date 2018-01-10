@@ -5,6 +5,10 @@
     if (window.rexObjs.ObjCacheKlass)
         return;
 
+    var NO_NEWLINE = 0;
+    var RAW_NEWLINE = 1;
+    var WRAPPED_NEWLINE = 2;
+
     var CanvasTextKlass = function () {
         // overwrite these functions
         this.splitTextFn = null;
@@ -71,11 +75,11 @@
             }
 
             var color = this.getFillColor(propScope);
-            if (color.toLowerCase() !== "none")
+            if (isValidColor(color))
                 this.context.fillStyle = color;
 
             var stroke = this.getStroke(propScope);
-            if (stroke.toLowerCase() !== "none") {
+            if (isValidColor(stroke)) {
                 stroke = stroke.split(" ");
                 this.context.strokeStyle = stroke[0];
                 if (stroke[1] != null) this.context.lineWidth = parseFloat(stroke[1].replace("px", ""));
@@ -171,11 +175,11 @@
         // draw text
         else {
             // stoke
-            if (this.getStroke(pen.prop).toLowerCase() !== "none")
+            if (isValidColor(this.getStroke(pen.prop)))
                 ctx.strokeText(pen.text, startX, startY);
 
             // fill text
-            if (this.getFillColor(pen.prop).toLowerCase() !== "none")
+            if (isValidColor(this.getFillColor(pen.prop)))
                 ctx.fillText(pen.text, startX, startY);
         }
 
@@ -265,7 +269,6 @@
 
     };
 
-    var NO_NEWLINE = 0;
     CanvasTextKlassProto.updatePens = function (pensMgr, textInfo, noWrap) {
         if (textInfo == null)
             textInfo = this.textInfo;
@@ -493,6 +496,14 @@
     CanvasTextKlassProto.loadFromJSON = function (o) {
         this.backgroundColor = o["bgc"];
     };
+
+    var isValidColor = function (color) {
+        if (typeof (color) == 'string') {
+            return (color.toLowerCase() !== 'none');
+        }
+
+        return true;
+    }
 
     window.rexObjs.CanvasTextKlass = CanvasTextKlass;
 }());

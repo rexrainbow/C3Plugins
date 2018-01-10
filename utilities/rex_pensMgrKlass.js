@@ -5,6 +5,10 @@
     if (window.rexObjs.PensMgrKlass)
         return;
 
+    var NO_NEWLINE = 0;
+    var RAW_NEWLINE = 1;
+    var WRAPPED_NEWLINE = 2;
+
     var penCache = new window.rexObjs.ObjCacheKlass();
     var lineCache = new window.rexObjs.ObjCacheKlass();
     var PensMgrKlass = function () {
