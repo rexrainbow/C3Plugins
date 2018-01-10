@@ -10,11 +10,7 @@
 				"properties": {
 					"source": {
 						"name": "Source",
-						"desc": "Source for attracting or rejecting.",
-						"items": {
-							"no":"No",
-							"yes":"Yes"
-							}
+						"desc": "Source for attracting or rejecting."
 						},
 					"source-tag": {
 						"name": "Source tag",
@@ -42,11 +38,7 @@
 						},
 					"target": {
 						"name": "Target",
-						"desc": "Attract or reject to source.",
-						"items": {
-							"no":"No",
-							"yes":"Yes"
-							}
+						"desc": "Attract or reject to source."
 						},
 					"target-tag": {
 						"name": "Target tag",

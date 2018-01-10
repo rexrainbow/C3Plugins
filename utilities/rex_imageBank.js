@@ -50,5 +50,6 @@
         return img;
     };
 
+    window.rexObjs.ImageBankKlass = ImageBankKlass;
     window.rexObjs.ImageBank = new ImageBankKlass();       
 }());   

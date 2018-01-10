@@ -2,7 +2,7 @@
     if (!window.rexObjs)
         window.rexObjs = {};
 
-    if (window.rexObjs.ObjCacheKlass)
+    if (window.rexObjs.CanvasTextKlass)
         return;
 
     var NO_NEWLINE = 0;
@@ -10,11 +10,12 @@
     var WRAPPED_NEWLINE = 2;
 
     var CanvasTextKlass = function () {
-        // overwrite these functions
+        // overwrite these functions and objects
         this.splitTextFn = null;
         this.tagText2PropFn = null;
         this.prop2TagTextFn = null;
-        // overwrite these functions
+        this.imageBank = null;
+        // overwrite these functions and objects
 
         this.canvas = null;
         this.context = null;
@@ -162,7 +163,7 @@
 
         // draw image
         if (pen.prop.hasOwnProperty("img")) {
-            var img = window.rexObjs.ImageBank.GetImage(pen.prop["img"]);
+            var img = this.imageBank.GetImage(pen.prop["img"]);
             if (img) {
                 var y = startY + img.yoffset;
                 if (this.textBaseline == "alphabetic") {
@@ -297,7 +298,7 @@
 
             // add image pen                    
             if (currentProp.hasOwnProperty("img")) {
-                var img = window.rexObjs.ImageBank.GetImage(currentProp["img"]);
+                var img = this.imageBank.GetImage(currentProp["img"]);
                 if (!img)
                     continue;
 
@@ -507,7 +508,7 @@
 
     window.rexObjs.CanvasTextKlass = CanvasTextKlass;
 
-    
+
     var penCache = new window.rexObjs.ObjCacheKlass();
     var lineCache = new window.rexObjs.ObjCacheKlass();
     var PensMgrKlass = function () {

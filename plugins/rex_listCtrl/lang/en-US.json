@@ -22,11 +22,7 @@
 						},
 					"clamp-oy": {
 						"name": "Clamp OY",
-						"desc": "Clamp offset Y in vertical boundary.",
-						"items": {
-							"no":"NO",
-							"yes":"Yes"
-							}
+						"desc": "Clamp offset Y in vertical boundary."
 						},
 					"axis": {
 						"name": "Axis",

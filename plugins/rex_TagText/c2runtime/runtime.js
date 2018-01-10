@@ -119,6 +119,7 @@ cr.plugins_.rex_TagText = function (runtime) {
             var self = this;
             this.savedClasses = {}; // class define            
             this.tagText = new window.rexObjs.CanvasTextKlass();
+            this.tagText.imageBank = window.rexObjs.ImageBank;
             this.tagText.splitTextFn = splitText;
             this.tagText.tagText2PropFn = function (txt, previousProp) {
                 return tagText2Prop(txt, previousProp, self.savedClasses);

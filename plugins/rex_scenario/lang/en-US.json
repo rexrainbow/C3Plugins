@@ -10,11 +10,7 @@
 				"properties": {
 					"debug-mode": {
 						"name": "Debug mode",
-						"desc": "Enable to show log.",
-						"items": {
-							"no":"No",
-							"yes":"Yes"
-							}
+						"desc": "Enable to show log."
 						},
 					"time-stamp": {
 						"name": "Time stamp",
@@ -26,27 +22,15 @@
 						},
 					"eval-mode": {
 						"name": "Eval mode",
-						"desc": "Enable \"Eval mode\" for parameters. \"Mem\" feature only could be used in eval mode.",
-						"items": {
-							"no":"No",
-							"yes":"Yes"
-							}
+						"desc": "Enable \"Eval mode\" for parameters. \"Mem\" feature only could be used in eval mode."
 						},
 					"sync-timescale": {
 						"name": "Sync timescale",
-						"desc": "Sync to object's timescale.",
-						"items": {
-							"no":"No",
-							"yes":"Yes"
-							}
+						"desc": "Sync to object's timescale."
 						},
 					"mustache": {
 						"name": "Mustache",
-						"desc": "Enable to process string by Mustache templating engine.",
-						"items": {
-							"no":"No",
-							"yes":"Yes"
-							}
+						"desc": "Enable to process string by Mustache templating engine."
 						},
 					"left-delimiter": {
 						"name": "Left delimiter",

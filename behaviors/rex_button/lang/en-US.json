@@ -10,11 +10,7 @@
 				"properties": {
 					"activated": {
 						"name": "Activated",
-						"desc": "Enable if you wish this goto ACTIVE state at the start of the layout.",
-						"items": {
-							"no":"No",
-							"yes":"Yes"
-							}
+						"desc": "Enable if you wish this goto ACTIVE state at the start of the layout."
 						},
 					"click-mode": {
 						"name": "Click mode",
@@ -26,19 +22,11 @@
 						},
 					"activated-after-clicked": {
 						"name": "Activated after Clicked",
-						"desc": "Auto back to ACTIVE state after CLICKED state.",
-						"items": {
-							"no":"No",
-							"yes":"Yes"
-							}
+						"desc": "Auto back to ACTIVE state after CLICKED state."
 						},
 					"visible-checking": {
 						"name": "Visible checking",
-						"desc": "Set Yes to enable button if visible.",
-						"items": {
-							"no":"No",
-							"yes":"Yes"
-							}
+						"desc": "Set Yes to enable button if visible."
 						}
 				},
 				"aceCategories": {

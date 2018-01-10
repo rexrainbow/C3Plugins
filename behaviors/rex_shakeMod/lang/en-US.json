@@ -10,11 +10,7 @@
 				"properties": {
 					"activated": {
 						"name": "Activated",
-						"desc": "Enable if you wish this to begin at the start of the layout.",
-						"items": {
-							"no":"No",
-							"yes":"Yes"
-							}
+						"desc": "Enable if you wish this to begin at the start of the layout."
 						},
 					"mode": {
 						"name": "Mode",

@@ -10,11 +10,7 @@
 				"properties": {
 					"activated": {
 						"name": "Activated",
-						"desc": "Enable if you wish this to begin at the start of the layout.",
-						"items": {
-							"no":"No",
-							"yes":"Yes"
-							}
+						"desc": "Enable if you wish this to begin at the start of the layout."
 						},
 					"max-speed": {
 						"name": "Max speed",
@@ -38,27 +34,15 @@
 						},
 					"force-move": {
 						"name": "Force move",
-						"desc": "Enable if you wish to ignore solid checking. It will change z index when logical overlapping.",
-						"items": {
-							"no":"No",
-							"yes":"Yes"
-							}
+						"desc": "Enable if you wish to ignore solid checking. It will change z index when logical overlapping."
 						},
 					"moveto": {
 						"name": "MoveTo",
-						"desc": "Set Yes to move chess physically by built-in moveTo behavior. Set No will only change the logical position.",
-						"items": {
-							"no":"No",
-							"yes":"Yes"
-							}
+						"desc": "Set Yes to move chess physically by built-in moveTo behavior. Set No will only change the logical position."
 						},
 					"continued-mode": {
 						"name": "Continued mode",
-						"desc": "Moving as in continued-time.",
-						"items": {
-							"no":"No",
-							"yes":"Yes"
-							}
+						"desc": "Moving as in continued-time."
 						}
 				},
 				"aceCategories": {

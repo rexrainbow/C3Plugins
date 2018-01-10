@@ -10,11 +10,7 @@
 				"properties": {
 					"auto-redraw": {
 						"name": "Auto redraw",
-						"desc": "Enable to redraw after size changed.",
-						"items": {
-							"no":"No",
-							"yes":"Yes"
-							}
+						"desc": "Enable to redraw after size changed."
 						}
 				},
 				"aceCategories": {

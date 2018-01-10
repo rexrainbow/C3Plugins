@@ -18,19 +18,11 @@
 						},
 					"wrap": {
 						"name": "Wrap",
-						"desc": "Wrap the logical position.",
-						"items": {
-							"no":"No",
-							"yes":"Yes"
-							}
+						"desc": "Wrap the logical position."
 						},
 					"infinity": {
 						"name": "Infinity",
-						"desc": "Infinity board.",
-						"items": {
-							"no":"No",
-							"yes":"Yes"
-							}
+						"desc": "Infinity board."
 						}
 				},
 				"aceCategories": {

@@ -18,11 +18,7 @@
 						},
 					"debug": {
 						"name": "Debug",
-						"desc": "Enable debug mode.",
-						"items": {
-							"no":"No",
-							"yes":"Yes"
-							}
+						"desc": "Enable debug mode."
 						}
 				},
 				"aceCategories": {

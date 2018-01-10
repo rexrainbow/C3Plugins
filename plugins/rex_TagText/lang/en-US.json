@@ -12,18 +12,26 @@
 						"name": "Text",
 						"desc": "Text to display."
 						},
-					"initial-visibility": {
-						"name": "Initial visibility",
-						"desc": "Choose whether the object is visible when the layout starts.",
-						"items": {
-							"visible":"Visible",
-							"invisible":"Invisible"
-							}
-						},
 					"font": {
 						"name": "Font",
 						"desc": "Choose the font to display.  This applies to all instances of this type."
+						},	
+					"font-size": {
+						"name": "Size",
+						"desc": "Choose the font to display.  This applies to all instances of this type."
 						},
+					"line-height": {
+						"name": "Line height",
+						"desc": "Offset to the default line height, in pixels. 0 is default line height."
+						},	
+					"bold": {
+						"name": "Bold",
+						"desc": "Choose the font to display.  This applies to all instances of this type."
+						},	
+					"italic": {
+						"name": "Italic",
+						"desc": "Choose the font to display.  This applies to all instances of this type."
+						},	
 					"color": {
 						"name": "Color",
 						"desc": "Color of the text."
@@ -45,6 +53,22 @@
 							"center":"Center",
 							"bottom":"Bottom"
 							}
+						},						
+					"wrapping": {
+						"name": "Wrapping",
+						"desc": "Wrap text by space-separated words or nearest character.",
+						"items": {
+							"word":"Word",
+							"character":"Character"
+							}
+						},
+					"initial-visibility": {
+						"name": "Initial visibility",
+						"desc": "Choose whether the object is visible when the layout starts.",
+						"items": {
+							"visible":"Visible",
+							"invisible":"Invisible"
+							}
 						},
 					"hotspot": {
 						"name": "Hotspot",
@@ -61,18 +85,6 @@
 							"bottom-right":"Bottom-right"
 							}
 						},
-					"wrapping": {
-						"name": "Wrapping",
-						"desc": "Wrap text by space-separated words or nearest character.",
-						"items": {
-							"word":"Word",
-							"character":"Character"
-							}
-						},
-					"line-height": {
-						"name": "Line height",
-						"desc": "Offset to the default line height, in pixels. 0 is default line height."
-						},
 					"baseline": {
 						"name": "Baseline",
 						"desc": "Baseline of text alignment.",
@@ -88,18 +100,10 @@
 					"force-render": {
 						"name": "Force render",
 						"desc": "Force rendering immediately after any property setting.",
-						"items": {
-							"no":"No",
-							"yes":"Yes"
-							}
 						},
 					"lock-canvas-size": {
 						"name": "Lock canvas size",
-						"desc": "Lock canvas size to initial size.",
-						"items": {
-							"no":"No",
-							"yes":"Yes"
-							}
+						"desc": "Lock canvas size to initial size."
 						},
 					"background": {
 						"name": "Background",

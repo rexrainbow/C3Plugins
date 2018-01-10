@@ -10,11 +10,7 @@
 				"properties": {
 					"enable-wrap": {
 						"name": "Enable wrap",
-						"desc": "Set No to popup prompt box by browser api.",
-						"items": {
-							"no":"No",
-							"yes":"Yes"
-							}
+						"desc": "Set No to popup prompt box by browser api."
 						}
 				},
 				"aceCategories": {

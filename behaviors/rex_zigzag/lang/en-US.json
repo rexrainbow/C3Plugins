@@ -10,27 +10,15 @@
 				"properties": {
 					"activated": {
 						"name": "Activated",
-						"desc": "Enable if you wish this to begin at the start of the layout.",
-						"items": {
-							"no":"No",
-							"yes":"Yes"
-							}
+						"desc": "Enable if you wish this to begin at the start of the layout."
 						},
 					"start": {
 						"name": "Start",
-						"desc": "Enable if you wish this to start at the start of the layout.",
-						"items": {
-							"no":"No",
-							"yes":"Yes"
-							}
+						"desc": "Enable if you wish this to start at the start of the layout."
 						},
 					"rotatable": {
 						"name": "Rotatable",
-						"desc": "Enable to rotate sprite with command.",
-						"items": {
-							"no":"No",
-							"yes":"Yes"
-							}
+						"desc": "Enable to rotate sprite with command."
 						},
 					"repeat-count": {
 						"name": "Repeat count",
@@ -70,19 +58,11 @@
 						},
 					"precise-mode": {
 						"name": "Precise mode",
-						"desc": "Force sprite move to target.",
-						"items": {
-							"no":"No",
-							"yes":"Yes"
-							}
+						"desc": "Force sprite move to target."
 						},
 					"continued-mode": {
 						"name": "Continued mode",
-						"desc": "Running zigzag as in continued-time.",
-						"items": {
-							"no":"No",
-							"yes":"Yes"
-							}
+						"desc": "Running zigzag as in continued-time."
 						}
 				},
 				"aceCategories": {

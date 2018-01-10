@@ -34,11 +34,7 @@
 						},
 					"indent": {
 						"name": "Indent",
-						"desc": "Indent first row or column.",
-						"items": {
-							"no":"No",
-							"yes":"Yes"
-							}
+						"desc": "Indent first row or column."
 						}
 				},
 				"aceCategories": {

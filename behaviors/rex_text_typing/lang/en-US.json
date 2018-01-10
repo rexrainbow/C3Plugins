@@ -10,11 +10,7 @@
 				"properties": {
 					"line-break": {
 						"name": "Line break",
-						"desc": "Enable to add new line to split lines.",
-						"items": {
-							"no":"No",
-							"yes":"Yes"
-							}
+						"desc": "Enable to add new line to split lines."
 						}
 				},
 				"aceCategories": {

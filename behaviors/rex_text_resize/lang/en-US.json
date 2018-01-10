@@ -10,11 +10,7 @@
 				"properties": {
 					"auto-resize": {
 						"name": "Auto resize",
-						"desc": "Enable to resize object automatically.",
-						"items": {
-							"no":"No",
-							"yes":"Yes"
-							}
+						"desc": "Enable to resize object automatically."
 						},
 					"min-width": {
 						"name": "Min width",

@@ -23,19 +23,11 @@
 						},
 					"cache-cost": {
 						"name": "Cache cost",
-						"desc": "Cache the cost of each tile in a request.",
-						"items": {
-							"no":"No",
-							"yes":"Yes"
-							}
+						"desc": "Cache the cost of each tile in a request."
 						},
 					"shuffle-neighbors": {
 						"name": "Shuffle neighbors",
-						"desc": "Shuffle the order of checking neighbors.",
-						"items": {
-							"no":"No",
-							"yes":"Yes"
-							}
+						"desc": "Shuffle the order of checking neighbors."
 						},
 					"weight": {
 						"name": "Weight",

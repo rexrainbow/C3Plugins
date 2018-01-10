@@ -10,11 +10,7 @@
 				"properties": {
 					"activated": {
 						"name": "Activated",
-						"desc": "Enable if you wish this to begin at the start of the layout.",
-						"items": {
-							"no":"No",
-							"yes":"Yes"
-							}
+						"desc": "Enable if you wish this to begin at the start of the layout."
 						},
 					"max-speed": {
 						"name": "Max speed",
@@ -30,19 +26,11 @@
 						},
 					"stop-by-solid": {
 						"name": "Stop by solid",
-						"desc": "Enable if you wish to stop while hitting a solid object.",
-						"items": {
-							"no":"No",
-							"yes":"Yes"
-							}
+						"desc": "Enable if you wish to stop while hitting a solid object."
 						},
 					"continued-mode": {
 						"name": "Continued mode",
-						"desc": "Moving as in continued-time.",
-						"items": {
-							"no":"No",
-							"yes":"Yes"
-							}
+						"desc": "Moving as in continued-time."
 						}
 				},
 				"aceCategories": {

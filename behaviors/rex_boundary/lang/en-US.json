@@ -27,11 +27,7 @@
 						},
 					"horizontal": {
 						"name": "Horizontal",
-						"desc": "Enable if you wish this to begin at the start of the layout.",
-						"items": {
-							"no":"No",
-							"yes":"Yes"
-							}
+						"desc": "Enable if you wish this to begin at the start of the layout."
 						},
 					"left": {
 						"name": "Left",
@@ -43,11 +39,7 @@
 						},
 					"vertical": {
 						"name": "Vertical",
-						"desc": "Enable if you wish this to begin at the start of the layout.",
-						"items": {
-							"no":"No",
-							"yes":"Yes"
-							}
+						"desc": "Enable if you wish this to begin at the start of the layout."
 						},
 					"top": {
 						"name": "Top",

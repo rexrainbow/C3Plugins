@@ -14,11 +14,7 @@
 						},
 					"eval-mode": {
 						"name": "Eval mode",
-						"desc": "Enable \"Eval mode\" for parsing value.",
-						"items": {
-							"no":"No",
-							"yes":"Yes"
-							}
+						"desc": "Enable \"Eval mode\" for parsing value."
 						}
 				},
 				"aceCategories": {

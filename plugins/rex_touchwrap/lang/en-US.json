@@ -10,19 +10,11 @@
 				"properties": {
 					"use-mouse-input": {
 						"name": "Use mouse input",
-						"desc": "Use mouse clicks as single-touch input (useful for testing).",
-						"items": {
-							"no":"No",
-							"yes":"Yes"
-							}
+						"desc": "Use mouse clicks as single-touch input (useful for testing)."
 						},
 					"enable": {
 						"name": "Enable",
-						"desc": "Enable touch detecting.",
-						"items": {
-							"no":"No",
-							"yes":"Yes"
-							}
+						"desc": "Enable touch detecting."
 						}
 				},
 				"aceCategories": {
