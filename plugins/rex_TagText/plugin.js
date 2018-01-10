@@ -68,11 +68,7 @@
 			this._info.AddFileDependency({
 				filename: "c2runtime/rex_canvasText.js",
 				type: "inline-script"
-			});				
-			this._info.AddFileDependency({
-				filename: "c2runtime/rex_pensMgrKlass.js",
-				type: "inline-script"
-			});									
+			});												
 			this._info.AddFileDependency({
 				filename: "c2runtime/rex_imageBank.js",
 				type: "inline-script"

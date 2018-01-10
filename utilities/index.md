@@ -36,8 +36,6 @@
   - plugins: rex_slg_movement  
   - plugins: rex_TagText  
   - plugins: rex_tweenTasks  
-- rex_pensMgrKlass.js  
-  - plugins: rex_TagText  
 - rex_pickUIDs.js  
   - plugins: rex_board  
   - plugins: rex_ginstgroup  
