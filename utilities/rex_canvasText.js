@@ -2,7 +2,7 @@
     if (!window.rexObjs)
         window.rexObjs = {};
 
-    if (window.rexObjs.ObjCacheKlass)
+    if (window.rexObjs.CanvasTextKlass)
         return;
 
     var NO_NEWLINE = 0;
