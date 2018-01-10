@@ -38,22 +38,45 @@
 			this._info.AddCommonZOrderACEs();
 			SDK.Lang.PushContext(".properties");
 			this._info.SetProperties([
-				new SDK.PluginProperty("text", "text", "lang("project\\misc\\text-initialtext")"),
-				new SDK.PluginProperty("combo", "initial-visibility", {initialValue:"visible", items:["visible","invisible"]}),
+				new SDK.PluginProperty("text", "text", "Text"),
 				new SDK.PluginProperty("font", "font", "Arial"),
+				new SDK.PluginProperty("integer", "font-size", 12),
+				new SDK.PluginProperty("integer", "line-height", 0),
+				new SDK.PluginProperty("check", "bold", false),
+				new SDK.PluginProperty("check", "italic", false),
 				new SDK.PluginProperty("color", "color",[0,0,0]),
 				new SDK.PluginProperty("combo", "horizontal-alignment", {initialValue:"left", items:["left","center","right"]}),
 				new SDK.PluginProperty("combo", "vertical-alignment", {initialValue:"top", items:["top","center","bottom"]}),
+				new SDK.PluginProperty("combo", "wrapping", {initialValue:"word", items:["word","character"]}),				
+				new SDK.PluginProperty("check", "initial-visibility", true),
 				new SDK.PluginProperty("combo", "hotspot", {initialValue:"top-left", items:["top-left","top","top-right","left","center","right","bottom-left","bottom","bottom-right"]}),
-				new SDK.PluginProperty("combo", "wrapping", {initialValue:"word", items:["word","character"]}),
-				new SDK.PluginProperty("float", "line-height", 0),
 				new SDK.PluginProperty("combo", "baseline", {initialValue:"top", items:["alphabetic","top"]}),
-				new SDK.PluginProperty("float", "shift-down", 13),
-				new SDK.PluginProperty("combo", "force-render", {initialValue:"no", items:["no","yes"]}),
-				new SDK.PluginProperty("combo", "lock-canvas-size", {initialValue:"no", items:["no","yes"]}),
+				new SDK.PluginProperty("integer", "shift-down", 13),
+				new SDK.PluginProperty("check", "force-render", false),
+				new SDK.PluginProperty("check", "lock-canvas-size", false),
 				new SDK.PluginProperty("group", "background"),
 				new SDK.PluginProperty("text", "background-color", "")
 			]);
+			this._info.AddFileDependency({
+				filename: "c2runtime/rex_objCacheKlass.js",
+				type: "inline-script"
+			});			
+			this._info.AddFileDependency({
+				filename: "c2runtime/rex_text2Lines.js",
+				type: "inline-script"
+			});	
+			this._info.AddFileDependency({
+				filename: "c2runtime/rex_canvasText.js",
+				type: "inline-script"
+			});				
+			this._info.AddFileDependency({
+				filename: "c2runtime/rex_pensMgrKlass.js",
+				type: "inline-script"
+			});									
+			this._info.AddFileDependency({
+				filename: "c2runtime/rex_imageBank.js",
+				type: "inline-script"
+			});			
 			SDK.Lang.PopContext();		// .properties
 			SDK.Lang.PopContext();
 		}

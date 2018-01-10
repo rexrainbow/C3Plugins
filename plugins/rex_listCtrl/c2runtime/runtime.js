@@ -841,17 +841,7 @@ cr.plugins_.Rex_ListCtrl = function (runtime) {
 
 
 (function () {
-	var ObjCacheKlass = function () {
-		this.lines = [];
-	};
-	var ObjCacheKlassProto = ObjCacheKlass.prototype;
-	ObjCacheKlassProto.allocLine = function () {
-		return (this.lines.length > 0) ? this.lines.pop() : null;
-	};
-	ObjCacheKlassProto.freeLine = function (l) {
-		this.lines.push(l);
-	};
-	var lineCache = new ObjCacheKlass();
+	var lineCache = new window.rexObjs.ObjCacheKlass();
 
 	// LinesMgr
 	cr.plugins_.Rex_ListCtrl.LinesMgrKlass = function (plugin) {

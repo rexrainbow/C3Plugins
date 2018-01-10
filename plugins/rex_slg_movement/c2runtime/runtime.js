@@ -428,17 +428,7 @@ cr.plugins_.Rex_SLGMovement = function (runtime) {
         return GLOBOL_NODES;
     };
 
-    var ObjCacheKlass = function () {
-        this.lines = [];
-    };
-    var ObjCacheKlassProto = ObjCacheKlass.prototype;
-    ObjCacheKlassProto.allocLine = function () {
-        return (this.lines.length > 0) ? this.lines.pop() : null;
-    };
-    ObjCacheKlassProto.freeLine = function (l) {
-        this.lines.push(l);
-    };
-    var nodeCache = new ObjCacheKlass();
+    var nodeCache = new window.rexObjs.ObjCacheKlass();
 
     var GLOBOL_NODES_ORDER_INDEX = -1;
     instanceProto.getAStartNode = function (uid) {

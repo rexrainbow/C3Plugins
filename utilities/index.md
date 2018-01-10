@@ -3,8 +3,11 @@
   - plugins: rex_time_awayL  
 - rex_boardLXYZCache.js  
   - plugins: rex_board  
+- rex_canvasText.js  
+  - plugins: rex_TagText  
 - rex_createObject.js  
   - plugins: rex_board  
+  - plugins: rex_glayouter  
   - plugins: rex_nickname  
 - rex_csvToArray.js  
   - plugins: rex_csv  
@@ -21,11 +24,20 @@
   - plugins: rex_gfsm  
 - rex_group.js  
   - plugins: rex_ginstgroup  
+- rex_imageBank.js  
+  - plugins: rex_TagText  
 - rex_keys2Value.js  
   - behaviors: rex_bHash  
   - plugins: rex_firebase_apiV3  
   - plugins: rex_hash  
   - plugins: rex_jsshell  
+- rex_objCacheKlass.js  
+  - plugins: rex_listCtrl  
+  - plugins: rex_slg_movement  
+  - plugins: rex_TagText  
+  - plugins: rex_tweenTasks  
+- rex_pensMgrKlass.js  
+  - plugins: rex_TagText  
 - rex_pickUIDs.js  
   - plugins: rex_board  
   - plugins: rex_ginstgroup  
@@ -36,3 +48,5 @@
   - plugins: rex_slg_movement  
 - rex_stack.js  
   - plugins: rex_jsshell  
+- rex_text2Lines.js  
+  - plugins: rex_TagText  

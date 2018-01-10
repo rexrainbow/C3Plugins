@@ -30,6 +30,10 @@
 			this._info.SetProperties([
 			]);
 			this._info.AddFileDependency({
+				filename: "c2runtime/rex_objCacheKlass.js",
+				type: "inline-script"
+			});				
+			this._info.AddFileDependency({
 				filename: "c2runtime/rex_tweenTasks.js",
 				type: "inline-script"
 			});			

@@ -5,23 +5,11 @@
     if (window.rexObjs.TweenTaskMgrKlass)
         return;
 
-
-
-    var ObjCacheKlass = function () {
-        this.lines = [];
-    };
-    var ObjCacheKlassProto = ObjCacheKlass.prototype;
-    ObjCacheKlassProto.allocLine = function () {
-        return (this.lines.length > 0) ? this.lines.pop() : null;
-    };
-    ObjCacheKlassProto.freeLine = function (l) {
-        this.lines.push(l);
-    };
-    var tweenTasksCache = new ObjCacheKlass();
-    var waitForSignalTasksCache = new ObjCacheKlass();
-    var sequenceTasksCache = new ObjCacheKlass();
-    var parallelTasksCache = new ObjCacheKlass();
-    var tweenParamsCache = new ObjCacheKlass();
+    var tweenTasksCache = new window.rexObjs.ObjCacheKlass();
+    var waitForSignalTasksCache = new window.rexObjs.ObjCacheKlass();
+    var sequenceTasksCache = new window.rexObjs.ObjCacheKlass();
+    var parallelTasksCache = new window.rexObjs.ObjCacheKlass();
+    var tweenParamsCache = new window.rexObjs.ObjCacheKlass();
 
     // tween
     var TweenTaskKlass = function (taskMgr, taskName, fnName, interval, repeatCount) {

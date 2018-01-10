@@ -114,28 +114,24 @@
 					"text": "Text",
 					"appearance": "Appearance",
 					"properties": "Properties",
-					"shadow": "Shadow",
 					"tag": "Tag",
-					"underline": "Underline",
 					"background": "Background",
 					"canvas": "Canvas",
-					"image_bank": "Image bank",
-					"tag_(class)": "Tag (Class)",
-					"class": "Class"
+					"image-bank": "Image bank"
 				},
 				"conditions": {
-					"comparetext0": {
+					"compare-text": {
 						"list-name": "Compare text",
-						"display-text": "Text is [b]{0}[/b] [i]({1})[/i]",
+						"display-text": "Text is [b]{0}[/b] [b]({1})[/b]",
 						"description": "Compare the text in this object.",
 						"params": {
 							"text_to_compare0": { "name":"Text to compare", "desc":"Enter the text to compare with the object's content."},
 							"case_sensitivity3": { "name":"Case sensitivity", "desc":"Choose whether capital letters count as different to lowercase.  If ignoring case, \"ABC\" matches \"abc\".", "items":{"ignore case":"Ignore case","case sensitive":"Case sensitive"}}
 						}
 						},
-					"defineclass1": {
+					"define-tag": {
 						"list-name": "Define tag (class)",
-						"display-text": "Tag: [i]{0}[/i]",
+						"display-text": "Tag: [b]{0}[/b]",
 						"description": "Define tag (<class> ... </class>)",
 						"params": {
 							"name0": { "name":"Name", "desc":"Name of tag (class)."}
@@ -143,148 +139,148 @@
 						}
 				},
 				"actions": {
-					"settext0": {
+					"set-text": {
 						"list-name": "Set text",
-						"display-text": "Set text to [i]{0}[/i]",
+						"display-text": "Set text to [b]{0}[/b]",
 						"description": "Set the text of this object.",
 						"params": {
 							"text0": { "name":"Text", "desc":"Enter the text to set the object's content to."}
 						}
 					},
-					"appendtext1": {
+					"append-text": {
 						"list-name": "Append text",
-						"display-text": "Append [i]{0}[/i]",
+						"display-text": "Append [b]{0}[/b]",
 						"description": "Add text to the end of the existing text.",
 						"params": {
 							"text0": { "name":"Text", "desc":"Enter the text to append to the object's content."}
 						}
 					},
-					"setfontface2": {
+					"set-font-face": {
 						"list-name": "Set font face",
-						"display-text": "Set font face to [i]{0}[/i] ([i]{1}[/i])",
+						"display-text": "Set font face to [b]{0}[/b] ([b]{1}[/b])",
 						"description": "Set the font face used to display text.",
 						"params": {
 							"font_face0": { "name":"Font face", "desc":"The new font face name to set."},
 							"style5": { "name":"Style", "desc":"Choose the style for the given font face.", "items":{"normal":"normal","bold":"bold","italic":"italic","bold and italic":"bold and italic"}}
 						}
 					},
-					"setfontsize3": {
+					"set-font-size": {
 						"list-name": "Set font size",
-						"display-text": "Set font size to [i]{0}[/i] pt",
+						"display-text": "Set font size to [b]{0}[/b] pt",
 						"description": "Set the font size.",
 						"params": {
 							"size_(pt)0": { "name":"Size (pt)", "desc":"The new font size."}
 						}
 					},
-					"setfontcolor4": {
+					"set-font-color": {
 						"list-name": "Set font color",
-						"display-text": "Set font color to [i]{0}[/i]",
+						"display-text": "Set font color to [b]{0}[/b]",
 						"description": "Set the font color.",
 						"params": {
 							"color0": { "name":"Color", "desc":"The new font color, in the form rgb(r, g, b)."}
 						}
 					},
-					"setwebfont5": {
+					"set-web-font": {
 						"list-name": "Set web font",
-						"display-text": "Set web font [i]{0}[/i] from [i]{1}[/i]",
+						"display-text": "Set web font [b]{0}[/b] from [b]{1}[/b]",
 						"description": "Set the font face from an online web font.",
 						"params": {
 							"family_name0": { "name":"Family name", "desc":"Enter the font family name."},
 							"css_url1": { "name":"CSS URL", "desc":"Enter the web URL to the CSS file referencing the web font."}
 						}
 					},
-					"seteffect6": {
+					"set-effect": {
 						"list-name": "Set blend mode",
-						"display-text": "Set blend mode to [i]{0}[/i]",
+						"display-text": "Set blend mode to [b]{0}[/b]",
 						"description": "Set the background blend mode for this object.",
 						"params": {
 							"blend_mode11": { "name":"Blend mode", "desc":"Choose the new blend mode for this object.", "items":{"normal":"Normal","additive":"Additive","xor":"XOR","copy":"Copy","destination over":"Destination over","source in":"Source in","destination in":"Destination in","source out":"Source out","destination out":"Destination out","source atop":"Source atop","destination atop":"Destination atop"}}
 						}
 					},
-					"setfontstyle50": {
+					"set-font-style": {
 						"list-name": "Set font style",
-						"display-text": "Set font style [i]{0}[/i]",
+						"display-text": "Set font style [b]{0}[/b]",
 						"description": "Set the font style.",
 						"params": {
 							"style4": { "name":"Style", "desc":"Choose the style for the given font face.", "items":{"normal":"normal","bold":"bold","italic":"italic","bold and italic":"bold and italic"}}
 						}
 					},
-					"setfontface251": {
+					"set-font-face-by-string": {
 						"list-name": "Set font face only",
-						"display-text": "Set font face to [i]{0}[/i]",
+						"display-text": "Set font face to [b]{0}[/b]",
 						"description": "Set the font face.",
 						"params": {
 							"font_face0": { "name":"Font face", "desc":"The new font face name to set."}
 						}
 					},
-					"setlineheight52": {
+					"set-line-height": {
 						"list-name": "Set line height",
-						"display-text": "Set line height to [i]{0}[/i]",
+						"display-text": "Set line height to [b]{0}[/b]",
 						"description": "Set line height.",
 						"params": {
 							"line_height0": { "name":"Line height", "desc":"Offset to the default line height, in pixels. 0 is default line height"}
 						}
 					},
-					"sethorizontalalignment53": {
+					"set-horizontal-alignment": {
 						"list-name": "Set horizontal alignment",
-						"display-text": "{my} Set horizontal alignment to [i]{0}[/i]",
+						"display-text": "{my} Set horizontal alignment to [b]{0}[/b]",
 						"description": "Set horizontal alignment.",
 						"params": {
 							"horizontal_alignment3": { "name":"Horizontal alignment", "desc":"Horizontal alignment of the text", "items":{"left":"Left","center":"Center","right":"Right"}}
 						}
 					},
-					"sethorizontalalignment54": {
+					"set-horizontal-alignment-by-number": {
 						"list-name": "Set horizontal alignment (#)",
-						"display-text": "{my} Set horizontal alignment to [i]{0}[/i]",
+						"display-text": "{my} Set horizontal alignment to [b]{0}[/b]",
 						"description": "Set horizontal alignment.",
 						"params": {
 							"horizontal_alignment0": { "name":"Horizontal alignment", "desc":"Horizontal alignment. 0=Left, 1=Center. 2=Right"}
 						}
 					},
-					"setverticalalignment55": {
+					"set-verticalal-alignment": {
 						"list-name": "Set Vertical alignment",
-						"display-text": "{my} Set vertical alignment to [i]{0}[/i]",
+						"display-text": "{my} Set vertical alignment to [b]{0}[/b]",
 						"description": "Set vertical alignment.",
 						"params": {
 							"vertical_alignment3": { "name":"Vertical alignment", "desc":"Horizontal alignment of the text", "items":{"top":"Top","center":"Center","bottom":"Bottom"}}
 						}
 					},
-					"setverticalalignment56": {
+					"set-verticalal-alignment-by-number": {
 						"list-name": "Set Vertical alignment (#)",
-						"display-text": "{my} Set vertical alignment to [i]{0}[/i]",
+						"display-text": "{my} Set vertical alignment to [b]{0}[/b]",
 						"description": "Set vertical alignment.",
 						"params": {
 							"vertical_alignment0": { "name":"Vertical alignment", "desc":"Vertical alignment. 0=Top, 1=Center. 2=Bottom"}
 						}
 					},
-					"setwrapping57": {
+					"set-wrapping-mode": {
 						"list-name": "Set wrapping",
-						"display-text": "{my} Set wrapping to [i]{0}[/i]",
+						"display-text": "{my} Set wrapping to [b]{0}[/b]",
 						"description": "Set wrapping.",
 						"params": {
 							"wrapping2": { "name":"Wrapping", "desc":"Wrap text by space-separated words or nearest character", "items":{"word":"Word","character":"Character"}}
 						}
 					},
-					"setwrapping58": {
+					"set-wrapping-mode-by-number": {
 						"list-name": "Set wrapping (#)",
-						"display-text": "{my} Set wrapping to [i]{0}[/i]",
+						"display-text": "{my} Set wrapping to [b]{0}[/b]",
 						"description": "Set wrapping.",
 						"params": {
 							"wrapping0": { "name":"Wrapping", "desc":"Wrap text. 0=Word, 1=Character"}
 						}
 					},
-					"setcustomproperty60": {
+					"set-custom-property": {
 						"list-name": "Set custom property",
-						"display-text": "Set custom property [i]{0}[/i] to [i]{1}[/i]",
+						"display-text": "Set custom property [b]{0}[/b] to [b]{1}[/b]",
 						"description": "Set custom property.",
 						"params": {
 							"name0": { "name":"Name", "desc":"Property name."},
 							"value1": { "name":"Value", "desc":"Property value."}
 						}
 					},
-					"setshadow61": {
+					"set-shadow": {
 						"list-name": "Set shadow",
-						"display-text": "Set shadow with offset to ([i]{0}[/i], [i]{1}[/i]), blur to [i]{2}[/i], color to [i]{3}[/i]",
+						"display-text": "Set shadow with offset to ([b]{0}[/b], [b]{1}[/b]), blur to [b]{2}[/b], color to [b]{3}[/b]",
 						"description": "Set shadow.",
 						"params": {
 							"offset_x0": { "name":"Offset X", "desc":"Offset X of shadow, in pixels."},
@@ -293,17 +289,17 @@
 							"color3": { "name":"Color", "desc":"The new font color, in the form rgb(r, g, b)."}
 						}
 					},
-					"addcsstags62": {
+					"add-css-tags": {
 						"list-name": "Add by CSS",
-						"display-text": "Add tags by CSS to [i]{0}[/i]",
+						"display-text": "Add tags by CSS to [b]{0}[/b]",
 						"description": "Add tags by CSS.",
 						"params": {
 							"tag0": { "name":"Tag", "desc":"Tag definitions."}
 						}
 					},
-					"setunderline63": {
+					"set-underline": {
 						"list-name": "Set underline",
-						"display-text": "Set underline with color to [i]{0}[/i], thinkness to [i]{1}[/i], offset Y to [i]{2}[/i]",
+						"display-text": "Set underline with color to [b]{0}[/b], thinkness to [b]{1}[/b], offset Y to [b]{2}[/b]",
 						"description": "Set underline.",
 						"params": {
 							"color0": { "name":"Color", "desc":"Color of underline, in the form rgb(r, g, b)."},
@@ -311,9 +307,9 @@
 							"offset2": { "name":"Offset", "desc":"Offset Y in pixels."}
 						}
 					},
-					"setstroke64": {
+					"set-stroke": {
 						"list-name": "Set stroke",
-						"display-text": "Set stroke color to [i]{0}[/i], line width to [i]{1}[/i], line join to [i]{2}[/i]",
+						"display-text": "Set stroke color to [b]{0}[/b], line width to [b]{1}[/b], line join to [b]{2}[/b]",
 						"description": "Set the stroke color and line width.",
 						"params": {
 							"color0": { "name":"Color", "desc":"The stroke color, in the form rgb(r, g, b)."},
@@ -321,39 +317,39 @@
 							"line_join5": { "name":"Line join", "desc":"Line join of the stroke", "items":{"miter":"Miter","round":"Round","bevel":"Bevel"}}
 						}
 					},
-					"insertimage65": {
+					"insert-image": {
 						"list-name": "Insert image",
-						"display-text": "Insert image [i]{0}[/i]",
+						"display-text": "Insert image [b]{0}[/b]",
 						"description": "Insert image.",
 						"params": {
 							"key0": { "name":"Key", "desc":"Index of this image."}
 						}
 					},
-					"setbackgroundcolor91": {
+					"set-background-color": {
 						"list-name": "Set background color",
-						"display-text": "Set background to [i]{0}[/i]",
+						"display-text": "Set background to [b]{0}[/b]",
 						"description": "Set background color.",
 						"params": {
 							"color0": { "name":"Color", "desc":"The new background color, in the form rgb(r, g, b). Set \"\" to be transparent."}
 						}
 					},
-					"lockcanvassize101": {
+					"lock-canvas-size": {
 						"list-name": "Lock canvas size",
-						"display-text": "Lock canvas size to [i]{0}[/i]x[i]{1}[/i]",
+						"display-text": "Lock canvas size to [b]{0}[/b]x[b]{1}[/b]",
 						"description": "Lock canvas size.",
 						"params": {
 							"width0": { "name":"Width", "desc":"Canvas width in pixels."},
 							"height1": { "name":"Height", "desc":"Canvas height in pixels."}
 						}
 					},
-					"unlockcanvassize102": {
+					"unlock-canvas-size": {
 						"list-name": "Unlock canvas size",
 						"display-text": "Unlock canvas size",
 						"description": "Unlock canvas size."
 					},
-					"addimage111": {
+					"add-image": {
 						"list-name": "Add image",
-						"display-text": "Add [i]{1}[/i] with key [i]{0}[/i], Y offset to [i]{2}[/i]",
+						"display-text": "Add [b]{1}[/b] with key [b]{0}[/b], Y offset to [b]{2}[/b]",
 						"description": "Add image from sprite or canvas.",
 						"params": {
 							"key0": { "name":"Key", "desc":"Index of this image."},
@@ -361,46 +357,46 @@
 							"y_offset2": { "name":"Y offset", "desc":"Y offset of this image."}
 						}
 					},
-					"removeimage112": {
+					"remove-image": {
 						"list-name": "Remove image",
-						"display-text": "Remve image with key [i]{0}[/i]",
+						"display-text": "Remve image with key [b]{0}[/b]",
 						"description": "Remove image by key.",
 						"params": {
 							"key0": { "name":"Key", "desc":"Index of this image."}
 						}
 					},
-					"removeall113": {
+					"remove-all": {
 						"list-name": "Remove all",
 						"display-text": "Remve all images",
 						"description": "Remove all images."
 					}
 				},
 				"expressions": {
-					"text0": {
+					"text": {
 						"description": "Get the object's text. Add 2nd/3rd parameter for start/end index",
 						"translated-name": "Text"
 						},
-					"facename1": {
+					"face-name": {
 						"description": "Get the current font face name.",
 						"translated-name": "FaceName"
 						},
-					"facesize2": {
+					"face-size": {
 						"description": "Get the current font face size (pt).",
 						"translated-name": "FaceSize"
 						},
-					"textwidth3": {
+					"text-width": {
 						"description": "Get the width extent of the text in the object in pixels.",
 						"translated-name": "TextWidth"
 						},
-					"textheight4": {
+					"text-height": {
 						"description": "Get the height extent of the text in the object in pixels.",
 						"translated-name": "TextHeight"
 						},
-					"rawtext5": {
+					"raw-text": {
 						"description": "Get the object's raw text.",
 						"translated-name": "RawText"
 						},
-					"lastclasspropvalue21": {
+					"last-tag-prop-value": {
 						"description": "Get property value of last class. Add 2nd parameter for default value if this property had not found.",
 						"translated-name": "LastClassPropValue",
 						"params": {

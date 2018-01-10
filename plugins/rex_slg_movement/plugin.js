@@ -34,6 +34,10 @@
 				new SDK.PluginProperty("float", "weight", 10)
 			]);
 			this._info.AddFileDependency({
+				filename: "c2runtime/rex_objCacheKlass.js",
+				type: "inline-script"
+			});					
+			this._info.AddFileDependency({
 				filename: "c2runtime/rex_shuffleArr.js",
 				type: "inline-script"
 			});				

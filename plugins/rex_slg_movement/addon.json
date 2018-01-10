@@ -15,6 +15,7 @@
 					],
 	"file-list": [
 		"c2runtime/runtime.js",
+		"c2runtime/rex_objCacheKlass.js",		
 		"c2runtime/rex_shuffleArr.js",
 		"lang/en-US.json",
 		"aces.json",

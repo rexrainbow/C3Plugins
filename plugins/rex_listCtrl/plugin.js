@@ -44,6 +44,10 @@
 				new SDK.PluginProperty("combo", "axis", {initialValue:"vertical", items:["horizontal","vertical"]}),
 				new SDK.PluginProperty("combo", "hotspot", {initialValue:"top-left", items:["top-left","top","top-right","left","center","right","bottom-left","bottom","bottom-right"]})
 			]);
+			this._info.AddFileDependency({
+				filename: "c2runtime/rex_objCacheKlass.js",
+				type: "inline-script"
+			});			
 			SDK.Lang.PopContext();		// .properties
 			SDK.Lang.PopContext();
 		}

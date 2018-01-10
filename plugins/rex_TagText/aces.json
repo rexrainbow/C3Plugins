@@ -3,7 +3,7 @@
 		"conditions": [
 			{
 				"c2id": 0,
-				"id": "comparetext0",
+				"id": "compare-text",
 				"scriptName": "CompareText",
 				"highlight": false,
 				"params": [
@@ -15,7 +15,7 @@
 		"actions": [
 			{
 				"c2id": 0,
-				"id": "settext0",
+				"id": "set-text",
 				"scriptName": "SetText",
 				"highlight": false,
 				"params": [
@@ -24,7 +24,7 @@
 			},
 			{
 				"c2id": 1,
-				"id": "appendtext1",
+				"id": "append-text",
 				"scriptName": "AppendText",
 				"highlight": false,
 				"params": [
@@ -35,7 +35,7 @@
 		"expressions": [
 			{
 				"c2id": 0,
-				"id": "text0",
+				"id": "text",
 				"expressionName": "Text",
 				"scriptName": "Text",
 				"highlight": false,
@@ -44,7 +44,7 @@
 			},
 			{
 				"c2id": 3,
-				"id": "textwidth3",
+				"id": "text-width",
 				"expressionName": "TextWidth",
 				"scriptName": "TextWidth",
 				"highlight": false,
@@ -52,7 +52,7 @@
 			},
 			{
 				"c2id": 4,
-				"id": "textheight4",
+				"id": "text-height",
 				"expressionName": "TextHeight",
 				"scriptName": "TextHeight",
 				"highlight": false,
@@ -60,7 +60,7 @@
 			},
 			{
 				"c2id": 5,
-				"id": "rawtext5",
+				"id": "raw-text",
 				"expressionName": "RawText",
 				"scriptName": "RawText",
 				"highlight": false,
@@ -74,7 +74,7 @@
 		"actions": [
 			{
 				"c2id": 2,
-				"id": "setfontface2",
+				"id": "set-font-face",
 				"scriptName": "SetFontFace",
 				"highlight": false,
 				"params": [
@@ -84,7 +84,7 @@
 			},
 			{
 				"c2id": 3,
-				"id": "setfontsize3",
+				"id": "set-font-size",
 				"scriptName": "SetFontSize",
 				"highlight": false,
 				"params": [
@@ -93,7 +93,7 @@
 			},
 			{
 				"c2id": 4,
-				"id": "setfontcolor4",
+				"id": "set-font-color",
 				"scriptName": "SetFontColor",
 				"highlight": false,
 				"params": [
@@ -102,7 +102,7 @@
 			},
 			{
 				"c2id": 5,
-				"id": "setwebfont5",
+				"id": "set-web-font",
 				"scriptName": "SetWebFont",
 				"highlight": false,
 				"params": [
@@ -112,7 +112,7 @@
 			},
 			{
 				"c2id": 6,
-				"id": "seteffect6",
+				"id": "set-effect",
 				"scriptName": "SetEffect",
 				"highlight": false,
 				"params": [
@@ -121,7 +121,7 @@
 			},
 			{
 				"c2id": 50,
-				"id": "setfontstyle50",
+				"id": "set-font-style",
 				"scriptName": "SetFontStyle",
 				"highlight": false,
 				"params": [
@@ -130,7 +130,7 @@
 			},
 			{
 				"c2id": 51,
-				"id": "setfontface251",
+				"id": "set-font-face-by-string",
 				"scriptName": "SetFontFace2",
 				"highlight": false,
 				"params": [
@@ -139,7 +139,7 @@
 			},
 			{
 				"c2id": 64,
-				"id": "setstroke64",
+				"id": "set-stroke",
 				"scriptName": "SetStroke",
 				"highlight": false,
 				"params": [
@@ -150,18 +150,41 @@
 			},
 			{
 				"c2id": 65,
-				"id": "insertimage65",
+				"id": "insert-image",
 				"scriptName": "InsertImage",
 				"highlight": false,
 				"params": [
 					{"id":"key0", "type":"string", "initialValue":"\"\""}
 				]
-			}
+			},
+			{
+				"c2id": 61,
+				"id": "set-shadow",
+				"scriptName": "SetShadow",
+				"highlight": false,
+				"params": [
+					{"id":"offset_x0", "type":"number", "initialValue":"10"},
+					{"id":"offset_y1", "type":"number", "initialValue":"10"},
+					{"id":"blur2", "type":"number", "initialValue":"20"},
+					{"id":"color3", "type":"any", "initialValue":"\"rgb(0, 0, 0)\""}
+				]
+			},
+			{
+				"c2id": 63,
+				"id": "set-underline",
+				"scriptName": "SetUnderline",
+				"highlight": false,
+				"params": [
+					{"id":"color0", "type":"any", "initialValue":"\"rgb(0, 0, 0)\""},
+					{"id":"thickness1", "type":"number", "initialValue":"1"},
+					{"id":"offset2", "type":"number", "initialValue":"0"}
+				]
+			}					
 		],
 		"expressions": [
 			{
 				"c2id": 1,
-				"id": "facename1",
+				"id": "face-name",
 				"expressionName": "FaceName",
 				"scriptName": "FaceName",
 				"highlight": false,
@@ -169,7 +192,7 @@
 			},
 			{
 				"c2id": 2,
-				"id": "facesize2",
+				"id": "face-size",
 				"expressionName": "FaceSize",
 				"scriptName": "FaceSize",
 				"highlight": false,
@@ -183,7 +206,7 @@
 		"actions": [
 			{
 				"c2id": 52,
-				"id": "setlineheight52",
+				"id": "set-line-height",
 				"scriptName": "SetLineHeight",
 				"highlight": false,
 				"params": [
@@ -192,7 +215,7 @@
 			},
 			{
 				"c2id": 53,
-				"id": "sethorizontalalignment53",
+				"id": "set-horizontal-alignment",
 				"scriptName": "SetHorizontalAlignment",
 				"highlight": false,
 				"params": [
@@ -201,7 +224,7 @@
 			},
 			{
 				"c2id": 54,
-				"id": "sethorizontalalignment54",
+				"id": "set-horizontal-alignment-by-number",
 				"scriptName": "SetHorizontalAlignment",
 				"highlight": false,
 				"params": [
@@ -210,7 +233,7 @@
 			},
 			{
 				"c2id": 55,
-				"id": "setverticalalignment55",
+				"id": "set-verticalal-alignment",
 				"scriptName": "SetVerticalAlignment",
 				"highlight": false,
 				"params": [
@@ -219,7 +242,7 @@
 			},
 			{
 				"c2id": 56,
-				"id": "setverticalalignment56",
+				"id": "set-verticalal-alignment-by-number",
 				"scriptName": "SetVerticalAlignment",
 				"highlight": false,
 				"params": [
@@ -228,7 +251,7 @@
 			},
 			{
 				"c2id": 57,
-				"id": "setwrapping57",
+				"id": "set-wrapping-mode",
 				"scriptName": "SetWrapping",
 				"highlight": false,
 				"params": [
@@ -237,7 +260,7 @@
 			},
 			{
 				"c2id": 58,
-				"id": "setwrapping58",
+				"id": "set-wrapping-mode-by-number",
 				"scriptName": "SetWrapping",
 				"highlight": false,
 				"params": [
@@ -246,7 +269,7 @@
 			},
 			{
 				"c2id": 60,
-				"id": "setcustomproperty60",
+				"id": "set-custom-property",
 				"scriptName": "SetCustomProperty",
 				"highlight": false,
 				"params": [
@@ -258,33 +281,23 @@
 		"expressions": [
 		]
 	},
-	"shadow": {
-		"conditions": [
-		],
-		"actions": [
-			{
-				"c2id": 61,
-				"id": "setshadow61",
-				"scriptName": "SetShadow",
-				"highlight": false,
-				"params": [
-					{"id":"offset_x0", "type":"number", "initialValue":"10"},
-					{"id":"offset_y1", "type":"number", "initialValue":"10"},
-					{"id":"blur2", "type":"number", "initialValue":"20"},
-					{"id":"color3", "type":"any", "initialValue":"\"rgb(0, 0, 0)\""}
-				]
-			}
-		],
-		"expressions": [
-		]
-	},
 	"tag": {
 		"conditions": [
+			{
+				"c2id": 1,
+				"id": "define-tag",
+				"scriptName": "DefineClass",
+				"isInvertible": "false",
+				"highlight": false,
+				"params": [
+					{"id":"name0", "type":"string", "initialValue":"\"\""}
+				]
+			}			
 		],
 		"actions": [
 			{
 				"c2id": 62,
-				"id": "addcsstags62",
+				"id": "add-css-tags",
 				"scriptName": "AddCSSTags",
 				"highlight": false,
 				"params": [
@@ -293,25 +306,18 @@
 			}
 		],
 		"expressions": [
-		]
-	},
-	"underline": {
-		"conditions": [
-		],
-		"actions": [
 			{
-				"c2id": 63,
-				"id": "setunderline63",
-				"scriptName": "SetUnderline",
+				"c2id": 21,
+				"id": "last-tag-prop-value",
+				"expressionName": "LastClassPropValue",
+				"scriptName": "LastClassPropValue",
 				"highlight": false,
+				"returnType": "any",
+				"isVariadicParameters": true,
 				"params": [
-					{"id":"color0", "type":"any", "initialValue":"\"rgb(0, 0, 0)\""},
-					{"id":"thickness1", "type":"number", "initialValue":"1"},
-					{"id":"offset2", "type":"number", "initialValue":"0"}
+					{"id":"name0", "type":"string", "initialValue":"\"\""}
 				]
-			}
-		],
-		"expressions": [
+			}			
 		]
 	},
 	"background": {
@@ -320,7 +326,7 @@
 		"actions": [
 			{
 				"c2id": 91,
-				"id": "setbackgroundcolor91",
+				"id": "set-background-color",
 				"scriptName": "SetBackgroundColor",
 				"highlight": false,
 				"params": [
@@ -337,7 +343,7 @@
 		"actions": [
 			{
 				"c2id": 101,
-				"id": "lockcanvassize101",
+				"id": "lock-canvas-size",
 				"scriptName": "LockCanvasSize",
 				"highlight": false,
 				"params": [
@@ -347,7 +353,7 @@
 			},
 			{
 				"c2id": 102,
-				"id": "unlockcanvassize102",
+				"id": "unlock-canvas-size",
 				"scriptName": "UnLockCanvasSize",
 				"highlight": false
 			}
@@ -355,13 +361,13 @@
 		"expressions": [
 		]
 	},
-	"image_bank": {
+	"image-bank": {
 		"conditions": [
 		],
 		"actions": [
 			{
 				"c2id": 111,
-				"id": "addimage111",
+				"id": "add-image",
 				"scriptName": "AddImage",
 				"highlight": false,
 				"params": [
@@ -372,7 +378,7 @@
 			},
 			{
 				"c2id": 112,
-				"id": "removeimage112",
+				"id": "remove-image",
 				"scriptName": "RemoveImage",
 				"highlight": false,
 				"params": [
@@ -381,50 +387,12 @@
 			},
 			{
 				"c2id": 113,
-				"id": "removeall113",
+				"id": "remove-all",
 				"scriptName": "RemoveAll",
 				"highlight": false
 			}
 		],
 		"expressions": [
-		]
-	},
-	"tag_(class)": {
-		"conditions": [
-			{
-				"c2id": 1,
-				"id": "defineclass1",
-				"scriptName": "DefineClass",
-				"isInvertible": "false",
-				"highlight": false,
-				"params": [
-					{"id":"name0", "type":"string", "initialValue":"\"\""}
-				]
-			}
-		],
-		"actions": [
-		],
-		"expressions": [
-		]
-	},
-	"class": {
-		"conditions": [
-		],
-		"actions": [
-		],
-		"expressions": [
-			{
-				"c2id": 21,
-				"id": "lastclasspropvalue21",
-				"expressionName": "LastClassPropValue",
-				"scriptName": "LastClassPropValue",
-				"highlight": false,
-				"returnType": "any",
-				"isVariadicParameters": true,
-				"params": [
-					{"id":"name0", "type":"string", "initialValue":"\"\""}
-				]
-			}
 		]
 	}
 }
