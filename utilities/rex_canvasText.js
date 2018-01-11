@@ -276,7 +276,6 @@
     };
 
     CanvasTextKlassProto.updatePens = function (pensMgr, textInfo, noWrap) {
-        debugger
         if (textInfo == null)
             textInfo = this.textInfo;
 
@@ -334,7 +333,7 @@
             }
 
             // add text pen            
-            else {
+            else if (rawText !== "") {
                 if (!noWrap) {
                     // Save the current context.
                     this.context.save();

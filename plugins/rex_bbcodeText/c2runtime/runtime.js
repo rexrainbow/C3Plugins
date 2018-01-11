@@ -6,12 +6,12 @@ assert2(cr.plugins_, "cr.plugins_ not created");
 
 /////////////////////////////////////
 // Plugin class
-cr.plugins_.rex_TagText = function (runtime) {
+cr.plugins_.rex_bbcodeText = function (runtime) {
     this.runtime = runtime;
 };
 
 (function () {
-    var pluginProto = cr.plugins_.rex_TagText.prototype;
+    var pluginProto = cr.plugins_.rex_bbcodeText.prototype;
 
     pluginProto.onCreate = function () {
         // Override the 'set width' action
@@ -77,17 +77,15 @@ cr.plugins_.rex_TagText = function (runtime) {
         this.wrapbyword = (this.properties[9] === 0); // 0=word, 1=character
         this.visible = this.properties[10]; // 0=visible, 1=invisible
 
-        this.stroke = "none";
         this.textShadow = "";
 
         this.lastwidth = this.width;
         this.lastwrapwidth = this.width;
         this.lastheight = this.height;
 
-
         this.baseLineMode = this.properties[12];
         this.vshift = this.properties[13] * this.runtime.devicePixelRatio;
-        this.isForceRender = this.properties[14];
+        this.isForceRender = (this.properties[14] === 1);
         this.LockCanvasSize(this.properties[15], this.width, this.height);
 
         // For WebGL rendering
@@ -97,34 +95,34 @@ cr.plugins_.rex_TagText = function (runtime) {
         this.need_text_redraw = false;
         this.last_render_tick = this.runtime.tickcount;
 
-        if (this.recycled) {
+        if (this.recycled)
             this.rcTex.set(0, 0, 1, 1);
-        } else {
+        else
             this.rcTex = new cr.rect(0, 0, 1, 1);
-        }
 
         // In WebGL renderer tick this text object to release memory if not rendered any more
         if (this.runtime.glwrap)
             this.runtime.tickMe(this);
 
-        this.tagInfo = null;
+        assert2(this.pxHeight, "Could not determine font text height");
+
         if (!this.recycled) {
-            var self = this;
-            this.savedClasses = {}; // class define            
             this.canvasText = new window.rexObjs.CanvasTextKlass();
             this.canvasText.imageBank = window.rexObjs.ImageBank;
             this.canvasText.splitTextFn = splitText;
-            this.canvasText.tagText2PropFn = function (txt, previousProp) {
-                return tagText2Prop(txt, previousProp, self.savedClasses);
-            };
-            this.canvasText.prop2TagTextFn = prop2TagText;
-        } else {
-            for (var k in this.savedClasses)
-                delete this.savedClasses[k];
+            this.canvasText.tagText2PropFn =
+
+                this.canvasText.prop2TagTextFn = prop2TagText;
         }
         this.canvasText.Reset(this);
         this.canvasText.textBaseline = (this.baseLineMode === 0) ? "alphabetic" : "top";
-        this.canvasText.backgroundColor = this.properties[16];
+        this.canvasText.stroke.lineWidth = this.properties[16];
+        this.canvasText.stroke.lineJoin = lineJoinMode[this.properties[17]];
+        this.canvasText.underline.thickness = this.properties[18];
+        this.canvasText.underline.offset = this.properties[19];
+        this.setShadow(this.properties[20], this.properties[21], this.properties[22], this.properties[23]);
+
+        this.canvasText.backgroundColor = this.properties[24];
 
         // render text at object initialize
         if (this.text)
@@ -155,15 +153,15 @@ cr.plugins_.rex_TagText = function (runtime) {
         return Math.ceil((pt / 72.0) * 96.0) + 4; // assume 96dpi...
     };
 
-    instanceProto.setFont = function (font) {
-        var arr = font.split(" ");
+    instanceProto.setFont = function () {
+        var arr = this.font.split(" ");
 
         var i;
         for (i = 0; i < arr.length; i++) {
             // Ends with 'pt'
             if (arr[i].substr(arr[i].length - 2, 2) === "pt") {
                 this.ptSize = parseInt(arr[i].substr(0, arr[i].length - 2));
-                this.pxHeight = pt2px(this.ptSize);
+                this.pxHeight = Math.ceil((this.ptSize / 72.0) * 96.0) + 4; // assume 96dpi...
 
                 if (i > 0)
                     this.fontstyle = arr[i - 1];
@@ -182,13 +180,13 @@ cr.plugins_.rex_TagText = function (runtime) {
 
     instanceProto.saveToJSON = function () {
         return {
-            "cls": this.savedClasses,
             "t": this.text,
+            "f": this.font,
             "c": this.color,
             "ha": this.halign,
             "va": this.valign,
             "wr": this.wrapbyword,
-            "lho": this.lineHeightOffset,
+            "lho": this.line_height_offset,
             "vs": this.vshift,
             "fn": this.facename,
             "fs": this.fontstyle,
@@ -200,18 +198,18 @@ cr.plugins_.rex_TagText = function (runtime) {
             "txtObj": this.canvasText.saveToJSON(),
             "isLcs": this.isCanvasSizeLocked,
             "lcw": this.lockedCanvasWidth,
-            "lch": this.lockedCanvasHeight,
+            "lch": this.lockedCanvasHeight
         };
     };
 
     instanceProto.loadFromJSON = function (o) {
-        this.savedClasses = o["cls"];
         this.text = o["t"];
+        this.font = o["f"];
         this.color = o["c"];
         this.halign = o["ha"];
         this.valign = o["va"];
         this.wrapbyword = o["wr"];
-        this.lineHeightOffset = o["lho"];
+        this.line_height_offset = o["lho"];
         this.vshift = o["vs"];
         this.facename = o["fn"];
         this.fontstyle = o["fs"];
@@ -265,6 +263,7 @@ cr.plugins_.rex_TagText = function (runtime) {
     };
 
     instanceProto.updateFont = function () {
+        this.font = this.fontstyle + " " + this.ptSize.toString() + "pt " + this.facename;
         this.renderText(this.isForceRender);
     };
 
@@ -332,7 +331,7 @@ cr.plugins_.rex_TagText = function (runtime) {
         }
 
         var lineHeight = this.pxHeight;
-        lineHeight += (this.lineHeightOffset * this.runtime.devicePixelRatio);
+        lineHeight += (this.line_height_offset * this.runtime.devicePixelRatio);
 
         // configure
         this.canvasText.canvas = ctx.canvas;
@@ -343,7 +342,6 @@ cr.plugins_.rex_TagText = function (runtime) {
         this.canvasText.defaultProperties.ptSize = this.ptSize.toString() + "pt";
         this.canvasText.defaultProperties.style = this.fontstyle;
         this.canvasText.defaultProperties.color = this.color;
-        this.canvasText.defaultProperties.stroke = this.stroke;
         this.canvasText.defaultProperties.shadow = this.textShadow;
         this.canvasText.lineHeight = lineHeight;
 
@@ -369,7 +367,7 @@ cr.plugins_.rex_TagText = function (runtime) {
         var need_redraw = this.text_changed || this.need_text_redraw;
         this.need_text_redraw = false;
         var layerScale = this.layer.getScale();
-        var layerAngle = this.layer.getAngle();
+        var layer_angle = this.layer.getAngle();
         var rcTex = this.rcTex;
 
         // Calculate size taking in to account scale
@@ -447,7 +445,7 @@ cr.plugins_.rex_TagText = function (runtime) {
         var blx = this.layer.layerToCanvas(q.blx, q.bly, true, true);
         var bly = this.layer.layerToCanvas(q.blx, q.bly, false, true);
 
-        if (this.runtime.pixel_rounding || (this.angle === 0 && layerAngle === 0)) {
+        if (this.runtime.pixel_rounding || (this.angle === 0 && layer_angle === 0)) {
             var ox = ((tlx + 0.5) | 0) - tlx;
             var oy = ((tly + 0.5) | 0) - tly
 
@@ -461,7 +459,7 @@ cr.plugins_.rex_TagText = function (runtime) {
             bly += oy;
         }
 
-        if (this.angle === 0 && layerAngle === 0) {
+        if (this.angle === 0 && layer_angle === 0) {
             trx = tlx + scaledwidth;
             try_ = tly;
             brx = trx;
@@ -512,8 +510,8 @@ cr.plugins_.rex_TagText = function (runtime) {
         inst.draw(ctx, null, true);
     };
 
-    instanceProto.renderText = function (isRenderNow) {
-        if (isRenderNow) {
+    instanceProto.renderText = function (is_render_now) {
+        if (is_render_now) {
             this.text_changed = true;
             this.fakeRender();
         }
@@ -523,11 +521,19 @@ cr.plugins_.rex_TagText = function (runtime) {
     };
 
     instanceProto.set_text = function (txt) {
-        txt = txt.replace(/<\s*br\s*\/>/g, "\n"); // replace "<br />" to "\n"
         if (this.text !== txt) {
             this.text = txt;
             this.renderText(this.isForceRender);
         }
+    };
+
+    instanceProto.setShadow = function (offsetX, offsetY, blur_, color_) {
+        color_ = color_.replace(/ /g, '');
+
+        // 2px 2px 2px #000        
+        var shadow = offsetX.toString() + "px " + offsetY.toString() + "px " + blur_.toString() + "px " + color_;
+
+        this.textShadow = shadow;
     };
 
     instanceProto.LockCanvasSize = function (isLocked, width, height) {
@@ -536,9 +542,25 @@ cr.plugins_.rex_TagText = function (runtime) {
         this.lockedCanvasHeight = height;
     };
 
+    var copy_dict = function (in_obj, out_obj, is_merge) {
+        if (out_obj == null)
+            out_obj = {};
+
+        if (!is_merge) {
+            for (var k in out_obj) {
+                if (!in_obj.hasOwnProperty(k))
+                    delete out_obj[k];
+            }
+        }
+
+        for (var k in in_obj)
+            out_obj[k] = in_obj[k];
+
+        return out_obj;
+    };
+
     /**BEGIN-PREVIEWONLY**/
     instanceProto.getDebuggerValues = function (propsections) {
-        var font = this.fontstyle + " " + this.ptSize.toString() + "pt " + this.facename;
         propsections.push({
             "title": this.type.name,
             "properties": [{
@@ -547,11 +569,11 @@ cr.plugins_.rex_TagText = function (runtime) {
                 },
                 {
                     "name": "Font",
-                    "value": font
+                    "value": this.font
                 },
                 {
                     "name": "Line height",
-                    "value": this.lineHeightOffset
+                    "value": this.line_height_offset
                 },
                 {
                     "name": "Baseline",
@@ -565,9 +587,10 @@ cr.plugins_.rex_TagText = function (runtime) {
         if (name === "Text")
             this.text = value;
         else if (name === "Font") {
-            this.setFont(value);
+            this.font = value;
+            this.setFont();
         } else if (name === "Line height")
-            this.lineHeightOffset = value;
+            this.line_height_offset = value;
 
         this.text_changed = true;
 
@@ -585,17 +608,64 @@ cr.plugins_.rex_TagText = function (runtime) {
         return this.canvasText.copyPensMgr(pensMgr);
     };
 
-    // internal
-    // tags
-    instanceProto.defineClass = function (id, definition) {
-        this.savedClasses[id] = definition;
+    // internal    
+    var __splitTextResult = [];
+    var splitText = function (txt, mode) {
+        var re = /\[b\]|\[\/b\]|\[i\]|\[\/i\]|\[size=(\d+)\]|\[\/size\]|\[color=([a-z]+|#[0-9abcdef]+)\]|\[\/color\]|\[u\]|\[u=([a-z]+|#[0-9abcdef]+)\]|\[\/u\]|\[shadow\]|\[\/shadow\]|\[stroke=([a-z]+|#[0-9abcdef]+)\]|\[\/stroke\]|\[img=([^\]]+)\]|\[\/img\]/ig;
+        __splitTextResult.length = 0;
+        var arr, m, charIdx = 0,
+            totalLen = txt.length,
+            matchStart = totalLen;
+        while (true) {
+            arr = re.exec(txt);
+            if (!arr) {
+                break;
+            }
+
+
+            m = arr[0];
+            matchStart = re["lastIndex"] - m.length;
+
+            if (charIdx < matchStart) {
+                __splitTextResult.push(txt.substring(charIdx, matchStart));
+
+            }
+
+            if (mode == null)
+                __splitTextResult.push(m);
+
+            charIdx = re["lastIndex"];
+        }
+
+
+        if (charIdx < totalLen) {
+            __splitTextResult.push(txt.substring(charIdx, totalLen));
+        }
+        return __splitTextResult;
     };
 
-    // text to properties
-    var __re_class_header = /<\s*class=/i;
-    var __re_class = /<\s*class=["|']([^"|']+)["|']\s*\>([\s\S]*?)<\s*\/class\s*\>/;
-    var __re_style_header = /<\s*style=/i;
-    var __re_style = /<\s*style=["|']([^"|']+)["|']\s*\>([\s\S]*?)<\s*\/style\s*\>/;
+
+
+    var __re_bold_open = /\[b\]/i;
+    var __re_bold_close = /\[\/b\]/i;
+    var __re_italics_open = /\[i\]/i;
+    var __re_italics_close = /\[\/i\]/i;
+    var __re_size_open = /\[size=(\d+)\]/i;
+    var __re_size_close = /\[\/size\]/i;
+    var __re_color_open = /\[color=([a-z]+|#[0-9abcdef]+)\]/i;
+    var __re_color_close = /\[\/color\]/i;
+    var __re_underline_open = /\[u\]/i;
+    var __re_underline_openC = /\[u=([a-z]+|#[0-9abcdef]+)\]/i;
+    var __re_underline_close = /\[\/u\]/i;
+    var __re_shadow_open = /\[shadow\]/i;
+    var __re_shadow_close = /\[\/shadow\]/i;
+    var __re_stroke_open = /\[stroke=([a-z]+|#[0-9abcdef]+)\]/i;
+    var __re_stroke_close = /\[\/stroke\]/i;
+    var __re_image_open = /\[img=([^\]]+)\]/i;
+    var __re_image_close = /\[\/img\]/i;
+    var __curr_propScope = {};
+    var PROP_REMOVE = false;
+    var PROP_ADD = true;
     var __text2PropResult = {
         rawText: "",
         prop: null
@@ -603,22 +673,56 @@ cr.plugins_.rex_TagText = function (runtime) {
     var tagText2Prop = function (txt, previousProp, tags) {
         var rawText, propOut;
         // Check if current fragment is a class tag.
-        if (__re_class_header.test(txt)) {
-            // Looks the attributes and text inside the class tag.
-            var innerMatch = txt.match(__re_class);
-            if (innerMatch != null) {
-                propOut = transferProp(tags[innerMatch[1]]);
-                propOut["class"] = innerMatch[1];
-                rawText = innerMatch[2];
-            }
-        } else if (__re_style_header.test(txt)) {
-            // Looks the attributes and text inside the style tag.
-            var innerMatch = txt.match(__re_style);
-            if (innerMatch != null) {
-                // innerMatch[1] contains the properties of the attribute.               
-                propOut = transferProp(style2Prop(innerMatch[1]));
-                rawText = innerMatch[2];
-            }
+        if (__re_bold_open.test(m)) {
+            updatePropScope(previousProp, PROP_ADD, "b", true);
+            continue;
+        } else if (__re_bold_close.test(m)) {
+            updatePropScope(previousProp, PROP_REMOVE, "b");
+            continue;
+        } else if (__re_italics_open.test(m)) {
+            updatePropScope(previousProp, PROP_ADD, "i", true);
+            continue;
+        } else if (__re_italics_close.test(m)) {
+            updatePropScope(previousProp, PROP_REMOVE, "i");
+            continue;
+        } else if (__re_size_open.test(m)) {
+            innerMatch = m.match(__re_size_open);
+            updatePropScope(previousProp, PROP_ADD, "size", innerMatch[1] + "pt");
+            continue;
+        } else if (__re_size_close.test(m)) {
+            updatePropScope(previousProp, PROP_REMOVE, "size");
+            continue;
+        } else if (__re_color_open.test(m)) {
+            innerMatch = m.match(__re_color_open);
+            updatePropScope(previousProp, PROP_ADD, "color", innerMatch[1]);
+            continue;
+        } else if (__re_color_close.test(m)) {
+            updatePropScope(previousProp, PROP_REMOVE, "color");
+            continue;
+        } else if (__re_underline_open.test(m)) {
+            innerMatch = m.match(__re_underline_open);
+            updatePropScope(previousProp, PROP_ADD, "u", true);
+            continue;
+        } else if (__re_underline_openC.test(m)) {
+            innerMatch = m.match(__re_underline_openC);
+            updatePropScope(previousProp, PROP_ADD, "u", innerMatch[1]);
+            continue;
+        } else if (__re_underline_close.test(m)) {
+            updatePropScope(previousProp, PROP_REMOVE, "u");
+            continue;
+        } else if (__re_shadow_open.test(m)) {
+            updatePropScope(previousProp, PROP_ADD, "shadow", true);
+            continue;
+        } else if (__re_shadow_close.test(m)) {
+            updatePropScope(previousProp, PROP_REMOVE, "shadow");
+            continue;
+        } else if (__re_stroke_open.test(m)) {
+            innerMatch = m.match(__re_stroke_open);
+            updatePropScope(previousProp, PROP_ADD, "stroke", innerMatch[1]);
+            continue;
+        } else if (__re_stroke_close.test(m)) {
+            updatePropScope(previousProp, PROP_REMOVE, "stroke");
+            continue;
         }
 
         if (rawText == null) {
@@ -634,146 +738,50 @@ cr.plugins_.rex_TagText = function (runtime) {
         return __text2PropResult;
     };
 
-    var transferProp = function (propIn, propOut) {
-        var propOut = {};
+    var updatePropScope = function (propScope, op, prop, value) {
+        if (op === PROP_ADD)
+            propScope[prop] = value;
+        else
+            remove_prop(propScope, prop);
 
-        if (!propIn) {
-            return propOut;
-        }
-
-        for (var atribute in propIn) {
-            switch (atribute) {
-                //case "font":
-                //case "color":
-                //case "stroke":
-                //    propOut[atribute] = propIn[atribute];
-                //    break;
-
-                case "font-family":
-                    propOut["family"] = propIn[atribute];
-                    break;
-
-                case "font-weight":
-                    propOut["weight"] = propIn[atribute];
-                    break;
-
-                case "font-size":
-                    propOut["size"] = propIn[atribute];
-                    break;
-
-                case "font-style":
-                    propOut["style"] = propIn[atribute];
-                    break;
-
-
-                case "text-shadow":
-                    propOut["shadow"] = propIn[atribute];
-                    break;
-
-                case "underline":
-                    propOut["u"] = propIn[atribute];
-                    break;
-
-                case "image":
-                    propOut["img"] = propIn[atribute];
-                    break;
-
-                default:
-                    propOut[atribute] = propIn[atribute];
-                    break;
-            }
-        }
-
-        return propOut;
-    };
-
-    var style2Prop = function (s) {
-        s = s.split(";");
-        var i, cnt = s.length;
-        var result = {},
-            prop, k, v;
-        for (i = 0; i < cnt; i++) {
-            prop = s[i].split(":");
-            k = prop[0], v = prop[1];
-            if (isEmpty(k) || isEmpty(v)) {
-                // Wrong property name or value. We jump to the
-                // next loop.
-                continue;
-            }
-
-            result[k] = v;
-        }
-        return result;
-    };
-    var isEmpty = function (str) {
-        // Remove white spaces.
-        str = str.replace(/^\s+|\s+$/, '');
-        return str.length == 0;
+        return propScope;
     };
 
     // properties to text string
-    var __propList = [];
+    var __emptyProp = {};
     var prop2TagText = function (txt, prop, previousProp) {
-        if (prop["class"]) // class mode
-            txt = "<class='" + prop["class"] + "'>" + txt + "</class>";
-        else // style mode
-        {
-            __propList.length = 0;
-            for (var k in prop) {
-                __propList.push(k + ":" + prop[k]);
-            }
+        if (previousProp == null)
+            previousProp = __emptyProp;
 
-            if (__propList.length > 0)
-                txt = "<style='" + __propList.join(";") + "'>" + txt + "</style>";
+        for (var k in previousProp) {
+            if (prop.hasOwnProperty(k))
+                continue;
+
+            txt = "[/" + k + "]" + txt;
         }
+
+        var header = "";
+        for (var k in prop) {
+            if (previousProp[k] === prop[k])
+                continue;
+
+            if (k === "size")
+                header += ("[size=" + prop[k].replace("pt", "") + "]");
+            else if ((k === "color") || (k === "stroke") || (k === "img"))
+                header += ("[" + k + "=" + prop[k] + "]");
+
+            else if (k === "u") {
+                if (prop[k] === true)
+                    header += "[u]";
+                else
+                    header += ("[u=" + prop[k] + "]");
+            } else
+                header += ("[" + k + "]");
+        }
+        txt = header + txt;
+
         return txt;
     };
-
-    // split text into array
-    var __splitTextResult = [];
-    var splitText = function (txt, mode) {
-        var re = /<\s*class=["|']([^"|']+)["|']\s*\>([\s\S]*?)<\s*\/class\s*\>|<\s*style=["|']([^"|']+)["|']\s*\>([\s\S]*?)<\s*\/style\s*\>/g;
-        __splitTextResult.length = 0;
-        var arr, m, charIdx = 0,
-            totalLen = txt.length,
-            matchStart = totalLen;
-        var innerMatch;
-        while (true) {
-            arr = re.exec(txt);
-            if (!arr) {
-                break;
-            }
-
-
-            m = arr[0];
-            matchStart = re["lastIndex"] - m.length;
-
-            if (charIdx < matchStart) {
-                __splitTextResult.push(txt.substring(charIdx, matchStart));
-
-            }
-            if (mode == null) {
-                __splitTextResult.push(m);
-            } else if (mode === 1) { // RAWTEXTONLY_MODE
-                if (__re_class_header.test(m)) {
-                    innerMatch = m.match(__re_class);
-                    __splitTextResult.push(innerMatch[2]);
-                } else if (__re_style_header.test(m)) {
-                    innerMatch = m.match(__re_style);
-                    __splitTextResult.push(innerMatch[2]);
-                }
-            }
-
-            charIdx = re["lastIndex"];
-        }
-
-
-        if (charIdx < totalLen) {
-            __splitTextResult.push(txt.substring(charIdx, totalLen));
-        }
-        return __splitTextResult;
-    };
-
     //////////////////////////////////////
     // Conditions
     function Cnds() {};
@@ -784,25 +792,6 @@ cr.plugins_.rex_TagText = function (runtime) {
             return this.text == text_to_compare;
         else
             return cr.equals_nocase(this.text, text_to_compare);
-    };
-    Cnds.prototype.DefineClass = function (name) {
-        this.tagInfo = {};
-
-        var current_frame = this.runtime.getCurrentEventStack();
-        var current_event = current_frame.current_event;
-        var solModifierAfterCnds = current_frame.isModifierAfterCnds();
-
-        if (solModifierAfterCnds)
-            this.runtime.pushCopySol(current_event.solModifiers);
-
-        current_event.retrigger();
-
-        if (solModifierAfterCnds)
-            this.runtime.popSol(current_event.solModifiers);
-
-        this.defineClass(name, this.tagInfo);
-        this.tagInfo = null;
-        return false;
     };
 
     //////////////////////////////////////
@@ -843,59 +832,40 @@ cr.plugins_.rex_TagText = function (runtime) {
                 break;
         }
 
-        if (this.tagInfo != null) // <class> ... </class>
-        {
-            this.tagInfo["font-family"] = face_;
-            this.tagInfo["font-style"] = newstyle;
-            this.renderText(false);
-        } else // global
-        {
+        if (face_ === this.facename && newstyle === this.fontstyle)
+            return; // no change
 
-            if (face_ === this.facename && newstyle === this.fontstyle)
-                return; // no change
-
-            this.facename = face_;
-            this.fontstyle = newstyle;
-            this.updateFont();
-        }
+        this.facename = face_;
+        this.fontstyle = newstyle;
+        this.updateFont();
     };
 
     Acts.prototype.SetFontSize = function (size_) {
-        if (this.tagInfo != null) // <class> ... </class>
-        {
-            this.tagInfo["font-size"] = size_.toString() + "pt";
-            this.renderText(false);
-        } else // global
-        {
-            if (this.ptSize === size_)
-                return;
+        if (this.ptSize === size_)
+            return;
 
-            this.ptSize = size_;
-            this.pxHeight = pt2px(this.ptSize);
-            this.updateFont();
-        }
+        this.ptSize = size_;
+        this.pxHeight = Math.ceil((this.ptSize / 72.0) * 96.0) + 4; // assume 96dpi...
+        this.updateFont();
     };
 
     Acts.prototype.SetFontColor = function (rgb) {
-        var newcolor = getColor(rgb);
-        if (this.tagInfo != null) // <class> ... </class>
-        {
-            this.tagInfo["color"] = newcolor;
-            this.renderText(false);
-        } else // global
-        {
-            if (newcolor === this.color)
-                return;
+        var newcolor;
+        if (typeof (rgb) == "number")
+            newcolor = "rgb(" + cr.GetRValue(rgb).toString() + "," + cr.GetGValue(rgb).toString() + "," + cr.GetBValue(rgb).toString() + ")";
+        else
+            newcolor = rgb;
 
-            this.color = newcolor;
-            this.renderText(this.isForceRender);
+        if (newcolor === this.color)
+            return;
 
-        }
+        this.color = newcolor;
+        this.renderText(this.isForceRender);
     };
 
     Acts.prototype.SetWebFont = function (familyname_, cssurl_) {
         if (this.runtime.isDomFree) {
-            cr.logexport("[Construct 2] TagText plugin: 'Set web font' not supported on this platform - the action has been ignored");
+            cr.logexport("[Construct 2] Text plugin: 'Set web font' not supported on this platform - the action has been ignored");
             return; // DC todo
         }
 
@@ -908,25 +878,15 @@ cr.plugins_.rex_TagText = function (runtime) {
 
         // Already requested this web font?
         if (requestedWebFonts.hasOwnProperty(cssurl_)) {
+            // Use it immediately without requesting again.  Whichever object
+            // made the original request will refresh the canvas when it finishes
+            // loading.
 
-            if (this.tagInfo != null) // <class> ... </class>
-            {
-                this.tagInfo["font-family"] = newfacename;
-                this.renderText(false);
-            } else // global
-            {
+            if (this.facename === newfacename)
+                return; // no change
 
-                // Use it immediately without requesting again.  Whichever object
-                // made the original request will refresh the canvas when it finishes
-                // loading.
-
-                if (this.facename === newfacename)
-                    return; // no change
-
-                this.facename = newfacename;
-                this.updateFont();
-
-            }
+            this.facename = newfacename;
+            this.updateFont();
 
             // There doesn't seem to be a good way to test if the font has loaded,
             // so just fire a refresh every 100ms for the first 1 second, then
@@ -949,14 +909,8 @@ cr.plugins_.rex_TagText = function (runtime) {
         document.getElementsByTagName('head')[0].appendChild(wf);
         requestedWebFonts[cssurl_] = true;
 
-        if (this.tagInfo != null) // <class> ... </class>
-        {
-            this.tagInfo["font-family"] = newfacename;
-            this.renderText(false);
-        } else {
-            this.facename = "'" + familyname_ + "'";
-            this.updateFont();
-        }
+        this.facename = "'" + familyname_ + "'";
+        this.updateFont();
 
         // Another refresh hack
         for (var i = 1; i < 10; i++) {
@@ -989,42 +943,26 @@ cr.plugins_.rex_TagText = function (runtime) {
                 break;
         }
 
-        if (this.tagInfo != null) // <class> ... </class>
-        {
-            this.tagInfo["font-style"] = newstyle;
-            this.renderText(false);
-        } else // global
-        {
+        if (newstyle === this.fontstyle)
+            return; // no change
 
-            if (newstyle === this.fontstyle)
-                return; // no change
-
-            this.fontstyle = newstyle;
-            this.updateFont();
-        }
+        this.fontstyle = newstyle;
+        this.updateFont();
     };
 
     Acts.prototype.SetFontFace2 = function (face_) {
-        if (this.tagInfo != null) // <class> ... </class>
-        {
-            this.tagInfo["font-family"] = face_;
-            this.renderText(false);
-        } else // global
-        {
+        if (face_ === this.facename)
+            return; // no change
 
-            if (face_ === this.facename)
-                return; // no change
-
-            this.facename = face_;
-            this.updateFont();
-        }
+        this.facename = face_;
+        this.updateFont();
     };
 
-    Acts.prototype.SetLineHeight = function (lineHeightOffset) {
-        if (this.lineHeightOffset === lineHeightOffset)
+    Acts.prototype.SetLineHeight = function (line_height_offset) {
+        if (this.line_height_offset === line_height_offset)
             return;
 
-        this.lineHeightOffset = lineHeightOffset;
+        this.line_height_offset = line_height_offset;
         this.renderText(this.isForceRender);
     };
 
@@ -1055,152 +993,79 @@ cr.plugins_.rex_TagText = function (runtime) {
         this.renderText(this.isForceRender);
     };
 
-
-    Acts.prototype.SetCustomProperty = function (name_, value_) {
-        if (!this.tagInfo)
-            return;
-
-        // <class> ... </class>
-        this.tagInfo[name_] = value_;
-    };
-
     Acts.prototype.SetShadow = function (offsetX, offsetY, blur_, color_) {
-        color_ = color_.replace(/ /g, '');
-
-        // 2px 2px 2px #000        
-        var shadow = offsetX.toString() + "px " + offsetY.toString() + "px " + blur_.toString() + "px " + color_;
-        if (this.tagInfo != null) // <class> ... </class>
-        {
-
-            this.tagInfo["text-shadow"] = shadow
-            this.renderText(false);
-        } else // global
-        {
-            this.textShadow = shadow;
-            this.renderText(this.isForceRender);
-        }
+        this.setShadow(offsetX, offsetY, blur_, color_);
+        this.renderText(this.isForceRender);
     };
 
-    Acts.prototype.AddCSSTags = function (css_) {
-        // reference - https://github.com/jotform/css.js
-        var cssRegex = new RegExp('([\\s\\S]*?){([\\s\\S]*?)}', 'gi');
-        var commentsRegex;
-
-        var isRenderNow = false;
-        var arr;
-        var tagName, comments;
-        var props, rules, i, cnt, elems, n, v;
-        while (true) {
-            arr = cssRegex.exec(css_);
-            if (arr === null)
-                break;
-
-            // selector
-            tagName = arr[1].split('\r\n').join('\n').trim();
-            commentsRegex = new RegExp(this.cssCommentsRegex, 'gi');
-            comments = commentsRegex.exec(tagName);
-            if (comments !== null) {
-                tagName = tagName.replace(commentsRegex, '').trim();
-            }
-            tagName = tagName.replace(/\n+/, "\n");
-
-            // rules
-            props = {};
-            rules = arr[2].split('\r\n').join('\n').split(';');
-            cnt = rules.length;
-            for (i = 0; i < cnt; i++) {
-                if (rules[i].indexOf(":") === (-1))
-                    continue;
-
-                elems = rules[i].trim().split(':');
-                n = elems[0].trim().toLowerCase();
-                v = elems[1].trim();
-                props[n] = v;
-            }
-            this.defineClass(tagName, props);
-            isRenderNow = true;
-        }
-
-        if (isRenderNow)
-            this.renderText(this.isForceRender);
-    };
-
-    Acts.prototype.SetUnderline = function (color_, thinkness, offset) {
-        color_ = color_.replace(/ /g, '');
-
-        // #000 1px 0px
-        var underline = color_ + " " + thinkness.toString() + "px " + offset.toString() + "px";
-        if (this.tagInfo != null) // <class> ... </class>
-        {
-
-            this.tagInfo["underline"] = underline;
-            this.renderText(false);
-        }
-        //else    // global
-        //{
-        //    this.renderText(this.isForceRender);
-        //}              
-    };
-
-    Acts.prototype.SetStroke = function (color_, lineWidth, lineJoin) {
-        color_ = color_.replace(/ /g, '');
-        lineJoin = lineJoinMode[lineJoin];
-
-        // #000 1px
-        var stroke = color_ + " " + lineWidth.toString() + "px " + lineJoin;
-        if (this.tagInfo != null) // <class> ... </class>
-        {
-            this.tagInfo["stroke"] = stroke;
-            this.renderText(false);
-        } else // global
-        {
-            if (stroke === this.stroke)
-                return;
-
-            this.stroke = stroke;
-            this.renderText(this.isForceRender);
-
-        }
-    };
-
-    Acts.prototype.InsertImage = function (key) {
-        if (this.tagInfo != null) // <class> ... </class>
-        {
-            this.tagInfo["image"] = key;
-            this.renderText(false);
-        }
-        //else    // global
-        //{
-        //    this.renderText(this.isForceRender);
-        //}          
-    };
-
-    Acts.prototype.AddImage = function (key, objs, yoffset) {
-        if (!objs)
+    Acts.prototype.SetThickness = function (w) {
+        if (w === this.canvasText.underline.thickness)
             return;
 
-        window.rexObjs.ImageBank.AddImage(key, objs.getFirstPicked(), yoffset);
-        this.renderText(this.isForceRender);
+        this.canvasText.underline.thickness = w;
+        this.need_text_redraw = true;
+        this.runtime.redraw = true;
+    };
+    Acts.prototype.SetOffsetY = function (offset) {
+        if (offset === this.canvasText.underline.offset)
+            return;
+
+        this.canvasText.underline.offset = offset;
+        this.need_text_redraw = true;
+        this.runtime.redraw = true;
     };
 
-    Acts.prototype.RemoveImage = function (key) {
-        window.rexObjs.ImageBank.RemoveImage(key);
-        this.renderText(this.isForceRender);
+    Acts.prototype.SetStrokeLineWidth = function (w) {
+        if (w === this.canvasText.stroke.lineWidth)
+            return;
+
+        this.canvasText.stroke.lineWidth = w;
+        this.need_text_redraw = true;
+        this.runtime.redraw = true;
     };
 
-    Acts.prototype.RemoveAll = function () {
-        window.rexObjs.ImageBank.RemoveAll();
-        this.renderText(this.isForceRender);
+    Acts.prototype.SetStrokeLineJoin = function (m) {
+        m = lineJoinMode[m];
+        if (m === this.canvasText.stroke.lineJoin)
+            return;
+
+        this.canvasText.stroke.lineJoin = m;
+        this.need_text_redraw = true;
+        this.runtime.redraw = true;
     };
 
-    Acts.prototype.SetBackgroundColor = function (rgb) {
-        var color = getColor(rgb);
+    Acts.prototype.SetBackgroundColor = function (color) {
         if (color === this.canvasText.backgroundColor)
             return;
 
         this.canvasText.backgroundColor = color;
         this.need_text_redraw = true;
         this.runtime.redraw = true;
+    };
+
+    Acts.prototype.LockCanvasSize = function (width, height) {
+        this.LockCanvasSize(true, width, height);
+    };
+    Acts.prototype.UnLockCanvasSize = function () {
+        this.LockCanvasSize(false);
+    };
+
+    Acts.prototype.AddImage = function (key, objs, yoffset) {
+        if (!objs)
+            return;
+
+        window.RexImageBank.AddImage(key, objs.getFirstPicked(), yoffset);
+        this.renderText(this.isForceRender);
+    };
+
+    Acts.prototype.RemoveImage = function (key) {
+        window.RexImageBank.RemoveImage(key);
+        this.renderText(this.isForceRender);
+    };
+
+    Acts.prototype.RemoveAll = function () {
+        window.RexImageBank.RemoveAll();
+        this.renderText(this.isForceRender);
     };
 
     //////////////////////////////////////
@@ -1231,7 +1096,7 @@ cr.plugins_.rex_TagText = function (runtime) {
 
     Exps.prototype.TextHeight = function (ret) {
         var total_line_count = this.canvasText.getLines().length;
-        var text_height = total_line_count * (this.pxHeight + this.lineHeightOffset) - this.lineHeightOffset;
+        var text_height = total_line_count * (this.pxHeight + this.line_height_offset) - this.line_height_offset;
 
         if (this.baseLineMode === 0) // alphabetic
             text_height += this.vshift;
@@ -1245,14 +1110,204 @@ cr.plugins_.rex_TagText = function (runtime) {
 
     Exps.prototype.LastClassPropValue = function (ret, name, default_value) {
         var val;
-        var lastPen = this.canvasText.getLastPen();
-        if (lastPen)
-            val = lastPen.prop[name];
+        var last_pen = this.canvasText.getLastPen();
+        if (last_pen)
+            val = last_pen.prop[name];
 
         if (!val)
             val = default_value || 0;
 
         ret.set_any(val);
+    };
+
+
+
+    CanvasTextProto.updatePens = function (pensMgr, textInfo, ignore_wrap) {
+        if (textInfo == null)
+            textInfo = this.textInfo;
+
+        pensMgr.freePens();
+
+        // Save the textInfo into separated vars to work more comfortably.
+        var text = textInfo["text"],
+            boxWidth = textInfo["boxWidth"],
+            boxHeight = textInfo["boxHeight"];
+        if (text === "")
+            return;
+
+        //var start_x = textInfo["x"], start_y = textInfo["y"];  
+        // textInfo["x"], textInfo["y"] had been moved to drawPens
+
+        var start_x = 0,
+            start_y = 0;
+        var cursor_x = start_x,
+            cursor_y = start_y;
+        var proText;
+
+
+        // The main regex. Looks for <style>, <class> tags.
+        var m, match = splitText(text);
+        if (match.length === 0)
+            return;
+        var i, match_cnt = match.length;
+        var innerMatch = null;
+
+        for (i = 0; i < match_cnt; i++) {
+
+            m = match[i];
+            // Check if current fragment is a class tag.
+            if (__re_bold_open.test(m)) {
+                updatePropScope(__curr_propScope, PROP_ADD, "b", true);
+                continue;
+            } else if (__re_bold_close.test(m)) {
+                updatePropScope(__curr_propScope, PROP_REMOVE, "b");
+                continue;
+            } else if (__re_italics_open.test(m)) {
+                updatePropScope(__curr_propScope, PROP_ADD, "i", true);
+                continue;
+            } else if (__re_italics_close.test(m)) {
+                updatePropScope(__curr_propScope, PROP_REMOVE, "i");
+                continue;
+            } else if (__re_size_open.test(m)) {
+                innerMatch = m.match(__re_size_open);
+                updatePropScope(__curr_propScope, PROP_ADD, "size", innerMatch[1] + "pt");
+                continue;
+            } else if (__re_size_close.test(m)) {
+                updatePropScope(__curr_propScope, PROP_REMOVE, "size");
+                continue;
+            } else if (__re_color_open.test(m)) {
+                innerMatch = m.match(__re_color_open);
+                updatePropScope(__curr_propScope, PROP_ADD, "color", innerMatch[1]);
+                continue;
+            } else if (__re_color_close.test(m)) {
+                updatePropScope(__curr_propScope, PROP_REMOVE, "color");
+                continue;
+            } else if (__re_underline_open.test(m)) {
+                innerMatch = m.match(__re_underline_open);
+                updatePropScope(__curr_propScope, PROP_ADD, "u", true);
+                continue;
+            } else if (__re_underline_openC.test(m)) {
+                innerMatch = m.match(__re_underline_openC);
+                updatePropScope(__curr_propScope, PROP_ADD, "u", innerMatch[1]);
+                continue;
+            } else if (__re_underline_close.test(m)) {
+                updatePropScope(__curr_propScope, PROP_REMOVE, "u");
+                continue;
+            } else if (__re_shadow_open.test(m)) {
+                updatePropScope(__curr_propScope, PROP_ADD, "shadow", true);
+                continue;
+            } else if (__re_shadow_close.test(m)) {
+                updatePropScope(__curr_propScope, PROP_REMOVE, "shadow");
+                continue;
+            } else if (__re_stroke_open.test(m)) {
+                innerMatch = m.match(__re_stroke_open);
+                updatePropScope(__curr_propScope, PROP_ADD, "stroke", innerMatch[1]);
+                continue;
+            } else if (__re_stroke_close.test(m)) {
+                updatePropScope(__curr_propScope, PROP_REMOVE, "stroke");
+                continue;
+            }
+
+            // add image pen            
+            else if (__re_image_open.test(m)) {
+                innerMatch = m.match(__re_image_open);
+
+                var key = innerMatch[1];
+                var img = window.RexImageBank.GetImage(key);
+                if (!img)
+                    continue;
+
+                updatePropScope(__curr_propScope, PROP_ADD, "img", key);
+
+                if (!ignore_wrap) {
+                    if (img.width > boxWidth - (cursor_x - start_x)) {
+                        cursor_x = start_x;
+                        cursor_y += this.lineHeight;
+                    }
+                    pensMgr.addPen(null, // text
+                        cursor_x, // x
+                        cursor_y, // y
+                        img.width, // width
+                        __curr_propScope, // prop
+                        0 // new_line_mode
+                    );
+
+                    cursor_x += img.width;
+                } else {
+                    pensMgr.addPen(null, // text
+                        null, // x
+                        null, // y
+                        null, // width
+                        __curr_propScope, // prop
+                        0 // new_line_mode
+                    );
+                }
+
+                updatePropScope(__curr_propScope, PROP_REMOVE, "img");
+                continue;
+            } else if (__re_image_close.test(m)) {
+                updatePropScope(__curr_propScope, PROP_REMOVE, "img");
+                continue;
+            }
+
+            // add text pen
+            else {
+                proText = m;
+
+                if (!ignore_wrap) {
+                    // Save the current context.
+                    this.context.save();
+
+                    this.apply_propScope(__curr_propScope);
+
+                    var wrap_lines = wordWrap(proText, this.context, boxWidth, this.plugin.wrapbyword, cursor_x - start_x);
+
+                    // add pens
+                    var lcnt = wrap_lines.length,
+                        n, wrap_line;
+                    for (n = 0; n < lcnt; n++) {
+                        wrap_line = wrap_lines[n];
+                        pensMgr.addPen(wrap_line.text, // text
+                            cursor_x, // x
+                            cursor_y, // y
+                            wrap_line.width, // width
+                            __curr_propScope, // prop
+                            wrap_line.newLineMode // new_line_mode
+                        );
+
+                        if (wrap_line.newLineMode !== NO_NEWLINE) {
+                            cursor_x = start_x;
+                            cursor_y += this.lineHeight;
+                        } else {
+                            cursor_x += wrap_line.width;
+                        }
+
+                    }
+
+                    this.context.restore();
+                } else {
+                    pensMgr.addPen(proText, // text
+                        null, // x
+                        null, // y
+                        null, // width
+                        __curr_propScope, // prop
+                        0 // new_line_mode
+                    );
+                    // new line had been included in raw text
+                }
+                continue;
+            }
+        } // for (i = 0; i < match_cnt; i++) 
+
+
+        // clean __curr_propScope
+        for (var k in __curr_propScope)
+            delete __curr_propScope[k];
+    };
+
+    var remove_prop = function (propScope, prop) {
+        if (propScope.hasOwnProperty(prop))
+            delete propScope[prop];
     };
 
 }());

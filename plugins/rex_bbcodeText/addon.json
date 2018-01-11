@@ -1,0 +1,30 @@
+{
+	"is-c3-addon": true,
+	"type": "plugin",
+	"name": "BBcode Text",
+	"id": "rex_bbcodeText",
+	"version": "0.1.0.0",
+	"author": "Rex.Rainbow",
+	"website": "http://",
+	"documentation": "http://",
+	"description": "Displays text with bbcode protocol.",
+	"editor-scripts": [
+						"plugin.js",
+						"type.js",
+						"instance.js"
+					],
+	"file-list": [
+		"c2runtime/runtime.js",
+		"c2runtime/rex_objCacheKlass.js",
+		"c2runtime/rex_text2Lines.js",
+		"c2runtime/rex_canvasText.js",	
+		"c2runtime/rex_imageBank.js",		
+		"lang/en-US.json",
+		"aces.json",
+		"addon.json",
+		"icon.png",
+		"plugin.js",
+		"type.js",
+		"instance.js"
+	]
+}

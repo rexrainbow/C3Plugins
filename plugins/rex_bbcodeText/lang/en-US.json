@@ -1,12 +1,12 @@
 {
 	"languageTag": "en-US",
-	"fileDescription": "Strings for Tag Text.",
+	"fileDescription": "Strings for BBcode Text.",
 	"text": {
 		"plugins": {
-			"rex_tagtext": {
-				"name": "Tag Text",
-				"description": "Displays text with multi-color",
-				"help-url": "https://rexrainbow.github.io/C2RexDoc/c2rexpluginsACE/plugin_rex_tagtext.html",
+			"rex_bbcodetext": {
+				"name": "BBcode Text",
+				"description": "Displays text with bbcode protocol.",
+				"help-url": "http://",
 				"properties": {
 					"text": {
 						"name": "Text",
@@ -19,7 +19,7 @@
 					"font-size": {
 						"name": "Size",
 						"desc": "The size of text to display, in points (pt)."
-						},
+						},						
 					"line-height": {
 						"name": "Line height",
 						"desc": "Offset to the default line height, in pixels. 0 is default line height."
@@ -105,6 +105,55 @@
 						"name": "Lock canvas size",
 						"desc": "Lock canvas size to initial size."
 						},
+					"stroke": {
+						"name": "Stroke",
+						"desc": ""
+						},
+					"stroke-line-width": {
+						"name": "Stroke line width",
+						"desc": "Line width of stroke, in pixels."
+						},
+					"stroke-line-join": {
+						"name": "Stroke line join",
+						"desc": "Baseline of text alignment.",
+						"items": {
+							"miter":"Miter",
+							"round":"Round",
+							"bevel":"Bevel"
+							}
+						},
+					"underline": {
+						"name": "Underline",
+						"desc": ""
+						},
+					"underline-thickness": {
+						"name": "Underline thickness",
+						"desc": "Thickness of underline, in pixels."
+						},
+					"underline-offset-y": {
+						"name": "Underline offset Y",
+						"desc": "Offset Y of underline, in pixels."
+						},
+					"shadow": {
+						"name": "Shadow",
+						"desc": ""
+						},
+					"shadow-offset-x": {
+						"name": "Shadow offset X",
+						"desc": "Offset X of shadow, in pixels."
+						},
+					"shadow-offset-y": {
+						"name": "Shadow offset Y",
+						"desc": "Offset Y of shadow, in pixels."
+						},
+					"shadow-blur": {
+						"name": "Shadow blur",
+						"desc": "Blur of shadow, in pixels."
+						},
+					"shadow-color": {
+						"name": "Shadow color",
+						"desc": "Color of the shadow."
+						},
 					"background": {
 						"name": "Background",
 						"desc": ""
@@ -118,13 +167,13 @@
 					"text": "Text",
 					"appearance": "Appearance",
 					"properties": "Properties",
-					"tag": "Tag",
 					"underline": "Underline",
 					"stroke": "Stroke",
 					"shadow": "Shadow",
 					"background": "Background",
 					"canvas": "Canvas",
-					"image-bank": "Image bank"
+					"image-bank": "Image bank",
+					"class": "Class"
 				},
 				"conditions": {
 					"compare-text": {
@@ -134,14 +183,6 @@
 						"params": {
 							"text_to_compare0": { "name":"Text to compare", "desc":"Enter the text to compare with the object's content."},
 							"case_sensitivity3": { "name":"Case sensitivity", "desc":"Choose whether capital letters count as different to lowercase.  If ignoring case, \"ABC\" matches \"abc\".", "items":{"ignore case":"Ignore case","case sensitive":"Case sensitive"}}
-						}
-						},
-					"define-tag": {
-						"list-name": "Define tag (class)",
-						"display-text": "Tag: [b]{0}[/b]",
-						"description": "Define tag (<class> ... </class>)",
-						"params": {
-							"name0": { "name":"Name", "desc":"Name of tag (class)."}
 						}
 						}
 				},
@@ -276,15 +317,6 @@
 							"wrapping0": { "name":"Wrapping", "desc":"Wrap text. 0=Word, 1=Character"}
 						}
 					},
-					"set-custom-property": {
-						"list-name": "Set custom property",
-						"display-text": "Set custom property [b]{0}[/b] to [b]{1}[/b]",
-						"description": "Set custom property.",
-						"params": {
-							"name0": { "name":"Name", "desc":"Property name."},
-							"value1": { "name":"Value", "desc":"Property value."}
-						}
-					},
 					"set-shadow": {
 						"list-name": "Set shadow",
 						"display-text": "Set shadow with offset to ([b]{0}[/b], [b]{1}[/b]), blur to [b]{2}[/b], color to [b]{3}[/b]",
@@ -293,43 +325,39 @@
 							"offset_x0": { "name":"Offset X", "desc":"Offset X of shadow, in pixels."},
 							"offset_y1": { "name":"Offset Y", "desc":"Offset Y of shadow, in pixels."},
 							"blur2": { "name":"Blur", "desc":"Blur of shadow, in pixels."},
-							"color3": { "name":"Color", "desc":"The new font color, in the form rgb(r, g, b)."}
+							"color3": { "name":"Color", "desc":"The new shadow color, in the form rgb(r, g, b)."}
 						}
 					},
-					"add-css-tags": {
-						"list-name": "Add by CSS",
-						"display-text": "Add tags by CSS to [b]{0}[/b]",
-						"description": "Add tags by CSS.",
+					"set-thickness": {
+						"list-name": "Set thickness",
+						"display-text": "Set thickness to [b]{0}[/b]",
+						"description": "Set thickness of underline.",
 						"params": {
-							"tag0": { "name":"Tag", "desc":"Tag definitions."}
+							"thickness0": { "name":"Thickness", "desc":"Thickness in pixels."}
 						}
 					},
-					"set-underline": {
-						"list-name": "Set underline",
-						"display-text": "Set underline with color to [b]{0}[/b], thinkness to [b]{1}[/b], offset Y to [b]{2}[/b]",
-						"description": "Set underline.",
+					"set-offset-y": {
+						"list-name": "Set offset Y",
+						"display-text": "Set offset Y to [b]{0}[/b]",
+						"description": "Set offset Y of underline.",
 						"params": {
-							"color0": { "name":"Color", "desc":"Color of underline, in the form rgb(r, g, b)."},
-							"thickness1": { "name":"Thickness", "desc":"Thickness in pixels."},
-							"offset2": { "name":"Offset", "desc":"Offset Y in pixels."}
+							"offset0": { "name":"Offset", "desc":"Offset Y in pixels."}
 						}
 					},
-					"set-stroke": {
-						"list-name": "Set stroke",
-						"display-text": "Set stroke color to [b]{0}[/b], line width to [b]{1}[/b], line join to [b]{2}[/b]",
-						"description": "Set the stroke color and line width.",
+					"set-stroke-line-width": {
+						"list-name": "Set line width",
+						"display-text": "Set line width to [b]{0}[/b]",
+						"description": "Set line width of stroke.",
 						"params": {
-							"color0": { "name":"Color", "desc":"The stroke color, in the form rgb(r, g, b)."},
-							"line_width1": { "name":"Line width", "desc":"Line width in pixels."},
-							"line_join5": { "name":"Line join", "desc":"Line join of the stroke", "items":{"miter":"Miter","round":"Round","bevel":"Bevel"}}
+							"line_width0": { "name":"line width", "desc":"Line width in pixels."}
 						}
 					},
-					"insert-image": {
-						"list-name": "Insert image",
-						"display-text": "Insert image [b]{0}[/b]",
-						"description": "Insert image.",
+					"set-stroke-line-join": {
+						"list-name": "Set line join",
+						"display-text": "Set line join to [b]{0}[/b]",
+						"description": "Set line join of stroke.",
 						"params": {
-							"key0": { "name":"Key", "desc":"Index of this image."}
+							"line_join3": { "name":"Line join", "desc":"Line join of the stroke", "items":{"miter":"Miter","round":"Round","bevel":"Bevel"}}
 						}
 					},
 					"set-background-color": {
@@ -403,7 +431,7 @@
 						"description": "Get the object's raw text.",
 						"translated-name": "RawText"
 						},
-					"last-tag-prop-value": {
+					"last-class-prop-value": {
 						"description": "Get property value of last class. Add 2nd parameter for default value if this property had not found.",
 						"translated-name": "LastClassPropValue",
 						"params": {

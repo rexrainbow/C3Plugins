@@ -123,6 +123,7 @@
 				"c2id": 50,
 				"id": "set-font-style",
 				"scriptName": "SetFontStyle",
+				"isDeprecated": "true",
 				"highlight": false,
 				"params": [
 					{"id":"style4", "type":"combo", "items":["normal","bold","italic","bold and italic"]}
@@ -136,16 +137,7 @@
 				"params": [
 					{"id":"font_face0", "type":"string", "initialValue":"\"Arial\""}
 				]
-			},
-			{
-				"c2id": 65,
-				"id": "insert-image",
-				"scriptName": "InsertImage",
-				"highlight": false,
-				"params": [
-					{"id":"key0", "type":"string", "initialValue":"\"\""}
-				]
-			}					
+			}			
 		],
 		"expressions": [
 			{
@@ -232,98 +224,63 @@
 				"params": [
 					{"id":"wrapping0", "type":"number", "initialValue":"0"}
 				]
-			},
+			}
+		],
+		"expressions": [
+		]
+	},
+	"underline": {
+		"conditions": [
+		],
+		"actions": [
 			{
-				"c2id": 60,
-				"id": "set-custom-property",
-				"scriptName": "SetCustomProperty",
+				"c2id": 71,
+				"id": "set-thickness",
+				"scriptName": "SetThickness",
 				"highlight": false,
 				"params": [
-					{"id":"name0", "type":"string", "initialValue":"\"\""},
-					{"id":"value1", "type":"any", "initialValue":"0"}
+					{"id":"thickness0", "type":"number", "initialValue":"1"}
+				]
+			},
+			{
+				"c2id": 72,
+				"id": "set-offset-y",
+				"scriptName": "SetOffsetY",
+				"highlight": false,
+				"params": [
+					{"id":"offset0", "type":"number", "initialValue":"1"}
 				]
 			}
 		],
 		"expressions": [
 		]
 	},
-	"tag": {
-		"conditions": [
-			{
-				"c2id": 1,
-				"id": "define-tag",
-				"scriptName": "DefineClass",
-				"isInvertible": "false",
-				"highlight": false,
-				"params": [
-					{"id":"name0", "type":"string", "initialValue":"\"\""}
-				]
-			}			
-		],
-		"actions": [
-			{
-				"c2id": 62,
-				"id": "add-css-tags",
-				"scriptName": "AddCSSTags",
-				"highlight": false,
-				"params": [
-					{"id":"tag0", "type":"string", "initialValue":"\"\""}
-				]
-			}
-		],
-		"expressions": [
-			{
-				"c2id": 21,
-				"id": "last-tag-prop-value",
-				"expressionName": "LastClassPropValue",
-				"scriptName": "LastClassPropValue",
-				"highlight": false,
-				"returnType": "any",
-				"isVariadicParameters": true,
-				"params": [
-					{"id":"name0", "type":"string", "initialValue":"\"\""}
-				]
-			}			
-		]
-	},	
-	"underline": {
-		"conditions": [
-		],
-		"actions": [
-			{
-				"c2id": 63,
-				"id": "set-underline",
-				"scriptName": "SetUnderline",
-				"highlight": false,
-				"params": [
-					{"id":"color0", "type":"any", "initialValue":"\"rgb(0, 0, 0)\""},
-					{"id":"thickness1", "type":"number", "initialValue":"1"},
-					{"id":"offset2", "type":"number", "initialValue":"0"}
-				]
-			}
-		],
-		"expressions": [
-		]
-	},	
 	"stroke": {
 		"conditions": [
 		],
 		"actions": [
 			{
-				"c2id": 64,
-				"id": "set-stroke",
-				"scriptName": "SetStroke",
+				"c2id": 81,
+				"id": "set-stroke-line-width",
+				"scriptName": "SetStrokeLineWidth",
 				"highlight": false,
 				"params": [
-					{"id":"color0", "type":"any", "initialValue":"\"rgb(0, 0, 0)\""},
-					{"id":"line_width1", "type":"number", "initialValue":"1"},
-					{"id":"line_join5", "type":"combo", "items":["miter","round","bevel"]}
+					{"id":"line_width0", "type":"number", "initialValue":"1"}
+				]
+			},
+			{
+				"c2id": 82,
+				"id": "set-stroke-line-join",
+				"scriptName": "SetStrokeLineJoin",
+				"highlight": false,
+				"params": [
+					{"id":"line_join3", "type":"combo", "items":["miter","round","bevel"]}
 				]
 			}
 		],
 		"expressions": [
 		]
-	},	
+	},
 	"shadow": {
 		"conditions": [
 		],
@@ -343,7 +300,7 @@
 		],
 		"expressions": [
 		]
-	},		
+	},	
 	"background": {
 		"conditions": [
 		],
@@ -417,6 +374,26 @@
 			}
 		],
 		"expressions": [
+		]
+	},
+	"class": {
+		"conditions": [
+		],
+		"actions": [
+		],
+		"expressions": [
+			{
+				"c2id": 21,
+				"id": "last-class-prop-value",
+				"expressionName": "LastClassPropValue",
+				"scriptName": "LastClassPropValue",
+				"highlight": false,
+				"returnType": "any",
+				"isVariadicParameters": true,
+				"params": [
+					{"id":"name0", "type":"string", "initialValue":"\"\""}
+				]
+			}
 		]
 	}
 }

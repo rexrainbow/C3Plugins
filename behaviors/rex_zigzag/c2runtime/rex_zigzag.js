@@ -46,16 +46,14 @@
         this.currentCmdQueueIndex = this.queueIndex;
         var index = this.queueIndex + 1;
         if (index >= this.queue.length) {
-            if (this.repeatCount != 1)      // repeat
+            if (this.repeatCount != 1) // repeat
             {
                 this.queueIndex = 0;
                 this.repeatCount -= 1;
+            } else {
+                this.queueIndex = (-1); // finish
             }
-            else {
-                this.queueIndex = (-1);    // finish
-            }
-        }
-        else
+        } else
             this.queueIndex = index;
         return cmd;
     };
@@ -92,7 +90,11 @@
         maxSpeed, acc, dec,
         preciseMode, continuedMode) {
         this.inst = inst;
-        this.move = { "max": maxSpeed, "acc": acc, "dec": dec };
+        this.move = {
+            "max": maxSpeed,
+            "acc": acc,
+            "dec": dec
+        };
         this.isDone = true;
         this.preciseMode = preciseMode;
         this.continuedMode = continuedMode;
@@ -122,26 +124,28 @@
         // is hit to target at next tick?
         if ((this.remainDistance <= 0) || (this.currentSpeed <= 0)) {
             this.isDone = true;
-            if (this.preciseMode)  // precise mode
+            if (this.preciseMode) // precise mode
             {
                 this.inst.x = this.target["x"];
                 this.inst.y = this.target["y"];
-            }
-            else  // non-precise mode
+            } else // non-precise mode
             {
                 var angle = this.target["a"];
                 distance += this.remainDistance;
+                if (!this.dir) {
+                    distance = -distance;
+                }
                 this.inst.x += (distance * Math.cos(angle));
                 this.inst.y += (distance * Math.sin(angle));
                 this.target["x"] = this.inst.x;
                 this.target["y"] = this.inst.y;
             }
             remainDt = (this.continuedMode) ? getRemaindDt.call(this) : 0;
-        }
-        else {
+        } else {
             var angle = this.target["a"];
-            if (!this.dir)
+            if (!this.dir) {
                 distance = -distance;
+            }
             this.inst.x += (distance * Math.cos(angle));
             this.inst.y += (distance * Math.sin(angle));
             remainDt = 0;
@@ -191,7 +195,11 @@
         preciseMode, continuedMode) {
         this.inst = inst;
         this.rotatable = rotatable;
-        this.move = { "max": maxSpeed, "acc": acc, "dec": dec };
+        this.move = {
+            "max": maxSpeed,
+            "acc": acc,
+            "dec": dec
+        };
         this.isDone = true;
         this.isZeroDtMode = ((maxSpeed >= 36000) && (acc == 0) && (dec == 0));
         this.preciseMode = preciseMode;
@@ -224,20 +232,18 @@
             this.isDone = true;
             targetAngleRad = this.target["a"];
             this.currentAngleDeg = this.targetAngleDeg;
-        }
-        else {
+        } else {
             var distance = getMoveDistance.call(this, dt);
             this.remainDistance -= distance;
 
             // is hit to target at next tick?
             if ((this.remainDistance <= 0) || (this.currentSpeed <= 0)) {
                 this.isDone = true;
-                if (this.preciseMode)  // precise mode
+                if (this.preciseMode) // precise mode
                 {
                     targetAngleRad = this.target["a"];
                     this.currentAngleDeg = this.targetAngleDeg;
-                }
-                else  // non-precise mode
+                } else // non-precise mode
                 {
                     distance += this.remainDistance;
                     this.currentAngleDeg += ((this.dir) ? distance : (-distance));
@@ -245,8 +251,7 @@
                     this.target["a"] = targetAngleRad;
                 }
                 remainDt = (this.continuedMode == 1) ? getRemaindDt.call(this) : 0;
-            }
-            else {
+            } else {
                 this.currentAngleDeg += ((this.dir) ? distance : (-distance));
                 targetAngleRad = cr.to_clamped_radians(this.currentAngleDeg);
                 remainDt = 0;
@@ -295,11 +300,9 @@
         if (speed != null) {
             this.currentSpeed = (speed > move["max"]) ?
                 move["max"] : speed;
-        }
-        else if (move["acc"] > 0) {
+        } else if (move["acc"] > 0) {
             this.currentSpeed = 0;
-        }
-        else {
+        } else {
             this.currentSpeed = move["max"];
         }
     };
@@ -326,10 +329,9 @@
     var getRemaindDt = function () {
         var remainDt;
         if ((this.move["acc"] > 0) || (this.move["dec"] > 0)) {
-            setCurrentSpeed.call(this, 0);   // stop in point
+            setCurrentSpeed.call(this, 0); // stop in point
             remainDt = 0;
-        }
-        else {
+        } else {
             remainDt = (-this.remainDistance) / this.currentSpeed;
         }
         return remainDt;
@@ -368,8 +370,7 @@
         if (this.remainDistance <= 0) {
             remainDt = (this.continuedMode) ? (-this.remainDistance) : 0;
             this.isDone = true;
-        }
-        else {
+        } else {
             remainDt = 0;
         }
         return remainDt;
@@ -387,4 +388,4 @@
         this.remainDistance = o["rd"];
     };
 
-}());    
+}());
