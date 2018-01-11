@@ -21,12 +21,12 @@
         this.context = null;
 
         this.textInfo = {
-            "text": "",
-            "x": 0,
-            "y": 0,
-            "boxWidth": 0,
-            "boxHeight": 0,
-            "ignore": null,
+            text: "",
+            x: 0,
+            y: 0,
+            boxWidth: 0,
+            boxHeight: 0,
+            ignore: null,
         };
         this.pensMgr = new PensMgrKlass();
         this.text_changed = true; // update this.pens to redraw
@@ -53,8 +53,7 @@
         this.backgroundColor = "";
 
         var self = this;
-        this.getTextWidth = function (txt)
-        {
+        this.getTextWidth = function (txt) {
             return self.context.measureText(txt).width;
         }
     };
@@ -78,7 +77,7 @@
                 var weight = propScope["weight"] || this.defaultProperties.weight;
                 var ptSize = this.getTextSize(propScope);
                 var family = propScope["family"] || this.defaultProperties.family;
-                this.context.font = style + " " + weight + " " + ptSize + " " + family;
+                this.context.font = style + " " + weight + " " + ptSize + " '" + family + "'";
             }
 
             var color = this.getFillColor(propScope);
@@ -218,15 +217,15 @@
         if (this.backgroundColor !== "") {
             var ctx = this.context;
             ctx.fillStyle = this.backgroundColor;
-            ctx.fillRect(0, 0, this.textInfo["boxWidth"], this.textInfo["boxHeight"]);
+            ctx.fillRect(0, 0, this.textInfo.boxWidth, this.textInfo.boxHeight);
         }
     };
 
     CanvasTextKlassProto.drawPens = function (pensMgr, textInfo) {
-        var boxWidth = textInfo["boxWidth"],
-            boxHeight = textInfo["boxHeight"];
-        var startX = textInfo["x"],
-            startY = textInfo["y"];
+        var boxWidth = textInfo.boxWidth,
+            boxHeight = textInfo.boxHeight;
+        var startX = textInfo.x,
+            startY = textInfo.y;
         var lines = pensMgr.getLines(),
             lcnt = lines.length;
 
@@ -277,16 +276,17 @@
     };
 
     CanvasTextKlassProto.updatePens = function (pensMgr, textInfo, noWrap) {
+        debugger
         if (textInfo == null)
             textInfo = this.textInfo;
 
         pensMgr.freePens();
 
         // Save the textInfo into separated vars to work more comfortably.
-        var text = textInfo["text"],
-            boxWidth = textInfo["boxWidth"],
-            boxHeight = textInfo["boxHeight"];
-        if (text === "")
+        var txt = textInfo.text,
+            boxWidth = textInfo.boxWidth,
+            boxHeight = textInfo.boxHeight;
+        if (txt === "")
             return;
 
         var startX = 0,
@@ -295,7 +295,7 @@
             cursorY = startY;
         var rawText, currentProp;
 
-        var m, match = this.splitTextFn(text);
+        var m, match = this.splitTextFn(txt);
         var i, matchCnt = match.length;
         for (i = 0; i < matchCnt; i++) {
             var result = this.tagText2PropFn(match[i], currentProp);
@@ -388,7 +388,7 @@
             this.text_changed = false;
         }
 
-        if (!textInfo["ignore"]) {
+        if (!textInfo.ignore) {
             // Let's draw the text
             // Set the text Baseline
             this.context.textBaseline = this.textBaseline;
@@ -410,10 +410,10 @@
         if (__tempPensMgr === null)
             __tempPensMgr = new PensMgrKlass();
 
-        var textSave = this.textInfo["text"];
-        this.textInfo["text"] = text;
+        var textSave = this.textInfo.text;
+        this.textInfo.text = text;
         this.updatePens(__tempPensMgr, this.textInfo, true);
-        this.textInfo["text"] = textSave;
+        this.textInfo.text = textSave;
 
         return __tempPensMgr.getSliceTagText(start, end, this.prop2TagTextFn);
     };
@@ -453,45 +453,6 @@
 
         return pensMgr.getLastPen();
     };
-
-    /**
-     * Save a new class definition.
-     */
-    CanvasTextKlassProto.defineClass = function (id, definition) {
-        this.savedClasses[id] = definition;
-        return true;
-    };
-
-    /**
-     * Returns a saved class.
-     */
-    CanvasTextKlassProto.getClass = function (id) {
-        return this.savedClasses[id];
-    };
-
-    /**
-     * A simple function to check if the given value is empty.
-     */
-    var isEmpty = function (str) {
-        // Remove white spaces.
-        str = str.replace(/^\s+|\s+$/, '');
-        return str.length == 0;
-    };
-
-    /**
-     * A simple function clear whitespaces.
-     */
-    CanvasTextKlassProto.trim = function (str) {
-        var ws, i;
-        str = str.replace(/^\s\s*/, '');
-        ws = /\s/;
-        i = str.length;
-        while (ws.test(str.charAt(--i))) {
-            continue;
-        }
-        return str.slice(0, i + 1);
-    };
-
     // ----
 
     CanvasTextKlassProto.saveToJSON = function () {

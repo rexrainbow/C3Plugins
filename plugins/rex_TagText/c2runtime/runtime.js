@@ -71,7 +71,7 @@ cr.plugins_.rex_TagText = function (runtime) {
         this.pxHeight = pt2px(this.ptSize);
         this.lineHeightOffset = this.properties[3];
         this.fontstyle = getFontStyle(this.properties[4], this.properties[5]);
-        this.color = cr.RGB.apply(this, this.properties[6]); // [r,g,b]
+        this.color = getColor(this.properties[6]); // [r,g,b]
         this.halign = this.properties[7]; // 0=left, 1=center, 2=right
         this.valign = this.properties[8]; // 0=top, 1=center, 2=bottom
         this.wrapbyword = (this.properties[9] === 0); // 0=word, 1=character
@@ -332,6 +332,7 @@ cr.plugins_.rex_TagText = function (runtime) {
         this.tagText.canvas = ctx.canvas;
         this.tagText.context = ctx;
         // default setting
+        debugger
         this.tagText.defaultProperties.family = this.facename;
         // this.tagText.defaultProperties.weight = ??
         this.tagText.defaultProperties.ptSize = this.ptSize.toString() + "pt";
@@ -341,12 +342,12 @@ cr.plugins_.rex_TagText = function (runtime) {
         this.tagText.defaultProperties.shadow = this.textShadow;
         this.tagText.lineHeight = lineHeight;
 
-        this.tagText.textInfo["text"] = this.text;
-        this.tagText.textInfo["x"] = penX;
-        this.tagText.textInfo["y"] = penY;
-        this.tagText.textInfo["boxWidth"] = width;
-        this.tagText.textInfo["boxHeight"] = height;
-        this.tagText.textInfo["ignore"] = is_ignore;
+        this.tagText.textInfo.text = this.text;
+        this.tagText.textInfo.x = penX;
+        this.tagText.textInfo.y = penY;
+        this.tagText.textInfo.boxWidth = width;
+        this.tagText.textInfo.boxHeight = height;
+        this.tagText.textInfo.ignore = is_ignore;
         this.tagText.drawText();
 
 
@@ -699,6 +700,11 @@ cr.plugins_.rex_TagText = function (runtime) {
         }
         return result;
     };
+    var isEmpty = function (str) {
+        // Remove white spaces.
+        str = str.replace(/^\s+|\s+$/, '');
+        return str.length == 0;
+    };    
 
     // properties to text string
     var __propList = [];
@@ -762,6 +768,15 @@ cr.plugins_.rex_TagText = function (runtime) {
         }
         return __splitTextResult;
     };
+
+    var getColor = function (rgb) {
+        if (typeof (rgb) == "object")
+            return "rgb(" + Math.floor(rgb[0] * 255).toString() + "," + Math.floor(rgb[1] * 255).toString() + "," + Math.floor(rgb[2] * 255).toString() + ")";
+        if (typeof (rgb) == "number")
+            return "rgb(" + (cr.GetRValue(rgb) * 255).toString() + "," + (cr.GetGValue(rgb) * 255).toString() + "," + (cr.GetBValue(rgb) * 255).toString() + ")";
+        else
+            return rgb;
+    }
     //////////////////////////////////////
     // Conditions
     function Cnds() {};
@@ -865,11 +880,7 @@ cr.plugins_.rex_TagText = function (runtime) {
     };
 
     Acts.prototype.SetFontColor = function (rgb) {
-        var newcolor;
-        if (typeof (rgb) == "number")
-            newcolor = "rgb(" + cr.GetRValue(rgb).toString() + "," + cr.GetGValue(rgb).toString() + "," + cr.GetBValue(rgb).toString() + ")";
-        else
-            newcolor = rgb;
+        var newcolor = getColor(rgb);
         if (this.tagInfo != null) // <class> ... </class>
         {
             this.tagInfo["color"] = newcolor;
@@ -1185,7 +1196,8 @@ cr.plugins_.rex_TagText = function (runtime) {
         this.renderText(this.isForceRender);
     };
 
-    Acts.prototype.SetBackgroundColor = function (color) {
+    Acts.prototype.SetBackgroundColor = function (rgb) {
+        var color = getColor(rgb);
         if (color === this.tagText.backgroundColor)
             return;
 
