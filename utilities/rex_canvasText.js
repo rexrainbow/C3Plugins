@@ -51,6 +51,12 @@
         this.lineHeight = "16";
         this.textBaseline = "alphabetic";
         this.backgroundColor = "";
+
+        var self = this;
+        this.getTextWidth = function (txt)
+        {
+            return self.context.measureText(txt).width;
+        }
     };
     var CanvasTextKlassProto = CanvasTextKlass.prototype;
 
@@ -335,8 +341,8 @@
 
                     this.applyPropScope(currentProp);
 
-                    // wrap text
-                    var wrapLines = window.rexObjs.text2Lines(rawText, this.context, boxWidth, this.plugin.wrapbyword, cursorX - startX);
+                    // wrap text to lines
+                    var wrapLines = window.rexObjs.text2Lines(rawText, this.getTextWidth, boxWidth, this.plugin.wrapbyword, cursorX - startX);
 
                     // add pens
                     var lcnt = wrapLines.length,

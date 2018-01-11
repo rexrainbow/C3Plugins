@@ -38,7 +38,7 @@
 			this._info.AddCommonZOrderACEs();
 			SDK.Lang.PushContext(".properties");
 			this._info.SetProperties([
-				new SDK.PluginProperty("text", "text", "Text"),
+				new SDK.PluginProperty("longtext", "text", "Text"),
 				new SDK.PluginProperty("font", "font", "Arial"),
 				new SDK.PluginProperty("integer", "font-size", 12),
 				new SDK.PluginProperty("integer", "line-height", 0),

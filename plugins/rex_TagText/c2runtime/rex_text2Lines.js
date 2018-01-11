@@ -18,7 +18,7 @@
     };
 
     var __wrappedLines = [];
-    var wordWrap = function (text, ctx, width, wrapbyword, offsetX) {
+    var wordWrap = function (text, getTextWidthFn, width, wrapbyword, offsetX) {
         var lines = __wrappedLines;
         lineCache.freeAllLines(lines);
 
@@ -34,24 +34,24 @@
         // and see if it fits on one line, without going through the tokenise/wrap.
         // Text musn't contain a linebreak!
         if (text.length <= 100 && text.indexOf("\n") === -1) {
-            var all_width = ctx.measureText(text).width;
+            var allWidth = getTextWidthFn(text);
 
-            if (all_width <= (width - offsetX)) {
+            if (allWidth <= (width - offsetX)) {
                 // fits on one line
                 lineCache.freeAllLines(lines);
-                lines.push(lineCache.newline(text, all_width, NO_NEWLINE));
+                lines.push(lineCache.newline(text, allWidth, NO_NEWLINE));
                 return lines;
             }
         }
 
-        return wrapText(text, lines, ctx, width, wrapbyword, offsetX);
+        return wrapText(text, lines, getTextWidthFn, width, wrapbyword, offsetX);
     };
 
-    var wrapText = function (text, lines, ctx, width, wrapbyword, offsetX) {
+    var wrapText = function (text, lines, getTextWidthFn, width, wrapbyword, offsetX) {
         var wordArray = (wrapbyword) ? TokeniseWords(text) : text;
 
-        var cur_line = "";
-        var prev_line;
+        var currentLine = "";
+        var previousLine;
         var lineWidth;
         var i, wcnt = wordArray.length;
         var lineIndex = 0;
@@ -62,42 +62,42 @@
             if (wordArray[i] === "\n") {
                 // Flush line.  Recycle a line if possible
                 if (lineIndex >= lines.length)
-                    lines.push(lineCache.newline(cur_line, ctx.measureText(cur_line).width, RAW_NEWLINE));
+                    lines.push(lineCache.newline(currentLine, getTextWidthFn(currentLine), RAW_NEWLINE));
 
                 lineIndex++;
-                cur_line = "";
+                currentLine = "";
                 offsetX = 0;
                 continue;
             }
 
             // Otherwise add to line
-            prev_line = cur_line;
-            cur_line += wordArray[i];
+            previousLine = currentLine;
+            currentLine += wordArray[i];
 
             // Measure line
-            lineWidth = ctx.measureText(cur_line).width;
+            lineWidth = getTextWidthFn(currentLine);
 
             // Line too long: wrap the line before this word was added
             if (lineWidth >= (width - offsetX)) {
                 // Append the last line's width to the string object
                 if (lineIndex >= lines.length)
-                    lines.push(lineCache.newline(prev_line, ctx.measureText(prev_line).width, WRAPPED_NEWLINE));
+                    lines.push(lineCache.newline(previousLine, getTextWidthFn(previousLine), WRAPPED_NEWLINE));
 
                 lineIndex++;
-                cur_line = wordArray[i];
+                currentLine = wordArray[i];
 
                 // Wrapping by character: avoid lines starting with spaces
-                if (!wrapbyword && cur_line === " ")
-                    cur_line = "";
+                if (!wrapbyword && currentLine === " ")
+                    currentLine = "";
 
                 offsetX = 0;
             }
         }
 
         // Add any leftover line
-        if (cur_line.length) {
+        if (currentLine.length) {
             if (lineIndex >= lines.length)
-                lines.push(lineCache.newline(cur_line, ctx.measureText(cur_line).width, NO_NEWLINE));
+                lines.push(lineCache.newline(currentLine, getTextWidthFn(currentLine), NO_NEWLINE));
 
             lineIndex++;
         }
@@ -113,7 +113,7 @@
     var __wordsCache = [];
     var TokeniseWords = function (text) {
         __wordsCache.length = 0;
-        var cur_word = "";
+        var currentWord = "";
         var ch;
 
         // Loop every char
@@ -124,9 +124,9 @@
 
             if (ch === "\n") {
                 // Dump current word if any
-                if (cur_word.length) {
-                    __wordsCache.push(cur_word);
-                    cur_word = "";
+                if (currentWord.length) {
+                    __wordsCache.push(currentWord);
+                    currentWord = "";
                 }
 
                 // Add newline word
@@ -137,22 +137,22 @@
             // Whitespace or hyphen: swallow rest of whitespace and include in word
             else if (ch === " " || ch === "\t" || ch === "-") {
                 do {
-                    cur_word += text.charAt(i);
+                    currentWord += text.charAt(i);
                     i++;
                 }
                 while (i < text.length && (text.charAt(i) === " " || text.charAt(i) === "\t"));
 
-                __wordsCache.push(cur_word);
-                cur_word = "";
+                __wordsCache.push(currentWord);
+                currentWord = "";
             } else if (i < text.length) {
-                cur_word += ch;
+                currentWord += ch;
                 i++;
             }
         }
 
         // Append leftover word if any
-        if (cur_word.length)
-            __wordsCache.push(cur_word);
+        if (currentWord.length)
+            __wordsCache.push(currentWord);
 
         return __wordsCache;
     };

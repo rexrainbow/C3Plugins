@@ -91,11 +91,7 @@ cr.plugins_.rex_TagText = function (runtime) {
         this.LockCanvasSize(this.properties[15], this.width, this.height);
 
         // Get the font height in pixels.
-        // Look for token ending "NNpt" in font string (e.g. "bold 12pt Arial").
-        this.fontstyle = "";
-
-        this.textWidth = 0;
-        this.textHeight = 0;
+        // Look for token ending "NNpt" in font string (e.g. "bold 12pt Arial")
 
         // For WebGL rendering
         this.mycanvas = null;
@@ -192,8 +188,6 @@ cr.plugins_.rex_TagText = function (runtime) {
             "fs": this.fontstyle,
             "ps": this.ptSize,
             "pxh": this.pxHeight,
-            "tw": this.textWidth,
-            "th": this.textHeight,
             "ts": this.textShadow,
             "lrt": this.last_render_tick,
             "bl": this.tagText.textBaseline,
@@ -217,8 +211,6 @@ cr.plugins_.rex_TagText = function (runtime) {
         this.fontstyle = o["fs"];
         this.ptSize = o["ps"];
         this.pxHeight = o["pxh"];
-        this.textWidth = o["tw"];
-        this.textHeight = o["th"];
         this.textShadow = o["ts"];
         this.last_render_tick = o["lrt"];
 
