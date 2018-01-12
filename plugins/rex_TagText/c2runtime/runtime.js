@@ -77,9 +77,6 @@ cr.plugins_.rex_TagText = function (runtime) {
         this.wrapbyword = (this.properties[9] === 0); // 0=word, 1=character
         this.visible = this.properties[10]; // 0=visible, 1=invisible
 
-        this.stroke = "none";
-        this.textShadow = "";
-
         this.lastwidth = this.width;
         this.lastwrapwidth = this.width;
         this.lastheight = this.height;
@@ -113,22 +110,31 @@ cr.plugins_.rex_TagText = function (runtime) {
             this.savedClasses = {}; // class define            
             this.canvasText = new window.rexObjs.CanvasTextKlass();
             this.canvasText.imageBank = window.rexObjs.ImageBank;
-            this.canvasText.splitTextFn = splitText;
-            this.canvasText.tagText2PropFn = function (txt, previousProp) {
-                return tagText2Prop(txt, previousProp, self.savedClasses);
+            this.canvasText.parser.splitText = splitText;
+            this.canvasText.parser.tagText2Prop = function (txt, prevProp) {
+                return tagText2Prop(txt, prevProp, self.savedClasses);
             };
-            this.canvasText.prop2TagTextFn = prop2TagText;
+            this.canvasText.parser.prop2ContextProp = prop2ContextProp;
+            this.canvasText.parser.prop2TagText = prop2TagText;
         } else {
             for (var k in this.savedClasses)
                 delete this.savedClasses[k];
         }
-        this.canvasText.Reset(this);
         this.canvasText.textBaseline = (this.baseLineMode === 0) ? "alphabetic" : "top";
-        this.canvasText.backgroundColor = this.properties[16];
+
+        var backgroundColor = this.properties[16];
+        if (backgroundColor === "")
+            backgroundColor = "none";
+        this.canvasText.backgroundColor = backgroundColor;
 
         // render text at object initialize
         if (this.text)
             this.renderText(this.isForceRender);
+    };
+
+    // tags
+    instanceProto.defineClass = function (id, definition) {
+        this.savedClasses[id] = definition;
     };
 
     var getColor = function (rgb) {
@@ -184,7 +190,6 @@ cr.plugins_.rex_TagText = function (runtime) {
         return {
             "cls": this.savedClasses,
             "t": this.text,
-            "c": this.color,
             "ha": this.halign,
             "va": this.valign,
             "wr": this.wrapbyword,
@@ -194,9 +199,7 @@ cr.plugins_.rex_TagText = function (runtime) {
             "fs": this.fontstyle,
             "ps": this.ptSize,
             "pxh": this.pxHeight,
-            "ts": this.textShadow,
             "lrt": this.last_render_tick,
-            "bl": this.canvasText.textBaseline,
             "txtObj": this.canvasText.saveToJSON(),
             "isLcs": this.isCanvasSizeLocked,
             "lcw": this.lockedCanvasWidth,
@@ -207,7 +210,6 @@ cr.plugins_.rex_TagText = function (runtime) {
     instanceProto.loadFromJSON = function (o) {
         this.savedClasses = o["cls"];
         this.text = o["t"];
-        this.color = o["c"];
         this.halign = o["ha"];
         this.valign = o["va"];
         this.wrapbyword = o["wr"];
@@ -217,7 +219,6 @@ cr.plugins_.rex_TagText = function (runtime) {
         this.fontstyle = o["fs"];
         this.ptSize = o["ps"];
         this.pxHeight = o["pxh"];
-        this.textShadow = o["ts"];
         this.last_render_tick = o["lrt"];
 
         this.text_changed = true;
@@ -225,7 +226,6 @@ cr.plugins_.rex_TagText = function (runtime) {
         this.lastwrapwidth = this.width;
         this.lastheight = this.height;
 
-        this.canvasText.textBaseline = o["bl"];
         this.canvasText.loadFromJSON(o["txtObj"]);
 
         this.isCanvasSizeLocked = o["isLcs"];
@@ -268,7 +268,7 @@ cr.plugins_.rex_TagText = function (runtime) {
         this.renderText(this.isForceRender);
     };
 
-    instanceProto.draw = function (ctx, glmode, is_ignore) {
+    instanceProto.draw = function (ctx, glmode, noDrawing) {
         var isCtxSave = false;
         var width = (this.isCanvasSizeLocked) ? this.lockedCanvasWidth : this.width;
         var height = (this.isCanvasSizeLocked) ? this.lockedCanvasHeight : this.height;
@@ -339,20 +339,21 @@ cr.plugins_.rex_TagText = function (runtime) {
         this.canvasText.context = ctx;
         // default setting
         this.canvasText.defaultProperties.family = this.facename;
-        // this.canvasText.defaultProperties.weight = ??
         this.canvasText.defaultProperties.ptSize = this.ptSize.toString() + "pt";
         this.canvasText.defaultProperties.style = this.fontstyle;
         this.canvasText.defaultProperties.color = this.color;
-        this.canvasText.defaultProperties.stroke = this.stroke;
-        this.canvasText.defaultProperties.shadow = this.textShadow;
-        this.canvasText.lineHeight = lineHeight;
 
         this.canvasText.textInfo.text = this.text;
         this.canvasText.textInfo.x = penX;
         this.canvasText.textInfo.y = penY;
         this.canvasText.textInfo.boxWidth = width;
         this.canvasText.textInfo.boxHeight = height;
-        this.canvasText.textInfo.ignore = is_ignore;
+        this.canvasText.textInfo.lineHeight = lineHeight;
+        this.canvasText.textInfo.vshift = this.vshift;
+        this.canvasText.textInfo.halign = this.halign;
+        this.canvasText.textInfo.valign = this.valign;
+        this.canvasText.textInfo.wrapbyword = this.wrapbyword;
+        this.canvasText.textInfo.noDrawing = noDrawing;
         this.canvasText.drawText();
 
 
@@ -486,7 +487,6 @@ cr.plugins_.rex_TagText = function (runtime) {
         this.last_render_tick = this.runtime.tickcount;
     };
 
-
     // copy from rex_text_scrolling
     instanceProto.getWebglCtx = function () {
         var inst = this;
@@ -584,196 +584,6 @@ cr.plugins_.rex_TagText = function (runtime) {
     instanceProto.copyPensMgr = function (pensMgr) {
         return this.canvasText.copyPensMgr(pensMgr);
     };
-
-    // internal
-    // tags
-    instanceProto.defineClass = function (id, definition) {
-        this.savedClasses[id] = definition;
-    };
-
-    // text to properties
-    var __re_class_header = /<\s*class=/i;
-    var __re_class = /<\s*class=["|']([^"|']+)["|']\s*\>([\s\S]*?)<\s*\/class\s*\>/;
-    var __re_style_header = /<\s*style=/i;
-    var __re_style = /<\s*style=["|']([^"|']+)["|']\s*\>([\s\S]*?)<\s*\/style\s*\>/;
-    var __text2PropResult = {
-        rawText: "",
-        prop: null
-    };
-    var tagText2Prop = function (txt, previousProp, tags) {
-        var rawText, propOut;
-        // Check if current fragment is a class tag.
-        if (__re_class_header.test(txt)) {
-            // Looks the attributes and text inside the class tag.
-            var innerMatch = txt.match(__re_class);
-            if (innerMatch != null) {
-                propOut = transferProp(tags[innerMatch[1]]);
-                propOut["class"] = innerMatch[1];
-                rawText = innerMatch[2];
-            }
-        } else if (__re_style_header.test(txt)) {
-            // Looks the attributes and text inside the style tag.
-            var innerMatch = txt.match(__re_style);
-            if (innerMatch != null) {
-                // innerMatch[1] contains the properties of the attribute.               
-                propOut = transferProp(style2Prop(innerMatch[1]));
-                rawText = innerMatch[2];
-            }
-        }
-
-        if (rawText == null) {
-            rawText = txt;
-        }
-
-        if (propOut == null) {
-            propOut = {};
-        }
-
-        __text2PropResult.rawText = rawText;
-        __text2PropResult.prop = propOut;
-        return __text2PropResult;
-    };
-
-    var transferProp = function (propIn, propOut) {
-        var propOut = {};
-
-        if (!propIn) {
-            return propOut;
-        }
-
-        for (var atribute in propIn) {
-            switch (atribute) {
-                //case "font":
-                //case "color":
-                //case "stroke":
-                //    propOut[atribute] = propIn[atribute];
-                //    break;
-
-                case "font-family":
-                    propOut["family"] = propIn[atribute];
-                    break;
-
-                case "font-weight":
-                    propOut["weight"] = propIn[atribute];
-                    break;
-
-                case "font-size":
-                    propOut["size"] = propIn[atribute];
-                    break;
-
-                case "font-style":
-                    propOut["style"] = propIn[atribute];
-                    break;
-
-
-                case "text-shadow":
-                    propOut["shadow"] = propIn[atribute];
-                    break;
-
-                case "underline":
-                    propOut["u"] = propIn[atribute];
-                    break;
-
-                case "image":
-                    propOut["img"] = propIn[atribute];
-                    break;
-
-                default:
-                    propOut[atribute] = propIn[atribute];
-                    break;
-            }
-        }
-
-        return propOut;
-    };
-
-    var style2Prop = function (s) {
-        s = s.split(";");
-        var i, cnt = s.length;
-        var result = {},
-            prop, k, v;
-        for (i = 0; i < cnt; i++) {
-            prop = s[i].split(":");
-            k = prop[0], v = prop[1];
-            if (isEmpty(k) || isEmpty(v)) {
-                // Wrong property name or value. We jump to the
-                // next loop.
-                continue;
-            }
-
-            result[k] = v;
-        }
-        return result;
-    };
-    var isEmpty = function (str) {
-        // Remove white spaces.
-        str = str.replace(/^\s+|\s+$/, '');
-        return str.length == 0;
-    };
-
-    // properties to text string
-    var __propList = [];
-    var prop2TagText = function (txt, prop, previousProp) {
-        if (prop["class"]) // class mode
-            txt = "<class='" + prop["class"] + "'>" + txt + "</class>";
-        else // style mode
-        {
-            __propList.length = 0;
-            for (var k in prop) {
-                __propList.push(k + ":" + prop[k]);
-            }
-
-            if (__propList.length > 0)
-                txt = "<style='" + __propList.join(";") + "'>" + txt + "</style>";
-        }
-        return txt;
-    };
-
-    // split text into array
-    var __splitTextResult = [];
-    var splitText = function (txt, mode) {
-        var re = /<\s*class=["|']([^"|']+)["|']\s*\>([\s\S]*?)<\s*\/class\s*\>|<\s*style=["|']([^"|']+)["|']\s*\>([\s\S]*?)<\s*\/style\s*\>/g;
-        __splitTextResult.length = 0;
-        var arr, m, charIdx = 0,
-            totalLen = txt.length,
-            matchStart = totalLen;
-        var innerMatch;
-        while (true) {
-            arr = re.exec(txt);
-            if (!arr) {
-                break;
-            }
-
-
-            m = arr[0];
-            matchStart = re["lastIndex"] - m.length;
-
-            if (charIdx < matchStart) {
-                __splitTextResult.push(txt.substring(charIdx, matchStart));
-
-            }
-            if (mode == null) {
-                __splitTextResult.push(m);
-            } else if (mode === 1) { // RAWTEXTONLY_MODE
-                if (__re_class_header.test(m)) {
-                    innerMatch = m.match(__re_class);
-                    __splitTextResult.push(innerMatch[2]);
-                } else if (__re_style_header.test(m)) {
-                    innerMatch = m.match(__re_style);
-                    __splitTextResult.push(innerMatch[2]);
-                }
-            }
-
-            charIdx = re["lastIndex"];
-        }
-
-
-        if (charIdx < totalLen) {
-            __splitTextResult.push(txt.substring(charIdx, totalLen));
-        }
-        return __splitTextResult;
-    };
-
     //////////////////////////////////////
     // Conditions
     function Cnds() {};
@@ -1066,18 +876,34 @@ cr.plugins_.rex_TagText = function (runtime) {
 
     Acts.prototype.SetShadow = function (offsetX, offsetY, blur_, color_) {
         color_ = color_.replace(/ /g, '');
-
-        // 2px 2px 2px #000        
-        var shadow = offsetX.toString() + "px " + offsetY.toString() + "px " + blur_.toString() + "px " + color_;
         if (this.tagInfo != null) // <class> ... </class>
         {
-
-            this.tagInfo["text-shadow"] = shadow
+            // 2px 2px 2px #000  
+            var shadow = offsetX.toString() + "px " + offsetY.toString() + "px " + blur_.toString() + "px " + color_;
+            this.tagInfo["shadow"] = shadow
             this.renderText(false);
         } else // global
         {
-            this.textShadow = shadow;
-            this.renderText(this.isForceRender);
+            var shadowProp = this.canvasText.defaultProperties["shadow"];
+            var valueChanged = false;
+            if (shadowProp[0] != color_) {
+                shadowProp[0] = color_;
+                valueChanged = true;
+            }
+            if (shadowProp[1] != offsetX) {
+                shadowProp[1] = offsetX;
+                valueChanged = true;
+            }
+            if (shadowProp[2] != offsetY) {
+                shadowProp[2] = offsetY;
+                valueChanged = true;
+            }
+            if (shadowProp[3] != blur_) {
+                shadowProp[3] = blur_;
+                valueChanged = true;
+            }
+            if (valueChanged)
+                this.renderText(this.isForceRender);
         }
     };
 
@@ -1125,11 +951,11 @@ cr.plugins_.rex_TagText = function (runtime) {
             this.renderText(this.isForceRender);
     };
 
-    Acts.prototype.SetUnderline = function (color_, thinkness, offset) {
+    Acts.prototype.SetUnderline = function (color_, thickness, offset) {
         color_ = color_.replace(/ /g, '');
 
-        // #000 1px 0px
-        var underline = color_ + " " + thinkness.toString() + "px " + offset.toString() + "px";
+        // yellow 1px 0px
+        var underline = color_ + " " + thickness.toString() + "px " + offset.toString() + "px";
         if (this.tagInfo != null) // <class> ... </class>
         {
 
@@ -1146,20 +972,32 @@ cr.plugins_.rex_TagText = function (runtime) {
         color_ = color_.replace(/ /g, '');
         lineJoin = lineJoinMode[lineJoin];
 
-        // #000 1px
-        var stroke = color_ + " " + lineWidth.toString() + "px " + lineJoin;
         if (this.tagInfo != null) // <class> ... </class>
         {
+            // yellow 1px miter
+            var stroke = color_ + " " + lineWidth.toString() + "px " + lineJoin;
             this.tagInfo["stroke"] = stroke;
             this.renderText(false);
         } else // global
         {
-            if (stroke === this.stroke)
-                return;
+            var strokeProp = this.canvasText.defaultProperties["stroke"];
+            var valueChanged = false;
+            if (strokeProp[0] !== color_) {
+                strokeProp[0] = color_;
+                valueChanged = true;
+            }
+            if (strokeProp[1] !== lineWidth) {
+                strokeProp[1] = lineWidth;
+                valueChanged = true;
+            }
+            if (strokeProp[2] !== lineJoin) {
+                strokeProp[2] = lineJoin;
+                valueChanged = true;
+            }
 
-            this.stroke = stroke;
-            this.renderText(this.isForceRender);
-
+            if (valueChanged) {
+                this.renderText(this.isForceRender);
+            }
         }
     };
 
@@ -1194,6 +1032,9 @@ cr.plugins_.rex_TagText = function (runtime) {
     };
 
     Acts.prototype.SetBackgroundColor = function (rgb) {
+        if (rgb === "")
+            rgb = "none";
+
         var color = getColor(rgb);
         if (color === this.canvasText.backgroundColor)
             return;
@@ -1255,4 +1096,299 @@ cr.plugins_.rex_TagText = function (runtime) {
         ret.set_any(val);
     };
 
+
+    // split text into array
+    var __splitTextResult = [];
+    var splitText = function (txt, mode) {
+        var re = /<\s*class=["|']([^"|']+)["|']\s*\>([\s\S]*?)<\s*\/class\s*\>|<\s*style=["|']([^"|']+)["|']\s*\>([\s\S]*?)<\s*\/style\s*\>/g;
+        __splitTextResult.length = 0;
+        var arr, m, charIdx = 0,
+            totalLen = txt.length,
+            matchStart = totalLen;
+        var innerMatch;
+        while (true) {
+            arr = re.exec(txt);
+            if (!arr) {
+                break;
+            }
+
+
+            m = arr[0];
+            matchStart = re["lastIndex"] - m.length;
+
+            if (charIdx < matchStart) {
+                __splitTextResult.push(txt.substring(charIdx, matchStart));
+
+            }
+            if (mode == null) {
+                __splitTextResult.push(m);
+            } else if (mode === 1) { // RAWTEXTONLY_MODE
+                if (__re_class_header.test(m)) {
+                    innerMatch = m.match(__re_class);
+                    __splitTextResult.push(innerMatch[2]);
+                } else if (__re_style_header.test(m)) {
+                    innerMatch = m.match(__re_style);
+                    __splitTextResult.push(innerMatch[2]);
+                }
+            }
+
+            charIdx = re["lastIndex"];
+        }
+
+
+        if (charIdx < totalLen) {
+            __splitTextResult.push(txt.substring(charIdx, totalLen));
+        }
+        return __splitTextResult;
+    };
+
+
+    // text to properties
+    var __re_class_header = /<\s*class=/i;
+    var __re_class = /<\s*class=["|']([^"|']+)["|']\s*\>([\s\S]*?)<\s*\/class\s*\>/;
+    var __re_style_header = /<\s*style=/i;
+    var __re_style = /<\s*style=["|']([^"|']+)["|']\s*\>([\s\S]*?)<\s*\/style\s*\>/;
+    var __text2PropResult = {
+        rawText: "",
+        prop: null
+    };
+    var tagText2Prop = function (txt, prevProp, tags) {
+        var rawText, propOut;
+        // Check if current fragment is a class tag.
+        if (__re_class_header.test(txt)) {
+            // Looks the attributes and text inside the class tag.
+            var innerMatch = txt.match(__re_class);
+            if (innerMatch != null) {
+                propOut = transferProp(tags[innerMatch[1]]);
+                propOut["class"] = innerMatch[1];
+                rawText = innerMatch[2];
+            }
+        } else if (__re_style_header.test(txt)) {
+            // Looks the attributes and text inside the style tag.
+            var innerMatch = txt.match(__re_style);
+            if (innerMatch != null) {
+                // innerMatch[1] contains the properties of the attribute.               
+                propOut = transferProp(style2Prop(innerMatch[1]));
+                rawText = innerMatch[2];
+            }
+        }
+
+        if (rawText == null) {
+            rawText = txt;
+        }
+
+        if (propOut == null) {
+            propOut = {};
+        }
+
+        __text2PropResult.rawText = rawText;
+        __text2PropResult.prop = propOut;
+        return __text2PropResult;
+    };
+
+    var transferProp = function (propIn, propOut) {
+        var propOut = {};
+
+        if (!propIn) {
+            return propOut;
+        }
+
+        for (var atribute in propIn) {
+            switch (atribute) {
+                case "font-family":
+                    propOut["family"] = propIn[atribute];
+                    break;
+
+                case "font-weight":
+                    propOut["weight"] = propIn[atribute];
+                    break;
+
+                case "font-size":
+                    propOut["size"] = propIn[atribute].toString() + "pt";
+                    break;
+
+                case "font-style":
+                    propOut["style"] = propIn[atribute];
+                    break;
+
+
+                case "text-shadow":
+                    propOut["shadow"] = propIn[atribute];
+                    break;
+
+                case "underline":
+                    propOut["u"] = propIn[atribute];
+                    break;
+
+                case "image":
+                    propOut["img"] = propIn[atribute];
+                    break;
+
+                default:
+                    propOut[atribute] = propIn[atribute];
+                    break;
+            }
+        }
+
+        return propOut;
+    };
+
+    var style2Prop = function (s) {
+        s = s.split(";");
+        var i, cnt = s.length;
+        var result = {},
+            prop, k, v;
+        for (i = 0; i < cnt; i++) {
+            prop = s[i].split(":");
+            k = prop[0], v = prop[1];
+            if (isEmpty(k) || isEmpty(v)) {
+                // Wrong property name or value. We jump to the
+                // next loop.
+                continue;
+            }
+
+            result[k] = v;
+        }
+        return result;
+    };
+    var isEmpty = function (str) {
+        // Remove white spaces.
+        str = str.replace(/^\s+|\s+$/, '');
+        return str.length == 0;
+    };
+
+    var prop2ContextProp = function (defaultContextProp, prop, retProp) {
+        if (retProp == null)
+            retProp = {};
+
+        if (prop["img"] == null) {
+            // text mode
+            retProp.img = null;
+            if (prop["font"]) {
+                retProp.font = prop["font"];
+            } else {
+                retProp.family = prop["family"] || defaultContextProp["family"];
+                retProp.weight = prop["weight"] || defaultContextProp["weight"];
+                retProp.ptSize = prop["size"] || defaultContextProp["ptSize"];
+                retProp.style = prop["style"] || defaultContextProp["style"];
+                retProp.font = null;
+            }
+            retProp.color = prop["color"] || defaultContextProp["color"];
+
+            if (prop["stroke"]) {
+                if (retProp.stroke == null) {
+                    retProp.stroke = [];
+                    retProp.stroke.length = 3;
+                }
+
+                // yellow 1px miter
+                var stroke = prop["stroke"].split(" ");
+                var defaultStroke = defaultContextProp["stroke"]; // [color, lineWidth, lineJoin]
+                if (stroke[0] != null)
+                    retProp.stroke[0] = stroke[0];
+                else
+                    retProp.stroke[0] = defaultStroke[0];
+
+                if (stroke[1] != null)
+                    retProp.stroke[1] = parseFloat(stroke[1].replace("px", ""));
+                else
+                    retProp.stroke[1] = defaultStroke[1];
+
+                if (stroke[2] != null)
+                    retProp.stroke[2] = stroke[2];
+                else
+                    retProp.stroke[2] = defaultStroke[2];
+
+            } else {
+                retProp.stroke = defaultContextProp["stroke"];
+            }
+
+        } else {
+            retProp.img = prop["img"];
+        }
+
+        if (prop["shadow"]) {
+            if (retProp.shadow == null) {
+                retProp.shadow = [];
+                retProp.shadow.length = 4;
+            }
+
+            // 2px 2px 2px #000
+            var shadow = prop["shadow"].split(" ");
+            var defaultShadow = defaultContextProp["shadow"]; // [color, offsetx, offsety, blur]
+            var color = shadow[3];
+            if (color != null)
+                retProp.shadow[0] = color;
+            else
+                retProp.shadow[0] = defaultShadow[0];
+
+            if (retProp.shadow[0] != null) {
+                if (shadow[0] != null)
+                    retProp.shadow[1] = parseFloat(shadow[0].replace("px", ""));
+                else
+                    retProp.shadow[1] = defaultShadow[1];
+
+                if (shadow[1] != null)
+                    retProp.shadow[2] = parseFloat(shadow[1].replace("px", ""));
+                else
+                    retProp.shadow[2] = defaultShadow[2];
+
+                if (shadow[2] != null)
+                    retProp.shadow[3] = parseFloat(shadow[2].replace("px", ""));
+                else
+                    retProp.shadow[3] = defaultShadow[3];
+            }
+
+        } else {
+            retProp.shadow = defaultContextProp["shadow"];
+        }
+
+        if (prop["u"]) {
+            if (retProp.underline == null) {
+                retProp.underline = [];
+                retProp.underline.length = 3;
+            }
+
+            // yellow 1px 0px            
+            var underline = prop["u"].split(" ");
+            var defaultUnderline = defaultContextProp["underline"]; // [color, thickness, offset]
+            if (underline[0] != null)
+                retProp.underline[0] = underline[0];
+            else
+                retProp.underline[0] = defaultUnderline[0];
+
+            if (underline[1] != null)
+                retProp.underline[1] = parseFloat(underline[1].replace("px", ""));
+            else
+                retProp.underline[1] = defaultUnderline[1];
+
+            if (underline[2] != null)
+                retProp.underline[2] = parseFloat(underline[2].replace("px", ""));
+            else
+                retProp.underline[2] = defaultUnderline[2];
+
+        } else {
+            retProp.underline = defaultContextProp["underline"];
+        }
+
+        return retProp;
+    };
+
+    // properties to text string
+    var __propList = [];
+    var prop2TagText = function (txt, prop, prevProp) {
+        if (prop["class"]) // class mode
+            txt = "<class='" + prop["class"] + "'>" + txt + "</class>";
+        else // style mode
+        {
+            __propList.length = 0;
+            for (var k in prop) {
+                __propList.push(k + ":" + prop[k]);
+            }
+
+            if (__propList.length > 0)
+                txt = "<style='" + __propList.join(";") + "'>" + txt + "</style>";
+        }
+        return txt;
+    };
 }());

@@ -11,9 +11,13 @@
 
     var CanvasTextKlass = function () {
         // overwrite these functions and objects
-        this.splitTextFn = null;
-        this.tagText2PropFn = null;
-        this.prop2TagTextFn = null;
+        this.parser = {
+            splitText: null, // (txt, mode) -> [txt,...]
+            tagText2Prop: null, // (txt, prevProp) -> prop
+            prop2ContextProp: null, // (defaultContextProp, customProp) -> contextProp
+            prop2TagText: null, // (txt, prop, prevProp) -> txt
+        };
+        this.fillCanvasPropFn = null;
         this.imageBank = null;
         // overwrite these functions and objects
 
@@ -26,7 +30,12 @@
             y: 0,
             boxWidth: 0,
             boxHeight: 0,
-            ignore: null,
+            lineHeight: 12,
+            vshift: 0,
+            halign: 0, // 0=left, 1=center, 2=right
+            valign: 0, // 0=top, 1=center, 2=bottom
+            wrapbyword: 0, // 0=word, 1=character
+            noDrawing: null,
         };
         this.pensMgr = new PensMgrKlass();
         this.text_changed = true; // update this.pens to redraw
@@ -35,22 +44,22 @@
          * Default values, overwrite before draw by plugin
          */
         this.defaultProperties = {
-            family: "Verdana",
-            weight: "",
-            ptSize: "12pt",
-            color: "#000000",
-            stroke: ["none", 1],
-            style: "normal",
-            shadow: "",
+            "family": "Verdana",
+            "weight": "",
+            "ptSize": "12pt",
+            "color": "#000000",
+            "style": "normal",
+            "stroke": ["none", 1, "miter"], // [color, lineWidth, lineJoin]
+            "underline": ["none", 1, 0], // [color, thickness, offset]
+            "shadow": ["none", 0, 0, 0], // [color, offsetx, offsety, blur]
+            "img": null, // for image pen
+            "font": null // assign font directly
         };
-        this.underline = {
-            thickness: 1,
-            offset: 0
-        };
+        this.curContextProp = null;
+
         this.textAlign = "start";
-        this.lineHeight = "16";
         this.textBaseline = "alphabetic";
-        this.backgroundColor = "";
+        this.backgroundColor = "none";
 
         var self = this;
         this.getTextWidth = function (txt) {
@@ -59,120 +68,69 @@
     };
     var CanvasTextKlassProto = CanvasTextKlass.prototype;
 
-    CanvasTextKlassProto.Reset = function (plugin) {
-        this.plugin = plugin;
-    };
     CanvasTextKlassProto.getLines = function () {
         return this.pensMgr.getLines();
     };
 
-    CanvasTextKlassProto.applyPropScope = function (propScope) {
-        if (this.isTextMode(propScope)) {
+    CanvasTextKlassProto.setContextPrpo = function (contextProp) {
+        if (contextProp.img == null) {
             // draw text
-            var font = propScope["font"];
-            if (font) {
-                this.context.font = font;
-            } else {
-                var style = propScope["style"] || this.defaultProperties.style;
-                var weight = propScope["weight"] || this.defaultProperties.weight;
-                var ptSize = this.getTextSize(propScope);
-                var family = propScope["family"] || this.defaultProperties.family;
-                this.context.font = style + " " + weight + " " + ptSize + " '" + family + "'";
+            var font = contextProp.font;
+            if (font == null) {
+                font = contextProp.style + " " + contextProp.weight + " " + contextProp.ptSize + " '" + contextProp.family + "'";
             }
+            this.context.font = font;
 
-            var color = this.getFillColor(propScope);
-            if (isValidColor(color))
-                this.context.fillStyle = color;
+            if (isValidColor(contextProp.color))
+                this.context.fillStyle = contextProp.color;
 
-            var stroke = this.getStroke(propScope);
-            if (isValidColor(stroke)) {
-                stroke = stroke.split(" ");
-                this.context.strokeStyle = stroke[0];
-                if (stroke[1] != null) this.context.lineWidth = parseFloat(stroke[1].replace("px", ""));
-                if (stroke[2] != null) {
-                    this.context.lineJoin = stroke[2];
-                    this.context.miterLimit = 2;
-                }
+            if (isValidColor(contextProp.stroke[0])) {
+                this.context.strokeStyle = contextProp.stroke[0];
+                this.context.lineWidth = contextProp.stroke[1];
+                this.context.lineJoin = contextProp.stroke[2];
+                this.context.miterLimit = 2;
             }
         }
 
-        var shadow = (propScope["shadow"]) ? propScope["shadow"] : this.defaultProperties.shadow;
-        if (shadow !== "") {
-            shadow = shadow.split(" ");
-            this.context.shadowOffsetX = parseFloat(shadow[0].replace("px", ""));
-            this.context.shadowOffsetY = parseFloat(shadow[1].replace("px", ""));
-            this.context.shadowBlur = parseFloat(shadow[2].replace("px", ""));
-            this.context.shadowColor = shadow[3];
+        if (isValidColor(contextProp.shadow[0])) {
+            this.context.shadowColor = contextProp.shadow[0];
+            this.context.shadowOffsetX = contextProp.shadow[1];
+            this.context.shadowOffsetY = contextProp.shadow[2];
+            this.context.shadowBlur = contextProp.shadow[3];
         }
 
     };
 
-    CanvasTextKlassProto.isTextMode = function (propScope) {
-        var isImageMode = propScope.hasOwnProperty("img");
-        return !isImageMode;
-    };
-
-    CanvasTextKlassProto.getTextSize = function (propScope) {
-        var size;
-        if (propScope.hasOwnProperty("size"))
-            size = propScope["size"];
-        else
-            size = this.defaultProperties.ptSize;
-        return size;
-    };
-    CanvasTextKlassProto.getFillColor = function (propScope) {
-        var color;
-        if (propScope.hasOwnProperty("color"))
-            color = propScope["color"];
-        else
-            color = this.defaultProperties.color;
-        return color;
-    };
-    CanvasTextKlassProto.getStroke = function (propScope) {
-        var stroke;
-        if (propScope.hasOwnProperty("stroke"))
-            stroke = propScope["stroke"];
-        else
-            stroke = this.defaultProperties.stroke;
-        return stroke;
-    };
-
-    CanvasTextKlassProto.drawPen = function (pen, offsetX, offsetY) {
+    CanvasTextKlassProto.drawPen = function (pen, offsetX, offsetY, textInfo) {
         var ctx = this.context;
         ctx.save();
 
-        this.applyPropScope(pen.prop);
+        this.curContextProp = this.parser.prop2ContextProp(
+            this.defaultProperties,
+            pen.prop,
+            this.curContextProp
+        );
+        this.setContextPrpo(this.curContextProp);
 
         var startX = offsetX + pen.x;
         var startY = offsetY + pen.y;
 
         // underline
-        var underline = pen.prop["u"];
-        if (underline) {
-            underline = underline.split(" ");
-            var color = underline[0];
-
-            var thicknessSave = this.underline.thickness;
-            if (underline[1] != null) this.underline.thickness = parseFloat(underline[1].replace("px", ""));
-
-            var offsetSave = this.underline.offset;
-            if (underline[2] != null) this.underline.offset = parseFloat(underline[2].replace("px", ""));
-
+        var underlineProp = this.curContextProp.underline;
+        if (isValidColor(underlineProp[0])) {
             this.drawUnderline(pen.text, startX, startY,
-                this.getTextSize(pen.prop),
-                color);
-
-            this.underline.thickness = thicknessSave;
-            this.underline.offset = offsetSave;
+                this.curContextProp.ptSize,
+                underlineProp);
         }
 
         // draw image
-        if (pen.prop.hasOwnProperty("img")) {
-            var img = this.imageBank.GetImage(pen.prop["img"]);
+        var imgName = this.curContextProp.img;
+        if (imgName != null) {
+            var img = this.imageBank.GetImage(imgName);
             if (img) {
                 var y = startY + img.yoffset;
                 if (this.textBaseline == "alphabetic") {
-                    y -= this.lineHeight;
+                    y -= textInfo.lineHeight;
                 }
                 ctx.drawImage(img.img, startX, y, img.width, img.height);
             }
@@ -181,11 +139,11 @@
         // draw text
         else {
             // stoke
-            if (isValidColor(this.getStroke(pen.prop)))
+            if (isValidColor(this.curContextProp.stroke[0]))
                 ctx.strokeText(pen.text, startX, startY);
 
             // fill text
-            if (isValidColor(this.getFillColor(pen.prop)))
+            if (isValidColor(this.curContextProp.color))
                 ctx.fillText(pen.text, startX, startY);
         }
 
@@ -193,28 +151,28 @@
         ctx.restore();
     };
 
-    CanvasTextKlassProto.drawUnderline = function (text, x, y, size, color) {
+    CanvasTextKlassProto.drawUnderline = function (text, x, y, size, underlineProp) {
         var ctx = this.context;
-        var width = ctx.measureText(text).width;
+        var width = this.getTextWidth(text);
         //switch(ctx.textAlign)
         //{
         //case "center": x -= (width/2); break;
         //case "right": x -= width; break;
         //}
-        y += this.underline.offset;
+        y += underlineProp[2];
         if (this.textBaseline === "top")
             y += parseInt(size);
 
         ctx.beginPath();
-        ctx.strokeStyle = color;
-        ctx.lineWidth = this.underline.thickness;
+        ctx.strokeStyle = underlineProp[0];
+        ctx.lineWidth = underlineProp[1];
         ctx.moveTo(x, y);
         ctx.lineTo(x + width, y);
         ctx.stroke();
     };
 
     CanvasTextKlassProto.preProcess = function () {
-        if (this.backgroundColor !== "") {
+        if (isValidColor(this.backgroundColor)) {
             var ctx = this.context;
             ctx.fillStyle = this.backgroundColor;
             ctx.fillRect(0, 0, this.textInfo.boxWidth, this.textInfo.boxHeight);
@@ -223,7 +181,9 @@
 
     CanvasTextKlassProto.drawPens = function (pensMgr, textInfo) {
         var boxWidth = textInfo.boxWidth,
-            boxHeight = textInfo.boxHeight;
+            boxHeight = textInfo.boxHeight,
+            halign = textInfo.halign,
+            valign = textInfo.valign;
         var startX = textInfo.x,
             startY = textInfo.y;
         var lines = pensMgr.getLines(),
@@ -231,17 +191,17 @@
 
         var offsetX, offsetY;
         // vertical alignment
-        if (this.plugin.valign === 1) // center
-            offsetY = Math.max((boxHeight - (lcnt * this.lineHeight)) / 2, 0);
-        else if (this.plugin.valign === 2) // bottom
-            offsetY = Math.max(boxHeight - (lcnt * this.lineHeight) - 2, 0);
+        if (valign === 1) // center
+            offsetY = Math.max((boxHeight - (lcnt * textInfo.lineHeight)) / 2, 0);
+        else if (valign === 2) // bottom
+            offsetY = Math.max(boxHeight - (lcnt * textInfo.lineHeight) - 2, 0);
         else
             offsetY = 0;
 
         offsetY += startY;
 
         if (this.textBaseline == "alphabetic")
-            offsetY += this.plugin.vshift; // shift line down    
+            offsetY += textInfo.vshift; // shift line down    
 
         var li, lineWidth;
         var pi, pcnt, pens, pen;
@@ -250,9 +210,9 @@
             if (lineWidth === 0)
                 continue;
 
-            if (this.plugin.halign === 1) // center
+            if (halign === 1) // center
                 offsetX = (boxWidth - lineWidth) / 2;
-            else if (this.plugin.halign === 2) // right
+            else if (halign === 2) // right
                 offsetX = boxWidth - lineWidth;
             else
                 offsetX = 0;
@@ -266,7 +226,7 @@
                 if (pen.text === "")
                     continue;
 
-                this.drawPen(pen, offsetX, offsetY);
+                this.drawPen(pen, offsetX, offsetY, textInfo);
             }
         }
     };
@@ -284,7 +244,9 @@
         // Save the textInfo into separated vars to work more comfortably.
         var txt = textInfo.text,
             boxWidth = textInfo.boxWidth,
-            boxHeight = textInfo.boxHeight;
+            boxHeight = textInfo.boxHeight,
+            lineHeight = textInfo.lineHeight;
+        wrapbyword = textInfo.wrapbyword;
         if (txt === "")
             return;
 
@@ -292,32 +254,37 @@
             startY = 0;
         var cursorX = startX,
             cursorY = startY;
-        var rawText, currentProp;
+        var rawText, curProp, imgName;
 
-        var m, match = this.splitTextFn(txt);
+        var m, match = this.parser.splitText(txt);
         var i, matchCnt = match.length;
-        debugger
         for (i = 0; i < matchCnt; i++) {
-            var result = this.tagText2PropFn(match[i], currentProp);
+            var result = this.parser.tagText2Prop(match[i], curProp);
             rawText = result.rawText;
-            currentProp = result.prop;
+            curProp = result.prop;
+            this.curContextProp = this.parser.prop2ContextProp(
+                this.defaultProperties,
+                curProp,
+                this.curContextProp
+            );
 
-            // add image pen                    
-            if (currentProp.hasOwnProperty("img")) {
-                var img = this.imageBank.GetImage(currentProp["img"]);
+            // add image pen  
+            imgName = this.curContextProp.img;
+            if (imgName != null) {
+                var img = this.imageBank.GetImage(imgName);
                 if (!img)
                     continue;
 
                 if (!noWrap) {
                     if (img.width > boxWidth - (cursorX - startX)) {
                         cursorX = startX;
-                        cursorY += this.lineHeight;
+                        cursorY += lineHeight;
                     }
                     pensMgr.addPen(null, // text
                         cursorX, // x
                         cursorY, // y
                         img.width, // width
-                        currentProp, // prop
+                        curProp, // prop
                         0 // newLineMode
                     );
 
@@ -327,22 +294,29 @@
                         null, // x
                         null, // y
                         null, // width
-                        currentProp, // prop
+                        curProp, // prop
                         0 // newLineMode
                     );
                 }
             }
 
             // add text pen            
-            else if (rawText !== "") {
-                if (!noWrap) {
+            else {
+                if (rawText === "") {
+                    pensMgr.addPen(rawText, // text
+                        cursorX, // x
+                        cursorY, // y
+                        0, // width
+                        curProp, // prop
+                        0 // newLineMode
+                    );
+                } else if (!noWrap) {
                     // Save the current context.
                     this.context.save();
-
-                    this.applyPropScope(currentProp);
+                    this.setContextPrpo(this.curContextProp);
 
                     // wrap text to lines
-                    var wrapLines = window.rexObjs.text2Lines(rawText, this.getTextWidth, boxWidth, this.plugin.wrapbyword, cursorX - startX);
+                    var wrapLines = window.rexObjs.text2Lines(rawText, this.getTextWidth, boxWidth, wrapbyword, cursorX - startX);
 
                     // add pens
                     var lcnt = wrapLines.length,
@@ -353,13 +327,13 @@
                             cursorX, // x
                             cursorY, // y
                             l.width, // width
-                            currentProp, // prop
+                            curProp, // prop
                             l.newLineMode // newLineMode
                         );
 
                         if (l.newLineMode !== NO_NEWLINE) {
                             cursorX = startX;
-                            cursorY += this.lineHeight;
+                            cursorY += lineHeight;
                         } else {
                             cursorX += l.width;
                         }
@@ -371,7 +345,7 @@
                         null, // x
                         null, // y
                         null, // width
-                        currentProp, // prop
+                        curProp, // prop
                         0 // newLineMode
                     );
                     // new line had been included in raw text
@@ -388,7 +362,7 @@
             this.text_changed = false;
         }
 
-        if (!textInfo.ignore) {
+        if (!textInfo.noDrawing) {
             // Let's draw the text
             // Set the text Baseline
             this.context.textBaseline = this.textBaseline;
@@ -405,7 +379,7 @@
     var __tempPensMgr = null;
     CanvasTextKlassProto.getSubText = function (start, end, text) {
         if (text == null)
-            return this.pensMgr.getSliceTagText(start, end, this.prop2TagTextFn);
+            return this.pensMgr.getSliceTagText(start, end, this.parser.prop2TagText);
 
         if (__tempPensMgr === null)
             __tempPensMgr = new PensMgrKlass();
@@ -415,7 +389,7 @@
         this.updatePens(__tempPensMgr, this.textInfo, true);
         this.textInfo.text = textSave;
 
-        return __tempPensMgr.getSliceTagText(start, end, this.prop2TagTextFn);
+        return __tempPensMgr.getSliceTagText(start, end, this.parser.prop2TagText);
     };
 
     var RAWTEXTONLY_MODE = 1;
@@ -423,7 +397,7 @@
         if (text == null)
             return this.pensMgr.getRawText();
 
-        var m, match = this.splitTextFn(text, 1); // RAWTEXTONLY_MODE
+        var m, match = this.parser.splitText(text, 1); // RAWTEXTONLY_MODE
         if (match.length === 0)
             return "";
 
@@ -453,15 +427,18 @@
 
         return pensMgr.getLastPen();
     };
-    // ----
 
     CanvasTextKlassProto.saveToJSON = function () {
         return {
+            "dp": this.defaultProperties,
+            "bl": this.textBaseline,
             "bgc": this.backgroundColor
         };
     };
 
     CanvasTextKlassProto.loadFromJSON = function (o) {
+        this.defaultProperties = o["dp"];
+        this.textBaseline = o["bl"];
         this.backgroundColor = o["bgc"];
     };
 
@@ -471,10 +448,12 @@
         }
 
         return true;
-    }
+    };
 
     window.rexObjs.CanvasTextKlass = CanvasTextKlass;
-
+    // ------------------------------------------------------------------------
+    // ------------------------------------------------------------------------
+    // ------------------------------------------------------------------------
 
     var penCache = new window.rexObjs.ObjCacheKlass();
     var lineCache = new window.rexObjs.ObjCacheKlass();
@@ -578,7 +557,6 @@
                     pen.width,
                     pen.prop,
                     pen.newLineMode);
-
             }
         }
 
@@ -678,7 +656,7 @@
         this.prop = {};
         this.newLineMode = null;
         this.startIndex = null;
-    }
+    };
     var PenKlassProto = PenKlass.prototype;
 
     PenKlassProto.setPen = function (txt, x, y, width, prop, newLineMode, startIndex) {
@@ -708,6 +686,10 @@
 
     PenKlassProto.getLastX = function () {
         return this.x + this.width;
+    };
+
+    var cloneJSON = function (o) {
+        return JSON.parse(JSON.stringify(o));
     };
 
     var copyTable = function (inObj, outObj, isMerge) {

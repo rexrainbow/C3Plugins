@@ -71,7 +71,7 @@
 			this._webglText.SetFontSize(this._inst.GetPropertyValue("font-size"));		
 			this._webglText.SetLineHeight(this._inst.GetPropertyValue("line-height"));				
 			this._webglText.SetBold(this._inst.GetPropertyValue("bold"));
-			//this._webglText.SetItalic(this._inst.GetPropertyValue("italic"));
+			this._webglText.SetItalic(this._inst.GetPropertyValue("italic"));
 			this._webglText.SetColor(this._inst.GetPropertyValue("color"));
 			this._webglText.SetHorizontalAlignment(this._inst.GetPropertyValue("horizontal-alignment"));
 			this._webglText.SetVerticalAlignment(this._inst.GetPropertyValue("vertical-alignment"));
