@@ -35,7 +35,7 @@ cr.plugins_.rex_TagText = function (runtime) {
 
     var typeProto = pluginProto.Type.prototype;
 
-    typeProto.onCreate = function () {};
+    typeProto.onCreate = function () { };
 
     typeProto.onLostWebGLContext = function () {
         if (this.is_family)
@@ -542,21 +542,21 @@ cr.plugins_.rex_TagText = function (runtime) {
         propsections.push({
             "title": this.type.name,
             "properties": [{
-                    "name": "Text",
-                    "value": this.text
-                },
-                {
-                    "name": "Font",
-                    "value": font
-                },
-                {
-                    "name": "Line height",
-                    "value": this.lineHeightOffset
-                },
-                {
-                    "name": "Baseline",
-                    "value": this.canvasText.textBaseline
-                },
+                "name": "Text",
+                "value": this.text
+            },
+            {
+                "name": "Font",
+                "value": font
+            },
+            {
+                "name": "Line height",
+                "value": this.lineHeightOffset
+            },
+            {
+                "name": "Baseline",
+                "value": this.canvasText.textBaseline
+            },
             ]
         });
     };
@@ -586,7 +586,7 @@ cr.plugins_.rex_TagText = function (runtime) {
     };
     //////////////////////////////////////
     // Conditions
-    function Cnds() {};
+    function Cnds() { };
     pluginProto.cnds = new Cnds();
 
     Cnds.prototype.CompareText = function (text_to_compare, case_sensitive) {
@@ -617,7 +617,7 @@ cr.plugins_.rex_TagText = function (runtime) {
 
     //////////////////////////////////////
     // Actions
-    function Acts() {};
+    function Acts() { };
     pluginProto.acts = new Acts();
 
 
@@ -1046,7 +1046,7 @@ cr.plugins_.rex_TagText = function (runtime) {
 
     //////////////////////////////////////
     // Expressions
-    function Exps() {};
+    function Exps() { };
     pluginProto.exps = new Exps();
 
     Exps.prototype.Text = function (ret, start, end) {
@@ -1153,6 +1153,7 @@ cr.plugins_.rex_TagText = function (runtime) {
         prop: null
     };
     var tagText2Prop = function (txt, prevProp, tags) {
+        var retProp = __text2PropResult;
         var rawText, propOut;
         // Check if current fragment is a class tag.
         if (__re_class_header.test(txt)) {
@@ -1181,9 +1182,9 @@ cr.plugins_.rex_TagText = function (runtime) {
             propOut = {};
         }
 
-        __text2PropResult.rawText = rawText;
-        __text2PropResult.prop = propOut;
-        return __text2PropResult;
+        retProp.rawText = rawText;
+        retProp.prop = propOut;
+        return retProp;
     };
 
     var transferProp = function (propIn, propOut) {
@@ -1204,7 +1205,7 @@ cr.plugins_.rex_TagText = function (runtime) {
                     break;
 
                 case "font-size":
-                    propOut["size"] = propIn[atribute].toString() + "pt";
+                    propOut["size"] = propIn[atribute];
                     break;
 
                 case "font-style":
@@ -1257,9 +1258,14 @@ cr.plugins_.rex_TagText = function (runtime) {
         return str.length == 0;
     };
 
-    var prop2ContextProp = function (defaultContextProp, prop, retProp) {
-        if (retProp == null)
-            retProp = {};
+    var __contextPropResult = {
+        stroke: [null, null, null],
+        shadow: [null, null, null, null],
+        underline: [null, null, null]
+    };    
+    var __nullList = [];
+    var prop2ContextProp = function (defaultContextProp, prop) {
+        var retProp = __contextPropResult;
 
         if (prop["img"] == null) {
             // text mode
@@ -1275,101 +1281,90 @@ cr.plugins_.rex_TagText = function (runtime) {
             }
             retProp.color = prop["color"] || defaultContextProp["color"];
 
+            var stroke;
             if (prop["stroke"]) {
-                if (retProp.stroke == null) {
-                    retProp.stroke = [];
-                    retProp.stroke.length = 3;
-                }
-
                 // yellow 1px miter
-                var stroke = prop["stroke"].split(" ");
-                var defaultStroke = defaultContextProp["stroke"]; // [color, lineWidth, lineJoin]
-                if (stroke[0] != null)
-                    retProp.stroke[0] = stroke[0];
-                else
-                    retProp.stroke[0] = defaultStroke[0];
-
-                if (stroke[1] != null)
-                    retProp.stroke[1] = parseFloat(stroke[1].replace("px", ""));
-                else
-                    retProp.stroke[1] = defaultStroke[1];
-
-                if (stroke[2] != null)
-                    retProp.stroke[2] = stroke[2];
-                else
-                    retProp.stroke[2] = defaultStroke[2];
-
+                stroke = prop["stroke"].split(" ");
             } else {
-                retProp.stroke = defaultContextProp["stroke"];
+                stroke = __nullList;
             }
+
+            var defaultStroke = defaultContextProp["stroke"]; // [color, lineWidth, lineJoin]              
+            if (stroke[0] != null)
+                retProp.stroke[0] = stroke[0];
+            else
+                retProp.stroke[0] = defaultStroke[0];
+
+            if (stroke[1] != null)
+                retProp.stroke[1] = parseFloat(stroke[1].replace("px", ""));
+            else
+                retProp.stroke[1] = defaultStroke[1];
+
+            if (stroke[2] != null)
+                retProp.stroke[2] = stroke[2];
+            else
+                retProp.stroke[2] = defaultStroke[2];
 
         } else {
             retProp.img = prop["img"];
         }
 
+
+        var shadow;
         if (prop["shadow"]) {
-            if (retProp.shadow == null) {
-                retProp.shadow = [];
-                retProp.shadow.length = 4;
-            }
-
             // 2px 2px 2px #000
-            var shadow = prop["shadow"].split(" ");
-            var defaultShadow = defaultContextProp["shadow"]; // [color, offsetx, offsety, blur]
-            var color = shadow[3];
-            if (color != null)
-                retProp.shadow[0] = color;
-            else
-                retProp.shadow[0] = defaultShadow[0];
-
-            if (retProp.shadow[0] != null) {
-                if (shadow[0] != null)
-                    retProp.shadow[1] = parseFloat(shadow[0].replace("px", ""));
-                else
-                    retProp.shadow[1] = defaultShadow[1];
-
-                if (shadow[1] != null)
-                    retProp.shadow[2] = parseFloat(shadow[1].replace("px", ""));
-                else
-                    retProp.shadow[2] = defaultShadow[2];
-
-                if (shadow[2] != null)
-                    retProp.shadow[3] = parseFloat(shadow[2].replace("px", ""));
-                else
-                    retProp.shadow[3] = defaultShadow[3];
-            }
-
+            shadow = prop["shadow"].split(" ");
         } else {
-            retProp.shadow = defaultContextProp["shadow"];
+            shadow = __nullList;
         }
 
+        var defaultShadow = defaultContextProp["shadow"]; // [color, offsetx, offsety, blur]        
+        var color = shadow[3];
+        if (color != null)
+            retProp.shadow[0] = color;
+        else
+            retProp.shadow[0] = defaultShadow[0];
+
+        if (retProp.shadow[0] != null) {
+            if (shadow[0] != null)
+                retProp.shadow[1] = parseFloat(shadow[0].replace("px", ""));
+            else
+                retProp.shadow[1] = defaultShadow[1];
+
+            if (shadow[1] != null)
+                retProp.shadow[2] = parseFloat(shadow[1].replace("px", ""));
+            else
+                retProp.shadow[2] = defaultShadow[2];
+
+            if (shadow[2] != null)
+                retProp.shadow[3] = parseFloat(shadow[2].replace("px", ""));
+            else
+                retProp.shadow[3] = defaultShadow[3];
+        }
+
+        var underline;
         if (prop["u"]) {
-            if (retProp.underline == null) {
-                retProp.underline = [];
-                retProp.underline.length = 3;
-            }
-
-            // yellow 1px 0px            
-            var underline = prop["u"].split(" ");
-            var defaultUnderline = defaultContextProp["underline"]; // [color, thickness, offset]
-            if (underline[0] != null)
-                retProp.underline[0] = underline[0];
-            else
-                retProp.underline[0] = defaultUnderline[0];
-
-            if (underline[1] != null)
-                retProp.underline[1] = parseFloat(underline[1].replace("px", ""));
-            else
-                retProp.underline[1] = defaultUnderline[1];
-
-            if (underline[2] != null)
-                retProp.underline[2] = parseFloat(underline[2].replace("px", ""));
-            else
-                retProp.underline[2] = defaultUnderline[2];
-
+            // yellow 1px 0px     
+            underline = prop["u"].split(" ");
         } else {
-            retProp.underline = defaultContextProp["underline"];
+            underline = __nullList;
         }
+
+        var defaultUnderline = defaultContextProp["underline"]; // [color, thickness, offset]
+        if (underline[0] != null)
+            retProp.underline[0] = underline[0];
+        else
+            retProp.underline[0] = defaultUnderline[0];
+
+        if (underline[1] != null)
+            retProp.underline[1] = parseFloat(underline[1].replace("px", ""));
+        else
+            retProp.underline[1] = defaultUnderline[1];
+
+        if (underline[2] != null)
+            retProp.underline[2] = parseFloat(underline[2].replace("px", ""));
+        else
+            retProp.underline[2] = defaultUnderline[2];
 
         return retProp;
     };

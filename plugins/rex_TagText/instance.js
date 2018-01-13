@@ -29,6 +29,26 @@
 		OnPlacedInLayout()
 		{
 		}
+		HasDoubleTapHandler()
+		{
+			return true;
+		}
+		OnDoubleTap()
+		{
+			const text = this._inst.GetPropertyValue("text");
+			// Use ShowLongTextPropertyDialog() to show the same dialog that is used when clicking the button
+			// next to the longtext property.			
+			SDK.UI.Util.ShowLongTextPropertyDialog(text, "Text")
+			.then(result =>
+			{
+				if (result === null || result === text)
+					return;		// cancelled or no change
+				
+				// To make sure this change is undoable, create an undo point before updating the property value.
+				this.GetProject().UndoPointChangeObjectInstancesProperty(this._inst, "text");
+				this._inst.SetPropertyValue("text", result);
+			});
+		}
 
 		
 		_MaybeCreateWebGLText(iRenderer, iLayoutView)

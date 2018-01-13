@@ -55,7 +55,6 @@
             "img": null, // for image pen
             "font": null // assign font directly
         };
-        this.curContextProp = null;
 
         this.textAlign = "start";
         this.textBaseline = "alphabetic";
@@ -105,26 +104,25 @@
         var ctx = this.context;
         ctx.save();
 
-        this.curContextProp = this.parser.prop2ContextProp(
+        var curContextProp = this.parser.prop2ContextProp(
             this.defaultProperties,
-            pen.prop,
-            this.curContextProp
+            pen.prop
         );
-        this.setContextPrpo(this.curContextProp);
+        this.setContextPrpo(curContextProp);
 
         var startX = offsetX + pen.x;
         var startY = offsetY + pen.y;
 
         // underline
-        var underlineProp = this.curContextProp.underline;
+        var underlineProp = curContextProp.underline;
         if (isValidColor(underlineProp[0])) {
             this.drawUnderline(pen.text, startX, startY,
-                this.curContextProp.ptSize,
+                curContextProp.ptSize,
                 underlineProp);
         }
 
         // draw image
-        var imgName = this.curContextProp.img;
+        var imgName = curContextProp.img;
         if (imgName != null) {
             var img = this.imageBank.GetImage(imgName);
             if (img) {
@@ -139,11 +137,11 @@
         // draw text
         else {
             // stoke
-            if (isValidColor(this.curContextProp.stroke[0]))
+            if (isValidColor(curContextProp.stroke[0]))
                 ctx.strokeText(pen.text, startX, startY);
 
             // fill text
-            if (isValidColor(this.curContextProp.color))
+            if (isValidColor(curContextProp.color))
                 ctx.fillText(pen.text, startX, startY);
         }
 
@@ -254,7 +252,7 @@
             startY = 0;
         var cursorX = startX,
             cursorY = startY;
-        var rawText, curProp, imgName;
+        var rawText, curProp, curContextProp, imgName;
 
         var m, match = this.parser.splitText(txt);
         var i, matchCnt = match.length;
@@ -262,14 +260,13 @@
             var result = this.parser.tagText2Prop(match[i], curProp);
             rawText = result.rawText;
             curProp = result.prop;
-            this.curContextProp = this.parser.prop2ContextProp(
+            curContextProp = this.parser.prop2ContextProp(
                 this.defaultProperties,
-                curProp,
-                this.curContextProp
+                curProp
             );
 
             // add image pen  
-            imgName = this.curContextProp.img;
+            imgName = curContextProp.img;
             if (imgName != null) {
                 var img = this.imageBank.GetImage(imgName);
                 if (!img)
@@ -313,7 +310,7 @@
                 } else if (!noWrap) {
                     // Save the current context.
                     this.context.save();
-                    this.setContextPrpo(this.curContextProp);
+                    this.setContextPrpo(curContextProp);
 
                     // wrap text to lines
                     var wrapLines = window.rexObjs.text2Lines(rawText, this.getTextWidth, boxWidth, wrapbyword, cursorX - startX);
