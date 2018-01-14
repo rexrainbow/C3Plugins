@@ -106,7 +106,8 @@
 
         var curContextProp = this.parser.prop2ContextProp(
             this.defaultProperties,
-            pen.prop
+            pen.prop,
+            (pen.text == "")
         );
         this.setContextPrpo(curContextProp);
 
@@ -262,7 +263,8 @@
             curProp = result.prop;
             curContextProp = this.parser.prop2ContextProp(
                 this.defaultProperties,
-                curProp
+                curProp,
+                (rawText == "")
             );
 
             // add image pen  
@@ -298,16 +300,8 @@
             }
 
             // add text pen            
-            else {
-                if (rawText === "") {
-                    pensMgr.addPen(rawText, // text
-                        cursorX, // x
-                        cursorY, // y
-                        0, // width
-                        curProp, // prop
-                        0 // newLineMode
-                    );
-                } else if (!noWrap) {
+            else if (rawText !== "") {
+                if (!noWrap) {
                     // Save the current context.
                     this.context.save();
                     this.setContextPrpo(curContextProp);

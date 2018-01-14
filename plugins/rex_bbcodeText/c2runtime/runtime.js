@@ -35,7 +35,7 @@ cr.plugins_.rex_bbcodeText = function (runtime) {
 
     var typeProto = pluginProto.Type.prototype;
 
-    typeProto.onCreate = function () {};
+    typeProto.onCreate = function () { };
 
     typeProto.onLostWebGLContext = function () {
         if (this.is_family)
@@ -95,10 +95,12 @@ cr.plugins_.rex_bbcodeText = function (runtime) {
         this.need_text_redraw = false;
         this.last_render_tick = this.runtime.tickcount;
 
-        if (this.recycled)
+        if (this.recycled) {
             this.rcTex.set(0, 0, 1, 1);
-        else
+        }
+        else {
             this.rcTex = new cr.rect(0, 0, 1, 1);
+        }
 
         // In WebGL renderer tick this text object to release memory if not rendered any more
         if (this.runtime.glwrap)
@@ -107,22 +109,35 @@ cr.plugins_.rex_bbcodeText = function (runtime) {
         assert2(this.pxHeight, "Could not determine font text height");
 
         if (!this.recycled) {
+            var self = this;
             this.canvasText = new window.rexObjs.CanvasTextKlass();
             this.canvasText.imageBank = window.rexObjs.ImageBank;
-            this.canvasText.splitTextFn = splitText;
-            this.canvasText.tagText2PropFn =
-
-                this.canvasText.prop2TagTextFn = prop2TagText;
+            this.canvasText.parser.splitText = splitText;
+            this.canvasText.parser.tagText2Prop = tagText2Prop;
+            this.canvasText.parser.prop2ContextProp = prop2ContextProp;
+            this.canvasText.parser.prop2TagText = prop2TagText;
         }
-        this.canvasText.Reset(this);
         this.canvasText.textBaseline = (this.baseLineMode === 0) ? "alphabetic" : "top";
-        this.canvasText.stroke.lineWidth = this.properties[16];
-        this.canvasText.stroke.lineJoin = lineJoinMode[this.properties[17]];
-        this.canvasText.underline.thickness = this.properties[18];
-        this.canvasText.underline.offset = this.properties[19];
-        this.setShadow(this.properties[20], this.properties[21], this.properties[22], this.properties[23]);
 
-        this.canvasText.backgroundColor = this.properties[24];
+        var strokeProp = this.canvasText.defaultProperties["stroke"];
+        strokeProp[1] = this.properties[16];
+        strokeProp[2] = lineJoinMode[this.properties[17]];
+
+        var underlineProp = this.canvasText.defaultProperties["underline"];
+        underlineProp[1] = this.properties[18];
+        underlineProp[2] = this.properties[19];
+
+        var shadowProp = this.canvasText.defaultProperties["shadow"];
+        shadowProp[1] = this.properties[20];
+        shadowProp[2] = this.properties[21];
+        shadowProp[3] = this.properties[22];
+        shadowProp[0] = this.properties[23];
+
+        var backgroundColor = this.properties[24];
+        if (backgroundColor === "")
+            backgroundColor = "none";
+        this.canvasText.backgroundColor = backgroundColor;
+
 
         // render text at object initialize
         if (this.text)
@@ -186,7 +201,7 @@ cr.plugins_.rex_bbcodeText = function (runtime) {
             "ha": this.halign,
             "va": this.valign,
             "wr": this.wrapbyword,
-            "lho": this.line_height_offset,
+            "lho": this.lineHeightOffset,
             "vs": this.vshift,
             "fn": this.facename,
             "fs": this.fontstyle,
@@ -194,7 +209,6 @@ cr.plugins_.rex_bbcodeText = function (runtime) {
             "pxh": this.pxHeight,
             "ts": this.textShadow,
             "lrt": this.last_render_tick,
-            "bl": this.canvasText.textBaseline,
             "txtObj": this.canvasText.saveToJSON(),
             "isLcs": this.isCanvasSizeLocked,
             "lcw": this.lockedCanvasWidth,
@@ -209,7 +223,7 @@ cr.plugins_.rex_bbcodeText = function (runtime) {
         this.halign = o["ha"];
         this.valign = o["va"];
         this.wrapbyword = o["wr"];
-        this.line_height_offset = o["lho"];
+        this.lineHeightOffset = o["lho"];
         this.vshift = o["vs"];
         this.facename = o["fn"];
         this.fontstyle = o["fs"];
@@ -223,7 +237,6 @@ cr.plugins_.rex_bbcodeText = function (runtime) {
         this.lastwrapwidth = this.width;
         this.lastheight = this.height;
 
-        this.canvasText.textBaseline = o["bl"];
         this.canvasText.loadFromJSON(o["txtObj"]);
 
         this.isCanvasSizeLocked = o["isLcs"];
@@ -267,7 +280,7 @@ cr.plugins_.rex_bbcodeText = function (runtime) {
         this.renderText(this.isForceRender);
     };
 
-    instanceProto.draw = function (ctx, glmode, is_ignore) {
+    instanceProto.draw = function (ctx, glmode, noDrawing) {
         var isCtxSave = false;
         var width = (this.isCanvasSizeLocked) ? this.lockedCanvasWidth : this.width;
         var height = (this.isCanvasSizeLocked) ? this.lockedCanvasHeight : this.height;
@@ -331,26 +344,28 @@ cr.plugins_.rex_bbcodeText = function (runtime) {
         }
 
         var lineHeight = this.pxHeight;
-        lineHeight += (this.line_height_offset * this.runtime.devicePixelRatio);
+        lineHeight += (this.lineHeightOffset * this.runtime.devicePixelRatio);
 
         // configure
         this.canvasText.canvas = ctx.canvas;
         this.canvasText.context = ctx;
         // default setting
         this.canvasText.defaultProperties.family = this.facename;
-        // this.canvasText.defaultProperties.weight = ??
         this.canvasText.defaultProperties.ptSize = this.ptSize.toString() + "pt";
         this.canvasText.defaultProperties.style = this.fontstyle;
         this.canvasText.defaultProperties.color = this.color;
-        this.canvasText.defaultProperties.shadow = this.textShadow;
-        this.canvasText.lineHeight = lineHeight;
 
         this.canvasText.textInfo.text = this.text;
         this.canvasText.textInfo.x = penX;
         this.canvasText.textInfo.y = penY;
         this.canvasText.textInfo.boxWidth = width;
         this.canvasText.textInfo.boxHeight = height;
-        this.canvasText.textInfo.ignore = is_ignore;
+        this.canvasText.textInfo.lineHeight = lineHeight;
+        this.canvasText.textInfo.vshift = this.vshift;
+        this.canvasText.textInfo.halign = this.halign;
+        this.canvasText.textInfo.valign = this.valign;
+        this.canvasText.textInfo.wrapbyword = this.wrapbyword;
+        this.canvasText.textInfo.noDrawing = noDrawing;
         this.canvasText.drawText();
 
 
@@ -367,7 +382,7 @@ cr.plugins_.rex_bbcodeText = function (runtime) {
         var need_redraw = this.text_changed || this.need_text_redraw;
         this.need_text_redraw = false;
         var layerScale = this.layer.getScale();
-        var layer_angle = this.layer.getAngle();
+        var layerAngle = this.layer.getAngle();
         var rcTex = this.rcTex;
 
         // Calculate size taking in to account scale
@@ -445,7 +460,7 @@ cr.plugins_.rex_bbcodeText = function (runtime) {
         var blx = this.layer.layerToCanvas(q.blx, q.bly, true, true);
         var bly = this.layer.layerToCanvas(q.blx, q.bly, false, true);
 
-        if (this.runtime.pixel_rounding || (this.angle === 0 && layer_angle === 0)) {
+        if (this.runtime.pixel_rounding || (this.angle === 0 && layerAngle === 0)) {
             var ox = ((tlx + 0.5) | 0) - tlx;
             var oy = ((tly + 0.5) | 0) - tly
 
@@ -459,7 +474,7 @@ cr.plugins_.rex_bbcodeText = function (runtime) {
             bly += oy;
         }
 
-        if (this.angle === 0 && layer_angle === 0) {
+        if (this.angle === 0 && layerAngle === 0) {
             trx = tlx + scaledwidth;
             try_ = tly;
             brx = trx;
@@ -527,36 +542,10 @@ cr.plugins_.rex_bbcodeText = function (runtime) {
         }
     };
 
-    instanceProto.setShadow = function (offsetX, offsetY, blur_, color_) {
-        color_ = color_.replace(/ /g, '');
-
-        // 2px 2px 2px #000        
-        var shadow = offsetX.toString() + "px " + offsetY.toString() + "px " + blur_.toString() + "px " + color_;
-
-        this.textShadow = shadow;
-    };
-
     instanceProto.LockCanvasSize = function (isLocked, width, height) {
         this.isCanvasSizeLocked = isLocked;
         this.lockedCanvasWidth = width;
         this.lockedCanvasHeight = height;
-    };
-
-    var copy_dict = function (in_obj, out_obj, is_merge) {
-        if (out_obj == null)
-            out_obj = {};
-
-        if (!is_merge) {
-            for (var k in out_obj) {
-                if (!in_obj.hasOwnProperty(k))
-                    delete out_obj[k];
-            }
-        }
-
-        for (var k in in_obj)
-            out_obj[k] = in_obj[k];
-
-        return out_obj;
     };
 
     /**BEGIN-PREVIEWONLY**/
@@ -564,21 +553,21 @@ cr.plugins_.rex_bbcodeText = function (runtime) {
         propsections.push({
             "title": this.type.name,
             "properties": [{
-                    "name": "Text",
-                    "value": this.text
-                },
-                {
-                    "name": "Font",
-                    "value": this.font
-                },
-                {
-                    "name": "Line height",
-                    "value": this.line_height_offset
-                },
-                {
-                    "name": "Baseline",
-                    "value": this.canvasText.textBaseline
-                },
+                "name": "Text",
+                "value": this.text
+            },
+            {
+                "name": "Font",
+                "value": this.font
+            },
+            {
+                "name": "Line height",
+                "value": this.lineHeightOffset
+            },
+            {
+                "name": "Baseline",
+                "value": this.canvasText.textBaseline
+            },
             ]
         });
     };
@@ -590,7 +579,7 @@ cr.plugins_.rex_bbcodeText = function (runtime) {
             this.font = value;
             this.setFont();
         } else if (name === "Line height")
-            this.line_height_offset = value;
+            this.lineHeightOffset = value;
 
         this.text_changed = true;
 
@@ -607,184 +596,9 @@ cr.plugins_.rex_bbcodeText = function (runtime) {
     instanceProto.copyPensMgr = function (pensMgr) {
         return this.canvasText.copyPensMgr(pensMgr);
     };
-
-    // internal    
-    var __splitTextResult = [];
-    var splitText = function (txt, mode) {
-        var re = /\[b\]|\[\/b\]|\[i\]|\[\/i\]|\[size=(\d+)\]|\[\/size\]|\[color=([a-z]+|#[0-9abcdef]+)\]|\[\/color\]|\[u\]|\[u=([a-z]+|#[0-9abcdef]+)\]|\[\/u\]|\[shadow\]|\[\/shadow\]|\[stroke=([a-z]+|#[0-9abcdef]+)\]|\[\/stroke\]|\[img=([^\]]+)\]|\[\/img\]/ig;
-        __splitTextResult.length = 0;
-        var arr, m, charIdx = 0,
-            totalLen = txt.length,
-            matchStart = totalLen;
-        while (true) {
-            arr = re.exec(txt);
-            if (!arr) {
-                break;
-            }
-
-
-            m = arr[0];
-            matchStart = re["lastIndex"] - m.length;
-
-            if (charIdx < matchStart) {
-                __splitTextResult.push(txt.substring(charIdx, matchStart));
-
-            }
-
-            if (mode == null)
-                __splitTextResult.push(m);
-
-            charIdx = re["lastIndex"];
-        }
-
-
-        if (charIdx < totalLen) {
-            __splitTextResult.push(txt.substring(charIdx, totalLen));
-        }
-        return __splitTextResult;
-    };
-
-
-
-    var __re_bold_open = /\[b\]/i;
-    var __re_bold_close = /\[\/b\]/i;
-    var __re_italics_open = /\[i\]/i;
-    var __re_italics_close = /\[\/i\]/i;
-    var __re_size_open = /\[size=(\d+)\]/i;
-    var __re_size_close = /\[\/size\]/i;
-    var __re_color_open = /\[color=([a-z]+|#[0-9abcdef]+)\]/i;
-    var __re_color_close = /\[\/color\]/i;
-    var __re_underline_open = /\[u\]/i;
-    var __re_underline_openC = /\[u=([a-z]+|#[0-9abcdef]+)\]/i;
-    var __re_underline_close = /\[\/u\]/i;
-    var __re_shadow_open = /\[shadow\]/i;
-    var __re_shadow_close = /\[\/shadow\]/i;
-    var __re_stroke_open = /\[stroke=([a-z]+|#[0-9abcdef]+)\]/i;
-    var __re_stroke_close = /\[\/stroke\]/i;
-    var __re_image_open = /\[img=([^\]]+)\]/i;
-    var __re_image_close = /\[\/img\]/i;
-    var __curr_propScope = {};
-    var PROP_REMOVE = false;
-    var PROP_ADD = true;
-    var __text2PropResult = {
-        rawText: "",
-        prop: null
-    };
-    var tagText2Prop = function (txt, previousProp, tags) {
-        var rawText, propOut;
-        // Check if current fragment is a class tag.
-        if (__re_bold_open.test(m)) {
-            updatePropScope(previousProp, PROP_ADD, "b", true);
-            continue;
-        } else if (__re_bold_close.test(m)) {
-            updatePropScope(previousProp, PROP_REMOVE, "b");
-            continue;
-        } else if (__re_italics_open.test(m)) {
-            updatePropScope(previousProp, PROP_ADD, "i", true);
-            continue;
-        } else if (__re_italics_close.test(m)) {
-            updatePropScope(previousProp, PROP_REMOVE, "i");
-            continue;
-        } else if (__re_size_open.test(m)) {
-            innerMatch = m.match(__re_size_open);
-            updatePropScope(previousProp, PROP_ADD, "size", innerMatch[1] + "pt");
-            continue;
-        } else if (__re_size_close.test(m)) {
-            updatePropScope(previousProp, PROP_REMOVE, "size");
-            continue;
-        } else if (__re_color_open.test(m)) {
-            innerMatch = m.match(__re_color_open);
-            updatePropScope(previousProp, PROP_ADD, "color", innerMatch[1]);
-            continue;
-        } else if (__re_color_close.test(m)) {
-            updatePropScope(previousProp, PROP_REMOVE, "color");
-            continue;
-        } else if (__re_underline_open.test(m)) {
-            innerMatch = m.match(__re_underline_open);
-            updatePropScope(previousProp, PROP_ADD, "u", true);
-            continue;
-        } else if (__re_underline_openC.test(m)) {
-            innerMatch = m.match(__re_underline_openC);
-            updatePropScope(previousProp, PROP_ADD, "u", innerMatch[1]);
-            continue;
-        } else if (__re_underline_close.test(m)) {
-            updatePropScope(previousProp, PROP_REMOVE, "u");
-            continue;
-        } else if (__re_shadow_open.test(m)) {
-            updatePropScope(previousProp, PROP_ADD, "shadow", true);
-            continue;
-        } else if (__re_shadow_close.test(m)) {
-            updatePropScope(previousProp, PROP_REMOVE, "shadow");
-            continue;
-        } else if (__re_stroke_open.test(m)) {
-            innerMatch = m.match(__re_stroke_open);
-            updatePropScope(previousProp, PROP_ADD, "stroke", innerMatch[1]);
-            continue;
-        } else if (__re_stroke_close.test(m)) {
-            updatePropScope(previousProp, PROP_REMOVE, "stroke");
-            continue;
-        }
-
-        if (rawText == null) {
-            rawText = txt;
-        }
-
-        if (propOut == null) {
-            propOut = {};
-        }
-
-        __text2PropResult.rawText = rawText;
-        __text2PropResult.prop = propOut;
-        return __text2PropResult;
-    };
-
-    var updatePropScope = function (propScope, op, prop, value) {
-        if (op === PROP_ADD)
-            propScope[prop] = value;
-        else
-            remove_prop(propScope, prop);
-
-        return propScope;
-    };
-
-    // properties to text string
-    var __emptyProp = {};
-    var prop2TagText = function (txt, prop, previousProp) {
-        if (previousProp == null)
-            previousProp = __emptyProp;
-
-        for (var k in previousProp) {
-            if (prop.hasOwnProperty(k))
-                continue;
-
-            txt = "[/" + k + "]" + txt;
-        }
-
-        var header = "";
-        for (var k in prop) {
-            if (previousProp[k] === prop[k])
-                continue;
-
-            if (k === "size")
-                header += ("[size=" + prop[k].replace("pt", "") + "]");
-            else if ((k === "color") || (k === "stroke") || (k === "img"))
-                header += ("[" + k + "=" + prop[k] + "]");
-
-            else if (k === "u") {
-                if (prop[k] === true)
-                    header += "[u]";
-                else
-                    header += ("[u=" + prop[k] + "]");
-            } else
-                header += ("[" + k + "]");
-        }
-        txt = header + txt;
-
-        return txt;
-    };
     //////////////////////////////////////
     // Conditions
-    function Cnds() {};
+    function Cnds() { };
     pluginProto.cnds = new Cnds();
 
     Cnds.prototype.CompareText = function (text_to_compare, case_sensitive) {
@@ -796,7 +610,7 @@ cr.plugins_.rex_bbcodeText = function (runtime) {
 
     //////////////////////////////////////
     // Actions
-    function Acts() {};
+    function Acts() { };
     pluginProto.acts = new Acts();
 
 
@@ -850,12 +664,7 @@ cr.plugins_.rex_bbcodeText = function (runtime) {
     };
 
     Acts.prototype.SetFontColor = function (rgb) {
-        var newcolor;
-        if (typeof (rgb) == "number")
-            newcolor = "rgb(" + cr.GetRValue(rgb).toString() + "," + cr.GetGValue(rgb).toString() + "," + cr.GetBValue(rgb).toString() + ")";
-        else
-            newcolor = rgb;
-
+        var newcolor = getColor(rgb);
         if (newcolor === this.color)
             return;
 
@@ -958,11 +767,11 @@ cr.plugins_.rex_bbcodeText = function (runtime) {
         this.updateFont();
     };
 
-    Acts.prototype.SetLineHeight = function (line_height_offset) {
-        if (this.line_height_offset === line_height_offset)
+    Acts.prototype.SetLineHeight = function (lineHeightOffset) {
+        if (this.lineHeightOffset === lineHeightOffset)
             return;
 
-        this.line_height_offset = line_height_offset;
+        this.lineHeightOffset = lineHeightOffset;
         this.renderText(this.isForceRender);
     };
 
@@ -984,57 +793,84 @@ cr.plugins_.rex_bbcodeText = function (runtime) {
 
     };
 
-    Acts.prototype.SetWrapping = function (wrap_mode) {
-        wrap_mode = (wrap_mode === 0); // 0=word, 1=character
-        if (this.wrapbyword === wrap_mode)
+    Acts.prototype.SetWrapping = function (wrapMode) {
+        wrapMode = (wrapMode === 0); // 0=word, 1=character
+        if (this.wrapbyword === wrapMode)
             return;
 
-        this.wrapbyword = wrap_mode;
+        this.wrapbyword = wrapMode;
         this.renderText(this.isForceRender);
     };
 
     Acts.prototype.SetShadow = function (offsetX, offsetY, blur_, color_) {
-        this.setShadow(offsetX, offsetY, blur_, color_);
-        this.renderText(this.isForceRender);
+        var shadowProp = this.canvasText.defaultProperties["shadow"];
+        var isValueChanged = false;
+
+        if (color_ !== shadowProp[0]) {
+            shadowProp[0] = color_;
+            isValueChanged = true;
+        }
+        if (offsetX !== shadowProp[1]) {
+            shadowProp[1] = offsetX;
+            isValueChanged = true;
+        }
+        if (offsetY != shadowProp[2]) {
+            shadowProp[2] = offsetY;
+            isValueChanged = true;
+        }
+        if (blur_ != shadowProp[3]) {
+            shadowProp[3] = blur_;
+            isValueChanged = true
+        }
+        if (isValueChanged)
+            this.renderText(this.isForceRender);
     };
 
     Acts.prototype.SetThickness = function (w) {
-        if (w === this.canvasText.underline.thickness)
+        var underlineProp = this.canvasText.defaultProperties["underline"];
+        if (w === underlineProp[1])
             return;
 
-        this.canvasText.underline.thickness = w;
+        underlineProp[1] = w;
         this.need_text_redraw = true;
         this.runtime.redraw = true;
     };
     Acts.prototype.SetOffsetY = function (offset) {
-        if (offset === this.canvasText.underline.offset)
+        var underlineProp = this.canvasText.defaultProperties["underline"];
+        if (offset === underlineProp[2])
             return;
 
-        this.canvasText.underline.offset = offset;
+        underlineProp[2] = offset;
         this.need_text_redraw = true;
         this.runtime.redraw = true;
     };
 
     Acts.prototype.SetStrokeLineWidth = function (w) {
-        if (w === this.canvasText.stroke.lineWidth)
+        var strokeProp = this.canvasText.defaultProperties["stroke"];
+        if (w === strokeProp[1])
             return;
 
-        this.canvasText.stroke.lineWidth = w;
+        strokeProp[1] = w;
         this.need_text_redraw = true;
         this.runtime.redraw = true;
     };
 
     Acts.prototype.SetStrokeLineJoin = function (m) {
+        var strokeProp = this.canvasText.defaultProperties["stroke"];
         m = lineJoinMode[m];
-        if (m === this.canvasText.stroke.lineJoin)
+        if (m === strokeProp[2])
             return;
 
-        this.canvasText.stroke.lineJoin = m;
+        strokeProp[2] = m;
         this.need_text_redraw = true;
         this.runtime.redraw = true;
     };
 
-    Acts.prototype.SetBackgroundColor = function (color) {
+    Acts.prototype.SetBackgroundColor = function (rgb) {
+        if (rgb === "")
+            rgb = "none";
+
+        var color = getColor(rgb);
         if (color === this.canvasText.backgroundColor)
             return;
 
@@ -1054,23 +890,23 @@ cr.plugins_.rex_bbcodeText = function (runtime) {
         if (!objs)
             return;
 
-        window.RexImageBank.AddImage(key, objs.getFirstPicked(), yoffset);
+        window.rexObjs.ImageBank.AddImage(key, objs.getFirstPicked(), yoffset);
         this.renderText(this.isForceRender);
     };
 
     Acts.prototype.RemoveImage = function (key) {
-        window.RexImageBank.RemoveImage(key);
+        window.rexObjs.ImageBank.RemoveImage(key);
         this.renderText(this.isForceRender);
     };
 
     Acts.prototype.RemoveAll = function () {
-        window.RexImageBank.RemoveAll();
+        window.rexObjs.ImageBank.RemoveAll();
         this.renderText(this.isForceRender);
     };
 
     //////////////////////////////////////
     // Expressions
-    function Exps() {};
+    function Exps() { };
     pluginProto.exps = new Exps();
 
     Exps.prototype.Text = function (ret, start, end) {
@@ -1095,219 +931,294 @@ cr.plugins_.rex_bbcodeText = function (runtime) {
     };
 
     Exps.prototype.TextHeight = function (ret) {
-        var total_line_count = this.canvasText.getLines().length;
-        var text_height = total_line_count * (this.pxHeight + this.line_height_offset) - this.line_height_offset;
+        var totalLinesCount = this.canvasText.getLines().length;
+        var textHeight = totalLinesCount * (this.pxHeight + this.lineHeightOffset) - this.lineHeightOffset;
 
         if (this.baseLineMode === 0) // alphabetic
-            text_height += this.vshift;
+            textHeight += this.vshift;
 
-        ret.set_float(text_height);
+        ret.set_float(textHeight);
     };
 
     Exps.prototype.RawText = function (ret) {
         ret.set_string(this.canvasText.getRawText());
     };
 
-    Exps.prototype.LastClassPropValue = function (ret, name, default_value) {
+    Exps.prototype.LastClassPropValue = function (ret, name, defaultValue) {
         var val;
-        var last_pen = this.canvasText.getLastPen();
-        if (last_pen)
-            val = last_pen.prop[name];
+        var lastPen = this.canvasText.getLastPen();
+        if (lastPen)
+            val = lastPen.prop[name];
 
         if (!val)
-            val = default_value || 0;
+            val = defaultValue || 0;
 
         ret.set_any(val);
     };
 
-
-
-    CanvasTextProto.updatePens = function (pensMgr, textInfo, ignore_wrap) {
-        if (textInfo == null)
-            textInfo = this.textInfo;
-
-        pensMgr.freePens();
-
-        // Save the textInfo into separated vars to work more comfortably.
-        var text = textInfo["text"],
-            boxWidth = textInfo["boxWidth"],
-            boxHeight = textInfo["boxHeight"];
-        if (text === "")
-            return;
-
-        //var start_x = textInfo["x"], start_y = textInfo["y"];  
-        // textInfo["x"], textInfo["y"] had been moved to drawPens
-
-        var start_x = 0,
-            start_y = 0;
-        var cursor_x = start_x,
-            cursor_y = start_y;
-        var proText;
-
-
-        // The main regex. Looks for <style>, <class> tags.
-        var m, match = splitText(text);
-        if (match.length === 0)
-            return;
-        var i, match_cnt = match.length;
-        var innerMatch = null;
-
-        for (i = 0; i < match_cnt; i++) {
-
-            m = match[i];
-            // Check if current fragment is a class tag.
-            if (__re_bold_open.test(m)) {
-                updatePropScope(__curr_propScope, PROP_ADD, "b", true);
-                continue;
-            } else if (__re_bold_close.test(m)) {
-                updatePropScope(__curr_propScope, PROP_REMOVE, "b");
-                continue;
-            } else if (__re_italics_open.test(m)) {
-                updatePropScope(__curr_propScope, PROP_ADD, "i", true);
-                continue;
-            } else if (__re_italics_close.test(m)) {
-                updatePropScope(__curr_propScope, PROP_REMOVE, "i");
-                continue;
-            } else if (__re_size_open.test(m)) {
-                innerMatch = m.match(__re_size_open);
-                updatePropScope(__curr_propScope, PROP_ADD, "size", innerMatch[1] + "pt");
-                continue;
-            } else if (__re_size_close.test(m)) {
-                updatePropScope(__curr_propScope, PROP_REMOVE, "size");
-                continue;
-            } else if (__re_color_open.test(m)) {
-                innerMatch = m.match(__re_color_open);
-                updatePropScope(__curr_propScope, PROP_ADD, "color", innerMatch[1]);
-                continue;
-            } else if (__re_color_close.test(m)) {
-                updatePropScope(__curr_propScope, PROP_REMOVE, "color");
-                continue;
-            } else if (__re_underline_open.test(m)) {
-                innerMatch = m.match(__re_underline_open);
-                updatePropScope(__curr_propScope, PROP_ADD, "u", true);
-                continue;
-            } else if (__re_underline_openC.test(m)) {
-                innerMatch = m.match(__re_underline_openC);
-                updatePropScope(__curr_propScope, PROP_ADD, "u", innerMatch[1]);
-                continue;
-            } else if (__re_underline_close.test(m)) {
-                updatePropScope(__curr_propScope, PROP_REMOVE, "u");
-                continue;
-            } else if (__re_shadow_open.test(m)) {
-                updatePropScope(__curr_propScope, PROP_ADD, "shadow", true);
-                continue;
-            } else if (__re_shadow_close.test(m)) {
-                updatePropScope(__curr_propScope, PROP_REMOVE, "shadow");
-                continue;
-            } else if (__re_stroke_open.test(m)) {
-                innerMatch = m.match(__re_stroke_open);
-                updatePropScope(__curr_propScope, PROP_ADD, "stroke", innerMatch[1]);
-                continue;
-            } else if (__re_stroke_close.test(m)) {
-                updatePropScope(__curr_propScope, PROP_REMOVE, "stroke");
-                continue;
+    // split text into array    
+    var __splitTextResult = [];
+    var splitText = function (txt, mode) {
+        var re = /\[b\]|\[\/b\]|\[i\]|\[\/i\]|\[size=(\d+)\]|\[\/size\]|\[color=([a-z]+|#[0-9abcdef]+)\]|\[\/color\]|\[u\]|\[u=([a-z]+|#[0-9abcdef]+)\]|\[\/u\]|\[shadow\]|\[\/shadow\]|\[stroke=([a-z]+|#[0-9abcdef]+)\]|\[\/stroke\]|\[img=([^\]]+)\]|\[\/img\]/ig;
+        __splitTextResult.length = 0;
+        var arr, m, charIdx = 0,
+            totalLen = txt.length,
+            matchStart = totalLen;
+        while (true) {
+            arr = re.exec(txt);
+            if (!arr) {
+                break;
             }
 
-            // add image pen            
-            else if (__re_image_open.test(m)) {
-                innerMatch = m.match(__re_image_open);
 
-                var key = innerMatch[1];
-                var img = window.RexImageBank.GetImage(key);
-                if (!img)
-                    continue;
+            m = arr[0];
+            matchStart = re["lastIndex"] - m.length;
 
-                updatePropScope(__curr_propScope, PROP_ADD, "img", key);
+            if (charIdx < matchStart) {
+                __splitTextResult.push(txt.substring(charIdx, matchStart));
 
-                if (!ignore_wrap) {
-                    if (img.width > boxWidth - (cursor_x - start_x)) {
-                        cursor_x = start_x;
-                        cursor_y += this.lineHeight;
-                    }
-                    pensMgr.addPen(null, // text
-                        cursor_x, // x
-                        cursor_y, // y
-                        img.width, // width
-                        __curr_propScope, // prop
-                        0 // new_line_mode
-                    );
-
-                    cursor_x += img.width;
-                } else {
-                    pensMgr.addPen(null, // text
-                        null, // x
-                        null, // y
-                        null, // width
-                        __curr_propScope, // prop
-                        0 // new_line_mode
-                    );
-                }
-
-                updatePropScope(__curr_propScope, PROP_REMOVE, "img");
-                continue;
-            } else if (__re_image_close.test(m)) {
-                updatePropScope(__curr_propScope, PROP_REMOVE, "img");
-                continue;
             }
 
-            // add text pen
-            else {
-                proText = m;
+            if (mode == null)
+                __splitTextResult.push(m);
 
-                if (!ignore_wrap) {
-                    // Save the current context.
-                    this.context.save();
-
-                    this.apply_propScope(__curr_propScope);
-
-                    var wrap_lines = wordWrap(proText, this.context, boxWidth, this.plugin.wrapbyword, cursor_x - start_x);
-
-                    // add pens
-                    var lcnt = wrap_lines.length,
-                        n, wrap_line;
-                    for (n = 0; n < lcnt; n++) {
-                        wrap_line = wrap_lines[n];
-                        pensMgr.addPen(wrap_line.text, // text
-                            cursor_x, // x
-                            cursor_y, // y
-                            wrap_line.width, // width
-                            __curr_propScope, // prop
-                            wrap_line.newLineMode // new_line_mode
-                        );
-
-                        if (wrap_line.newLineMode !== NO_NEWLINE) {
-                            cursor_x = start_x;
-                            cursor_y += this.lineHeight;
-                        } else {
-                            cursor_x += wrap_line.width;
-                        }
-
-                    }
-
-                    this.context.restore();
-                } else {
-                    pensMgr.addPen(proText, // text
-                        null, // x
-                        null, // y
-                        null, // width
-                        __curr_propScope, // prop
-                        0 // new_line_mode
-                    );
-                    // new line had been included in raw text
-                }
-                continue;
-            }
-        } // for (i = 0; i < match_cnt; i++) 
+            charIdx = re["lastIndex"];
+        }
 
 
-        // clean __curr_propScope
-        for (var k in __curr_propScope)
-            delete __curr_propScope[k];
+        if (charIdx < totalLen) {
+            __splitTextResult.push(txt.substring(charIdx, totalLen));
+        }
+        return __splitTextResult;
     };
 
-    var remove_prop = function (propScope, prop) {
-        if (propScope.hasOwnProperty(prop))
-            delete propScope[prop];
+
+    // text to properties
+    var __re_bold_open = /\[b\]/i;
+    var __re_bold_close = /\[\/b\]/i;
+    var __re_italics_open = /\[i\]/i;
+    var __re_italics_close = /\[\/i\]/i;
+    var __re_size_open = /\[size=(\d+)\]/i;
+    var __re_size_close = /\[\/size\]/i;
+    var __re_color_open = /\[color=([a-z]+|#[0-9abcdef]+)\]/i;
+    var __re_color_close = /\[\/color\]/i;
+    var __re_underline_open = /\[u\]/i;
+    var __re_underline_openC = /\[u=([a-z]+|#[0-9abcdef]+)\]/i;
+    var __re_underline_close = /\[\/u\]/i;
+    var __re_shadow_open = /\[shadow\]/i;
+    var __re_shadow_close = /\[\/shadow\]/i;
+    var __re_stroke_open = /\[stroke=([a-z]+|#[0-9abcdef]+)\]/i;
+    var __re_stroke_close = /\[\/stroke\]/i;
+    var __re_image_open = /\[img=([^\]]+)\]/i;
+    var __re_image_close = /\[\/img\]/i;
+    var PROP_REMOVE = false;
+    var PROP_ADD = true;
+    var __text2PropResult = {
+        rawText: "",
+        prop: null
+    };
+    var tagText2Prop = function (txt, prevProp) {
+        var retProp = __text2PropResult;
+        var rawText, innerMatch;
+
+        if (prevProp == null) {
+            prevProp = {};
+        }
+
+        // close image tag
+        if (prevProp["img"]) {
+            updateProp(prevProp, PROP_REMOVE, "img");
+        }
+        // Check if current fragment is a class tag
+        if (__re_bold_open.test(txt)) {
+            updateProp(prevProp, PROP_ADD, "b", true);
+            rawText = "";
+        } else if (__re_bold_close.test(txt)) {
+            updateProp(prevProp, PROP_REMOVE, "b");
+            rawText = "";
+        } else if (__re_italics_open.test(txt)) {
+            updateProp(prevProp, PROP_ADD, "i", true);
+            rawText = "";
+        } else if (__re_italics_close.test(txt)) {
+            updateProp(prevProp, PROP_REMOVE, "i");
+            rawText = "";
+        } else if (__re_size_open.test(txt)) {
+            innerMatch = txt.match(__re_size_open);
+            updateProp(prevProp, PROP_ADD, "size", innerMatch[1] + "pt");
+            rawText = "";
+        } else if (__re_size_close.test(txt)) {
+            updateProp(prevProp, PROP_REMOVE, "size");
+            rawText = "";
+        } else if (__re_color_open.test(txt)) {
+            innerMatch = txt.match(__re_color_open);
+            updateProp(prevProp, PROP_ADD, "color", innerMatch[1]);
+            rawText = "";
+        } else if (__re_color_close.test(txt)) {
+            updateProp(prevProp, PROP_REMOVE, "color");
+            rawText = "";
+        } else if (__re_underline_open.test(txt)) {
+            innerMatch = txt.match(__re_underline_open);
+            updateProp(prevProp, PROP_ADD, "u", true);
+            rawText = "";
+        } else if (__re_underline_openC.test(txt)) {
+            innerMatch = txt.match(__re_underline_openC);
+            updateProp(prevProp, PROP_ADD, "u", innerMatch[1]);
+            rawText = "";
+        } else if (__re_underline_close.test(txt)) {
+            updateProp(prevProp, PROP_REMOVE, "u");
+            rawText = "";
+        } else if (__re_shadow_open.test(txt)) {
+            updateProp(prevProp, PROP_ADD, "shadow", true);
+            rawText = "";
+        } else if (__re_shadow_close.test(txt)) {
+            updateProp(prevProp, PROP_REMOVE, "shadow");
+            rawText = "";
+        } else if (__re_stroke_open.test(txt)) {
+            innerMatch = txt.match(__re_stroke_open);
+            updateProp(prevProp, PROP_ADD, "stroke", innerMatch[1]);
+            rawText = "";
+        } else if (__re_stroke_close.test(txt)) {
+            updateProp(prevProp, PROP_REMOVE, "stroke");
+            rawText = "";
+        } else if (__re_image_open.test(txt)) {
+            innerMatch = txt.match(__re_image_open);
+            updateProp(prevProp, PROP_ADD, "img", innerMatch[1]);
+            rawText = "";
+        } else if (__re_image_close.test(txt)) {
+            updateProp(prevProp, PROP_REMOVE, "img");
+            rawText = "";
+        } else {
+            rawText = txt
+        }
+
+        retProp.rawText = rawText;
+        retProp.prop = prevProp;
+        return retProp;
     };
 
+    var updateProp = function (prop, op, key, value) {
+        if (op === PROP_ADD) {
+            // PROP_ADD     
+            prop[key] = value;
+        }
+        else {
+            // PROP_REMOVE        
+            if (prop.hasOwnProperty(key)) {
+                delete prop[key];
+            }
+        }
+
+        return prop;
+    };
+
+    var __contextPropResult = {
+        stroke: [null, null, null],
+        shadow: [null, null, null, null],
+        underline: [null, null, null]
+    };
+    var __nullList = [];
+    var prop2ContextProp = function (defaultContextProp, prop, noRawText) {        
+        var retProp = __contextPropResult;
+
+        if (prop["img"] == null) {
+            retProp.img = null;
+            retProp.family = (prop["family"] != null) ? prop["family"] : defaultContextProp["family"];
+            retProp.weight = (prop["weight"] != null) ? prop["weight"] : defaultContextProp["weight"];
+            retProp.ptSize = (prop["size"] != null) ? prop["size"] : defaultContextProp["ptSize"];
+
+            retProp.style = getFontStyle(prop["b"], prop["i"]);
+            retProp.color = (prop["color"] != null) ? prop["color"] : defaultContextProp["color"];
+
+            var stroke;
+            if (prop["stroke"]) {
+                // yellow 1px miter
+                stroke = prop["stroke"].split(" ");
+            } else {
+                stroke = __nullList;
+            }
+
+            var defaultStroke = defaultContextProp["stroke"]; // [color, lineWidth, lineJoin]   
+            retProp.stroke[0] = (stroke[0] != null) ? stroke[0] : defaultStroke[0];
+            retProp.stroke[1] = (stroke[1] != null) ? parseFloat(stroke[1].replace("px", "")) : defaultStroke[1];
+            retProp.stroke[2] = (stroke[2] != null) ? stroke[2] : defaultStroke[2];
+
+        } else {
+            retProp.img = prop["img"];
+        }
+
+        if (prop["shadow"] != null) {
+            var shadow;
+            if (prop["shadow"] == true) {
+                shadow = __nullList;
+            } else {
+                // 2px 2px 2px #000
+                shadow = prop["shadow"].split(" ");
+            }
+
+            var defaultShadow = defaultContextProp["shadow"]; // [color, offsetx, offsety, blur]    
+            retProp.shadow[0] = (shadow[3] != null) ? shadow[3] : defaultShadow[0];
+            if (retProp.shadow[0] != null) {
+                retProp.shadow[1] = (shadow[0] != null) ? parseFloat(shadow[0].replace("px", "")) : defaultShadow[1];
+                retProp.shadow[2] = (shadow[1] != null) ? parseFloat(shadow[1].replace("px", "")) : defaultShadow[2];
+                retProp.shadow[3] = (shadow[2] != null) ? parseFloat(shadow[2].replace("px", "")) : defaultShadow[3];
+            }
+        } else {
+            retProp.shadow[0] = "none";
+        }
+
+        if (prop["u"] != null) {
+            var underline;
+            if (prop["u"] == true) {
+                underline = __nullList;
+            } else {
+                // yellow 1px 0px     
+                underline = prop["u"].split(" ");
+            }
+
+            var defaultUnderline = defaultContextProp["underline"]; // [color, thickness, offset]
+            retProp.underline[0] = (underline[0] != null) ? underline[0] : defaultUnderline[0];
+            retProp.underline[1] = (underline[1] != null) ? parseFloat(underline[1].replace("px", "")) : defaultUnderline[1];
+            retProp.underline[2] = (underline[2] != null) ? parseFloat(underline[2].replace("px", "")) : defaultUnderline[2];
+        } else {
+            retProp.underline[0] = "none";
+        }
+
+        return retProp;
+    };
+
+    // properties to text string
+    var __emptyProp = {};
+    var prop2TagText = function (txt, prop, prevProp) {
+        if (prevProp == null)
+            prevProp = __emptyProp;
+
+        for (var k in prevProp) {
+            if (prop.hasOwnProperty(k))
+                continue;
+
+            txt = "[/" + k + "]" + txt;
+        }
+
+        var header = "";
+        for (var k in prop) {
+            if (prevProp[k] === prop[k])
+                continue;
+
+            if (k === "size")
+                header += ("[size=" + prop[k].replace("pt", "") + "]");
+            else if ((k === "color") || (k === "stroke") || (k === "img"))
+                header += ("[" + k + "=" + prop[k] + "]");
+
+            else if (k === "u") {
+                if (prop[k] === true)
+                    header += "[u]";
+                else
+                    header += ("[u=" + prop[k] + "]");
+            } else
+                header += ("[" + k + "]");
+        }
+        txt = header + txt;
+
+        return txt;
+    };
 }());
