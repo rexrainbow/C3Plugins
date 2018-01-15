@@ -131,7 +131,7 @@ cr.plugins_.rex_bbcodeText = function (runtime) {
         shadowProp[1] = this.properties[20];
         shadowProp[2] = this.properties[21];
         shadowProp[3] = this.properties[22];
-        shadowProp[0] = this.properties[23];
+        shadowProp[0] = getColor(this.properties[23]);
 
         var backgroundColor = this.properties[24];
         if (backgroundColor === "")
@@ -1146,7 +1146,7 @@ cr.plugins_.rex_bbcodeText = function (runtime) {
             retProp.img = prop["img"];
         }
 
-        if (prop["shadow"] != null) {
+        if (prop["shadow"] != null) {        
             var shadow;
             if (prop["shadow"] == true) {
                 shadow = __nullList;
