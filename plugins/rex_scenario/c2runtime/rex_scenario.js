@@ -628,7 +628,7 @@
         return index;
     };
     CmdTAGKlassProto.HasTag = function (tag) {
-        return (this.tag2indexMap(tag) != null);
+        return (this.tag2indexMap[tag] != null);
     };
 
     // extra command : GOTO    
