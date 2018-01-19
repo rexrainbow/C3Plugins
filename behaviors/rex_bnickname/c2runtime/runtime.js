@@ -23,8 +23,7 @@ cr.behaviors.Rex_bNickname = function (runtime) {
 
 	var behtypeProto = behaviorProto.Type.prototype;
 
-	behtypeProto.onCreate = function () {
-	};
+	behtypeProto.onCreate = function () {};
 
 	/////////////////////////////////////
 	// Behavior instance class
@@ -41,30 +40,28 @@ cr.behaviors.Rex_bNickname = function (runtime) {
 		this.setNickname(this.properties[0], this.properties[1]);
 	};
 
-	behinstProto.tick = function () {
-	};
+	behinstProto.tick = function () {};
 
 	behinstProto.setNickname = function (name, m) {
-		if (cr.plugins_.Rex_Nickname == null)
+		var nicknameObj = window.RexC2NicknameObj;
+		if (nicknameObj == null)
 			return;
 
 		var nickname = (m == 1) ? this.inst.type.sid.toString() : name;
+		var savedNickname = nicknameObj.sid2nickname[this.inst.type.sid.toString()]; // try to get nickname from nickname plugin
 		if (nickname == "") {
-			nickname = cr.plugins_.Rex_Nickname.sid2nickname[this.inst.type.sid.toString()];  // try to get nickname from nickname plugin
-			if (nickname != null)
-				this.nickname = nickname;
-			else
-				this.nickname = "";
-		}
-		else {
+			this.nickname = savedNickname || "";
+		} else {
 			this.nickname = nickname;
-			cr.plugins_.Rex_Nickname.AddNickname(nickname, this.inst.type);
+			if (nickname !== savedNickname) {
+				nicknameObj.AddNickname(nickname, this.inst.type);
+			}
 		}
 
 	};
 	//////////////////////////////////////
 	// Conditions
-	function Cnds() { };
+	function Cnds() {};
 	behaviorProto.cnds = new Cnds();
 
 	Cnds.prototype.IsNicknameMatched = function (name) {
@@ -72,12 +69,12 @@ cr.behaviors.Rex_bNickname = function (runtime) {
 	};
 	//////////////////////////////////////
 	// Actions
-	function Acts() { };
+	function Acts() {};
 	behaviorProto.acts = new Acts();
 
 	//////////////////////////////////////
 	// Expressions
-	function Exps() { };
+	function Exps() {};
 	behaviorProto.exps = new Exps();
 
 	Exps.prototype.Nickname = function (ret) {
