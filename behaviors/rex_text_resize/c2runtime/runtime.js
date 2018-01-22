@@ -78,41 +78,26 @@ cr.behaviors.Rex_text_resize = function (runtime) {
 		this.runtime.removeDestroyCallback(this.myDestroyCallback);
 	};
 
-	behinstProto.tick = function () {
-		// 2. resize text inst
-		if (this.isResizeNow && !this.isTextChanged(this.textObjType)) {
-			this.resize();
-		}
-
-	};
+	behinstProto.tick = function () {};
 
 	behinstProto.tick2 = function () {
 		if (!this.isAutoResize)
 			return;
 
-		// 1. this tick will render text ( text had chnaged ) with max width 
 		if (this.isTextChanged()) {
-			this.prepareDrawing();
+			this.resize();
 		}
 	};
 
-	behinstProto.prepareDrawing = function () {
+	behinstProto.forceDrawing = function () {
 		var inst = this.inst;
+		// render text
+		var ctx = (this.runtime.enableWebGL) ?
+			this.getWebglCtx() : this.runtime.ctx;
+
 		// use the max width to render text
 		inst.width = this.maxWidth;
 		inst.set_bbox_changed();
-
-		// resize next tick
-		this.isResizeNow = true;
-	};
-
-	behinstProto.forceDrawing = function () {
-		// render text
-		this.prepareDrawing();
-		var ctx = (this.runtime.enableWebGL) ?
-			this._get_webgl_ctx() : this.runtime.ctx;
-
-		var inst = this.inst;
 		inst.draw(ctx);
 
 		// draw text at normal render stage
@@ -120,7 +105,7 @@ cr.behaviors.Rex_text_resize = function (runtime) {
 		inst.runtime.redraw = true;
 	};
 
-	behinstProto._get_webgl_ctx = function () {
+	behinstProto.getWebglCtx = function () {
 		var inst = this.inst;
 		var ctx = inst.myctx;
 		if (!ctx) {
@@ -139,7 +124,7 @@ cr.behaviors.Rex_text_resize = function (runtime) {
 
 
 	behinstProto.resize = function () {
-		this.isResizeNow = false;
+		this.forceDrawing();
 
 		var isResized = this.resizeMyself();
 
@@ -172,9 +157,9 @@ cr.behaviors.Rex_text_resize = function (runtime) {
 	var TYPE_TEXT = 1;
 	var TYPE_SPRITEFONT2 = 2;
 	var TYPE_TEXTBOX = 3;
-	var TYPE_SPRITEFONTPLUS = 4;	
+	var TYPE_SPRITEFONTPLUS = 4;
 	var TYPE_REX_TAGTEXT = 10;
-	var TYPE_REX_BBCODETEXT = 11;	
+	var TYPE_REX_BBCODETEXT = 11;
 	behinstProto.getTextObjType = function () {
 		var textObjType;
 		if (cr.plugins_.Text &&
@@ -195,7 +180,7 @@ cr.behaviors.Rex_text_resize = function (runtime) {
 		else
 			textObjType = TYPE_NONE;
 		return textObjType;
-	};	
+	};
 
 	behinstProto.setInstSize = function (width, height) {
 		var inst = this.inst;
@@ -385,7 +370,6 @@ cr.behaviors.Rex_text_resize = function (runtime) {
 	behaviorProto.acts = new Acts();
 
 	Acts.prototype.Resize = function () {
-		this.forceDrawing();
 		this.resize();
 	};
 
