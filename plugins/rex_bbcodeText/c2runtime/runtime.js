@@ -84,7 +84,7 @@ cr.plugins_.rex_bbcodeText = function (runtime) {
         this.lastheight = this.height;
 
         this.baseLineMode = this.properties[12];
-        this.vshift = this.properties[13] ;
+        this.vshift = this.properties[13];
         this.isForceRender = (this.properties[14] === 1);
         this.LockCanvasSize(this.properties[15], this.width, this.height);
 
