@@ -84,7 +84,7 @@ cr.plugins_.rex_bbcodeText = function (runtime) {
         this.lastheight = this.height;
 
         this.baseLineMode = this.properties[12];
-        this.vshift = this.properties[13] * this.runtime.devicePixelRatio;
+        this.vshift = this.properties[13] ;
         this.isForceRender = (this.properties[14] === 1);
         this.LockCanvasSize(this.properties[15], this.width, this.height);
 
@@ -361,7 +361,7 @@ cr.plugins_.rex_bbcodeText = function (runtime) {
         this.canvasText.textInfo.boxWidth = width;
         this.canvasText.textInfo.boxHeight = height;
         this.canvasText.textInfo.lineHeight = lineHeight;
-        this.canvasText.textInfo.vshift = this.vshift;
+        this.canvasText.textInfo.vshift = this.vshift * this.runtime.devicePixelRatio;
         this.canvasText.textInfo.halign = this.halign;
         this.canvasText.textInfo.valign = this.valign;
         this.canvasText.textInfo.wrapbyword = this.wrapbyword;
