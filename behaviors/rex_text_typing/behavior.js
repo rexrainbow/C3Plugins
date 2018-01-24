@@ -21,6 +21,7 @@
 			this._info.SetIsOnlyOneAllowed(true);
 			SDK.Lang.PushContext(".properties");
 			this._info.SetProperties([
+				new SDK.PluginProperty("combo", "typing-mode", {initialValue:"left-to-right", items:["left-to-right","right-to-left","middle-to-sides","sides-to-middle"]}),
 				new SDK.PluginProperty("check", "line-break", false)
 			]);
 			SDK.Lang.PopContext();		// .properties

@@ -57,7 +57,8 @@ cr.behaviors.Rex_text_typing = function (runtime) {
 	var behinstProto = behaviorProto.Instance.prototype;
 
 	behinstProto.onCreate = function () {
-		this.isLineBreak = this.properties[0];
+		this.typeMode = this.properties[0];
+		this.isLineBreak = (this.properties[1] === 1);
 		this.typingTimer = null;
 		this.typingSpeed = 0;
 		this.typingIndex = 0;
@@ -73,9 +74,9 @@ cr.behaviors.Rex_text_typing = function (runtime) {
 	var TYPE_TEXT = 1;
 	var TYPE_SPRITEFONT2 = 2;
 	var TYPE_TEXTBOX = 3;
-	var TYPE_SPRITEFONTPLUS = 4;	
+	var TYPE_SPRITEFONTPLUS = 4;
 	var TYPE_REX_TAGTEXT = 10;
-	var TYPE_REX_BBCODETEXT = 11;	
+	var TYPE_REX_BBCODETEXT = 11;
 	behinstProto.getTextObjType = function () {
 		var textType;
 		if (cr.plugins_.Text &&
@@ -132,7 +133,6 @@ cr.behaviors.Rex_text_typing = function (runtime) {
 	behinstProto.tick = function () {
 	};
 
-
 	behinstProto.getRawTextLength = function (content) {
 		var len;
 		if ((this.textType === TYPE_TEXT) ||
@@ -146,25 +146,80 @@ cr.behaviors.Rex_text_typing = function (runtime) {
 		return len;
 	};
 
-	behinstProto.SetText = function (content, startIndex, endIndex) {
-		if (this.FnSetText == null)
-			return;
-
+	behinstProto.getSubString = function (txt, startIndex, endIndex) {
 		if (startIndex == null)
 			startIndex = 0;
 		if (endIndex == null)
-			endIndex = this.getRawTextLength(content);
+			endIndex = this.getRawTextLength(txt);
+		if (startIndex > endIndex) { // swap
+			var endIdx = startIndex;
+			var startIdx = endIndex;
+			startIndex = startIdx;
+			endIndex = endIdx;
+		}
 
+		var result;
 		if ((this.textType == TYPE_TEXT) ||
 			(this.textType == TYPE_SPRITEFONT2) || (this.textType === TYPE_SPRITEFONTPLUS) ||
 			(this.textType == TYPE_TEXTBOX)) {
-			content = content.slice(startIndex, endIndex);
-			this.FnSetText.call(this.inst, content);
+			result = txt.slice(startIndex, endIndex);
 		}
 		else if ((this.textType === TYPE_REX_TAGTEXT) || (this.textType === TYPE_REX_BBCODETEXT)) {
-			content = this.inst.getSubText(startIndex, endIndex, content);
-			this.FnSetText.call(this.inst, content);
+			result = this.inst.getSubText(startIndex, endIndex, txt);
 		}
+
+		return result;
+	};
+
+	behinstProto.getTypingString = function (txt, typeIdx, typeMode) {
+		var result;
+		if (typeMode === 0) { //Left to right
+			var startIdx = 0;
+			var endIdx = typeIdx;
+			result = this.getSubString(txt, startIdx, endIdx);
+
+		} else if (typeMode === 1) { //Right to left
+			var endIdx = this.rawTextLength;
+			var startIdx = endIdx - typeIdx;
+			result = this.getSubString(txt, startIdx, endIdx);
+
+		} else if (typeMode === 2) { //Middle to sides
+			var txtMidIdx = this.rawTextLength / 2;
+			var startIdx = Math.floor(txtMidIdx - (typeIdx / 2));
+			var endIdx = startIdx + typeIdx;
+			result = this.getSubString(txt, startIdx, endIdx);
+
+		} else if (typeMode === 3) { //Sides to middle
+			var lowerLen = Math.floor(typeIdx / 2);
+			var lowerResult;
+			if (lowerLen > 0) {
+				var endIdx = this.rawTextLength;
+				var startIdx = endIdx - lowerLen;				
+				lowerResult = this.getSubString(txt, startIdx, endIdx);
+			} else {
+				lowerResult = "";
+			}
+
+			var upperLen = typeIdx - lowerLen;
+			var upperResult;
+			if (upperLen > 0) {
+				var startIdx = 0;					
+				var endIdx = startIdx + upperLen;			
+				upperResult = this.getSubString(txt, startIdx, endIdx);
+			} else {
+				upperResult = "";
+			}
+			result = upperResult + lowerResult;
+		}
+
+		return result;
+	};
+
+	behinstProto.SetText = function (txt) {
+		if (this.FnSetText == null)
+			return;
+
+		this.FnSetText.call(this.inst, txt);
 	};
 
 	behinstProto.getTimer = function () {
@@ -179,6 +234,8 @@ cr.behaviors.Rex_text_typing = function (runtime) {
 	};
 
 	behinstProto.startTyping = function (text, speed, startIndex) {
+		this.content = text;
+
 		if (this.isLineBreak) {
 			text = this.lineBreakContent(text);
 		}
@@ -196,7 +253,8 @@ cr.behaviors.Rex_text_typing = function (runtime) {
 		}
 		else {
 			this.typingIndex = this.rawTextLength;
-			this.SetText(text, 0, this.typingIndex);
+			text = this.getTypingString(text, this.typingIndex, this.typeMode);
+			this.SetText(text);
 			this.runtime.trigger(cr.behaviors.Rex_text_typing.prototype.cnds.OnTypingCompleted, this.inst);
 		}
 	};
@@ -207,7 +265,8 @@ cr.behaviors.Rex_text_typing = function (runtime) {
 	};
 
 	behinstProto.typing = function () {
-		this.SetText(this.typingContent, 0, this.typingIndex);
+		var text = this.getTypingString(this.typingContent, this.typingIndex, this.typeMode);
+		this.SetText(text);
 		this.runtime.trigger(cr.behaviors.Rex_text_typing.prototype.cnds.OnTextTyping, this.inst);
 		this.typingIndex += 1;
 		if (this.typingIndex <= this.rawTextLength)
@@ -358,8 +417,7 @@ cr.behaviors.Rex_text_typing = function (runtime) {
 		if (typeof param === "number")
 			param = Math.round(param * 1e10) / 1e10;	// round to nearest ten billionth - hides floating point errors
 
-		this.content = param.toString();
-		this.startTyping(this.content, speed);
+		this.startTyping(param.toString(), speed);
 	};
 
 	Acts.prototype.SetTypingSpeed = function (speed) {
@@ -389,9 +447,8 @@ cr.behaviors.Rex_text_typing = function (runtime) {
 		var startIndex = this.rawTextLength;
 		if (typeof param === "number")
 			param = Math.round(param * 1e10) / 1e10;	// round to nearest ten billionth - hides floating point errors
-		this.content += param.toString();
 		if (!this.isTyping())
-			this.startTyping(this.content, this.typingSpeed, startIndex);
+			this.startTyping(this.content + param.toString(), this.typingSpeed, startIndex);
 	};
 
 	Acts.prototype.Pause = function () {

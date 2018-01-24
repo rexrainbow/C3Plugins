@@ -8,6 +8,16 @@
 				"description": "Typing text on text / sprite font object.",
 				"help-url": "https://rexrainbow.github.io/C2RexDoc/c2rexpluginsACE/rex_text_typing.html",
 				"properties": {
+					"typing-mode": {
+						"name": "Typing mode",
+						"desc": "Typing mode.",
+						"items": {
+							"left-to-right":"Left to right",
+							"right-to-left":"Right to left",
+							"middle-to-sides":"Middle to sides",
+							"sides-to-middle":"Sides to middle"							
+							}
+						},					
 					"line-break": {
 						"name": "Line break",
 						"desc": "Enable to add new line to split lines."
